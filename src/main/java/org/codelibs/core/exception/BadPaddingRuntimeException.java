@@ -21,12 +21,12 @@ import javax.crypto.BadPaddingException;
  * @author shinsuke
  * 
  */
-public class BadPaddingRuntimeException extends SCRuntimeException {
+public class BadPaddingRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
     public BadPaddingRuntimeException(final BadPaddingException cause) {
-        super("ESC0001", new Object[] { cause.getClass().getName() }, cause);
+        super("ECL0001", new Object[] { cause.getClass().getName() }, cause);
     }
 
 }

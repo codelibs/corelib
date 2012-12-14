@@ -15,10 +15,10 @@
  */
 package org.codelibs.core;
 
-public class SCConstants {
+public class ClConstants {
 
     public static final String UTF_8 = "UTF-8";
 
-    protected SCConstants() {
+    protected ClConstants() {
     }
 }

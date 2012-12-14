@@ -21,13 +21,13 @@ import java.io.UnsupportedEncodingException;
  * @author shinsuke
  * 
  */
-public class UnsupportedEncodingRuntimeException extends SCRuntimeException {
+public class UnsupportedEncodingRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
     public UnsupportedEncodingRuntimeException(
             final UnsupportedEncodingException cause) {
-        super("ESC0001", new Object[] { cause.getClass().getName() }, cause);
+        super("ECL0001", new Object[] { cause.getClass().getName() }, cause);
     }
 
 }

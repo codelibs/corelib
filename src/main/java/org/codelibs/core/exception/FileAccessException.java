@@ -21,7 +21,7 @@ package org.codelibs.core.exception;
  * @author shinsuke
  * 
  */
-public class FileAccessException extends SCRuntimeException {
+public class FileAccessException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 

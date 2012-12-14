@@ -23,24 +23,24 @@ import org.seasar.util.exception.SRuntimeException;
  * @author shinsuke
  * 
  */
-public class SCRuntimeException extends SRuntimeException {
+public class ClRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public SCRuntimeException(final String messageCode, final Object[] args,
+    public ClRuntimeException(final String messageCode, final Object[] args,
             final Throwable cause) {
         super(messageCode, args, cause);
     }
 
-    public SCRuntimeException(final String messageCode, final Object[] args) {
+    public ClRuntimeException(final String messageCode, final Object[] args) {
         super(messageCode, args);
     }
 
-    public SCRuntimeException(final String messageCode, final Throwable cause) {
+    public ClRuntimeException(final String messageCode, final Throwable cause) {
         super(messageCode, new Object[] {}, cause);
     }
 
-    public SCRuntimeException(final String messageCode) {
+    public ClRuntimeException(final String messageCode) {
         super(messageCode, new Object[0]);
     }
 }

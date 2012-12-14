@@ -53,7 +53,7 @@ public class DynamicProperties extends Properties {
     public DynamicProperties(final String path) {
         // check path
         if (StringUtil.isEmpty(path)) {
-            throw new FileAccessException("ESC0004");
+            throw new FileAccessException("ECL0004");
         }
 
         propertiesFile = new File(path);
@@ -61,16 +61,16 @@ public class DynamicProperties extends Properties {
             final File parentDir = propertiesFile.getParentFile();
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
-                    throw new FileAccessException("ESC0005",
+                    throw new FileAccessException("ECL0005",
                             new Object[] { path });
                 }
             } else if (!parentDir.isDirectory()) {
-                throw new FileAccessException("ESC0006", new Object[] { path });
+                throw new FileAccessException("ECL0006", new Object[] { path });
             }
             properties = new Properties();
             store();
         } else if (!propertiesFile.isFile()) {
-            throw new FileAccessException("ESC0007", new Object[] { path });
+            throw new FileAccessException("ECL0007", new Object[] { path });
         }
         load();
     }
@@ -81,16 +81,16 @@ public class DynamicProperties extends Properties {
             final File parentDir = file.getParentFile();
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
-                    throw new FileAccessException("ESC0005",
+                    throw new FileAccessException("ECL0005",
                             new Object[] { path });
                 }
             } else if (!parentDir.isDirectory()) {
-                throw new FileAccessException("ESC0006", new Object[] { path });
+                throw new FileAccessException("ECL0006", new Object[] { path });
             }
             propertiesFile = file;
             store();
         } else if (!file.isFile()) {
-            throw new FileAccessException("ESC0007", new Object[] { path });
+            throw new FileAccessException("ECL0007", new Object[] { path });
         } else {
             propertiesFile = file;
         }
@@ -134,7 +134,7 @@ public class DynamicProperties extends Properties {
             fos = new FileOutputStream(propertiesFile);
             properties.store(fos, propertiesFile.getName());
         } catch (final IOException e) {
-            throw new FileAccessException("ESC0008",
+            throw new FileAccessException("ECL0008",
                     new Object[] { propertiesFile.getAbsolutePath() }, e);
         } finally {
             IOUtils.closeQuietly(fos);

@@ -21,13 +21,13 @@ import javax.crypto.IllegalBlockSizeException;
  * @author shinsuke
  * 
  */
-public class IllegalBlockSizeRuntimeException extends SCRuntimeException {
+public class IllegalBlockSizeRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
     public IllegalBlockSizeRuntimeException(
             final IllegalBlockSizeException cause) {
-        super("ESC0001", new Object[] { cause.getClass().getName() }, cause);
+        super("ECL0001", new Object[] { cause.getClass().getName() }, cause);
     }
 
 }
