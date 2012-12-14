@@ -27,18 +27,36 @@ import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
  */
 public class StringUtil extends org.seasar.util.lang.StringUtil {
     /**
-     * A empty string
-     */
-    public static final String EMPTY_STRING = "";
-
-    /**
+     * A default constructor.
      */
     protected StringUtil() {
     }
 
+    /**
+     * Creates a new string with charset.
+     * 
+     * @param bytes
+     * @param charsetName
+     * @return
+     */
     public static String newString(final byte[] bytes, final String charsetName) {
         try {
             return new String(bytes, charsetName);
+        } catch (final UnsupportedEncodingException e) {
+            throw new UnsupportedEncodingRuntimeException(e);
+        }
+    }
+
+    /**
+     * Gets bytes with charset.
+     * 
+     * @param str
+     * @param charsetName
+     * @return
+     */
+    public static byte[] getBytes(String str, String charsetName) {
+        try {
+            return str.getBytes(charsetName);
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }

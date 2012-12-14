@@ -15,10 +15,36 @@
  */
 package org.codelibs.core;
 
-public class ClConstants {
+/**
+ * Constants class.
+ * 
+ * @author shinsuke
+ *
+ */
+public class CoreLibConstants {
 
+    /**
+     * UTF-8
+     */
     public static final String UTF_8 = "UTF-8";
 
-    protected ClConstants() {
+    public static final String DATE_FORMAT_ISO_8601_BASIC = "yyyyMMdd'T'HHmmss.SSSZ";
+
+    public static final String DATE_FORMAT_ISO_8601_EXTEND = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+
+    public static final String DATE_FORMAT_DIGIT_ONLY = "yyyyMMddHHmmss";
+
+    /**
+     * A system line separator.
+     */
+    public static final String RETURN_STRING = System
+            .getProperty("line.separator");
+
+    /**
+     * A empty string
+     */
+    public static final String EMPTY_STRING = "";
+
+    protected CoreLibConstants() {
     }
 }

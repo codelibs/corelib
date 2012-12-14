@@ -21,7 +21,7 @@ import javax.crypto.BadPaddingException;
  * @author shinsuke
  * 
  */
-public class BadPaddingRuntimeException extends ClRuntimeException {
+public class BadPaddingRuntimeException extends CoreLibRuntimeException {
 
     private static final long serialVersionUID = 1L;
 

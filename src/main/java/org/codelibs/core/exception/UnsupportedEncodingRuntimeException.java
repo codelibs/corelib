@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
  * @author shinsuke
  * 
  */
-public class UnsupportedEncodingRuntimeException extends ClRuntimeException {
+public class UnsupportedEncodingRuntimeException extends CoreLibRuntimeException {
 
     private static final long serialVersionUID = 1L;
 

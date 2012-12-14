@@ -21,7 +21,7 @@ import javax.crypto.IllegalBlockSizeException;
  * @author shinsuke
  * 
  */
-public class IllegalBlockSizeRuntimeException extends ClRuntimeException {
+public class IllegalBlockSizeRuntimeException extends CoreLibRuntimeException {
 
     private static final long serialVersionUID = 1L;
 

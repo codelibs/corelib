@@ -18,29 +18,30 @@ package org.codelibs.core.exception;
 import org.seasar.util.exception.SRuntimeException;
 
 /**
- * Base exception class for CodeLibs Core.
+ * Base exception class for CoreLib.
  * 
  * @author shinsuke
  * 
  */
-public class ClRuntimeException extends SRuntimeException {
+public class CoreLibRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public ClRuntimeException(final String messageCode, final Object[] args,
-            final Throwable cause) {
+    public CoreLibRuntimeException(final String messageCode,
+            final Object[] args, final Throwable cause) {
         super(messageCode, args, cause);
     }
 
-    public ClRuntimeException(final String messageCode, final Object[] args) {
+    public CoreLibRuntimeException(final String messageCode, final Object[] args) {
         super(messageCode, args);
     }
 
-    public ClRuntimeException(final String messageCode, final Throwable cause) {
+    public CoreLibRuntimeException(final String messageCode,
+            final Throwable cause) {
         super(messageCode, new Object[] {}, cause);
     }
 
-    public ClRuntimeException(final String messageCode) {
+    public CoreLibRuntimeException(final String messageCode) {
         super(messageCode, new Object[0]);
     }
 }
