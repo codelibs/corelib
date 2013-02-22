@@ -19,6 +19,14 @@
     <name>CodeLibs Project</name>
     <url>http://www.codelibs.org/</url>
   </organization>
+  <developers>
+    <developer>
+      <id>shinsuke</id>
+      <name>Shinsuke Sugaya</name>
+      <email>shinsuke_at_yahoo.co.jp</email>
+      <url>http://www.chazine.com/</url>
+    </developer>
+  </developers>
   <scm>
     <connection>scm:git:git@github.com:codelibs/corelib.git</connection>
     <url>scm:git:git@github.com:codelibs/corelib.git</url>
