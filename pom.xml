@@ -24,9 +24,9 @@
     <url>http://www.codelibs.org/</url>
   </organization>
   <scm>
-    <connection>scm:git:git@github.com/codelibs/corelib.git</connection>
-    <url>scm:git:git@github.com/codelibs/corelib.git</url>
-    <developerConnection>scm:git:git@github.com/codelibs/corelib.git</developerConnection>
+    <connection>scm:git:git@github.com:codelibs/corelib.git</connection>
+    <url>scm:git:git@github.com:codelibs/corelib.git</url>
+    <developerConnection>scm:git:git@github.com:codelibs/corelib.git</developerConnection>
   </scm>
   <build>
     <defaultGoal>validate</defaultGoal>
