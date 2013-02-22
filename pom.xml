@@ -99,10 +99,6 @@
       <id>fess-repository</id>
       <url>scpexe://shell.sourceforge.jp/home/groups/f/fe/fess/htdocs/repository/</url>
     </repository>
-    <site>
-      <id>fess-site</id>
-      <url>scpexe://shell.sourceforge.jp/home/groups/f/fe/fess/htdocs/</url>
-    </site>
   </distributionManagement>
   <repositories>
     <repository>
