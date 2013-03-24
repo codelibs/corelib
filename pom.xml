@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codelibs</groupId>
@@ -32,36 +33,19 @@
     <url>scm:git:git@github.com:codelibs/corelib.git</url>
     <developerConnection>scm:git:git@github.com:codelibs/corelib.git</developerConnection>
   </scm>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
-    <defaultGoal>validate</defaultGoal>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-            <encoding>UTF-8</encoding>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <includes>
-              <include>**/*Test.java</include>
-            </includes>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <configuration>
-            <updateReleaseInfo>true</updateReleaseInfo>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-source-plugin</artifactId>
         <executions>
@@ -75,49 +59,75 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>com.google.code.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-        <version>1.4.0</version>
+        <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <header>src/header.txt</header>
+          <encoding>UTF-8</encoding>
+          <docencoding>UTF-8</docencoding>
+          <charset>UTF-8</charset>
+          <links>
+            <link>http://docs.oracle.com/javase/6/docs/api/</link>
+            <link>http://docs.oracle.com/javaee/6/api/</link>
+            <link>http://s2util.sandbox.seasar.org/apidocs/</link>
+          </links>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>site</phase>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.9.0</version>
+        <configuration>
+          <header>${basedir}/src/etc/header.txt</header>
           <includes>
             <include>src/**/*.java</include>
           </includes>
           <encoding>UTF-8</encoding>
           <headerDefinitions>
-            <headerDefinition>src/header-definition.xml</headerDefinition>
+            <headerDefinition>${basedir}/src/etc/header-definition.xml</headerDefinition>
           </headerDefinitions>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
       </plugin>
     </plugins>
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh-external</artifactId>
+        <artifactId>wagon-ftp</artifactId>
         <version>2.4</version>
       </extension>
     </extensions>
   </build>
   <distributionManagement>
     <repository>
-      <id>fess-repository</id>
-      <url>scpexe://shell.sourceforge.jp/home/groups/f/fe/fess/htdocs/repository/</url>
+      <id>codelibs-repository</id>
+      <url>ftp://maven.codelibs.org/home/codelibs/maven/</url>
     </repository>
+    <site>
+      <id>codelibs-site</id>
+      <url>ftp://maven.codelibs.org/home/codelibs/project/corelib/</url>
+    </site>
   </distributionManagement>
   <repositories>
     <repository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
+      <id>codelibs.org</id>
+      <name>CodeLibs Repository</name>
+      <url>http://maven.codelibs.org/</url>
     </repository>
     <repository>
-      <id>fess.sourceforge.jp</id>
-      <name>Fess Repository</name>
-      <url>http://fess.sourceforge.jp/repository/</url>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>maven-snapshot.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2-snapshot/</url>
     </repository>
   </repositories>
   <dependencies>

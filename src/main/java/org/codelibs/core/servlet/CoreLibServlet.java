@@ -13,21 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.codelibs.core.exception;
+package org.codelibs.core.servlet;
 
-import javax.crypto.IllegalBlockSizeException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
+import org.seasar.util.misc.DisposableUtil;
 
 /**
- * @author shinsuke
+ * Initializes CoreLib utilities on a web container.
  * 
+ * @author shinsuke
+ *
  */
-public class IllegalBlockSizeRuntimeException extends CoreLibRuntimeException {
+public class CoreLibServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    @Override
+    public void init() throws ServletException {
 
-    public IllegalBlockSizeRuntimeException(
-            final IllegalBlockSizeException cause) {
-        super("ECL0001", new Object[] { cause.getClass().getName() }, cause);
+    }
+
+    @Override
+    public void destroy() {
+        DisposableUtil.dispose();
     }
 
 }

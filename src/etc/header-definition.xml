@@ -4,8 +4,9 @@
         <firstLine>/*</firstLine>
         <beforeEachLine> * </beforeEachLine>
         <endLine> */</endLine>
-        <!--skipLine></skipLine-->
         <firstLineDetectionPattern>(\s|\t)*/\*.*$</firstLineDetectionPattern>
         <lastLineDetectionPattern>.*\*/(\s|\t)*$</lastLineDetectionPattern>
+        <allowBlankLines>false</allowBlankLines>
+        <isMultiline>true</isMultiline>
     </javadoc_style>
 </additionalHeaders>
