@@ -16,6 +16,7 @@
 package org.codelibs.core.util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 
 import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
 
@@ -60,5 +61,61 @@ public class StringUtil extends org.seasar.util.lang.StringUtil {
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }
+    }
+
+    /**
+     * Check if a collection of a string is empty.
+     * 
+     * @param c
+     * @return
+     */
+    public static boolean isEmpty(Collection<String> c) {
+        if (c == null || c.isEmpty()) {
+            return false;
+        }
+        for (String text : c) {
+            if (isNotEmpty(text)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Check if a collection of a string is not empty.
+     * 
+     * @param c
+     * @return
+     */
+    public static boolean isNotEmpty(Collection<String> c) {
+        return !isEmpty(c);
+    }
+
+    /**
+     * Check if a collection of a string is blank.
+     * 
+     * @param c
+     * @return
+     */
+    public static boolean isBlank(Collection<String> c) {
+        if (c == null || c.isEmpty()) {
+            return false;
+        }
+        for (String text : c) {
+            if (isNotBlank(text)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Check if a collection of a string is not blank.
+     * 
+     * @param c
+     * @return
+     */
+    public static boolean isNotBlank(Collection<String> c) {
+        return !isBlank(c);
     }
 }
