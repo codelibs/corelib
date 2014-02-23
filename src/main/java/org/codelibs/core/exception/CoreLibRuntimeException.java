@@ -15,33 +15,97 @@
  */
 package org.codelibs.core.exception;
 
-import org.seasar.util.exception.SRuntimeException;
+import org.codelibs.core.msg.MessageFormatter;
 
 /**
  * Base exception class for CoreLib.
  * 
+ * from s2util/SRuntimeException
+ * 
  * @author shinsuke
  * 
  */
-public class CoreLibRuntimeException extends SRuntimeException {
+public class CoreLibRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public CoreLibRuntimeException(final String messageCode,
-            final Object[] args, final Throwable cause) {
-        super(messageCode, args, cause);
-    }
+    private final String messageCode;
 
-    public CoreLibRuntimeException(final String messageCode, final Object[] args) {
-        super(messageCode, args);
-    }
+    private final Object[] args;
+
+    private final String message;
+
+    private final String simpleMessage;
 
     public CoreLibRuntimeException(final String messageCode,
             final Throwable cause) {
-        super(messageCode, new Object[] {}, cause);
+        this(messageCode, new Object[] {}, cause);
     }
 
     public CoreLibRuntimeException(final String messageCode) {
-        super(messageCode, new Object[0]);
+        this(messageCode, new Object[0]);
+    }
+
+    /**
+     * {@link CoreLibRuntimeException}を作成します。
+     * 
+     * @param messageCode
+     *            メッセージコード
+     * @param args
+     *            引数
+     */
+    public CoreLibRuntimeException(final String messageCode, final Object[] args) {
+        this(messageCode, args, null);
+    }
+
+    /**
+     * {@link CoreLibRuntimeException}を作成します。
+     * 
+     * @param messageCode
+     *            メッセージコード
+     * @param args
+     *            引数
+     * @param cause
+     *            原因となった例外
+     */
+    public CoreLibRuntimeException(final String messageCode,
+            final Object[] args, final Throwable cause) {
+        super(cause);
+        this.messageCode = messageCode;
+        this.args = args;
+        simpleMessage = MessageFormatter.getSimpleMessage(messageCode, args);
+        message = "[" + messageCode + "]" + simpleMessage;
+    }
+
+    /**
+     * メッセージコードを返します。
+     * 
+     * @return メッセージコード
+     */
+    public String getMessageCode() {
+        return messageCode;
+    }
+
+    /**
+     * 引数の配列を返します。
+     * 
+     * @return 引数の配列
+     */
+    public Object[] getArgs() {
+        return args;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * メッセージコードなしの単純なメッセージを返します。
+     * 
+     * @return メッセージコードなしの単純なメッセージ
+     */
+    public final String getSimpleMessage() {
+        return simpleMessage;
     }
 }

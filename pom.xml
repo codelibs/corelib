@@ -65,9 +65,7 @@
           <docencoding>UTF-8</docencoding>
           <charset>UTF-8</charset>
           <links>
-            <link>http://docs.oracle.com/javase/6/docs/api/</link>
-            <link>http://docs.oracle.com/javaee/6/api/</link>
-            <link>http://s2util.sandbox.seasar.org/apidocs/</link>
+            <link>http://docs.oracle.com/javase/7/docs/api/</link>
           </links>
         </configuration>
         <executions>
@@ -119,43 +117,8 @@
       <name>CodeLibs Repository</name>
       <url>http://maven.codelibs.org/</url>
     </repository>
-    <repository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2/</url>
-    </repository>
-    <repository>
-      <id>maven-snapshot.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2-snapshot/</url>
-    </repository>
   </repositories>
   <dependencies>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-j2ee_1.4_spec</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-annotation_1.0_spec</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.2</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.seasar.util</groupId>
-      <artifactId>s2util</artifactId>
-      <version>0.0.1</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

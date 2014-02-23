@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the CodeLibs Project and the Others.
+ * Copyright 2004-2010 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,18 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.codelibs.core.servlet;
+package org.codelibs.core.exception;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-
-import org.seasar.util.misc.DisposableUtil;
+import java.security.NoSuchAlgorithmException;
 
 /**
- * Initializes CoreLib utilities on a web container.
- * 
  * @author shinsuke
  *
  */
-public class CoreLibServlet extends HttpServlet {
+public class NoSuchAlgorithmRuntimeException extends CoreLibRuntimeException {
+    private static final long serialVersionUID = 1L;
 
-    @Override
-    public void init() throws ServletException {
-
+    public NoSuchAlgorithmRuntimeException(final NoSuchAlgorithmException cause) {
+        super("ECL0010", new Object[] { cause.getMessage() }, cause);
     }
-
-    @Override
-    public void destroy() {
-        DisposableUtil.dispose();
-    }
-
 }

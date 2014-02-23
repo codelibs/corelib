@@ -27,22 +27,24 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.codelibs.core.CoreLibConstants;
 import org.codelibs.core.exception.BadPaddingRuntimeException;
 import org.codelibs.core.exception.IllegalBlockSizeRuntimeException;
+import org.codelibs.core.exception.InvalidKeyRuntimeException;
+import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
+import org.codelibs.core.exception.NoSuchPaddingRuntimeException;
 import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
-import org.seasar.util.exception.InvalidKeyRuntimeException;
-import org.seasar.util.exception.NoSuchAlgorithmRuntimeException;
-import org.seasar.util.exception.NoSuchPaddingRuntimeException;
-import org.seasar.util.misc.Base64Util;
+import org.codelibs.core.util.Base64Util;
 
 public class CachedCipher {
-    protected static final String UTF_8 = "UTF-8";
 
-    public String algorithm = "Blowfish";
+    private static final String BLOWFISH = "Blowfish";
+
+    public String algorithm = BLOWFISH;
 
     public String key;
 
-    public String charsetName = UTF_8;
+    public String charsetName = CoreLibConstants.UTF_8;
 
     protected Queue<Cipher> encryptoQueue = new ConcurrentLinkedQueue<Cipher>();
 

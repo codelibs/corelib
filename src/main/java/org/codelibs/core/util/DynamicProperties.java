@@ -32,9 +32,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.codelibs.core.exception.FileAccessException;
-import org.seasar.util.exception.IORuntimeException;
+import org.codelibs.core.exception.IORuntimeException;
 
 public class DynamicProperties extends Properties {
 
@@ -123,7 +122,13 @@ public class DynamicProperties extends Properties {
         } catch (final IOException e) {
             throw new IORuntimeException(e);
         } finally {
-            IOUtils.closeQuietly(fis);
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
         }
         properties = prop;
     }
@@ -137,7 +142,13 @@ public class DynamicProperties extends Properties {
             throw new FileAccessException("ECL0008",
                     new Object[] { propertiesFile.getAbsolutePath() }, e);
         } finally {
-            IOUtils.closeQuietly(fos);
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
         }
         lastModified = propertiesFile.lastModified();
     }

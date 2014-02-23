@@ -27,7 +27,7 @@ public class IllegalBlockSizeRuntimeException extends CoreLibRuntimeException {
 
     public IllegalBlockSizeRuntimeException(
             final IllegalBlockSizeException cause) {
-        super("ECL0001", new Object[] { cause.getClass().getName() }, cause);
+        super("ECL0001", new Object[] { cause.getMessage() }, cause);
     }
 
 }
