@@ -17,6 +17,7 @@ package org.codelibs.core.crypto;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -40,7 +41,11 @@ public class CachedCipher {
 
     private static final String BLOWFISH = "Blowfish";
 
+    private static final String RSA = "RSA";
+
     public String algorithm = BLOWFISH;
+
+    public String transformation = RSA;
 
     public String key;
 
@@ -65,6 +70,21 @@ public class CachedCipher {
         return encrypted;
     }
 
+    public byte[] encrypto(final byte[] data, Key key) {
+        final Cipher cipher = pollEncryptoCipher(key);
+        byte[] encrypted;
+        try {
+            encrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerEncryptoCipher(cipher);
+        }
+        return encrypted;
+    }
+
     public String encryptoText(final String text) {
         try {
             return Base64Util.encode(encrypto(text.getBytes(charsetName)));
@@ -75,6 +95,21 @@ public class CachedCipher {
 
     public byte[] decrypto(final byte[] data) {
         final Cipher cipher = pollDecryptoCipher();
+        byte[] decrypted;
+        try {
+            decrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerDecryptoCipher(cipher);
+        }
+        return decrypted;
+    }
+
+    public byte[] decrypto(final byte[] data, Key key) {
+        final Cipher cipher = pollDecryptoCipher(key);
         byte[] decrypted;
         try {
             decrypted = cipher.doFinal(data);
@@ -115,6 +150,23 @@ public class CachedCipher {
         return cipher;
     }
 
+    protected Cipher pollEncryptoCipher(Key key) {
+        Cipher cipher = encryptoQueue.poll();
+        if (cipher == null) {
+            try {
+                cipher = Cipher.getInstance(transformation);
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+            } catch (final InvalidKeyException e) {
+                throw new InvalidKeyRuntimeException(e);
+            } catch (final NoSuchAlgorithmException e) {
+                throw new NoSuchAlgorithmRuntimeException(e);
+            } catch (final NoSuchPaddingException e) {
+                throw new NoSuchPaddingRuntimeException(e);
+            }
+        }
+        return cipher;
+    }
+
     protected void offerEncryptoCipher(final Cipher cipher) {
         encryptoQueue.offer(cipher);
     }
@@ -127,6 +179,23 @@ public class CachedCipher {
             try {
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.DECRYPT_MODE, sksSpec);
+            } catch (final InvalidKeyException e) {
+                throw new InvalidKeyRuntimeException(e);
+            } catch (final NoSuchAlgorithmException e) {
+                throw new NoSuchAlgorithmRuntimeException(e);
+            } catch (final NoSuchPaddingException e) {
+                throw new NoSuchPaddingRuntimeException(e);
+            }
+        }
+        return cipher;
+    }
+
+    protected Cipher pollDecryptoCipher(Key key) {
+        Cipher cipher = decryptoQueue.poll();
+        if (cipher == null) {
+            try {
+                cipher = Cipher.getInstance(transformation);
+                cipher.init(Cipher.DECRYPT_MODE, key);
             } catch (final InvalidKeyException e) {
                 throw new InvalidKeyRuntimeException(e);
             } catch (final NoSuchAlgorithmException e) {
