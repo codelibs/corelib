@@ -18,9 +18,10 @@ package org.codelibs.core.exception;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * S2Utilの例外のベースクラスです。
+ * A base exception class for CoreLib.
  *
  * @author higa
+ * @author shinsuke
  */
 public class ClRuntimeException extends RuntimeException {
 
@@ -35,26 +36,40 @@ public class ClRuntimeException extends RuntimeException {
     private final String simpleMessage;
 
     /**
-     * {@link ClRuntimeException}を作成します。
+     * Creates {@link ClRuntimeException}.
      *
-     * @param messageCode
-     *            メッセージコード
-     * @param args
-     *            引数
+     * @param messageCode message code
+     */
+    public ClRuntimeException(final String messageCode) {
+        this(messageCode, new Object[0], null);
+    }
+
+    /**
+     * Creates {@link ClRuntimeException}.
+     *
+     * @param messageCode message code
+     * @param args arguments for messages
      */
     public ClRuntimeException(final String messageCode, final Object[] args) {
         this(messageCode, args, null);
     }
 
     /**
-     * {@link ClRuntimeException}を作成します。
+     * Creates {@link ClRuntimeException}.
      *
-     * @param messageCode
-     *            メッセージコード
-     * @param args
-     *            引数
-     * @param cause
-     *            原因となった例外
+     * @param messageCode message code
+     * @param cause cause of exception
+     */
+    public ClRuntimeException(final String messageCode, final Throwable cause) {
+        this(messageCode, new Object[0], cause);
+    }
+
+    /**
+     * Creates {@link ClRuntimeException}.
+     *
+     * @param messageCode message code
+     * @param args arguments for messages
+     * @param cause cause of exception
      */
     public ClRuntimeException(final String messageCode, final Object[] args,
             final Throwable cause) {
@@ -66,18 +81,18 @@ public class ClRuntimeException extends RuntimeException {
     }
 
     /**
-     * メッセージコードを返します。
+     * Returns a message code.
      *
-     * @return メッセージコード
+     * @return message code
      */
     public String getMessageCode() {
         return messageCode;
     }
 
     /**
-     * 引数の配列を返します。
+     * Returns arguments of a message
      *
-     * @return 引数の配列
+     * @return array of arguments
      */
     public Object[] getArgs() {
         return args;
@@ -89,9 +104,9 @@ public class ClRuntimeException extends RuntimeException {
     }
 
     /**
-     * メッセージコードなしの単純なメッセージを返します。
+     * Returns a simple message without a message code.
      *
-     * @return メッセージコードなしの単純なメッセージ
+     * @return simple message without message code
      */
     public final String getSimpleMessage() {
         return simpleMessage;
