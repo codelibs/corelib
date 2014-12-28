@@ -16,51 +16,15 @@
 package org.codelibs.core.net;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 
 import junit.framework.TestCase;
-
-import org.codelibs.core.io.CopyUtil;
-import org.codelibs.core.io.ResourceUtil;
 
 /**
  * @author taichi
  *
  */
 public class URLUtilTest extends TestCase {
-
-    /**
-     * Test method for
-     * 'org.seasar.framework.util.URLUtil.disableURLCaches(ClassLoader)'
-     *
-     * @throws Exception
-     */
-    public void testDisableURLCaches() throws Exception {
-        final String root = ResourceUtil.getBuildDir(getClass())
-                .getCanonicalPath();
-        final String srcJar = root + "/org/codelibs/core/io/test.jar";
-        final String destJar = root + "/org/codelibs/core/io/test2.jar";
-        final File dest = new File(destJar);
-        if (dest.exists()) {
-            dest.delete();
-        }
-        dest.createNewFile();
-        CopyUtil.copy(new File(srcJar), dest);
-        new URL("http://a").openConnection().setDefaultUseCaches(true);
-
-        URLUtil.disableURLCaches();
-
-        final URL url = new URL("jar:" + dest.toURI().toURL()
-                + "!/META-INF/MANIFEST.MF");
-        final URLConnection connection = url.openConnection();
-        final InputStream stream = connection.getInputStream();
-        stream.close();
-
-        assertTrue(dest.delete());
-
-    }
 
     /**
      * @throws Exception
