@@ -49,33 +49,6 @@ public class FileUtilTest {
      * @throws Exception
      */
     @Test
-    public void testReadAutoDetectCr() throws Exception {
-        assertThat(FileUtil.readJisAutoDetect(getPath("hoge_cr.txt")),
-                is("aaa\rbbb"));
-    }
-
-    /**
-     * @throws Exception
-     */
-    @Test
-    public void testReadAutoDtectLf() throws Exception {
-        assertThat(FileUtil.readJisAutoDetect(getPath("hoge_lf.txt")),
-                is("aaa\nbbb"));
-    }
-
-    /**
-     * @throws Exception
-     */
-    @Test
-    public void testReadAutoDetectCrLf() throws Exception {
-        assertThat(FileUtil.readJisAutoDetect(getPath("hoge_crlf.txt")),
-                is("aaa\r\nbbb"));
-    }
-
-    /**
-     * @throws Exception
-     */
-    @Test
     public void testReadUTF8() throws Exception {
         assertThat(FileUtil.readUTF8(getPath("hoge_utf8.txt")), is("あ"));
     }

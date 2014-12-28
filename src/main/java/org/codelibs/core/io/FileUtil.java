@@ -40,9 +40,6 @@ import org.codelibs.core.nio.ChannelUtil;
  */
 public abstract class FileUtil {
 
-    /** 日本語のエンコーディングを自動判別するためのエンコーディング名 */
-    private static final String JIS_AUTO_DETECT = "JISAutoDetect";
-
     /** UTF-8のエンコーディング名 */
     private static final String UTF8 = "UTF-8";
 
@@ -177,30 +174,6 @@ public abstract class FileUtil {
         } finally {
             CloseableUtil.close(is);
         }
-    }
-
-    /**
-     * 日本語のエンコーディングでファイルからテキストを読み込みます。
-     *
-     * @param path
-     *            パス。{@literal null}や空文字列であってはいけません
-     * @return 読み込んだテキスト
-     */
-    public static String readJisAutoDetect(final String path) {
-        assertArgumentNotEmpty("path", path);
-        return readText(path, JIS_AUTO_DETECT);
-    }
-
-    /**
-     * 日本語のエンコーディングでファイルからテキストを読み込みます。
-     *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return 読み込んだテキスト
-     */
-    public static String readJisAutoDetect(final File file) {
-        assertArgumentNotNull("file", file);
-        return readText(file, JIS_AUTO_DETECT);
     }
 
     /**
