@@ -24,8 +24,15 @@ import java.util.StringTokenizer;
  * {@link String}用のユーティリティクラスです。
  *
  * @author higa
+ * @author shinsuke
  */
 public abstract class StringUtil {
+
+    /**
+     * A system line separator.
+     */
+    public static final String RETURN_STRING = System
+            .getProperty("line.separator");
 
     /**
      * 空文字<code>""</code>です。
