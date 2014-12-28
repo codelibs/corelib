@@ -31,8 +31,8 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * <pre>
  * import static org.codelibs.core.collection.MultiIterator.*;
  *
- * List<String> list = ...;
- * Set<String> set = ...;
+ * List&lt;String&gt; list = ...;
+ * Set&lt;String&gt; set = ...;
  * Map<String, Object> map = ...;
  * for (String element : iterable(list, set, map.keySet())) {
  *     ...

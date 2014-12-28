@@ -54,6 +54,7 @@ import org.codelibs.core.misc.LocaleUtil;
  * パターンを指定されなかった場合、変換に使用するパターンはロケールに依存して次のようになります。
  * </p>
  * <table border="1">
+ * <caption></caption>
  * <tr>
  * <th>カテゴリ</th>
  * <th>パターン</th>

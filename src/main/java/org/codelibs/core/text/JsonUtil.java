@@ -32,7 +32,7 @@ public class JsonUtil {
     /**
      * Escapes a value as Json string.
      *
-     * @param value
+     * @param value input
      * @return escaped string.
      */
     public static String escape(final String value) {

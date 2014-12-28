@@ -26,7 +26,7 @@ import org.codelibs.core.beans.factory.BeanDescFactory;
  * JavaBeansのメタデータを扱うためのインターフェースです。
  * <p>
  * {@link BeanDesc}のインスタンスは{@link BeanDescFactory}から取得します。
- * <p>
+ * </p>
  *
  * <pre>
  * BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Foo.class);

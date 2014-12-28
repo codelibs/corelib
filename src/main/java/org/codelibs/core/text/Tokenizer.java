@@ -124,14 +124,6 @@ public class Tokenizer {
         whitespaceChars(ctype2, 0, ' ');
     }
 
-    /**
-     * 単語用の文字として設定します。
-     *
-     * @param ctype2
-     *            文字のタイプの配列
-     * @param low
-     * @param hi
-     */
     protected static void wordChars(final byte[] ctype2, int low, int hi) {
         if (low < 0) {
             low = 0;

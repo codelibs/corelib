@@ -52,7 +52,7 @@ import org.codelibs.core.lang.ClassUtil;
  * <pre>
  * DestBean destBean = copyBeanToNewBean(srcBean, DestBean.class);
  * DestBean destBean = copyMapToNewBean(srcMap, DestBean.class);
- * Map<String, Object> destMap = copyBeanToNewMap(srcBean);
+ * Map&lt;String, Object&gt; destMap = copyBeanToNewMap(srcBean);
  * </pre>
  * <p>
  * コピーする際のオプションを指定することも出来ます。

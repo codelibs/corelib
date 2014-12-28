@@ -33,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <pre>
  * import static org.codelibs.core.collection.Maps.*;
  *
- * Map<String, Integer> map = map("a", 1).$("b", 2).$("c", 3).$();
+ * Map&lt;String, Integer&gt; map = map("a", 1).$("b", 2).$("c", 3).$();
  * </pre>
  *
  * @author koichik

@@ -32,7 +32,7 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * import static org.codelibs.core.collection.IndexedIterator.*;
  *
  * List&lt;String&gt; list = ...;
- * for (Indexed<String> indexed : indexed(list)) {
+ * for (Indexed&lt;String%gt; indexed : indexed(list)) {
  *     System.out.println(indexed.getIndex());
  *     System.out.println(indexed.getElement());
  * }
@@ -43,7 +43,7 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * import static org.codelibs.core.io.LineIterator.*;
  *
  * BufferedReader reader = ...;
- * for (Indexed<String> indexed : indexed(iterable(reader))) {
+ * for (Indexed&lt;String%gt; indexed : indexed(iterable(reader))) {
  *     System.out.println(indexed.getIndex());
  *     System.out.println(indexed.getElement());
  * }

@@ -33,8 +33,8 @@ import org.codelibs.core.message.MessageFormatter;
  * <pre>
  * import static org.codelibs.core.lang.ClassIterator.*;
  *
- * Class<?> someClass = ...;
- * for (Class<?> clazz : iterable(someClass)) {
+ * Class&lt;?&gt; someClass = ...;
+ * for (Class&lt;?&gt; clazz : iterable(someClass)) {
  *     ...
  * }
  * </pre>

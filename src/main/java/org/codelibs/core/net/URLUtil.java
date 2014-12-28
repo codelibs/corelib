@@ -30,9 +30,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Map;
 
-import org.codelibs.core.beans.BeanDesc;
-import org.codelibs.core.beans.FieldDesc;
-import org.codelibs.core.beans.factory.BeanDescFactory;
 import org.codelibs.core.exception.ClRuntimeException;
 import org.codelibs.core.exception.IORuntimeException;
 
@@ -200,18 +197,6 @@ public abstract class URLUtil {
         } catch (final Exception e) {
             throw new ClRuntimeException("ECL0091", asArray(fileUrl), e);
         }
-    }
-
-    /**
-     * <a
-     * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4167874">このバグ<
-     * /a> に対する対応です。
-     *
-     */
-    public static void disableURLCaches() {
-        final BeanDesc bd = BeanDescFactory.getBeanDesc(URLConnection.class);
-        final FieldDesc fd = bd.getFieldDesc("defaultUseCaches");
-        fd.setStaticFieldValue(false);
     }
 
 }
