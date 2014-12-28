@@ -51,7 +51,7 @@ import org.codelibs.core.nio.ChannelUtil;
  * コピー可能な入力と出力の組み合わせと、コピーされる要素の単位は以下のとおりです。
  * </p>
  * <table border="1">
- * <caption></caption>
+ * <caption>Elements for coping instances</caption>
  * <tr>
  * <th rowspan="2">入力の型</th>
  * <th colspan="4">出力の型</th>

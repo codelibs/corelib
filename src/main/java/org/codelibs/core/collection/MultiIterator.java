@@ -33,7 +33,7 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  *
  * List&lt;String&gt; list = ...;
  * Set&lt;String&gt; set = ...;
- * Map<String, Object> map = ...;
+ * Map&lt;String, Object&gt; map = ...;
  * for (String element : iterable(list, set, map.keySet())) {
  *     ...
  * }
