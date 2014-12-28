@@ -149,6 +149,7 @@ public abstract class CopyOptionsUtil {
      * コピー元とコピー先のプリパティ名は次のようになります。
      * </p>
      * <table border="1">
+     * <caption>Copied JavaBeans Properties</caption>
      * <tr>
      * <th>JavaBeansのプロパティ名</th>
      * <th>{@literal Map}のプロパティ名</th>
