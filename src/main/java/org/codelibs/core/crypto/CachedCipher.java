@@ -43,13 +43,13 @@ public class CachedCipher {
 
     private static final String RSA = "RSA";
 
-    public String algorithm = BLOWFISH;
+    protected String algorithm = BLOWFISH;
 
-    public String transformation = RSA;
+    protected String transformation = RSA;
 
-    public String key;
+    protected String key;
 
-    public String charsetName = CoreLibConstants.UTF_8;
+    protected String charsetName = CoreLibConstants.UTF_8;
 
     protected Queue<Cipher> encryptoQueue = new ConcurrentLinkedQueue<Cipher>();
 
@@ -209,5 +209,37 @@ public class CachedCipher {
 
     protected void offerDecryptoCipher(final Cipher cipher) {
         decryptoQueue.offer(cipher);
+    }
+
+    public String getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    public String getTransformation() {
+        return transformation;
+    }
+
+    public void setTransformation(String transformation) {
+        this.transformation = transformation;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getCharsetName() {
+        return charsetName;
+    }
+
+    public void setCharsetName(String charsetName) {
+        this.charsetName = charsetName;
     }
 }
