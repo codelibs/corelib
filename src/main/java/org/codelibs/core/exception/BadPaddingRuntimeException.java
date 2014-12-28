@@ -19,14 +19,14 @@ import javax.crypto.BadPaddingException;
 
 /**
  * @author shinsuke
- * 
+ *
  */
-public class BadPaddingRuntimeException extends CoreLibRuntimeException {
+public class BadPaddingRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
     public BadPaddingRuntimeException(final BadPaddingException cause) {
-        super("ECL0001", new Object[] { cause.getMessage() }, cause);
+        super("ECL0105", new Object[] { cause.getMessage() }, cause);
     }
 
 }

@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
 
 /**
  * Constants class.
- * 
+ *
  * @author shinsuke
  *
  */

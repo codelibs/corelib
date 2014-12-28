@@ -35,7 +35,7 @@ import org.codelibs.core.exception.InvalidKeyRuntimeException;
 import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 import org.codelibs.core.exception.NoSuchPaddingRuntimeException;
 import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
-import org.codelibs.core.util.Base64Util;
+import org.codelibs.core.misc.Base64Util;
 
 public class CachedCipher {
 
@@ -70,7 +70,7 @@ public class CachedCipher {
         return encrypted;
     }
 
-    public byte[] encrypto(final byte[] data, Key key) {
+    public byte[] encrypto(final byte[] data, final Key key) {
         final Cipher cipher = pollEncryptoCipher(key);
         byte[] encrypted;
         try {
@@ -108,7 +108,7 @@ public class CachedCipher {
         return decrypted;
     }
 
-    public byte[] decrypto(final byte[] data, Key key) {
+    public byte[] decrypto(final byte[] data, final Key key) {
         final Cipher cipher = pollDecryptoCipher(key);
         byte[] decrypted;
         try {
@@ -150,7 +150,7 @@ public class CachedCipher {
         return cipher;
     }
 
-    protected Cipher pollEncryptoCipher(Key key) {
+    protected Cipher pollEncryptoCipher(final Key key) {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
             try {
@@ -190,7 +190,7 @@ public class CachedCipher {
         return cipher;
     }
 
-    protected Cipher pollDecryptoCipher(Key key) {
+    protected Cipher pollDecryptoCipher(final Key key) {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
             try {

@@ -17,11 +17,11 @@ package org.codelibs.core.exception;
 
 /**
  * Exception while accessing a file.
- * 
+ *
  * @author shinsuke
- * 
+ *
  */
-public class FileAccessException extends CoreLibRuntimeException {
+public class FileAccessException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,11 +35,11 @@ public class FileAccessException extends CoreLibRuntimeException {
     }
 
     public FileAccessException(final String messageCode, final Throwable cause) {
-        super(messageCode, cause);
+        super(messageCode, new Object[0], cause);
     }
 
     public FileAccessException(final String messageCode) {
-        super(messageCode);
+        super(messageCode, new Object[0]);
     }
 
 }
