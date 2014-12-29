@@ -19,9 +19,10 @@ package org.codelibs.core.lang;
  * システムプロパティ用のユーティリティクラスです。
  *
  * @author wyukawa
+ * @author shinsuke
  *
  */
-public abstract class SystemPropertyUtil {
+public abstract class SystemUtil {
 
     /**
      * <code>file.encoding</code>システムプロパティ。例:UTF-8
@@ -64,4 +65,8 @@ public abstract class SystemPropertyUtil {
      */
     public static final String USER_HOME = System.getProperty("user.home");
 
+    public static long currentTimeMillis() {
+        // TODO provider
+        return System.currentTimeMillis();
+    }
 }

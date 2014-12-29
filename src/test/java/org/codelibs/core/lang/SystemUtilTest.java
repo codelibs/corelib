@@ -21,20 +21,20 @@ import org.junit.Test;
  * @author wyukawa
  *
  */
-public class SystemPropertyUtilTest {
+public class SystemUtilTest {
 
     /**
      * @throws Exception
      */
     @Test
     public void test() throws Exception {
-        System.out.println(SystemPropertyUtil.FILE_ENCODING);
-        System.out.println(SystemPropertyUtil.LINE_SEPARATOR);
-        System.out.println(SystemPropertyUtil.PATH_SEPARATOR);
-        System.out.println(SystemPropertyUtil.OS_NAME);
-        System.out.println(SystemPropertyUtil.JAVA_IO_TMPDIR);
-        System.out.println(SystemPropertyUtil.USER_DIR);
-        System.out.println(SystemPropertyUtil.USER_HOME);
+        System.out.println(SystemUtil.FILE_ENCODING);
+        System.out.println(SystemUtil.LINE_SEPARATOR);
+        System.out.println(SystemUtil.PATH_SEPARATOR);
+        System.out.println(SystemUtil.OS_NAME);
+        System.out.println(SystemUtil.JAVA_IO_TMPDIR);
+        System.out.println(SystemUtil.USER_DIR);
+        System.out.println(SystemUtil.USER_HOME);
     }
 
 }
