@@ -21,6 +21,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -226,6 +227,14 @@ public abstract class FileUtil {
             }
             return new String(buf, 0, size);
         } catch (final IOException e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    public static void writeBytes(String pathname, byte[] bytes) {
+        try (FileOutputStream fos = OutputStreamUtil.create(new File(pathname))) {
+            ChannelUtil.write(fos.getChannel(), ByteBuffer.wrap(bytes));
+        } catch (IOException e) {
             throw new IORuntimeException(e);
         }
     }
