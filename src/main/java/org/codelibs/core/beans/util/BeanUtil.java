@@ -20,6 +20,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import org.codelibs.core.beans.BeanDesc;
 import org.codelibs.core.beans.PropertyDesc;
@@ -73,6 +74,7 @@ import org.codelibs.core.lang.ClassUtil;
  *
  * @author Kimura Satoshi
  * @author higa
+ * @author shinsuke
  * @see CopyOptionsUtil
  * @see CopyOptions
  */
@@ -84,26 +86,28 @@ public abstract class BeanUtil {
     /**
      * BeanからBeanにコピーを行います。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先のBean。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param dest コピー先のBean。{@literal null}であってはいけません
      */
     public static void copyBeanToBean(final Object src, final Object dest) {
         copyBeanToBean(src, dest, DEFAULT_OPTIONS);
     }
 
+    public static void copyBeanToBean(final Object src, final Object dest,
+            final Consumer<CopyOptions> option) {
+        copyBeanToBean(src, dest, buildCopyOptions(option));
+    }
+
     /**
      * BeanからBeanにコピーを行います。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先のBean。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param dest コピー先のBean。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static void copyBeanToBean(final Object src, final Object dest,
             final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -143,27 +147,29 @@ public abstract class BeanUtil {
     /**
      * Beanから{@literal Map}にコピーを行います。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先の{@literal Map}。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
      */
     public static void copyBeanToMap(final Object src,
             final Map<String, Object> dest) {
         copyBeanToMap(src, dest, DEFAULT_OPTIONS);
     }
 
+    public static void copyBeanToMap(final Object src,
+            final Map<String, Object> dest, final Consumer<CopyOptions> option) {
+        copyBeanToMap(src, dest, buildCopyOptions(option));
+    }
+
     /**
      * Beanから{@literal Map}にコピーを行います。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先の{@literal Map}。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static void copyBeanToMap(final Object src,
             final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -194,27 +200,29 @@ public abstract class BeanUtil {
     /**
      * {@literal Map}からBeanにコピーを行います。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先のBean。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param dest コピー先のBean。{@literal null}であってはいけません
      */
     public static void copyMapToBean(final Map<String, ? extends Object> src,
             final Object dest) {
         copyMapToBean(src, dest, DEFAULT_OPTIONS);
     }
 
+    public static void copyMapToBean(final Map<String, ? extends Object> src,
+            final Object dest, final Consumer<CopyOptions> option) {
+        copyMapToBean(src, dest, buildCopyOptions(option));
+    }
+
     /**
      * {@literal Map}からBeanにコピーを行います。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先のBean。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param dest コピー先のBean。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static void copyMapToBean(final Map<String, ? extends Object> src,
             final Object dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -251,27 +259,29 @@ public abstract class BeanUtil {
     /**
      * {@literal Map}から{@literal Map}にコピーを行います。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先の{@literal Map}。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
      */
     public static void copyMapToMap(final Map<String, ? extends Object> src,
             final Map<String, Object> dest) {
         copyMapToMap(src, dest, DEFAULT_OPTIONS);
     }
 
+    public static void copyMapToMap(final Map<String, ? extends Object> src,
+            final Map<String, Object> dest, final Consumer<CopyOptions> option) {
+        copyMapToMap(src, dest, buildCopyOptions(option));
+    }
+
     /**
      * {@literal Map}から{@literal Map}にコピーを行います。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param dest
-     *            コピー先の{@literal Map}。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static void copyMapToMap(final Map<String, ? extends Object> src,
             final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -297,12 +307,9 @@ public abstract class BeanUtil {
     /**
      * コピー元のBeanを新しいBeanのインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となるBeanの型
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となるBeanの型。{@literal null}であってはいけません
+     * @param <T> コピー先となるBeanの型
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
      * @return コピーされた新しいBean
      */
     public static <T> T copyBeanToNewBean(final Object src,
@@ -310,20 +317,23 @@ public abstract class BeanUtil {
         return copyBeanToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
+    public static <T> T copyBeanToNewBean(final Object src,
+            final Class<T> destClass, final Consumer<CopyOptions> option) {
+        return copyBeanToNewBean(src, destClass, buildCopyOptions(option));
+    }
+
     /**
      * コピー元のBeanを新しいBeanのインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となるBeanの型
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となるBeanの型。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param <T> コピー先となるBeanの型
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @return コピーされた新しいBean
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static <T> T copyBeanToNewBean(final Object src,
             final Class<T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -338,12 +348,9 @@ public abstract class BeanUtil {
     /**
      * コピー元の{@literal Map}を新しいBeanのインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となるBeanの型
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となるBeanの型。{@literal null}であってはいけません
+     * @param <T> コピー先となるBeanの型
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
     public static <T> T copyMapToNewBean(
@@ -351,20 +358,24 @@ public abstract class BeanUtil {
         return copyMapToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
+    public static <T> T copyMapToNewBean(
+            final Map<String, ? extends Object> src, final Class<T> destClass,
+            final Consumer<CopyOptions> option) {
+        return copyMapToNewBean(src, destClass, buildCopyOptions(option));
+    }
+
     /**
      * コピー元の{@literal Map}を新しいBeanのインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となるBeanの型
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となるBeanの型。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param <T> コピー先となるBeanの型
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static <T> T copyMapToNewBean(
             final Map<String, ? extends Object> src, final Class<T> destClass,
             final CopyOptions options) {
@@ -380,24 +391,28 @@ public abstract class BeanUtil {
     /**
      * コピー元のBeanを新しい{@literal LinkedHashMap}のインスタンスにコピーして返します。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
      * @return コピーされた新しいBean
      */
     public static Map<String, Object> copyBeanToNewMap(final Object src) {
         return copyBeanToNewMap(src, DEFAULT_OPTIONS);
     }
 
+    public static Map<String, Object> copyBeanToNewMap(final Object src,
+            final Consumer<CopyOptions> option) {
+        return copyBeanToNewMap(src, buildCopyOptions(option));
+    }
+
     /**
      * コピー元のBeanを新しい{@literal LinkedHashMap}のインスタンスにコピーして返します。
      *
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @return コピーされた新しいBean
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static Map<String, Object> copyBeanToNewMap(final Object src,
             final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -411,12 +426,9 @@ public abstract class BeanUtil {
     /**
      * コピー元のBeanを新しい{@literal Map}のインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となる{@literal Map}の型
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となる{@literal Map}の型。{@literal null}であってはいけません
+     * @param <T> コピー先となる{@literal Map}の型
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
     public static <T extends Map<String, Object>> T copyBeanToNewMap(
@@ -424,20 +436,24 @@ public abstract class BeanUtil {
         return copyBeanToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
+    public static <T extends Map<String, Object>> T copyBeanToNewMap(
+            final Object src, final Class<? extends T> destClass,
+            final Consumer<CopyOptions> option) {
+        return copyBeanToNewMap(src, destClass, buildCopyOptions(option));
+    }
+
     /**
      * コピー元のBeanを新しい{@literal Map}のインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となる{@literal Map}の型
-     * @param src
-     *            コピー元のBean。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となる{@literal Map}の型。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション
+     * @param <T> コピー先となる{@literal Map}の型
+     * @param src コピー元のBean。{@literal null}であってはいけません
+     * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
+     * @param options コピーのオプション
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static <T extends Map<String, Object>> T copyBeanToNewMap(
             final Object src, final Class<? extends T> destClass,
             final CopyOptions options) {
@@ -453,8 +469,7 @@ public abstract class BeanUtil {
     /**
      * コピー元の{@literal Map}を新しい{@literal LinkedHashMap}のインスタンスにコピーして返します。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
     public static Map<String, Object> copyMapToNewMap(
@@ -462,16 +477,22 @@ public abstract class BeanUtil {
         return copyMapToNewMap(src, DEFAULT_OPTIONS);
     }
 
+    public static Map<String, Object> copyMapToNewMap(
+            final Map<String, ? extends Object> src,
+            final Consumer<CopyOptions> option) {
+        return copyMapToNewMap(src, buildCopyOptions(option));
+    }
+
     /**
      * コピー元の{@literal Map}を新しい{@literal LinkedHashMap}のインスタンスにコピーして返します。
      *
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static Map<String, Object> copyMapToNewMap(
             final Map<String, ? extends Object> src, final CopyOptions options) {
         assertArgumentNotNull("src", src);
@@ -485,12 +506,9 @@ public abstract class BeanUtil {
     /**
      * コピー元の{@literal Map}を新しい{@literal Map}のインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となる{@literal Map}の型
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となる{@literal Map}の型。{@literal null}であってはいけません
+     * @param <T> コピー先となる{@literal Map}の型
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
     public static <T extends Map<String, Object>> T copyMapToNewMap(
@@ -499,20 +517,25 @@ public abstract class BeanUtil {
         return copyMapToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
+    public static <T extends Map<String, Object>> T copyMapToNewMap(
+            final Map<String, ? extends Object> src,
+            final Class<? extends T> destClass,
+            final Consumer<CopyOptions> option) {
+        return copyMapToNewMap(src, destClass, buildCopyOptions(option));
+    }
+
     /**
      * コピー元の{@literal Map}を新しい{@literal Map}のインスタンスにコピーして返します。
      *
-     * @param <T>
-     *            コピー先となる{@literal Map}の型
-     * @param src
-     *            コピー元の{@literal Map}。{@literal null}であってはいけません
-     * @param destClass
-     *            コピー先となる{@literal Map}の型。{@literal null}であってはいけません
-     * @param options
-     *            コピーのオプション。{@literal null}であってはいけません
+     * @param <T> コピー先となる{@literal Map}の型
+     * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
+     * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
+     * @param options コピーのオプション。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
+    // TODO change to protected
+    @Deprecated
     public static <T extends Map<String, Object>> T copyMapToNewMap(
             final Map<String, ? extends Object> src,
             final Class<? extends T> destClass, final CopyOptions options) {
@@ -525,4 +548,10 @@ public abstract class BeanUtil {
         return dest;
     }
 
+    protected static CopyOptions buildCopyOptions(
+            final Consumer<CopyOptions> option) {
+        final CopyOptions copyOptions = new CopyOptions();
+        option.accept(copyOptions);
+        return copyOptions;
+    }
 }
