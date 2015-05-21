@@ -666,4 +666,43 @@ public abstract class StringUtil {
         return str == null ? defaultStr : str;
     }
 
+    /**
+     * <p>Checks if the CharSequence contains only ASCII printable characters.</p>
+     *
+     * <p>{@code null} will return {@code false}.
+     * An empty CharSequence (length()=0) will return {@code true}.</p>
+     *
+     * <pre>
+     * StringUtils.isAsciiPrintable(null)     = false
+     * StringUtils.isAsciiPrintable("")       = true
+     * StringUtils.isAsciiPrintable(" ")      = true
+     * StringUtils.isAsciiPrintable("Ceki")   = true
+     * StringUtils.isAsciiPrintable("ab2c")   = true
+     * StringUtils.isAsciiPrintable("!ab-c~") = true
+     * StringUtils.isAsciiPrintable("\u0020") = true
+     * StringUtils.isAsciiPrintable("\u0021") = true
+     * StringUtils.isAsciiPrintable("\u007e") = true
+     * StringUtils.isAsciiPrintable("\u007f") = false
+     * StringUtils.isAsciiPrintable("Ceki G\u00fclc\u00fc") = false
+     * </pre>
+     *
+     * @param cs the CharSequence to check, may be null
+     * @return {@code true} if every character is in the range 32 thru 126
+     */
+    public static boolean isAsciiPrintable(CharSequence cs) {
+        if (cs == null) {
+            return false;
+        }
+        int sz = cs.length();
+        for (int i = 0; i < sz; i++) {
+            if (isAsciiPrintable(cs.charAt(i)) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isAsciiPrintable(char ch) {
+        return ch >= 32 && ch < 127;
+    }
 }
