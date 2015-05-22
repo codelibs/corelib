@@ -693,7 +693,7 @@ public abstract class StringUtil {
         if (cs == null) {
             return false;
         }
-        int sz = cs.length();
+        final int sz = cs.length();
         for (int i = 0; i < sz; i++) {
             if (isAsciiPrintable(cs.charAt(i)) == false) {
                 return false;
