@@ -25,6 +25,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.InvalidPropertiesFormatException;
@@ -51,26 +52,36 @@ public class DynamicProperties extends Properties {
     protected volatile Properties properties;
 
     public DynamicProperties(final String path) {
+        this(path == null ? null : new File(path));
+    }
+
+    public DynamicProperties(final Path path) {
+        this(path == null ? null : path.toFile());
+    }
+
+    public DynamicProperties(final File file) {
         // check path
-        if (StringUtil.isEmpty(path)) {
+        if (file == null) {
             throw new FileAccessException("ECL0108");
         }
 
-        propertiesFile = new File(path);
-        if (!propertiesFile.exists()) {
-            final File parentDir = propertiesFile.getParentFile();
+        this.propertiesFile = file;
+        if (!this.propertiesFile.exists()) {
+            final File parentDir = this.propertiesFile.getParentFile();
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
                     throw new FileAccessException("ECL0109",
-                            new Object[] { path });
+                            new Object[] { file.getAbsolutePath() });
                 }
             } else if (!parentDir.isDirectory()) {
-                throw new FileAccessException("ECL0110", new Object[] { path });
+                throw new FileAccessException("ECL0110",
+                        new Object[] { file.getAbsolutePath() });
             }
             properties = new Properties();
             store();
-        } else if (!propertiesFile.isFile()) {
-            throw new FileAccessException("ECL0111", new Object[] { path });
+        } else if (!this.propertiesFile.isFile()) {
+            throw new FileAccessException("ECL0111",
+                    new Object[] { file.getAbsolutePath() });
         }
         load();
     }
