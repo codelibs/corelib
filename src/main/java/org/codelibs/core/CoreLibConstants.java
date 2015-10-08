@@ -36,6 +36,8 @@ public class CoreLibConstants {
 
     public static final String DATE_FORMAT_ISO_8601_EXTEND = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
+    public static final String DATE_FORMAT_ISO_8601_EXTEND_UTC = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
     public static final String DATE_FORMAT_DIGIT_ONLY = "yyyyMMddHHmmss";
 
     protected CoreLibConstants() {
