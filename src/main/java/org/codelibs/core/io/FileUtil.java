@@ -44,8 +44,11 @@ public abstract class FileUtil {
     /** UTF-8のエンコーディング名 */
     private static final String UTF8 = "UTF-8";
 
-    /** デフォルトのバッファサイズ */
-    protected static final int DEFAULT_BUF_SIZE = 4096;
+    /** Default Buffer Size */
+    protected static final int DEFAULT_BUF_SIZE = 4096; // 4k
+
+    /** Max Buffer Size */
+    protected static final int MAX_BUF_SIZE = 10 * 1024 * 1024; // 10m
 
     /**
      * この抽象パス名の正規の形式を返します。
@@ -211,7 +214,12 @@ public abstract class FileUtil {
      * @return リーダーから読み込んだ文字列
      */
     protected static String read(final Reader reader, final int initialCapacity) {
-        int bufferSize = initialCapacity;
+        int bufferSize;
+        if (initialCapacity > 0 && initialCapacity <= MAX_BUF_SIZE) {
+            bufferSize = initialCapacity;
+        } else {
+            bufferSize = DEFAULT_BUF_SIZE;
+        }
         char[] buf = new char[bufferSize];
         int size = 0;
         int len;
