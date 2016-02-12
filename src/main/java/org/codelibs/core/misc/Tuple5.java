@@ -209,4 +209,54 @@ public class Tuple5<T1, T2, T3, T4, T5> {
                 + ", " + value5 + "}";
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((value1 == null) ? 0 : value1.hashCode());
+        result = prime * result + ((value2 == null) ? 0 : value2.hashCode());
+        result = prime * result + ((value3 == null) ? 0 : value3.hashCode());
+        result = prime * result + ((value4 == null) ? 0 : value4.hashCode());
+        result = prime * result + ((value5 == null) ? 0 : value5.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        @SuppressWarnings("unchecked")
+        Tuple5<T1, T2, T3, T4, T5> other = (Tuple5<T1, T2, T3, T4, T5>) obj;
+        if (value1 == null) {
+            if (other.value1 != null)
+                return false;
+        } else if (!value1.equals(other.value1))
+            return false;
+        if (value2 == null) {
+            if (other.value2 != null)
+                return false;
+        } else if (!value2.equals(other.value2))
+            return false;
+        if (value3 == null) {
+            if (other.value3 != null)
+                return false;
+        } else if (!value3.equals(other.value3))
+            return false;
+        if (value4 == null) {
+            if (other.value4 != null)
+                return false;
+        } else if (!value4.equals(other.value4))
+            return false;
+        if (value5 == null) {
+            if (other.value5 != null)
+                return false;
+        } else if (!value5.equals(other.value5))
+            return false;
+        return true;
+    }
+
 }
