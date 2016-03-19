@@ -23,6 +23,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 
 /**
@@ -347,4 +349,25 @@ public class StringUtilTest {
         assertThat(StringUtil.defaultString(null, null), is(nullValue()));
     }
 
+    @Test
+    public void testNewStringUnsafe() {
+        assertNull(StringUtil.newStringUnsafe(null));
+        Method newStringUnsafeMethod = StringUtil.newStringUnsafeMethod;
+        if (newStringUnsafeMethod != null) {
+            StringUtil.newStringUnsafeMethod = null;
+            char[] chars = new char[0];
+            assertThat(StringUtil.newStringUnsafe(chars), is(""));
+            chars = new char[] { 'a', 'b', 'c' };
+            assertThat(StringUtil.newStringUnsafe(chars), is("abc"));
+            StringUtil.newStringUnsafeMethod = newStringUnsafeMethod;
+            chars = new char[] { 'a', 'b', 'c', ' ' };
+            assertThat(StringUtil.newStringUnsafe(chars), is("abc "));
+        }
+        char[] chars = new char[0];
+        assertThat(StringUtil.newStringUnsafe(chars), is(""));
+        chars = new char[] { 'a', 'b', 'c' };
+        assertThat(StringUtil.newStringUnsafe(chars), is("abc"));
+        chars = new char[] { 'a', 'b', 'c', ' ' };
+        assertThat(StringUtil.newStringUnsafe(chars), is("abc "));
+    }
 }

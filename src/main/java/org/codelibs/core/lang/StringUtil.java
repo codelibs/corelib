@@ -17,6 +17,7 @@ package org.codelibs.core.lang;
 
 import static org.codelibs.core.collection.CollectionsUtil.newArrayList;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -43,6 +44,26 @@ public abstract class StringUtil {
      * 文字列型の空の配列です。
      */
     public static final String[] EMPTY_STRINGS = new String[0];
+
+    static Object javaLangAccess = null;
+
+    static Method newStringUnsafeMethod = null;
+
+    static {
+        try {
+            Class<?> sharedSecretsClass = Class
+                    .forName("sun.misc.SharedSecrets");
+            javaLangAccess = sharedSecretsClass
+                    .getDeclaredMethod("getJavaLangAccess").invoke(null);
+            Class<?> javaLangAccessClass = Class
+                    .forName("sun.misc.JavaLangAccess");
+            newStringUnsafeMethod = javaLangAccessClass
+                    .getMethod("newStringUnsafe", char[].class);
+        } catch (Throwable t) {
+            // ignore
+            // t.printStackTrace();
+        }
+    }
 
     /**
      * 文字列が<code>null</code>または空文字列なら<code>true</code>を返します。
@@ -704,5 +725,20 @@ public abstract class StringUtil {
 
     private static boolean isAsciiPrintable(char ch) {
         return ch >= 32 && ch < 127;
+    }
+
+    public static String newStringUnsafe(char[] chars) {
+        if (chars == null) {
+            return null;
+        }
+        if (newStringUnsafeMethod != null) {
+            try {
+                return (String) newStringUnsafeMethod.invoke(javaLangAccess,
+                        chars);
+            } catch (Throwable t) {
+                // ignore
+            }
+        }
+        return new String(chars);
     }
 }
