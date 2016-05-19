@@ -51,15 +51,15 @@ public class StreamUtil {
             this.supplier = supplier;
         }
 
-        public void of(final Consumer<Stream<T>> consumer) {
-            try (Stream<T> stream = supplier.get()) {
-                consumer.accept(stream);
+        public void of(final Consumer<Stream<T>> stream) {
+            try (Stream<T> s = supplier.get()) {
+                stream.accept(s);
             }
         }
 
-        public <R> R get(final Function<Stream<T>, R> consumer) {
-            try (Stream<T> stream = supplier.get()) {
-                return consumer.apply(stream);
+        public <R> R get(final Function<Stream<T>, R> stream) {
+            try (Stream<T> s = supplier.get()) {
+                return stream.apply(s);
             }
         }
     }

@@ -53,12 +53,12 @@ public abstract class StringUtil {
         try {
             Class<?> sharedSecretsClass = Class
                     .forName("sun.misc.SharedSecrets");
-            javaLangAccess = sharedSecretsClass
-                    .getDeclaredMethod("getJavaLangAccess").invoke(null);
+            javaLangAccess = sharedSecretsClass.getDeclaredMethod(
+                    "getJavaLangAccess").invoke(null);
             Class<?> javaLangAccessClass = Class
                     .forName("sun.misc.JavaLangAccess");
-            newStringUnsafeMethod = javaLangAccessClass
-                    .getMethod("newStringUnsafe", char[].class);
+            newStringUnsafeMethod = javaLangAccessClass.getMethod(
+                    "newStringUnsafe", char[].class);
         } catch (Throwable t) {
             // ignore
             // t.printStackTrace();
