@@ -5,7 +5,7 @@
 	<artifactId>corelib</artifactId>
 	<packaging>jar</packaging>
 	<name>corelib</name>
-	<version>0.3.5-SNAPSHOT</version>
+	<version>0.3.5</version>
 	<description />
 	<url>https://github.com/codelibs/corelib</url>
 	<inceptionYear>2012</inceptionYear>
@@ -123,7 +123,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
