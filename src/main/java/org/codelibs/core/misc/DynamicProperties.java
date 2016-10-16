@@ -35,7 +35,6 @@ import java.util.Set;
 
 import org.codelibs.core.exception.FileAccessException;
 import org.codelibs.core.exception.IORuntimeException;
-import org.codelibs.core.lang.StringUtil;
 
 public class DynamicProperties extends Properties {
 
@@ -314,25 +313,25 @@ public class DynamicProperties extends Properties {
     @Override
     public void store(final OutputStream out, final String comments)
             throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+        getProperties().store(out, comments);
     }
 
     @Override
     public void store(final Writer writer, final String comments)
             throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+        getProperties().store(writer, comments);
     }
 
     @Override
     public void storeToXML(final OutputStream os, final String comment,
             final String encoding) throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+        getProperties().storeToXML(os, comment, encoding);
     }
 
     @Override
     public void storeToXML(final OutputStream os, final String comment)
             throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+        getProperties().storeToXML(os, comment);
     }
 
     @Override
