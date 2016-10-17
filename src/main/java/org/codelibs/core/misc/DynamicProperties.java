@@ -125,21 +125,11 @@ public class DynamicProperties extends Properties {
 
     public synchronized void load() {
         final Properties prop = new Properties();
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(propertiesFile);
+        try (final FileInputStream fis = new FileInputStream(propertiesFile)) {
             lastModified = propertiesFile.lastModified();
             prop.load(fis);
         } catch (final IOException e) {
             throw new IORuntimeException(e);
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (final IOException e) {
-                    // ignore
-                }
-            }
         }
         properties = prop;
     }
@@ -260,19 +250,29 @@ public class DynamicProperties extends Properties {
     }
 
     @Override
-    public void load(final InputStream inStream) throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+    public synchronized void load(final InputStream inStream)
+            throws IOException {
+        final Properties prop = new Properties();
+        lastModified = propertiesFile.lastModified();
+        prop.load(inStream);
+        properties = prop;
     }
 
     @Override
-    public void load(final Reader reader) throws IOException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+    public synchronized void load(final Reader reader) throws IOException {
+        final Properties prop = new Properties();
+        lastModified = propertiesFile.lastModified();
+        prop.load(reader);
+        properties = prop;
     }
 
     @Override
-    public void loadFromXML(final InputStream in) throws IOException,
+    public synchronized void loadFromXML(final InputStream in) throws IOException,
             InvalidPropertiesFormatException {
-        throw new UnsupportedOperationException("Unsupported operation.");
+        final Properties prop = new Properties();
+        lastModified = propertiesFile.lastModified();
+        prop.loadFromXML(in);
+        properties = prop;
     }
 
     @Override
