@@ -67,4 +67,14 @@ public abstract class CloseableUtil {
         }
     }
 
+    public static void closeQuietly(final Closeable closeable) {
+        if (closeable == null) {
+            return;
+        }
+        try {
+            closeable.close();
+        } catch (final IOException e) {
+            // ignore
+        }
+    }
 }
