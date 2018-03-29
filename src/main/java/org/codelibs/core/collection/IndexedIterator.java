@@ -88,7 +88,7 @@ public class IndexedIterator<T> implements Iterator<Indexed<T>> {
     public static <T> Iterable<Indexed<T>> indexed(final Iterator<T> iterator) {
         assertArgumentNotNull("iterator", iterator);
 
-        return () -> new IndexedIterator<T>(iterator);
+        return () -> new IndexedIterator<>(iterator);
     }
 
     /**
@@ -112,7 +112,7 @@ public class IndexedIterator<T> implements Iterator<Indexed<T>> {
 
     @Override
     public Indexed<T> next() {
-        return new Indexed<T>(iterator.next(), index++);
+        return new Indexed<>(iterator.next(), index++);
     }
 
     @Override

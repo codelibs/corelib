@@ -83,7 +83,7 @@ public class MultiIterator<E> implements Iterator<E> {
     public static <E> Iterable<E> iterable(final Iterator<E>... iterators) {
         assertArgumentNotNull("iterators", iterators);
 
-        return () -> new MultiIterator<E>(iterators);
+        return () -> new MultiIterator<>(iterators);
     }
 
     /**

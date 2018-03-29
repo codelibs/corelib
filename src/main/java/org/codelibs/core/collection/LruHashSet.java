@@ -34,7 +34,7 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>,
     private static final Object PRESENT = new Object();
 
     public LruHashSet(final int limitSize) {
-        map = new LruHashMap<E, Object>(limitSize);
+        map = new LruHashMap<>(limitSize);
     }
 
     /**

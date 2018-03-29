@@ -200,7 +200,7 @@ public abstract class ClassLoaderUtil {
 
         try {
             final Enumeration<URL> e = loader.getResources(name);
-            return new EnumerationIterator<URL>(e);
+            return new EnumerationIterator<>(e);
         } catch (final IOException e) {
             throw new IORuntimeException(e);
         }

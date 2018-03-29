@@ -334,7 +334,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
 
     @Override
     public Object clone() {
-        final SLinkedList<E> copy = new SLinkedList<E>();
+        final SLinkedList<E> copy = new SLinkedList<>();
         for (Entry e = header.next; e != header; e = e.next) {
             copy.addLast(e.element);
         }

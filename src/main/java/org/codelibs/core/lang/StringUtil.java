@@ -51,15 +51,15 @@ public abstract class StringUtil {
 
     static {
         try {
-            Class<?> sharedSecretsClass = Class
+            final Class<?> sharedSecretsClass = Class
                     .forName("sun.misc.SharedSecrets");
             javaLangAccess = sharedSecretsClass.getDeclaredMethod(
                     "getJavaLangAccess").invoke(null);
-            Class<?> javaLangAccessClass = Class
+            final Class<?> javaLangAccessClass = Class
                     .forName("sun.misc.JavaLangAccess");
             newStringUnsafeMethod = javaLangAccessClass.getMethod(
                     "newStringUnsafe", char[].class);
-        } catch (Throwable t) {
+        } catch (final Throwable t) {
             // ignore
             // t.printStackTrace();
         }
@@ -710,7 +710,7 @@ public abstract class StringUtil {
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if every character is in the range 32 thru 126
      */
-    public static boolean isAsciiPrintable(CharSequence cs) {
+    public static boolean isAsciiPrintable(final CharSequence cs) {
         if (cs == null) {
             return false;
         }
@@ -723,11 +723,11 @@ public abstract class StringUtil {
         return true;
     }
 
-    private static boolean isAsciiPrintable(char ch) {
+    private static boolean isAsciiPrintable(final char ch) {
         return ch >= 32 && ch < 127;
     }
 
-    public static String newStringUnsafe(char[] chars) {
+    public static String newStringUnsafe(final char[] chars) {
         if (chars == null) {
             return null;
         }
@@ -735,7 +735,7 @@ public abstract class StringUtil {
             try {
                 return (String) newStringUnsafeMethod.invoke(javaLangAccess,
                         chars);
-            } catch (Throwable t) {
+            } catch (final Throwable t) {
                 // ignore
             }
         }

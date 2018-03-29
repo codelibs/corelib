@@ -61,7 +61,7 @@ public class ArrayIterator<T> implements Iterator<T> {
     public static <T> Iterable<T> iterable(final T... items) {
         assertArgumentNotNull("items", items);
 
-        return () -> new ArrayIterator<T>(items);
+        return () -> new ArrayIterator<>(items);
     }
 
     /**

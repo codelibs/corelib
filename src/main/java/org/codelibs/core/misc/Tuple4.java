@@ -65,7 +65,7 @@ public class Tuple4<T1, T2, T3, T4> {
      */
     public static <T1, T2, T3, T4> Tuple4<T1, T2, T3, T4> tuple4(
             final T1 value1, final T2 value2, final T3 value3, final T4 value4) {
-        return new Tuple4<T1, T2, T3, T4>(value1, value2, value3, value4);
+        return new Tuple4<>(value1, value2, value3, value4);
     }
 
     /**
@@ -188,35 +188,46 @@ public class Tuple4<T1, T2, T3, T4> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         @SuppressWarnings("unchecked")
-        Tuple4<T1, T2, T3, T4> other = (Tuple4<T1, T2, T3, T4>) obj;
+        final Tuple4<T1, T2, T3, T4> other = (Tuple4<T1, T2, T3, T4>) obj;
         if (value1 == null) {
-            if (other.value1 != null)
+            if (other.value1 != null) {
                 return false;
-        } else if (!value1.equals(other.value1))
+            }
+        } else if (!value1.equals(other.value1)) {
             return false;
+        }
         if (value2 == null) {
-            if (other.value2 != null)
+            if (other.value2 != null) {
                 return false;
-        } else if (!value2.equals(other.value2))
+            }
+        } else if (!value2.equals(other.value2)) {
             return false;
+        }
         if (value3 == null) {
-            if (other.value3 != null)
+            if (other.value3 != null) {
                 return false;
-        } else if (!value3.equals(other.value3))
+            }
+        } else if (!value3.equals(other.value3)) {
             return false;
+        }
         if (value4 == null) {
-            if (other.value4 != null)
+            if (other.value4 != null) {
                 return false;
-        } else if (!value4.equals(other.value4))
+            }
+        } else if (!value4.equals(other.value4)) {
             return false;
+        }
         return true;
     }
 

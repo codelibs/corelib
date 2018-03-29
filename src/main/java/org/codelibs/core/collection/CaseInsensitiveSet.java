@@ -32,7 +32,7 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements
 
     static final long serialVersionUID = 0L;
 
-    private transient Map<String, Object> map = new CaseInsensitiveMap<Object>();
+    private transient Map<String, Object> map = new CaseInsensitiveMap<>();
 
     private static final Object PRESENT = new Object();
 
@@ -40,7 +40,7 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements
      * {@link CaseInsensitiveSet}を作成します。
      */
     public CaseInsensitiveSet() {
-        map = new CaseInsensitiveMap<Object>();
+        map = new CaseInsensitiveMap<>();
     }
 
     /**
@@ -50,7 +50,7 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements
      *            コピー元のコレクション
      */
     public CaseInsensitiveSet(final Collection<String> c) {
-        map = new CaseInsensitiveMap<Object>(Math.max(
+        map = new CaseInsensitiveMap<>(Math.max(
                 (int) (c.size() / .75f) + 1, 16));
         addAll(c);
     }
@@ -62,7 +62,7 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements
      *            初期容量
      */
     public CaseInsensitiveSet(final int initialCapacity) {
-        map = new CaseInsensitiveMap<Object>(initialCapacity);
+        map = new CaseInsensitiveMap<>(initialCapacity);
     }
 
     @Override

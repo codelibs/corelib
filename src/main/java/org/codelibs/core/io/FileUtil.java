@@ -239,7 +239,7 @@ public abstract class FileUtil {
         }
     }
 
-    public static void writeBytes(String pathname, byte[] bytes) {
+    public static void writeBytes(final String pathname, final byte[] bytes) {
         try (FileOutputStream fos = OutputStreamUtil.create(new File(pathname))) {
             ChannelUtil.write(fos.getChannel(), ByteBuffer.wrap(bytes));
         } catch (final IOException e) {

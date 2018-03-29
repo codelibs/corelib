@@ -239,7 +239,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         }
         ensureCapacity();
         index = (hashCode & 0x7FFFFFFF) % mapTable.length;
-        final Entry<K, V> e = new Entry<K, V>(hashCode, key, value,
+        final Entry<K, V> e = new Entry<>(hashCode, key, value,
                 mapTable[index]);
         mapTable[index] = e;
         listTable[size++] = e;
@@ -440,7 +440,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     @Override
     public Object clone() {
-        final ArrayMap<K, V> copy = new ArrayMap<K, V>();
+        final ArrayMap<K, V> copy = new ArrayMap<>();
         copy.threshold = threshold;
         copy.mapTable = Arrays.copyOf(mapTable, size);
         copy.listTable = Arrays.copyOf(listTable, size);

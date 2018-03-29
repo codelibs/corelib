@@ -51,9 +51,9 @@ public class CachedCipher {
 
     protected String charsetName = CoreLibConstants.UTF_8;
 
-    protected Queue<Cipher> encryptoQueue = new ConcurrentLinkedQueue<Cipher>();
+    protected Queue<Cipher> encryptoQueue = new ConcurrentLinkedQueue<>();
 
-    protected Queue<Cipher> decryptoQueue = new ConcurrentLinkedQueue<Cipher>();
+    protected Queue<Cipher> decryptoQueue = new ConcurrentLinkedQueue<>();
 
     public byte[] encrypto(final byte[] data) {
         final Cipher cipher = pollEncryptoCipher();
@@ -215,7 +215,7 @@ public class CachedCipher {
         return algorithm;
     }
 
-    public void setAlgorithm(String algorithm) {
+    public void setAlgorithm(final String algorithm) {
         this.algorithm = algorithm;
     }
 
@@ -223,7 +223,7 @@ public class CachedCipher {
         return transformation;
     }
 
-    public void setTransformation(String transformation) {
+    public void setTransformation(final String transformation) {
         this.transformation = transformation;
     }
 
@@ -231,7 +231,7 @@ public class CachedCipher {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(final String key) {
         this.key = key;
     }
 
@@ -239,7 +239,7 @@ public class CachedCipher {
         return charsetName;
     }
 
-    public void setCharsetName(String charsetName) {
+    public void setCharsetName(final String charsetName) {
         this.charsetName = charsetName;
     }
 }

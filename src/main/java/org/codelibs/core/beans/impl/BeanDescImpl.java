@@ -78,10 +78,10 @@ public class BeanDescImpl implements BeanDesc {
     protected final Map<TypeVariable<?>, Type> typeVariables;
 
     /** プロパティ名から{@link PropertyDesc}へのマップ */
-    protected final CaseInsensitiveMap<PropertyDesc> propertyDescCache = new CaseInsensitiveMap<PropertyDesc>();
+    protected final CaseInsensitiveMap<PropertyDesc> propertyDescCache = new CaseInsensitiveMap<>();
 
     /** フィールド名から{@link FieldDescImpl}へのマップ */
-    protected final ArrayMap<String, FieldDesc> fieldDescCache = new ArrayMap<String, FieldDesc>();
+    protected final ArrayMap<String, FieldDesc> fieldDescCache = new ArrayMap<>();
 
     /** {@link ConstructorDesc}の配列 */
     protected final List<ConstructorDesc> constructorDescs = newArrayList();
@@ -604,7 +604,7 @@ public class BeanDescImpl implements BeanDesc {
      * メソッドを準備します。
      */
     protected void setupMethodDescs() {
-        final ArrayMap<String, List<MethodDesc>> methodDescListMap = new ArrayMap<String, List<MethodDesc>>();
+        final ArrayMap<String, List<MethodDesc>> methodDescListMap = new ArrayMap<>();
         for (final Method method : beanClass.getMethods()) {
             if (method.isBridge() || method.isSynthetic()) {
                 continue;

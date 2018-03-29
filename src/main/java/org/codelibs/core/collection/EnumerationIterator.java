@@ -45,7 +45,7 @@ public class EnumerationIterator<T> implements Iterator<T> {
     public static <T> Iterable<T> iterable(final Enumeration<T> enumeration) {
         assertArgumentNotNull("enumeration", enumeration);
 
-        return () -> new EnumerationIterator<T>(enumeration);
+        return () -> new EnumerationIterator<>(enumeration);
     }
 
     /**

@@ -45,7 +45,7 @@ public class SingleValueIterator<E> implements Iterator<E> {
      * @return {@link SingleValueIterator}をラップした{@link Iterable}
      */
     public static <E> Iterable<E> iterable(final E value) {
-        return () -> new SingleValueIterator<E>(value);
+        return () -> new SingleValueIterator<>(value);
     }
 
     /**
