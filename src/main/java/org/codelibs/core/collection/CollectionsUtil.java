@@ -70,7 +70,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
             final int capacity) {
-        return new ArrayBlockingQueue<>(capacity);
+        return new ArrayBlockingQueue<E>(capacity);
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
             final int capacity, final boolean fair) {
-        return new ArrayBlockingQueue<>(capacity, fair);
+        return new ArrayBlockingQueue<E>(capacity, fair);
     }
 
     /**
@@ -107,7 +107,7 @@ public abstract class CollectionsUtil {
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
             final int capacity, final boolean fair,
             final Collection<? extends E> c) {
-        return new ArrayBlockingQueue<>(capacity, fair, c);
+        return new ArrayBlockingQueue<E>(capacity, fair, c);
     }
 
     /**
@@ -119,7 +119,7 @@ public abstract class CollectionsUtil {
      * @see ArrayDeque#ArrayDeque()
      */
     public static <E> ArrayDeque<E> newArrayDeque() {
-        return new ArrayDeque<>();
+        return new ArrayDeque<E>();
     }
 
     /**
@@ -134,7 +134,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ArrayDeque<E> newArrayDeque(
             final Collection<? extends E> c) {
-        return new ArrayDeque<>(c);
+        return new ArrayDeque<E>(c);
     }
 
     /**
@@ -148,7 +148,7 @@ public abstract class CollectionsUtil {
      * @see ArrayDeque#ArrayDeque(int)
      */
     public static <E> ArrayDeque<E> newArrayDeque(final int numElements) {
-        return new ArrayDeque<>(numElements);
+        return new ArrayDeque<E>(numElements);
     }
 
     /**
@@ -160,7 +160,7 @@ public abstract class CollectionsUtil {
      * @see ArrayList#ArrayList()
      */
     public static <E> ArrayList<E> newArrayList() {
-        return new ArrayList<>();
+        return new ArrayList<E>();
     }
 
     /**
@@ -174,7 +174,7 @@ public abstract class CollectionsUtil {
      * @see ArrayList#ArrayList(Collection)
      */
     public static <E> ArrayList<E> newArrayList(final Collection<? extends E> c) {
-        return new ArrayList<>(c);
+        return new ArrayList<E>(c);
     }
 
     /**
@@ -188,7 +188,7 @@ public abstract class CollectionsUtil {
      * @see ArrayList#ArrayList(int)
      */
     public static <E> ArrayList<E> newArrayList(final int initialCapacity) {
-        return new ArrayList<>(initialCapacity);
+        return new ArrayList<E>(initialCapacity);
     }
 
     /**
@@ -202,7 +202,7 @@ public abstract class CollectionsUtil {
      * @see ConcurrentHashMap#ConcurrentHashMap()
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap() {
-        return new ConcurrentHashMap<>();
+        return new ConcurrentHashMap<K, V>();
     }
 
     /**
@@ -219,7 +219,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
             final int initialCapacity) {
-        return new ConcurrentHashMap<>(initialCapacity);
+        return new ConcurrentHashMap<K, V>(initialCapacity);
     }
 
     /**
@@ -241,7 +241,7 @@ public abstract class CollectionsUtil {
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
             final int initialCapacity, final float loadFactor,
             final int concurrencyLevel) {
-        return new ConcurrentHashMap<>(initialCapacity, loadFactor,
+        return new ConcurrentHashMap<K, V>(initialCapacity, loadFactor,
                 concurrencyLevel);
     }
 
@@ -259,7 +259,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
             final Map<? extends K, ? extends V> m) {
-        return new ConcurrentHashMap<>(m);
+        return new ConcurrentHashMap<K, V>(m);
     }
 
     /**
@@ -271,7 +271,7 @@ public abstract class CollectionsUtil {
      * @see ConcurrentLinkedQueue#ConcurrentLinkedQueue()
      */
     public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue() {
-        return new ConcurrentLinkedQueue<>();
+        return new ConcurrentLinkedQueue<E>();
     }
 
     /**
@@ -286,7 +286,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue(
             final Collection<? extends E> c) {
-        return new ConcurrentLinkedQueue<>(c);
+        return new ConcurrentLinkedQueue<E>(c);
     }
 
     /**
@@ -300,7 +300,7 @@ public abstract class CollectionsUtil {
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap()
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap() {
-        return new ConcurrentSkipListMap<>();
+        return new ConcurrentSkipListMap<K, V>();
     }
 
     /**
@@ -317,7 +317,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
             final Comparator<? super K> c) {
-        return new ConcurrentSkipListMap<>(c);
+        return new ConcurrentSkipListMap<K, V>(c);
     }
 
     /**
@@ -334,7 +334,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
             final Map<? extends K, ? extends V> m) {
-        return new ConcurrentSkipListMap<>(m);
+        return new ConcurrentSkipListMap<K, V>(m);
     }
 
     /**
@@ -351,7 +351,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
             final SortedMap<K, ? extends V> m) {
-        return new ConcurrentSkipListMap<>(m);
+        return new ConcurrentSkipListMap<K, V>(m);
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class CollectionsUtil {
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet()
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet() {
-        return new ConcurrentSkipListSet<>();
+        return new ConcurrentSkipListSet<E>();
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
             final Collection<? extends E> c) {
-        return new ConcurrentSkipListSet<>(c);
+        return new ConcurrentSkipListSet<E>(c);
     }
 
     /**
@@ -393,7 +393,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
             final Comparator<? super E> c) {
-        return new ConcurrentSkipListSet<>(c);
+        return new ConcurrentSkipListSet<E>(c);
     }
 
     /**
@@ -408,7 +408,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
             final SortedSet<? extends E> s) {
-        return new ConcurrentSkipListSet<>(s);
+        return new ConcurrentSkipListSet<E>(s);
     }
 
     /**
@@ -420,7 +420,7 @@ public abstract class CollectionsUtil {
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList()
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList() {
-        return new CopyOnWriteArrayList<>();
+        return new CopyOnWriteArrayList<E>();
     }
 
     /**
@@ -435,7 +435,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(
             final Collection<? extends E> c) {
-        return new CopyOnWriteArrayList<>(c);
+        return new CopyOnWriteArrayList<E>(c);
     }
 
     /**
@@ -450,7 +450,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(
             final E[] toCopyIn) {
-        return new CopyOnWriteArrayList<>(toCopyIn);
+        return new CopyOnWriteArrayList<E>(toCopyIn);
     }
 
     /**
@@ -462,7 +462,7 @@ public abstract class CollectionsUtil {
      * @see CopyOnWriteArraySet#CopyOnWriteArraySet()
      */
     public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet() {
-        return new CopyOnWriteArraySet<>();
+        return new CopyOnWriteArraySet<E>();
     }
 
     /**
@@ -477,7 +477,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet(
             final Collection<? extends E> c) {
-        return new CopyOnWriteArraySet<>(c);
+        return new CopyOnWriteArraySet<E>(c);
     }
 
     /**
@@ -489,7 +489,7 @@ public abstract class CollectionsUtil {
      * @see DelayQueue#DelayQueue()
      */
     public static <E extends Delayed> DelayQueue<E> newDelayQueue() {
-        return new DelayQueue<>();
+        return new DelayQueue<E>();
     }
 
     /**
@@ -504,7 +504,7 @@ public abstract class CollectionsUtil {
      */
     public static <E extends Delayed> DelayQueue<E> newDelayQueue(
             final Collection<? extends E> c) {
-        return new DelayQueue<>(c);
+        return new DelayQueue<E>(c);
     }
 
     /**
@@ -521,7 +521,7 @@ public abstract class CollectionsUtil {
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
             final Class<K> keyType) {
-        return new EnumMap<>(keyType);
+        return new EnumMap<K, V>(keyType);
     }
 
     /**
@@ -538,7 +538,7 @@ public abstract class CollectionsUtil {
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
             final EnumMap<K, ? extends V> m) {
-        return new EnumMap<>(m);
+        return new EnumMap<K, V>(m);
     }
 
     /**
@@ -555,7 +555,7 @@ public abstract class CollectionsUtil {
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
             final Map<K, ? extends V> m) {
-        return new EnumMap<>(m);
+        return new EnumMap<K, V>(m);
     }
 
     /**
@@ -569,7 +569,7 @@ public abstract class CollectionsUtil {
      * @see HashMap#HashMap()
      */
     public static <K, V> HashMap<K, V> newHashMap() {
-        return new HashMap<>();
+        return new HashMap<K, V>();
     }
 
     /**
@@ -585,7 +585,7 @@ public abstract class CollectionsUtil {
      * @see HashMap#HashMap(int)
      */
     public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity) {
-        return new HashMap<>(initialCapacity);
+        return new HashMap<K, V>(initialCapacity);
     }
 
     /**
@@ -604,7 +604,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity,
             final float loadFactor) {
-        return new HashMap<>(initialCapacity, loadFactor);
+        return new HashMap<K, V>(initialCapacity, loadFactor);
     }
 
     /**
@@ -621,7 +621,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> HashMap<K, V> newHashMap(
             final Map<? extends K, ? extends V> m) {
-        return new HashMap<>(m);
+        return new HashMap<K, V>(m);
     }
 
     /**
@@ -633,7 +633,7 @@ public abstract class CollectionsUtil {
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet() {
-        return new HashSet<>();
+        return new HashSet<E>();
     }
 
     /**
@@ -647,7 +647,7 @@ public abstract class CollectionsUtil {
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet(final Collection<? extends E> c) {
-        return new HashSet<>(c);
+        return new HashSet<E>(c);
     }
 
     /**
@@ -661,7 +661,7 @@ public abstract class CollectionsUtil {
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet(final int initialCapacity) {
-        return new HashSet<>(initialCapacity);
+        return new HashSet<E>(initialCapacity);
     }
 
     /**
@@ -678,7 +678,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> HashSet<E> newHashSet(final int initialCapacity,
             final float loadFactor) {
-        return new HashSet<>(initialCapacity, loadFactor);
+        return new HashSet<E>(initialCapacity, loadFactor);
     }
 
     /**
@@ -692,7 +692,7 @@ public abstract class CollectionsUtil {
      * @see Hashtable#Hashtable()
      */
     public static <K, V> Hashtable<K, V> newHashtable() {
-        return new Hashtable<>();
+        return new Hashtable<K, V>();
     }
 
     /**
@@ -708,7 +708,7 @@ public abstract class CollectionsUtil {
      * @see Hashtable#Hashtable(int)
      */
     public static <K, V> Hashtable<K, V> newHashtable(final int initialCapacity) {
-        return new Hashtable<>(initialCapacity);
+        return new Hashtable<K, V>(initialCapacity);
     }
 
     /**
@@ -727,7 +727,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> Hashtable<K, V> newHashtable(
             final int initialCapacity, final float loadFactor) {
-        return new Hashtable<>(initialCapacity, loadFactor);
+        return new Hashtable<K, V>(initialCapacity, loadFactor);
     }
 
     /**
@@ -744,7 +744,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> Hashtable<K, V> newHashtable(
             final Map<? extends K, ? extends V> m) {
-        return new Hashtable<>(m);
+        return new Hashtable<K, V>(m);
     }
 
     /**
@@ -758,7 +758,7 @@ public abstract class CollectionsUtil {
      * @see IdentityHashMap#IdentityHashMap()
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap() {
-        return new IdentityHashMap<>();
+        return new IdentityHashMap<K, V>();
     }
 
     /**
@@ -775,7 +775,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(
             final int expectedMaxSize) {
-        return new IdentityHashMap<>(expectedMaxSize);
+        return new IdentityHashMap<K, V>(expectedMaxSize);
     }
 
     /**
@@ -792,7 +792,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(
             final Map<? extends K, ? extends V> m) {
-        return new IdentityHashMap<>(m);
+        return new IdentityHashMap<K, V>(m);
     }
 
     /**
@@ -804,7 +804,7 @@ public abstract class CollectionsUtil {
      * @see LinkedBlockingDeque#LinkedBlockingDeque()
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque() {
-        return new LinkedBlockingDeque<>();
+        return new LinkedBlockingDeque<E>();
     }
 
     /**
@@ -819,7 +819,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(
             final Collection<? extends E> c) {
-        return new LinkedBlockingDeque<>(c);
+        return new LinkedBlockingDeque<E>(c);
     }
 
     /**
@@ -834,7 +834,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(
             final int initialCapacity) {
-        return new LinkedBlockingDeque<>(initialCapacity);
+        return new LinkedBlockingDeque<E>(initialCapacity);
     }
 
     /**
@@ -846,7 +846,7 @@ public abstract class CollectionsUtil {
      * @see LinkedBlockingQueue#LinkedBlockingQueue()
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue() {
-        return new LinkedBlockingQueue<>();
+        return new LinkedBlockingQueue<E>();
     }
 
     /**
@@ -861,7 +861,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(
             final Collection<? extends E> c) {
-        return new LinkedBlockingQueue<>(c);
+        return new LinkedBlockingQueue<E>(c);
     }
 
     /**
@@ -876,7 +876,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(
             final int initialCapacity) {
-        return new LinkedBlockingQueue<>(initialCapacity);
+        return new LinkedBlockingQueue<E>(initialCapacity);
     }
 
     /**
@@ -890,7 +890,7 @@ public abstract class CollectionsUtil {
      * @see LinkedHashMap#LinkedHashMap()
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap() {
-        return new LinkedHashMap<>();
+        return new LinkedHashMap<K, V>();
     }
 
     /**
@@ -907,7 +907,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
             final int initialCapacity) {
-        return new LinkedHashMap<>(initialCapacity);
+        return new LinkedHashMap<K, V>(initialCapacity);
     }
 
     /**
@@ -926,7 +926,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
             final int initialCapacity, final float loadFactor) {
-        return new LinkedHashMap<>(initialCapacity, loadFactor);
+        return new LinkedHashMap<K, V>(initialCapacity, loadFactor);
     }
 
     /**
@@ -943,7 +943,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
             final Map<? extends K, ? extends V> m) {
-        return new LinkedHashMap<>(m);
+        return new LinkedHashMap<K, V>(m);
     }
 
     /**
@@ -955,7 +955,7 @@ public abstract class CollectionsUtil {
      * @see LinkedHashSet#LinkedHashSet()
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet() {
-        return new LinkedHashSet<>();
+        return new LinkedHashSet<E>();
     }
 
     /**
@@ -970,7 +970,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(
             final Collection<? extends E> c) {
-        return new LinkedHashSet<>(c);
+        return new LinkedHashSet<E>(c);
     }
 
     /**
@@ -985,7 +985,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(
             final int initialCapacity) {
-        return new LinkedHashSet<>(initialCapacity);
+        return new LinkedHashSet<E>(initialCapacity);
     }
 
     /**
@@ -1002,7 +1002,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(
             final int initialCapacity, final float loadFactor) {
-        return new LinkedHashSet<>(initialCapacity, loadFactor);
+        return new LinkedHashSet<E>(initialCapacity, loadFactor);
     }
 
     /**
@@ -1014,7 +1014,7 @@ public abstract class CollectionsUtil {
      * @see LinkedList#LinkedList()
      */
     public static <E> LinkedList<E> newLinkedList() {
-        return new LinkedList<>();
+        return new LinkedList<E>();
     }
 
     /**
@@ -1029,7 +1029,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> LinkedList<E> newLinkedList(
             final Collection<? extends E> c) {
-        return new LinkedList<>(c);
+        return new LinkedList<E>(c);
     }
 
     /**
@@ -1041,7 +1041,7 @@ public abstract class CollectionsUtil {
      * @see PriorityBlockingQueue#PriorityBlockingQueue()
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue() {
-        return new PriorityBlockingQueue<>();
+        return new PriorityBlockingQueue<E>();
     }
 
     /**
@@ -1056,7 +1056,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
             final Collection<? extends E> c) {
-        return new PriorityBlockingQueue<>(c);
+        return new PriorityBlockingQueue<E>(c);
     }
 
     /**
@@ -1071,7 +1071,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
             final int initialCapacity) {
-        return new PriorityBlockingQueue<>(initialCapacity);
+        return new PriorityBlockingQueue<E>(initialCapacity);
     }
 
     /**
@@ -1088,7 +1088,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
             final int initialCapacity, final Comparator<? super E> comparator) {
-        return new PriorityBlockingQueue<>(initialCapacity, comparator);
+        return new PriorityBlockingQueue<E>(initialCapacity, comparator);
     }
 
     /**
@@ -1100,7 +1100,7 @@ public abstract class CollectionsUtil {
      * @see PriorityQueue#PriorityQueue()
      */
     public static <E> PriorityQueue<E> newPriorityQueue() {
-        return new PriorityQueue<>();
+        return new PriorityQueue<E>();
     }
 
     /**
@@ -1115,7 +1115,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityQueue<E> newPriorityQueue(
             final Collection<? extends E> c) {
-        return new PriorityQueue<>(c);
+        return new PriorityQueue<E>(c);
     }
 
     /**
@@ -1130,7 +1130,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityQueue<E> newPriorityQueue(
             final int initialCapacity) {
-        return new PriorityQueue<>(initialCapacity);
+        return new PriorityQueue<E>(initialCapacity);
     }
 
     /**
@@ -1147,7 +1147,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityQueue<E> newPriorityQueue(
             final int initialCapacity, final Comparator<? super E> comparator) {
-        return new PriorityQueue<>(initialCapacity, comparator);
+        return new PriorityQueue<E>(initialCapacity, comparator);
     }
 
     /**
@@ -1162,7 +1162,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityQueue<E> newPriorityQueue(
             final PriorityQueue<? extends E> c) {
-        return new PriorityQueue<>(c);
+        return new PriorityQueue<E>(c);
     }
 
     /**
@@ -1177,7 +1177,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> PriorityQueue<E> newPriorityQueue(
             final SortedSet<? extends E> c) {
-        return new PriorityQueue<>(c);
+        return new PriorityQueue<E>(c);
     }
 
     /**
@@ -1189,7 +1189,7 @@ public abstract class CollectionsUtil {
      * @see Stack#Stack()
      */
     public static <E> Stack<E> newStack() {
-        return new Stack<>();
+        return new Stack<E>();
     }
 
     /**
@@ -1201,7 +1201,7 @@ public abstract class CollectionsUtil {
      * @see SynchronousQueue#SynchronousQueue()
      */
     public static <E> SynchronousQueue<E> newSynchronousQueue() {
-        return new SynchronousQueue<>();
+        return new SynchronousQueue<E>();
     }
 
     /**
@@ -1216,7 +1216,7 @@ public abstract class CollectionsUtil {
      * @see SynchronousQueue#SynchronousQueue()
      */
     public static <E> SynchronousQueue<E> newSynchronousQueue(final boolean fair) {
-        return new SynchronousQueue<>(fair);
+        return new SynchronousQueue<E>(fair);
     }
 
     /**
@@ -1230,7 +1230,7 @@ public abstract class CollectionsUtil {
      * @see TreeMap#TreeMap()
      */
     public static <K, V> TreeMap<K, V> newTreeMap() {
-        return new TreeMap<>();
+        return new TreeMap<K, V>();
     }
 
     /**
@@ -1246,7 +1246,7 @@ public abstract class CollectionsUtil {
      * @see TreeMap#TreeMap(Comparator)
      */
     public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> c) {
-        return new TreeMap<>(c);
+        return new TreeMap<K, V>(c);
     }
 
     /**
@@ -1263,7 +1263,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> TreeMap<K, V> newTreeMap(
             final Map<? extends K, ? extends V> m) {
-        return new TreeMap<>(m);
+        return new TreeMap<K, V>(m);
     }
 
     /**
@@ -1280,7 +1280,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> TreeMap<K, V> newTreeMap(
             final SortedMap<K, ? extends V> m) {
-        return new TreeMap<>(m);
+        return new TreeMap<K, V>(m);
     }
 
     /**
@@ -1292,7 +1292,7 @@ public abstract class CollectionsUtil {
      * @see TreeSet#TreeSet()
      */
     public static <E> TreeSet<E> newTreeSet() {
-        return new TreeSet<>();
+        return new TreeSet<E>();
     }
 
     /**
@@ -1306,7 +1306,7 @@ public abstract class CollectionsUtil {
      * @see TreeSet#TreeSet(Collection)
      */
     public static <E> TreeSet<E> newTreeSet(final Collection<? extends E> c) {
-        return new TreeSet<>(c);
+        return new TreeSet<E>(c);
     }
 
     /**
@@ -1320,7 +1320,7 @@ public abstract class CollectionsUtil {
      * @see TreeSet#TreeSet(Comparator)
      */
     public static <E> TreeSet<E> newTreeSet(final Comparator<? super E> c) {
-        return new TreeSet<>(c);
+        return new TreeSet<E>(c);
     }
 
     /**
@@ -1334,7 +1334,7 @@ public abstract class CollectionsUtil {
      * @see TreeSet#TreeSet(SortedSet)
      */
     public static <E> TreeSet<E> newTreeSet(final SortedSet<? extends E> s) {
-        return new TreeSet<>(s);
+        return new TreeSet<E>(s);
     }
 
     /**
@@ -1346,7 +1346,7 @@ public abstract class CollectionsUtil {
      * @see Vector#Vector()
      */
     public static <E> Vector<E> newVector() {
-        return new Vector<>();
+        return new Vector<E>();
     }
 
     /**
@@ -1360,7 +1360,7 @@ public abstract class CollectionsUtil {
      * @see Vector#Vector(Collection)
      */
     public static <E> Vector<E> newVector(final Collection<? extends E> c) {
-        return new Vector<>(c);
+        return new Vector<E>(c);
     }
 
     /**
@@ -1374,7 +1374,7 @@ public abstract class CollectionsUtil {
      * @see Vector#Vector(int)
      */
     public static <E> Vector<E> newVector(final int initialCapacity) {
-        return new Vector<>(initialCapacity);
+        return new Vector<E>(initialCapacity);
     }
 
     /**
@@ -1391,7 +1391,7 @@ public abstract class CollectionsUtil {
      */
     public static <E> Vector<E> newVector(final int initialCapacity,
             final int capacityIncrement) {
-        return new Vector<>(initialCapacity, capacityIncrement);
+        return new Vector<E>(initialCapacity, capacityIncrement);
     }
 
     /**
@@ -1405,7 +1405,7 @@ public abstract class CollectionsUtil {
      * @see WeakHashMap#WeakHashMap()
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap() {
-        return new WeakHashMap<>();
+        return new WeakHashMap<K, V>();
     }
 
     /**
@@ -1422,7 +1422,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(
             final int initialCapacity) {
-        return new WeakHashMap<>(initialCapacity);
+        return new WeakHashMap<K, V>(initialCapacity);
     }
 
     /**
@@ -1441,7 +1441,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(
             final int initialCapacity, final float loadFactor) {
-        return new WeakHashMap<>(initialCapacity, loadFactor);
+        return new WeakHashMap<K, V>(initialCapacity, loadFactor);
     }
 
     /**
@@ -1458,7 +1458,7 @@ public abstract class CollectionsUtil {
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(
             final Map<? extends K, ? extends V> m) {
-        return new WeakHashMap<>(m);
+        return new WeakHashMap<K, V>(m);
     }
 
     /**
