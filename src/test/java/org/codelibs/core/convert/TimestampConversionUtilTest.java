@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.codelibs.core.misc.LocaleUtil;
 import org.junit.After;
@@ -91,8 +92,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_LongStyle() throws Exception {
         final Date date = toDate("2010/09/07 11:49:10 JST");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -101,8 +103,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_FullStyle() throws Exception {
         final Date date = toDate("2010年9月7日 11時49分10秒 JST");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -188,8 +191,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_LongStyle() throws Exception {
         final Calendar calendar = toCalendar("2010/09/07 11:49:10 JST");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -198,8 +202,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_FullStyle() throws Exception {
         final Calendar calendar = toCalendar("2010年9月7日 11時49分10秒 JST");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -289,9 +294,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_LongStyle() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("2010/09/07 11:49:10 JST");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -300,9 +305,9 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_FullStyle() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("2010年9月7日 11時49分10秒 JST");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**
