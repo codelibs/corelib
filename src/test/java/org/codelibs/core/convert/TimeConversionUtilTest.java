@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.codelibs.core.misc.LocaleUtil;
 import org.junit.After;
@@ -91,8 +92,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_LongStyle() throws Exception {
         final Date date = toDate("11:49:10 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(date), is("11:49:10"));
     }
 
     /**
@@ -101,8 +103,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_FullStyle() throws Exception {
         final Date date = toDate("11時49分10秒 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(date), is("11:49:10"));
     }
 
     /**
@@ -187,8 +190,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_LongStyle() throws Exception {
         final Calendar calendar = toCalendar("11:49:10 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -197,8 +201,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_FullStyle() throws Exception {
         final Calendar calendar = toCalendar("11時49分10秒 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -283,8 +288,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_LongStyle() throws Exception {
         final Time time = toSqlTime("11:49:10 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(time), is("11:49:10"));
     }
 
     /**
@@ -293,8 +299,9 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_FullStyle() throws Exception {
         final Time time = toSqlTime("11時49分10秒 JST");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("JST"));
+        assertThat(df.format(time), is("11:49:10"));
     }
 
     /**
