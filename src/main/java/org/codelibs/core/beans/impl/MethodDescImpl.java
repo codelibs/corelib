@@ -76,13 +76,9 @@ public class MethodDescImpl implements MethodDesc {
         returnType = method.getReturnType();
         parameterizedClassDescs = new ParameterizedClassDesc[parameterTypes.length];
         for (int i = 0; i < parameterTypes.length; ++i) {
-            parameterizedClassDescs[i] = ParameterizedClassDescFactory
-                    .createParameterizedClassDesc(method, i,
-                            beanDesc.getTypeVariables());
+            parameterizedClassDescs[i] = ParameterizedClassDescFactory.createParameterizedClassDesc(method, i, beanDesc.getTypeVariables());
         }
-        parameterizedClassDesc = ParameterizedClassDescFactory
-                .createParameterizedClassDesc(method,
-                        beanDesc.getTypeVariables());
+        parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(method, beanDesc.getTypeVariables());
     }
 
     @Override
@@ -157,12 +153,10 @@ public class MethodDescImpl implements MethodDesc {
     public Class<?> getElementClassOfCollection(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Collection.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Collection.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -173,12 +167,10 @@ public class MethodDescImpl implements MethodDesc {
     public Class<?> getKeyClassOfMap(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Map.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Map.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -189,12 +181,10 @@ public class MethodDescImpl implements MethodDesc {
     public Class<?> getValueClassOfMap(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Map.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Map.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[1];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[1];
         if (pcd == null) {
             return null;
         }
@@ -203,12 +193,10 @@ public class MethodDescImpl implements MethodDesc {
 
     @Override
     public Class<?> getElementClassOfCollection() {
-        if (!Collection.class.isAssignableFrom(returnType)
-                || !isParameterized()) {
+        if (!Collection.class.isAssignableFrom(returnType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -220,8 +208,7 @@ public class MethodDescImpl implements MethodDesc {
         if (!Map.class.isAssignableFrom(returnType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -233,8 +220,7 @@ public class MethodDescImpl implements MethodDesc {
         if (!Map.class.isAssignableFrom(returnType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[1];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[1];
         if (pcd == null) {
             return null;
         }
@@ -253,8 +239,7 @@ public class MethodDescImpl implements MethodDesc {
     @Override
     public <T> T invokeStatic(final Object... args) {
         if (!isStatic()) {
-            throw new MethodNotStaticRuntimeException(getBeanDesc()
-                    .getBeanClass(), methodName);
+            throw new MethodNotStaticRuntimeException(getBeanDesc().getBeanClass(), methodName);
         }
         return (T) MethodUtil.invokeStatic(method, args);
     }

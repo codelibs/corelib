@@ -92,8 +92,7 @@ public abstract class PropertiesUtil {
      * @param encoding
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      */
-    public static void load(final Properties props, final File file,
-            final String encoding) {
+    public static void load(final Properties props, final File file, final String encoding) {
         assertArgumentNotNull("props", props);
         assertArgumentNotNull("file", file);
         assertArgumentNotEmpty("encoding", encoding);
@@ -173,8 +172,7 @@ public abstract class PropertiesUtil {
      * @param comments
      *            コメント
      */
-    public static void store(final Properties props, final OutputStream out,
-            final String comments) {
+    public static void store(final Properties props, final OutputStream out, final String comments) {
         assertArgumentNotNull("props", props);
         assertArgumentNotNull("out", out);
 
@@ -199,8 +197,7 @@ public abstract class PropertiesUtil {
      * @param comments
      *            コメント
      */
-    public static void store(final Properties props, final Writer writer,
-            final String comments) {
+    public static void store(final Properties props, final Writer writer, final String comments) {
         assertArgumentNotNull("props", props);
         assertArgumentNotNull("writer", writer);
 
@@ -223,8 +220,7 @@ public abstract class PropertiesUtil {
      * @param comments
      *            コメント
      */
-    public static void store(final Properties props, final File file,
-            final String encoding, final String comments) {
+    public static void store(final Properties props, final File file, final String encoding, final String comments) {
         assertArgumentNotNull("props", props);
         assertArgumentNotNull("file", file);
         assertArgumentNotEmpty("encoding", encoding);
@@ -249,8 +245,7 @@ public abstract class PropertiesUtil {
      * @param comments
      *            コメント
      */
-    public static void store(final Properties props, final File file,
-            final String comments) {
+    public static void store(final Properties props, final File file, final String comments) {
         store(props, file, Charset.defaultCharset().name(), comments);
     }
 

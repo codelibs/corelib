@@ -48,15 +48,12 @@ public class SAXParserFactoryUtilTest extends TestCase {
         spf.setNamespaceAware(true);
         final SAXParser parser = SAXParserFactoryUtil.newSAXParser(spf);
 
-        final InputSource is = new InputSource(
-                ResourceUtil
-                        .getResourceAsStream("org/codelibs/core/xml/include.xml"));
+        final InputSource is = new InputSource(ResourceUtil.getResourceAsStream("org/codelibs/core/xml/include.xml"));
         is.setSystemId("include.xml");
         parser.parse(is, new DefaultHandler() {
 
             @Override
-            public void startElement(final String uri, final String localName,
-                    final String qName, final Attributes attributes)
+            public void startElement(final String uri, final String localName, final String qName, final Attributes attributes)
                     throws SAXException {
                 if ("bar".equals(qName)) {
                     included = true;
@@ -64,11 +61,8 @@ public class SAXParserFactoryUtilTest extends TestCase {
             }
 
             @Override
-            public InputSource resolveEntity(final String publicId,
-                    final String systemId) throws IOException, SAXException {
-                final InputSource is = new InputSource(
-                        ResourceUtil
-                                .getResourceAsStream("org/codelibs/core/xml/included.xml"));
+            public InputSource resolveEntity(final String publicId, final String systemId) throws IOException, SAXException {
+                final InputSource is = new InputSource(ResourceUtil.getResourceAsStream("org/codelibs/core/xml/included.xml"));
                 is.setSystemId("included.xml");
                 return is;
             }

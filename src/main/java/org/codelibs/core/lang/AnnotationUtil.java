@@ -43,8 +43,7 @@ public abstract class AnnotationUtil {
         assertArgumentNotNull("annotation", annotation);
 
         final Map<String, Object> map = newHashMap();
-        final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(annotation
-                .annotationType());
+        final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(annotation.annotationType());
         for (final String name : beanDesc.getMethodNames()) {
             final Object v = getProperty(beanDesc, annotation, name);
             if (v != null) {
@@ -65,8 +64,7 @@ public abstract class AnnotationUtil {
      *            要素の名前
      * @return アノテーションの要素の値
      */
-    protected static Object getProperty(final BeanDesc beanDesc,
-            final Annotation annotation, final String name) {
+    protected static Object getProperty(final BeanDesc beanDesc, final Annotation annotation, final String name) {
         final MethodDesc methodDesc = beanDesc.getMethodDescNoException(name);
         if (methodDesc == null) {
             return null;

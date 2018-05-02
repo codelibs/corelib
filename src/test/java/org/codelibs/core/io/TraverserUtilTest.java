@@ -50,12 +50,10 @@ public class TraverserUtilTest {
         assertThat(traverser instanceof FileSystemTraverser, is(true));
 
         assertThat(traverser.isExistClass(DummyTest.class.getName()), is(true));
-        assertThat(traverser.isExistClass(TestCase.class.getName()),
-                is(not(true)));
+        assertThat(traverser.isExistClass(TestCase.class.getName()), is(not(true)));
 
         final Set<String> set = new HashSet<String>();
-        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set
-                .add(ClassUtil.concatName(packageName, shortClassName)));
+        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set.add(ClassUtil.concatName(packageName, shortClassName)));
         assertThat(set.size() > 0, is(true));
         assertThat(set.contains(DummyTest.class.getName()), is(true));
         assertThat(set.contains(TraverserUtilTest.class.getName()), is(true));
@@ -72,12 +70,10 @@ public class TraverserUtilTest {
         assertThat(traverser instanceof JarFileTraverser, is(true));
 
         assertThat(traverser.isExistClass(TestCase.class.getName()), is(true));
-        assertThat(traverser.isExistClass(DummyTest.class.getName()),
-                is(not(true)));
+        assertThat(traverser.isExistClass(DummyTest.class.getName()), is(not(true)));
 
         final Set<String> set = new HashSet<String>();
-        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set
-                .add(ClassUtil.concatName(packageName, shortClassName)));
+        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set.add(ClassUtil.concatName(packageName, shortClassName)));
         assertThat(set.size() > 0, is(true));
         assertThat(set.contains(TestCase.class.getName()), is(true));
         assertThat(set.contains(DummyTest.class.getName()), is(not(true)));
@@ -88,8 +84,7 @@ public class TraverserUtilTest {
      */
     @Test
     public void testFromDir_FileSystem() throws Exception {
-        final Traverser traverser = TraversalUtil
-                .getTraverser("org/codelibs/core/io/xxx");
+        final Traverser traverser = TraversalUtil.getTraverser("org/codelibs/core/io/xxx");
         assertThat(traverser, is(notNullValue()));
         assertThat(traverser instanceof FileSystemTraverser, is(true));
 
@@ -121,8 +116,7 @@ public class TraverserUtilTest {
      */
     @Test
     public void testFromRootPackage_FileSystem() throws Exception {
-        final Traverser[] traversers = TraversalUtil
-                .getTraversers("org.codelibs.core.io.xxx");
+        final Traverser[] traversers = TraversalUtil.getTraversers("org.codelibs.core.io.xxx");
         assertThat(traversers, is(notNullValue()));
         assertThat(traversers.length, is(1));
 
@@ -133,12 +127,10 @@ public class TraverserUtilTest {
         assertThat(traverser.isExistClass("TestCase"), is(not(true)));
 
         final Set<String> set = new HashSet<String>();
-        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set
-                .add(ClassUtil.concatName(packageName, shortClassName)));
+        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set.add(ClassUtil.concatName(packageName, shortClassName)));
         assertThat(set.size() > 0, is(true));
         assertThat(set.contains(DummyTest.class.getName()), is(true));
-        assertThat(set.contains(TraverserUtilTest.class.getName()),
-                is(not(true)));
+        assertThat(set.contains(TraverserUtilTest.class.getName()), is(not(true)));
         assertThat(set.contains(TestCase.class.getName()), is(not(true)));
     }
 
@@ -147,8 +139,7 @@ public class TraverserUtilTest {
      */
     @Test
     public void testFromRootPackage_JarFile() throws Exception {
-        final Traverser[] traversers = TraversalUtil
-                .getTraversers("junit.textui");
+        final Traverser[] traversers = TraversalUtil.getTraversers("junit.textui");
         assertThat(traversers, is(notNullValue()));
         assertThat(traversers.length, is(1));
 
@@ -159,15 +150,12 @@ public class TraverserUtilTest {
         assertThat(traverser.isExistClass("DummyTest"), is(not(true)));
 
         final Set<String> set = new HashSet<String>();
-        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set
-                .add(ClassUtil.concatName(packageName, shortClassName)));
+        traverser.forEach((ClassHandler) (packageName, shortClassName) -> set.add(ClassUtil.concatName(packageName, shortClassName)));
         assertThat(set.size(), is(3));
         assertThat(set.contains(ResultPrinter.class.getName()), is(true));
         assertThat(set.contains(TestRunner.class.getName()), is(true));
         assertThat(set.contains("junit.textui.package-info"), is(true));
-        assertThat(
-                set.contains(junit.extensions.TestDecorator.class.getName()),
-                is(not(true)));
+        assertThat(set.contains(junit.extensions.TestDecorator.class.getName()), is(not(true)));
     }
 
 }

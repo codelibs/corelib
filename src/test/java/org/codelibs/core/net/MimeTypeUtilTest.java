@@ -44,8 +44,7 @@ public class MimeTypeUtilTest {
      */
     @Test
     public void testGetFromStream() throws Exception {
-        final String path = ClassUtil.getPackageName(this.getClass())
-                .replaceAll("\\.", "/") + "/aaa.html";
+        final String path = ClassUtil.getPackageName(this.getClass()).replaceAll("\\.", "/") + "/aaa.html";
         final String contentType = MimeTypeUtil.guessContentType(path);
         assertEquals("text/html", contentType);
     }
@@ -55,8 +54,7 @@ public class MimeTypeUtilTest {
      */
     @Test
     public void testGetFromStream_gif() throws Exception {
-        final String path = ClassUtil.getPackageName(this.getClass())
-                .replaceAll("\\.", "/") + "/ccc.gif";
+        final String path = ClassUtil.getPackageName(this.getClass()).replaceAll("\\.", "/") + "/ccc.gif";
         final String contentType = MimeTypeUtil.guessContentType(path);
         assertEquals("image/gif", contentType);
     }
@@ -66,10 +64,8 @@ public class MimeTypeUtilTest {
      */
     @Test
     public void testGetFromPath() throws Exception {
-        final String path = ClassUtil.getPackageName(this.getClass())
-                .replaceAll("\\.", "/") + "/bbb.html";
-        final String s = URLConnection.guessContentTypeFromStream(ResourceUtil
-                .getResourceAsStream(path));
+        final String path = ClassUtil.getPackageName(this.getClass()).replaceAll("\\.", "/") + "/bbb.html";
+        final String s = URLConnection.guessContentTypeFromStream(ResourceUtil.getResourceAsStream(path));
         assertNull(s);
         final String contentType = MimeTypeUtil.guessContentType(path);
         assertEquals("text/html", contentType);
@@ -82,8 +78,7 @@ public class MimeTypeUtilTest {
     @Test
     public void testGuessContentType() {
         exception.expect(EmptyArgumentException.class);
-        exception
-                .expectMessage(is("[ECL0010]argument[path] is null or empty string."));
+        exception.expectMessage(is("[ECL0010]argument[path] is null or empty string."));
         MimeTypeUtil.guessContentType(null);
     }
 

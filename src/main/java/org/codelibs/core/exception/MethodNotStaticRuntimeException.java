@@ -40,8 +40,7 @@ public class MethodNotStaticRuntimeException extends ClRuntimeException {
      * @param methodName
      *            メソッド名
      */
-    public MethodNotStaticRuntimeException(final Class<?> targetClass,
-            final String methodName) {
+    public MethodNotStaticRuntimeException(final Class<?> targetClass, final String methodName) {
         super("ECL0100", asArray(targetClass.getName(), methodName));
         this.targetClass = targetClass;
         this.methodName = methodName;

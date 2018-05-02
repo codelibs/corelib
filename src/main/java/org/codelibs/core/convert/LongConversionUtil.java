@@ -62,8 +62,7 @@ public abstract class LongConversionUtil {
             }
             return Long.valueOf(((java.util.Date) o).getTime());
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? Long.valueOf(1) : Long
-                    .valueOf(0);
+            return ((Boolean) o).booleanValue() ? Long.valueOf(1) : Long.valueOf(0);
         } else {
             return toLong(o.toString());
         }

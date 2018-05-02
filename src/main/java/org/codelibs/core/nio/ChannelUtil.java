@@ -100,8 +100,7 @@ public abstract class ChannelUtil {
      *            読み込みを開始する位置
      * @return 読み込んだバイト数
      */
-    public static int read(final FileChannel channel, final ByteBuffer buffer,
-            final long position) {
+    public static int read(final FileChannel channel, final ByteBuffer buffer, final long position) {
         assertArgumentNotNull("channel", channel);
         assertArgumentNotNull("buffer", buffer);
 
@@ -143,8 +142,7 @@ public abstract class ChannelUtil {
      *            読み込みを開始する位置
      * @return 書き込んだバイト数
      */
-    public static int write(final FileChannel channel, final ByteBuffer buffer,
-            final long position) {
+    public static int write(final FileChannel channel, final ByteBuffer buffer, final long position) {
         assertArgumentNotNull("channel", channel);
         assertArgumentNotNull("buffer", buffer);
 

@@ -41,10 +41,8 @@ public class DomUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToString() throws Exception {
-        final DocumentBuilder builder = DocumentBuilderFactoryUtil
-                .newDocumentBuilder();
-        final Document doc = DocumentBuilderUtil.parse(builder, ResourceUtil
-                .getResourceAsStream("org/codelibs/core/xml/test1.xml"));
+        final DocumentBuilder builder = DocumentBuilderFactoryUtil.newDocumentBuilder();
+        final Document doc = DocumentBuilderUtil.parse(builder, ResourceUtil.getResourceAsStream("org/codelibs/core/xml/test1.xml"));
         final Element root = doc.getDocumentElement();
         final String contents = DomUtil.toString(root);
         System.out.println(contents);

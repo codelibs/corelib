@@ -61,8 +61,7 @@ public abstract class SerializeUtil {
         assertArgumentNotNull("obj", obj);
 
         try {
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream(
-                    BYTE_ARRAY_SIZE);
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream(BYTE_ARRAY_SIZE);
             final ObjectOutputStream oos = new ObjectOutputStream(baos);
             try {
                 oos.writeObject(obj);

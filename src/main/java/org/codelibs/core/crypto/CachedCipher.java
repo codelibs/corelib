@@ -134,8 +134,7 @@ public class CachedCipher {
     protected Cipher pollEncryptoCipher() {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(),
-                    algorithm);
+            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.ENCRYPT_MODE, sksSpec);
@@ -174,8 +173,7 @@ public class CachedCipher {
     protected Cipher pollDecryptoCipher() {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(),
-                    algorithm);
+            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.DECRYPT_MODE, sksSpec);

@@ -32,8 +32,7 @@ public class SRuntimeExceptionTest {
      */
     @Test
     public void testSeasarRuntimeException() throws Exception {
-        final ClRuntimeException ex = new ClRuntimeException("ECL0001",
-                asArray("hoge"));
+        final ClRuntimeException ex = new ClRuntimeException("ECL0001", asArray("hoge"));
         assertThat(ex.getMessageCode(), is("ECL0001"));
         assertThat(ex.getArgs().length, is(1));
         assertThat(ex.getArgs()[0], is((Object) "hoge"));
@@ -46,8 +45,7 @@ public class SRuntimeExceptionTest {
     @Test
     public void testGetCause() throws Exception {
         final Throwable t = new NullPointerException("test");
-        final ClRuntimeException ex = new ClRuntimeException("ECL0017",
-                asArray(t), t);
+        final ClRuntimeException ex = new ClRuntimeException("ECL0017", asArray(t), t);
         assertThat(ex.getCause(), is(t));
         ex.printStackTrace();
     }

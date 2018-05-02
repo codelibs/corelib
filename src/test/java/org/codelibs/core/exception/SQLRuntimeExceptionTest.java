@@ -48,17 +48,13 @@ public class SQLRuntimeExceptionTest {
     public void testErrorMessage_ja() throws Exception {
         // ## Arrange ##
         Locale.setDefault(Locale.JAPANESE);
-        final SQLException sqlException = new SQLException("some reason",
-                "fooState", 7650);
-        final SQLException sqlException2 = new SQLException("hoge reason",
-                "barState", 7660);
-        final SQLException sqlException3 = new SQLException("fuga reason",
-                "bazState", 7670);
+        final SQLException sqlException = new SQLException("some reason", "fooState", 7650);
+        final SQLException sqlException2 = new SQLException("hoge reason", "barState", 7660);
+        final SQLException sqlException3 = new SQLException("fuga reason", "bazState", 7670);
         sqlException.setNextException(sqlException2);
         sqlException2.setNextException(sqlException3);
 
-        final SQLRuntimeException sqlRuntimeException = new SQLRuntimeException(
-                sqlException);
+        final SQLRuntimeException sqlRuntimeException = new SQLRuntimeException(sqlException);
 
         // ## Act ##
         final String message = sqlRuntimeException.getMessage();
@@ -83,11 +79,9 @@ public class SQLRuntimeExceptionTest {
     public void testErrorMessage_en() throws Exception {
         // ## Arrange ##
         Locale.setDefault(Locale.ENGLISH);
-        final SQLException sqlException = new SQLException("manyReason",
-                "barState", 1234);
+        final SQLException sqlException = new SQLException("manyReason", "barState", 1234);
 
-        final SQLRuntimeException sqlRuntimeException = new SQLRuntimeException(
-                sqlException);
+        final SQLRuntimeException sqlRuntimeException = new SQLRuntimeException(sqlException);
 
         // ## Act ##
         final String message = sqlRuntimeException.getMessage();

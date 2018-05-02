@@ -35,12 +35,9 @@ public class ClassLoaderIteratorTest {
      */
     @Test
     public void test() throws Exception {
-        final ClassLoader cl1 = new URLClassLoader(new URL[] { new URL(
-                "file:/foo") }, null);
-        final ClassLoader cl2 = new URLClassLoader(new URL[] { new URL(
-                "file:/bar") }, cl1);
-        final ClassLoader cl3 = new URLClassLoader(new URL[] { new URL(
-                "file:/baz") }, cl2);
+        final ClassLoader cl1 = new URLClassLoader(new URL[] { new URL("file:/foo") }, null);
+        final ClassLoader cl2 = new URLClassLoader(new URL[] { new URL("file:/bar") }, cl1);
+        final ClassLoader cl3 = new URLClassLoader(new URL[] { new URL("file:/baz") }, cl2);
 
         final ClassLoaderIterator it = new ClassLoaderIterator(cl3);
         assertThat(it.hasNext(), is(true));

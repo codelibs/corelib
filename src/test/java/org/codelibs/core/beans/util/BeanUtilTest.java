@@ -245,8 +245,7 @@ public class BeanUtilTest {
         final Bean bean = new Bean();
         bean.aaa = "1,000";
         final Bean2 bean2 = new Bean2();
-        BeanUtil.copyBeanToBean(bean, bean2, converter(new NumberConverter(
-                "#,##0")));
+        BeanUtil.copyBeanToBean(bean, bean2, converter(new NumberConverter("#,##0")));
         assertThat(bean2.aaa, is(new Integer(1000)));
     }
 
@@ -373,8 +372,7 @@ public class BeanUtilTest {
         final Bean bean = new Bean();
         bean.aaa = "1,000";
         final Map<String, Object> map = newHashMap();
-        BeanUtil.copyBeanToMap(bean, map,
-                converter(new NumberConverter("#,##0")));
+        BeanUtil.copyBeanToMap(bean, map, converter(new NumberConverter("#,##0")));
         assertEquals("1,000", map.get("aaa"));
     }
 
@@ -386,8 +384,7 @@ public class BeanUtilTest {
         final Bean bean = new Bean();
         bean.aaa = "1,000";
         final Map<String, Object> map = newHashMap();
-        BeanUtil.copyBeanToMap(bean, map,
-                converter(new NumberConverter("#,##0"), BeanNames.aaa()));
+        BeanUtil.copyBeanToMap(bean, map, converter(new NumberConverter("#,##0"), BeanNames.aaa()));
         assertThat(map.get("aaa"), is((Object) 1000L));
     }
 
@@ -399,8 +396,7 @@ public class BeanUtilTest {
         final Bean2 bean2 = new Bean2();
         bean2.aaa = new Integer(1000);
         final Map<String, Object> map = newHashMap();
-        BeanUtil.copyBeanToMap(bean2, map, converter(new NumberConverter(
-                "#,##0")));
+        BeanUtil.copyBeanToMap(bean2, map, converter(new NumberConverter("#,##0")));
         assertThat(map.get("aaa"), is((Object) "1,000"));
     }
 
@@ -412,8 +408,7 @@ public class BeanUtilTest {
         final Map<String, Object> map = newHashMap();
         map.put("aaa", new Integer(1000));
         final Bean bean = new Bean();
-        BeanUtil.copyMapToBean(map, bean,
-                converter(new NumberConverter("#,##0")));
+        BeanUtil.copyMapToBean(map, bean, converter(new NumberConverter("#,##0")));
         assertThat(bean.aaa, is((Object) "1,000"));
     }
 
@@ -425,8 +420,7 @@ public class BeanUtilTest {
         final Map<String, Object> map = newHashMap();
         map.put("aaa", "1,000");
         final Bean2 bean2 = new Bean2();
-        BeanUtil.copyMapToBean(map, bean2, converter(new NumberConverter(
-                "#,##0")));
+        BeanUtil.copyMapToBean(map, bean2, converter(new NumberConverter("#,##0")));
         assertThat(bean2.aaa, is(new Integer(1000)));
     }
 
@@ -660,8 +654,7 @@ public class BeanUtilTest {
         final Map<String, Object> map = newHashMap();
         map.put("aaa", new Integer(1000));
         final Map<String, Object> map2 = newHashMap();
-        BeanUtil.copyMapToMap(map, map2,
-                converter(new NumberConverter("#,##0")));
+        BeanUtil.copyMapToMap(map, map2, converter(new NumberConverter("#,##0")));
         assertEquals("1,000", map2.get("aaa"));
     }
 
@@ -673,8 +666,7 @@ public class BeanUtilTest {
         final Map<String, Object> map = newHashMap();
         map.put("aaa", "1,000");
         final Map<String, Object> map2 = newHashMap();
-        BeanUtil.copyMapToMap(map, map2,
-                converter(new NumberConverter("#,##0")));
+        BeanUtil.copyMapToMap(map, map2, converter(new NumberConverter("#,##0")));
         assertEquals("1,000", map2.get("aaa"));
     }
 
@@ -686,8 +678,7 @@ public class BeanUtilTest {
         final Map<String, Object> map = newHashMap();
         map.put("aaa", "1,000");
         final Map<String, Object> map2 = newHashMap();
-        BeanUtil.copyMapToMap(map, map2,
-                converter(new NumberConverter("#,##0"), "aaa"));
+        BeanUtil.copyMapToMap(map, map2, converter(new NumberConverter("#,##0"), "aaa"));
         assertThat(map2.get("aaa"), is((Object) 1000L));
     }
 
@@ -718,8 +709,7 @@ public class BeanUtilTest {
         hoge.search_bbb = "2";
         hoge.search_ccc$ddd = "3";
         hoge.search_employee$name = "4";
-        final Map<String, Object> map = BeanUtil.copyBeanToNewMap(hoge,
-                new CopyOptions().prefix("search_"));
+        final Map<String, Object> map = BeanUtil.copyBeanToNewMap(hoge, new CopyOptions().prefix("search_"));
         assertThat(map.size(), is(3));
         assertThat(map.get("bbb"), is((Object) "2"));
         assertThat(map.get("ccc.ddd"), is((Object) "3"));
@@ -746,8 +736,7 @@ public class BeanUtilTest {
         final MyBean src = new MyBean();
         src.aaa = "2008/01/17";
         final MyBean2 dest = new MyBean2();
-        BeanUtil.copyBeanToBean(src, dest, converter(new DateConverter(
-                "yyyy/MM/dd")));
+        BeanUtil.copyBeanToBean(src, dest, converter(new DateConverter("yyyy/MM/dd")));
         System.out.println(dest.aaa);
         assertThat(dest.aaa, is(notNullValue()));
     }
@@ -818,8 +807,7 @@ public class BeanUtilTest {
         final MyBean src = new MyBean();
         src.aaa = "aaa";
         @SuppressWarnings("unchecked")
-        final Map<String, Object> dest = BeanUtil.copyBeanToNewMap(src,
-                HashMap.class);
+        final Map<String, Object> dest = BeanUtil.copyBeanToNewMap(src, HashMap.class);
         assertThat(dest.get("aaa"), is((Object) "aaa"));
         final BeanMap dest2 = BeanUtil.copyBeanToNewMap(src, BeanMap.class);
         assertThat(dest2.get("aaa"), is((Object) "aaa"));
@@ -855,8 +843,7 @@ public class BeanUtilTest {
         final BeanMap src = new BeanMap();
         src.put("aaa", "aaa");
         @SuppressWarnings("unchecked")
-        final Map<String, Object> dest = BeanUtil.copyMapToNewMap(src,
-                HashMap.class);
+        final Map<String, Object> dest = BeanUtil.copyMapToNewMap(src, HashMap.class);
         assertThat(dest.get("aaa"), is((Object) "aaa"));
         final BeanMap dest2 = BeanUtil.copyMapToNewMap(src, BeanMap.class);
         assertThat(dest2.get("aaa"), is((Object) "aaa"));

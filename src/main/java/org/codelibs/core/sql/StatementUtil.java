@@ -65,8 +65,7 @@ public abstract class StatementUtil {
      *            フェッチサイズ
      * @see Statement#setFetchSize(int)
      */
-    public static void setFetchSize(final Statement statement,
-            final int fetchSize) {
+    public static void setFetchSize(final Statement statement, final int fetchSize) {
         assertArgumentNotNull("statement", statement);
 
         try {
@@ -104,8 +103,7 @@ public abstract class StatementUtil {
      *            クエリタイムアウト
      * @see Statement#setQueryTimeout(int)
      */
-    public static void setQueryTimeout(final Statement statement,
-            final int queryTimeout) {
+    public static void setQueryTimeout(final Statement statement, final int queryTimeout) {
         assertArgumentNotNull("statement", statement);
 
         try {

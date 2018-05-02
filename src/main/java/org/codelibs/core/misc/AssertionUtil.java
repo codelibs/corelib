@@ -45,8 +45,7 @@ public abstract class AssertionUtil {
      * @throws NullArgumentException
      *             引数が<code>null</code>の場合。
      */
-    public static void assertArgumentNotNull(final String argName,
-            final Object argValue) {
+    public static void assertArgumentNotNull(final String argName, final Object argValue) {
         if (argValue == null) {
             throw new NullArgumentException(argName);
         }
@@ -62,11 +61,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空文字列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final String argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final String argValue) {
         if (StringUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0010",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0010", asArray(argName));
         }
     }
 
@@ -80,11 +77,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空文字列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final CharSequence argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final CharSequence argValue) {
         if (argValue == null || argValue.length() == 0) {
-            throw new EmptyArgumentException(argName, "ECL0010",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0010", asArray(argName));
         }
     }
 
@@ -98,11 +93,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final Object[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final Object[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -116,11 +109,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final boolean[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final boolean[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -134,11 +125,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final byte[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final byte[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -152,11 +141,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final short[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final short[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -170,11 +157,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final int[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final int[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -188,11 +173,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final long[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final long[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -206,11 +189,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final float[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final float[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -224,11 +205,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final double[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final double[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -242,11 +221,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の配列の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final char[] argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final char[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
-            throw new EmptyArgumentException(argName, "ECL0011",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0011", asArray(argName));
         }
     }
 
@@ -260,11 +237,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の{@link Collection}の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final Collection<?> argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final Collection<?> argValue) {
         if (argValue == null || argValue.isEmpty()) {
-            throw new EmptyArgumentException(argName, "ECL0012",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0012", asArray(argName));
         }
     }
 
@@ -278,11 +253,9 @@ public abstract class AssertionUtil {
      * @throws EmptyArgumentException
      *             引数が<code>null</code>または空の{@link Map}の場合。
      */
-    public static void assertArgumentNotEmpty(final String argName,
-            final Map<?, ?> argValue) {
+    public static void assertArgumentNotEmpty(final String argName, final Map<?, ?> argValue) {
         if (argValue == null || argValue.isEmpty()) {
-            throw new EmptyArgumentException(argName, "ECL0013",
-                    asArray(argName));
+            throw new EmptyArgumentException(argName, "ECL0013", asArray(argName));
         }
     }
 
@@ -298,15 +271,12 @@ public abstract class AssertionUtil {
      * @throws ClIllegalArgumentException
      *             引数が配列のインデックスとして不正な場合場合。
      */
-    public static void assertArgumentArrayIndex(final String argName,
-            final int argValue, final int arraySize) {
+    public static void assertArgumentArrayIndex(final String argName, final int argValue, final int arraySize) {
         if (argValue < 0) {
-            throw new ClIllegalArgumentException(argName, "ECL0014",
-                    asArray(argName));
+            throw new ClIllegalArgumentException(argName, "ECL0014", asArray(argName));
         }
         if (argValue >= arraySize) {
-            throw new ClIllegalArgumentException(argName, "ECL0015", asArray(
-                    argName, arraySize));
+            throw new ClIllegalArgumentException(argName, "ECL0015", asArray(argName, arraySize));
         }
     }
 
@@ -322,11 +292,9 @@ public abstract class AssertionUtil {
      * @throws ClIllegalArgumentException
      *             {@code expression}がfalseの場合。
      */
-    public static void assertArgument(final String argName,
-            final boolean expression, final String description) {
+    public static void assertArgument(final String argName, final boolean expression, final String description) {
         if (!expression) {
-            throw new ClIllegalArgumentException(argName, "ECL0009", asArray(
-                    argName, description));
+            throw new ClIllegalArgumentException(argName, "ECL0009", asArray(argName, description));
         }
     }
 
@@ -340,8 +308,7 @@ public abstract class AssertionUtil {
      * @throws ClIllegalStateException
      *             {@code expression}がfalseの場合。
      */
-    public static void assertState(final boolean expression,
-            final String description) {
+    public static void assertState(final boolean expression, final String description) {
         if (!expression) {
             throw new ClIllegalStateException(description);
         }
@@ -357,8 +324,7 @@ public abstract class AssertionUtil {
      * @throws ClIndexOutOfBoundsException
      *             {@code expression}がfalseの場合。
      */
-    public static void assertIndex(final boolean expression,
-            final String description) {
+    public static void assertIndex(final boolean expression, final String description) {
         if (!expression) {
             throw new ClIndexOutOfBoundsException(description);
         }

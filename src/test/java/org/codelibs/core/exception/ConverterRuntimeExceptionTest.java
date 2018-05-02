@@ -30,8 +30,7 @@ public class ConverterRuntimeExceptionTest {
      */
     @Test
     public void test() throws Exception {
-        final ConverterRuntimeException e = new ConverterRuntimeException(
-                "hoge", "xxx", new RuntimeException("cause"));
+        final ConverterRuntimeException e = new ConverterRuntimeException("hoge", "xxx", new RuntimeException("cause"));
         System.out.println(e.getMessage());
         assertThat(e.getPropertyName(), is("hoge"));
         assertThat(e.getValue(), is((Object) "xxx"));

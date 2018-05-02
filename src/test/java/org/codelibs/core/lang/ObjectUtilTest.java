@@ -58,8 +58,7 @@ public class ObjectUtilTest {
         assertSame(ObjectUtil.defaultValue(null, null), null);
         assertThat(ObjectUtil.defaultValue(null, "NULL"), is("NULL"));
         assertThat(ObjectUtil.defaultValue(null, 1), is(1));
-        assertThat(ObjectUtil.defaultValue(Boolean.TRUE, true),
-                is(Boolean.TRUE));
+        assertThat(ObjectUtil.defaultValue(Boolean.TRUE, true), is(Boolean.TRUE));
         assertThat(ObjectUtil.defaultValue(null, null), is(nullValue()));
     }
 

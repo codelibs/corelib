@@ -40,8 +40,7 @@ public class FieldNotStaticRuntimeException extends ClRuntimeException {
      * @param fieldName
      *            フィールド名
      */
-    public FieldNotStaticRuntimeException(final Class<?> targetClass,
-            final String fieldName) {
+    public FieldNotStaticRuntimeException(final Class<?> targetClass, final String fieldName) {
         super("ECL0099", asArray(targetClass.getName(), fieldName));
         this.targetClass = targetClass;
         this.fieldName = fieldName;

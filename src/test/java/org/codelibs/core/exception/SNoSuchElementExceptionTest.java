@@ -45,8 +45,7 @@ public class SNoSuchElementExceptionTest {
      */
     @Test
     public void testSNoSuchElementExceptionString() {
-        final ClNoSuchElementException clNoSuchElementException = new ClNoSuchElementException(
-                "hoge");
+        final ClNoSuchElementException clNoSuchElementException = new ClNoSuchElementException("hoge");
         assertThat(clNoSuchElementException.getMessage(), is("hoge"));
     }
 

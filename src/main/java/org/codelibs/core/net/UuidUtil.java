@@ -28,13 +28,11 @@ import org.codelibs.core.lang.StringUtil;
  */
 public abstract class UuidUtil {
 
-    private static final byte[] DEFAULT_ADDRESS = new byte[] { (byte) 127,
-            (byte) 0, (byte) 0, (byte) 1 };
+    private static final byte[] DEFAULT_ADDRESS = new byte[] { (byte) 127, (byte) 0, (byte) 0, (byte) 1 };
 
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    private static final String BASE = StringUtil.toHex(getAddress())
-            + StringUtil.toHex(System.identityHashCode(RANDOM));
+    private static final String BASE = StringUtil.toHex(getAddress()) + StringUtil.toHex(System.identityHashCode(RANDOM));
 
     /**
      * UUIDを作成します。

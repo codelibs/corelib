@@ -40,8 +40,7 @@ public class MultiIteratorTest {
         final List<String> list2 = asList("Baz");
 
         @SuppressWarnings("unchecked")
-        final Iterator<String> it = new MultiIterator<String>(list1.iterator(),
-                list2.iterator());
+        final Iterator<String> it = new MultiIterator<String>(list1.iterator(), list2.iterator());
 
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is("Foo"));

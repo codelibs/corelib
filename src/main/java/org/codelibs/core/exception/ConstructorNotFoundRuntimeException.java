@@ -42,10 +42,8 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
      * @param methodArgs
      *            引数の並び
      */
-    public ConstructorNotFoundRuntimeException(final Class<?> targetClass,
-            final Object[] methodArgs) {
-        super("ECL0048", asArray(targetClass.getName(),
-                getSignature(methodArgs)));
+    public ConstructorNotFoundRuntimeException(final Class<?> targetClass, final Object[] methodArgs) {
+        super("ECL0048", asArray(targetClass.getName(), getSignature(methodArgs)));
         this.targetClass = targetClass;
         this.methodArgs = methodArgs;
         paramTypes = null;
@@ -59,10 +57,8 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
      * @param paramTypes
      *            引数型の並び
      */
-    public ConstructorNotFoundRuntimeException(final Class<?> targetClass,
-            final Class<?>[] paramTypes) {
-        super("ECL0048", asArray(targetClass.getName(),
-                getSignature(paramTypes)));
+    public ConstructorNotFoundRuntimeException(final Class<?> targetClass, final Class<?>[] paramTypes) {
+        super("ECL0048", asArray(targetClass.getName(), getSignature(paramTypes)));
         this.targetClass = targetClass;
         this.paramTypes = paramTypes;
         methodArgs = null;

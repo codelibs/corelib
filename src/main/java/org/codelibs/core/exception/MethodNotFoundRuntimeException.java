@@ -47,8 +47,7 @@ public class MethodNotFoundRuntimeException extends ClRuntimeException {
      * @param methodArgs
      *            引数の並び
      */
-    public MethodNotFoundRuntimeException(final Class<?> targetClass,
-            final String methodName, final Object[] methodArgs) {
+    public MethodNotFoundRuntimeException(final Class<?> targetClass, final String methodName, final Object[] methodArgs) {
         this(targetClass, methodName, toClassArray(methodArgs));
     }
 
@@ -62,10 +61,8 @@ public class MethodNotFoundRuntimeException extends ClRuntimeException {
      * @param methodArgClasses
      *            引数型の並び
      */
-    public MethodNotFoundRuntimeException(final Class<?> targetClass,
-            final String methodName, final Class<?>[] methodArgClasses) {
-        super("ECL0049", asArray(targetClass.getName(),
-                MethodUtil.getSignature(methodName, methodArgClasses)));
+    public MethodNotFoundRuntimeException(final Class<?> targetClass, final String methodName, final Class<?>[] methodArgClasses) {
+        super("ECL0049", asArray(targetClass.getName(), MethodUtil.getSignature(methodName, methodArgClasses)));
         this.targetClass = targetClass;
         this.methodName = methodName;
         this.methodArgClasses = methodArgClasses;

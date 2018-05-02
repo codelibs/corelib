@@ -34,8 +34,7 @@ public class NumberConverterTest {
     @Test
     public void testGetAsObject() throws Exception {
         final NumberConverter converter = new NumberConverter("##0");
-        assertThat(converter.getAsObject("100"),
-                is((Object) Long.valueOf("100")));
+        assertThat(converter.getAsObject("100"), is((Object) Long.valueOf("100")));
     }
 
     /**

@@ -48,8 +48,7 @@ public class EnumerationIteratorTest {
     public void testEnumerationIterator() {
         final Vector<String> vector = new Vector<String>();
         vector.add("a");
-        final EnumerationIterator<String> itr = new EnumerationIterator<String>(
-                vector.elements());
+        final EnumerationIterator<String> itr = new EnumerationIterator<String>(vector.elements());
         assertThat(itr.hasNext(), is(true));
         assertThat(itr.next(), is("a"));
         assertThat(itr.hasNext(), is(not(true)));
@@ -64,8 +63,7 @@ public class EnumerationIteratorTest {
         exception.expectMessage(is("remove"));
         final Vector<String> vector = new Vector<String>();
         vector.add("a");
-        final EnumerationIterator<String> itr = new EnumerationIterator<String>(
-                vector.elements());
+        final EnumerationIterator<String> itr = new EnumerationIterator<String>(vector.elements());
         itr.remove();
     }
 
@@ -74,8 +72,7 @@ public class EnumerationIteratorTest {
      */
     @Test
     public void testNext() throws Exception {
-        final EnumerationIterator<String> itr = new EnumerationIterator<String>(
-                new Vector<String>().elements());
+        final EnumerationIterator<String> itr = new EnumerationIterator<String>(new Vector<String>().elements());
         assertThat(itr.hasNext(), is(not(true)));
     }
 

@@ -57,8 +57,7 @@ public class BinaryConversionUtilTest {
     @Test
     public void testToBinaryException() {
         exception.expect(ClIllegalArgumentException.class);
-        exception
-                .expectMessage(is("[ECL0009]argument[o] is illegal. because class java.lang.Object."));
+        exception.expectMessage(is("[ECL0009]argument[o] is illegal. because class java.lang.Object."));
         BinaryConversionUtil.toBinary(new Object());
     }
 

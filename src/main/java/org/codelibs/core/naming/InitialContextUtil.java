@@ -71,8 +71,7 @@ public abstract class InitialContextUtil {
      * @throws NamingRuntimeException
      *             初期コンテキストを作成できなかった場合にスローされます
      */
-    public static Object lookup(final InitialContext ctx, final String jndiName)
-            throws NamingRuntimeException {
+    public static Object lookup(final InitialContext ctx, final String jndiName) throws NamingRuntimeException {
         assertArgumentNotNull("ctx", ctx);
         assertArgumentNotEmpty("jndiName", jndiName);
 

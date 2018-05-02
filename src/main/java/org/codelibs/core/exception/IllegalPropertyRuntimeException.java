@@ -41,10 +41,8 @@ public class IllegalPropertyRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public IllegalPropertyRuntimeException(final Class<?> targetClass,
-            final String propertyName, final Throwable cause) {
-        super("ECL0059", asArray(targetClass.getName(), propertyName, cause),
-                cause);
+    public IllegalPropertyRuntimeException(final Class<?> targetClass, final String propertyName, final Throwable cause) {
+        super("ECL0059", asArray(targetClass.getName(), propertyName, cause), cause);
         this.targetClass = targetClass;
         this.propertyName = propertyName;
     }

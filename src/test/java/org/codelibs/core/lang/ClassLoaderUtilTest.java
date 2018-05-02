@@ -40,20 +40,15 @@ public class ClassLoaderUtilTest {
      */
     @Test
     public void testGetClassLoader() throws Exception {
-        assertThat(ClassLoaderUtil.getClassLoader(Object.class),
-                is(sameInstance(ClassLoaderUtil.class.getClassLoader())));
+        assertThat(ClassLoaderUtil.getClassLoader(Object.class), is(sameInstance(ClassLoaderUtil.class.getClassLoader())));
 
-        assertThat(ClassLoaderUtil.getClassLoader(TestCase.class),
-                is(sameInstance(TestCase.class.getClassLoader())));
+        assertThat(ClassLoaderUtil.getClassLoader(TestCase.class), is(sameInstance(TestCase.class.getClassLoader())));
 
-        final ClassLoader context = Thread.currentThread()
-                .getContextClassLoader();
+        final ClassLoader context = Thread.currentThread().getContextClassLoader();
         try {
-            final ClassLoader cl = new URLClassLoader(new URL[0], getClass()
-                    .getClassLoader());
+            final ClassLoader cl = new URLClassLoader(new URL[0], getClass().getClassLoader());
             Thread.currentThread().setContextClassLoader(cl);
-            assertThat(ClassLoaderUtil.getClassLoader(TestCase.class),
-                    is(sameInstance(cl)));
+            assertThat(ClassLoaderUtil.getClassLoader(TestCase.class), is(sameInstance(cl)));
         } finally {
             Thread.currentThread().setContextClassLoader(context);
         }
@@ -64,10 +59,8 @@ public class ClassLoaderUtilTest {
      */
     @Test
     public void testFindLoadedClass() throws Exception {
-        final ClassLoader loader = Thread.currentThread()
-                .getContextClassLoader();
-        final Class<?> clazz = ClassLoaderUtil.findLoadedClass(loader,
-                getClass().getName());
+        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        final Class<?> clazz = ClassLoaderUtil.findLoadedClass(loader, getClass().getName());
         assertThat(clazz, is(sameClass(getClass())));
     }
 
@@ -76,10 +69,8 @@ public class ClassLoaderUtilTest {
      */
     @Test
     public void testGetResources() throws Exception {
-        final String name = TestCase.class.getName().replace('.', '/')
-                + ".class";
-        final Iterator<URL> itr = ClassLoaderUtil.getResources(this.getClass(),
-                name);
+        final String name = TestCase.class.getName().replace('.', '/') + ".class";
+        final Iterator<URL> itr = ClassLoaderUtil.getResources(this.getClass(), name);
         assertThat(itr, is(notNullValue()));
         final URL url = itr.next();
         assertThat(url, is(notNullValue()));
@@ -90,12 +81,9 @@ public class ClassLoaderUtilTest {
      */
     @Test
     public void testIsAncestor() throws Exception {
-        final ClassLoader cl1 = new URLClassLoader(new URL[] { new URL(
-                "file:/foo") }, null);
-        final ClassLoader cl2 = new URLClassLoader(new URL[] { new URL(
-                "file:/bar") }, cl1);
-        final ClassLoader cl3 = new URLClassLoader(new URL[] { new URL(
-                "file:/baz") }, cl2);
+        final ClassLoader cl1 = new URLClassLoader(new URL[] { new URL("file:/foo") }, null);
+        final ClassLoader cl2 = new URLClassLoader(new URL[] { new URL("file:/bar") }, cl1);
+        final ClassLoader cl3 = new URLClassLoader(new URL[] { new URL("file:/baz") }, cl2);
 
         assertThat(ClassLoaderUtil.isAncestor(cl3, cl2), is(true));
         assertThat(ClassLoaderUtil.isAncestor(cl3, cl1), is(true));

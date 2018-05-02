@@ -72,8 +72,7 @@ public class MethodDescTest {
         final MethodDesc bar = beanDesc.getMethodDesc("bar", String.class);
         assertThat(bar, is(notNullValue()));
         assertThat(bar.getBeanDesc(), is(sameInstance(beanDesc)));
-        assertThat(bar.getMethod(),
-                is(MyBean.class.getDeclaredMethod("bar", String.class)));
+        assertThat(bar.getMethod(), is(MyBean.class.getDeclaredMethod("bar", String.class)));
         assertThat(bar.getParameterTypes().length, is(1));
         assertThat(bar.getMethodName(), is("bar"));
         assertThat(bar.isPublic(), is(true));

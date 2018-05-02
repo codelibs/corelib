@@ -113,11 +113,8 @@ public class TimeoutManager implements Runnable {
      * @param permanent
      * @return {@link TimeoutTask}
      */
-    public synchronized TimeoutTask addTimeoutTarget(
-            final TimeoutTarget timeoutTarget, final int timeout,
-            final boolean permanent) {
-        final TimeoutTask task = new TimeoutTask(timeoutTarget, timeout,
-                permanent);
+    public synchronized TimeoutTask addTimeoutTarget(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
+        final TimeoutTask task = new TimeoutTask(timeoutTarget, timeout, permanent);
         timeoutTaskList.addLast(task);
         if (timeoutTaskList.size() == 1) {
             start();
@@ -171,8 +168,7 @@ public class TimeoutManager implements Runnable {
         } catch (final Exception e) {
             return expiredTask;
         }
-        for (SLinkedList<TimeoutTask>.Entry e = timeoutTaskList.getFirstEntry(); e != null; e = e
-                .getNext()) {
+        for (SLinkedList<TimeoutTask>.Entry e = timeoutTaskList.getFirstEntry(); e != null; e = e.getNext()) {
             final TimeoutTask task = e.getElement();
             if (task.isCanceled()) {
                 e.remove();

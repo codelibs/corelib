@@ -39,8 +39,7 @@ public abstract class PreparedStatementUtil {
      * @throws SQLRuntimeException
      *             {@link SQLException}が発生した場合
      */
-    public static ResultSet executeQuery(final PreparedStatement ps)
-            throws SQLRuntimeException {
+    public static ResultSet executeQuery(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
 
         try {
@@ -59,8 +58,7 @@ public abstract class PreparedStatementUtil {
      * @throws SQLRuntimeException
      *             {@link SQLException}が発生した場合
      */
-    public static int executeUpdate(final PreparedStatement ps)
-            throws SQLRuntimeException {
+    public static int executeUpdate(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
 
         try {
@@ -80,8 +78,7 @@ public abstract class PreparedStatementUtil {
      *             {@link SQLException}が発生した場合
      * @see PreparedStatement#execute()
      */
-    public static boolean execute(final PreparedStatement ps)
-            throws SQLRuntimeException {
+    public static boolean execute(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
 
         try {
@@ -100,8 +97,7 @@ public abstract class PreparedStatementUtil {
      * @throws SQLRuntimeException
      *             {@link SQLException}が発生した場合
      */
-    public static int[] executeBatch(final PreparedStatement ps)
-            throws SQLRuntimeException {
+    public static int[] executeBatch(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
 
         try {
@@ -119,8 +115,7 @@ public abstract class PreparedStatementUtil {
      * @throws SQLRuntimeException
      *             {@link SQLException}が発生した場合
      */
-    public static void addBatch(final PreparedStatement ps)
-            throws SQLRuntimeException {
+    public static void addBatch(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
 
         try {

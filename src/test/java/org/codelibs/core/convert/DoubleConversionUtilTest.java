@@ -27,16 +27,14 @@ public class DoubleConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToDouble() throws Exception {
-        assertEquals(new Double("1000.5"),
-                DoubleConversionUtil.toDouble("1,000.5"));
+        assertEquals(new Double("1000.5"), DoubleConversionUtil.toDouble("1,000.5"));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveDouble() throws Exception {
-        assertEquals(1000.5, DoubleConversionUtil.toPrimitiveDouble("1,000.5"),
-                0);
+        assertEquals(1000.5, DoubleConversionUtil.toPrimitiveDouble("1,000.5"), 0);
     }
 
     /**

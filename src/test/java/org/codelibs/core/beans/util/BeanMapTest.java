@@ -51,8 +51,7 @@ public class BeanMapTest {
     @Test
     public void testGet_NotContains() throws Exception {
         exception.expect(IllegalKeyOfBeanMapException.class);
-        exception
-                .expectMessage(is("[ECL0016]key[xxx] is not included in this BeanMap : {aaa=1, bbb=2}."));
+        exception.expectMessage(is("[ECL0016]key[xxx] is not included in this BeanMap : {aaa=1, bbb=2}."));
         final BeanMap map = new BeanMap();
         map.put("aaa", 1);
         map.put("bbb", 2);

@@ -56,9 +56,7 @@ public class SAXRuntimeException extends ClRuntimeException {
             }
             final int lineNumber = e.getLineNumber();
             final int columnNumber = e.getColumnNumber();
-            buf.append("( lineNumber = ").append(lineNumber)
-                    .append(", columnNumber = ").append(columnNumber)
-                    .append(")");
+            buf.append("( lineNumber = ").append(lineNumber).append(", columnNumber = ").append(columnNumber).append(")");
         }
         return new String(buf);
     }

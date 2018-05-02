@@ -32,8 +32,7 @@ public class SqlDateConverterTest {
     @Test
     public void testGetAsObjectAndGetAsString() throws Exception {
         final SqlDateConverter converter = new SqlDateConverter("yyyy/MM/dd");
-        final java.sql.Date result = (java.sql.Date) converter
-                .getAsObject("2008/01/16");
+        final java.sql.Date result = (java.sql.Date) converter.getAsObject("2008/01/16");
         System.out.println(result);
         assertThat(converter.getAsString(result), is("2008/01/16"));
     }

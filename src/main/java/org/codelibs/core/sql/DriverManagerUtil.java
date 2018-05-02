@@ -93,8 +93,7 @@ public abstract class DriverManagerUtil {
      * 現在のクラスローダに結びつけられている全てのJDBCドライバを登録解除します。
      */
     public static synchronized void deregisterAllDrivers() {
-        for (final Enumeration<Driver> e = DriverManager.getDrivers(); e
-                .hasMoreElements();) {
+        for (final Enumeration<Driver> e = DriverManager.getDrivers(); e.hasMoreElements();) {
             deregisterDriver(e.nextElement());
         }
     }

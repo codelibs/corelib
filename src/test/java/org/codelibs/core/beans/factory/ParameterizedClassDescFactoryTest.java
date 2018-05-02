@@ -41,11 +41,9 @@ public class ParameterizedClassDescFactoryTest {
      */
     @Test
     public void testFieldType() throws Exception {
-        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory
-                .getTypeVariables(Hoge.class);
+        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory.getTypeVariables(Hoge.class);
         final Field field = Hoge.class.getField("foo");
-        final ParameterizedClassDesc desc = ParameterizedClassDescFactory
-                .createParameterizedClassDesc(field, map);
+        final ParameterizedClassDesc desc = ParameterizedClassDescFactory.createParameterizedClassDesc(field, map);
         assertThat(desc.getRawClass(), is(sameClass(Map.class)));
 
         final ParameterizedClassDesc[] args = desc.getArguments();
@@ -70,18 +68,15 @@ public class ParameterizedClassDescFactoryTest {
      */
     @Test
     public void testMethodParameterType() throws Exception {
-        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory
-                .getTypeVariables(Hoge.class);
+        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory.getTypeVariables(Hoge.class);
         final Method method = Hoge.class.getMethod("foo", Set.class, Map.class);
-        ParameterizedClassDesc desc = ParameterizedClassDescFactory
-                .createParameterizedClassDesc(method, 0, map);
+        ParameterizedClassDesc desc = ParameterizedClassDescFactory.createParameterizedClassDesc(method, 0, map);
         assertThat(desc.getRawClass(), is(sameClass(Set.class)));
         ParameterizedClassDesc[] args = desc.getArguments();
         assertThat(args.length, is(1));
         assertThat(args[0].getRawClass(), is(sameClass(Integer.class)));
 
-        desc = ParameterizedClassDescFactory.createParameterizedClassDesc(
-                method, 1, map);
+        desc = ParameterizedClassDescFactory.createParameterizedClassDesc(method, 1, map);
         assertThat(desc.getRawClass(), is(sameClass(Map.class)));
         args = desc.getArguments();
         assertThat(args.length, is(2));
@@ -96,11 +91,9 @@ public class ParameterizedClassDescFactoryTest {
      */
     @Test
     public void testMethodReturnType() throws Exception {
-        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory
-                .getTypeVariables(Hoge.class);
+        final Map<TypeVariable<?>, Type> map = ParameterizedClassDescFactory.getTypeVariables(Hoge.class);
         final Method method = Hoge.class.getMethod("foo", Set.class, Map.class);
-        final ParameterizedClassDesc desc = ParameterizedClassDescFactory
-                .createParameterizedClassDesc(method, map);
+        final ParameterizedClassDesc desc = ParameterizedClassDescFactory.createParameterizedClassDesc(method, map);
         assertThat(desc.getRawClass(), is(sameClass(List.class)));
         final ParameterizedClassDesc[] args = desc.getArguments();
         assertThat(args.length, is(1));

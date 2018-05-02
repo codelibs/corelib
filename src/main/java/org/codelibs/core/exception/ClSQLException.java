@@ -56,8 +56,7 @@ public class ClSQLException extends SQLException {
      * @param cause
      *            原因となった例外
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final Throwable cause) {
+    public ClSQLException(final String messageCode, final Object[] args, final Throwable cause) {
         this(messageCode, args, null, 0, cause, null);
     }
 
@@ -71,8 +70,7 @@ public class ClSQLException extends SQLException {
      * @param sqlState
      *            SQLステート
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState) {
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState) {
         this(messageCode, args, sqlState, 0, null, null);
     }
 
@@ -88,8 +86,7 @@ public class ClSQLException extends SQLException {
      * @param cause
      *            原因となった例外
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState, final Throwable cause) {
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final Throwable cause) {
         this(messageCode, args, sqlState, 0, cause, null);
     }
 
@@ -105,8 +102,7 @@ public class ClSQLException extends SQLException {
      * @param vendorCode
      *            ベンダーコード
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState, final int vendorCode) {
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode) {
         this(messageCode, args, sqlState, vendorCode, null, null);
     }
 
@@ -124,8 +120,7 @@ public class ClSQLException extends SQLException {
      * @param cause
      *            原因となった例外
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState, final int vendorCode, final Throwable cause) {
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode, final Throwable cause) {
         this(messageCode, args, sqlState, vendorCode, cause, null);
     }
 
@@ -143,8 +138,7 @@ public class ClSQLException extends SQLException {
      * @param sql
      *            SQL文字列
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState, final int vendorCode, final String sql) {
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode, final String sql) {
         this(messageCode, args, sqlState, vendorCode, null, sql);
     }
 
@@ -164,11 +158,9 @@ public class ClSQLException extends SQLException {
      * @param sql
      *            SQL文字列
      */
-    public ClSQLException(final String messageCode, final Object[] args,
-            final String sqlState, final int vendorCode, final Throwable cause,
-            final String sql) {
-        super(MessageFormatter.getMessage(messageCode, args), sqlState,
-                vendorCode, cause);
+    public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode,
+            final Throwable cause, final String sql) {
+        super(MessageFormatter.getMessage(messageCode, args), sqlState, vendorCode, cause);
         this.messageCode = messageCode;
         this.args = args;
         this.sql = sql;

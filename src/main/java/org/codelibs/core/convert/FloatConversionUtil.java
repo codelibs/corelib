@@ -102,8 +102,7 @@ public abstract class FloatConversionUtil {
             return toPrimitiveFloat((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
-                return Float
-                        .parseFloat(new SimpleDateFormat(pattern).format(o));
+                return Float.parseFloat(new SimpleDateFormat(pattern).format(o));
             }
             return ((java.util.Date) o).getTime();
         } else {

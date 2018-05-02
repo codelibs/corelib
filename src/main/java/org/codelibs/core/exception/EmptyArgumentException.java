@@ -34,8 +34,7 @@ public class EmptyArgumentException extends ClIllegalArgumentException {
      * @param args
      *            引数の配列
      */
-    public EmptyArgumentException(final String argName,
-            final String messageCode, final Object[] args) {
+    public EmptyArgumentException(final String argName, final String messageCode, final Object[] args) {
         this(argName, messageCode, args, null);
     }
 
@@ -51,8 +50,7 @@ public class EmptyArgumentException extends ClIllegalArgumentException {
      * @param cause
      *            原因となった例外
      */
-    public EmptyArgumentException(final String argName,
-            final String messageCode, final Object[] args, final Throwable cause) {
+    public EmptyArgumentException(final String argName, final String messageCode, final Object[] args, final Throwable cause) {
         super(argName, messageCode, args, cause);
     }
 

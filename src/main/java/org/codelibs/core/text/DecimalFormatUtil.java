@@ -57,8 +57,7 @@ public abstract class DecimalFormatUtil {
         if (s == null) {
             return null;
         }
-        final DecimalFormatSymbols symbols = DecimalFormatSymbolsUtil
-                .getDecimalFormatSymbols(locale);
+        final DecimalFormatSymbols symbols = DecimalFormatSymbolsUtil.getDecimalFormatSymbols(locale);
         final char decimalSep = symbols.getDecimalSeparator();
         final char groupingSep = symbols.getGroupingSeparator();
         final StringBuilder buf = new StringBuilder(20);

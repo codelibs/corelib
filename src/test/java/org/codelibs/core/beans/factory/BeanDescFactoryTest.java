@@ -34,8 +34,7 @@ public class BeanDescFactoryTest {
     @Test
     public void testGetBeanDesc() throws Exception {
         final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(MyBean.class);
-        assertThat(BeanDescFactory.getBeanDesc(MyBean.class),
-                is(sameInstance(beanDesc)));
+        assertThat(BeanDescFactory.getBeanDesc(MyBean.class), is(sameInstance(beanDesc)));
     }
 
     /**
@@ -45,8 +44,7 @@ public class BeanDescFactoryTest {
     public void testClear() throws Exception {
         final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(MyBean.class);
         BeanDescFactory.clear();
-        assertThat(BeanDescFactory.getBeanDesc(MyBean.class),
-                is(not(sameInstance(beanDesc))));
+        assertThat(BeanDescFactory.getBeanDesc(MyBean.class), is(not(sameInstance(beanDesc))));
     }
 
     /**

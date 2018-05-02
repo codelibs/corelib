@@ -52,8 +52,7 @@ public abstract class MethodUtil {
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
-    public static <T> T invoke(final Method method, final Object target,
-            final Object... args) throws InvocationTargetRuntimeException,
+    public static <T> T invoke(final Method method, final Object target, final Object... args) throws InvocationTargetRuntimeException,
             IllegalAccessRuntimeException {
         assertArgumentNotNull("method", method);
 
@@ -67,11 +66,9 @@ public abstract class MethodUtil {
             if (t instanceof Error) {
                 throw (Error) t;
             }
-            throw new InvocationTargetRuntimeException(
-                    method.getDeclaringClass(), ex);
+            throw new InvocationTargetRuntimeException(method.getDeclaringClass(), ex);
         } catch (final IllegalAccessException ex) {
-            throw new IllegalAccessRuntimeException(method.getDeclaringClass(),
-                    ex);
+            throw new IllegalAccessRuntimeException(method.getDeclaringClass(), ex);
         }
     }
 
@@ -92,8 +89,7 @@ public abstract class MethodUtil {
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
-    public static <T> T invokeStatic(final Method method, final Object... args)
-            throws InvocationTargetRuntimeException,
+    public static <T> T invokeStatic(final Method method, final Object... args) throws InvocationTargetRuntimeException,
             IllegalAccessRuntimeException {
         assertArgumentNotNull("method", method);
 
@@ -159,8 +155,7 @@ public abstract class MethodUtil {
      *            引数型のな並び
      * @return シグニチャの文字列表現
      */
-    public static String getSignature(final String methodName,
-            final Class<?>... argTypes) {
+    public static String getSignature(final String methodName, final Class<?>... argTypes) {
         assertArgumentNotEmpty("methodName", methodName);
 
         final StringBuilder buf = new StringBuilder(100);
@@ -184,16 +179,14 @@ public abstract class MethodUtil {
      *            引数の並び
      * @return シグニチャの文字列表現
      */
-    public static String getSignature(final String methodName,
-            final Object... methodArgs) {
+    public static String getSignature(final String methodName, final Object... methodArgs) {
         assertArgumentNotEmpty("methodName", methodName);
 
         final StringBuilder buf = new StringBuilder(100);
         buf.append(methodName).append("(");
         if (methodArgs != null && methodArgs.length > 0) {
             for (final Object arg : methodArgs) {
-                buf.append(arg == null ? null : arg.getClass().getName())
-                        .append(", ");
+                buf.append(arg == null ? null : arg.getClass().getName()).append(", ");
             }
             buf.setLength(buf.length() - 2);
         }
@@ -211,10 +204,8 @@ public abstract class MethodUtil {
     public static boolean isEqualsMethod(final Method method) {
         assertArgumentNotNull("method", method);
 
-        return method != null && method.getName().equals("equals")
-                && method.getReturnType() == boolean.class
-                && method.getParameterTypes().length == 1
-                && method.getParameterTypes()[0] == Object.class;
+        return method != null && method.getName().equals("equals") && method.getReturnType() == boolean.class
+                && method.getParameterTypes().length == 1 && method.getParameterTypes()[0] == Object.class;
     }
 
     /**
@@ -227,8 +218,7 @@ public abstract class MethodUtil {
     public static boolean isHashCodeMethod(final Method method) {
         assertArgumentNotNull("method", method);
 
-        return method != null && method.getName().equals("hashCode")
-                && method.getReturnType() == int.class
+        return method != null && method.getName().equals("hashCode") && method.getReturnType() == int.class
                 && method.getParameterTypes().length == 0;
     }
 
@@ -242,8 +232,7 @@ public abstract class MethodUtil {
     public static boolean isToStringMethod(final Method method) {
         assertArgumentNotNull("method", method);
 
-        return method != null && method.getName().equals("toString")
-                && method.getReturnType() == String.class
+        return method != null && method.getName().equals("toString") && method.getReturnType() == String.class
                 && method.getParameterTypes().length == 0;
     }
 
@@ -256,13 +245,11 @@ public abstract class MethodUtil {
      *            パラメタ化されたコレクションが宣言されているメソッド引数の位置
      * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたコレクションの要素型
      */
-    public static Class<?> getElementTypeOfCollectionFromParameterType(
-            final Method method, final int position) {
+    public static Class<?> getElementTypeOfCollectionFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
 
         final Type[] parameterTypes = method.getGenericParameterTypes();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getElementTypeOfCollection(parameterTypes[position]));
+        return GenericsUtil.getRawClass(GenericsUtil.getElementTypeOfCollection(parameterTypes[position]));
     }
 
     /**
@@ -272,13 +259,11 @@ public abstract class MethodUtil {
      *            メソッド。{@literal null}であってはいけません
      * @return 指定されたメソッドの戻り値型として宣言されているパラメタ化されたコレクションの要素型
      */
-    public static Class<?> getElementTypeOfCollectionFromReturnType(
-            final Method method) {
+    public static Class<?> getElementTypeOfCollectionFromReturnType(final Method method) {
         assertArgumentNotNull("method", method);
 
         final Type returnType = method.getGenericReturnType();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getElementTypeOfCollection(returnType));
+        return GenericsUtil.getRawClass(GenericsUtil.getElementTypeOfCollection(returnType));
     }
 
     /**
@@ -290,13 +275,11 @@ public abstract class MethodUtil {
      *            パラメタ化されたマップが宣言されているメソッド引数の位置
      * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたマップのキー型
      */
-    public static Class<?> getKeyTypeOfMapFromParameterType(
-            final Method method, final int position) {
+    public static Class<?> getKeyTypeOfMapFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
 
         final Type[] parameterTypes = method.getGenericParameterTypes();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getKeyTypeOfMap(parameterTypes[position]));
+        return GenericsUtil.getRawClass(GenericsUtil.getKeyTypeOfMap(parameterTypes[position]));
     }
 
     /**
@@ -310,8 +293,7 @@ public abstract class MethodUtil {
         assertArgumentNotNull("method", method);
 
         final Type returnType = method.getGenericReturnType();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getKeyTypeOfMap(returnType));
+        return GenericsUtil.getRawClass(GenericsUtil.getKeyTypeOfMap(returnType));
     }
 
     /**
@@ -323,13 +305,11 @@ public abstract class MethodUtil {
      *            パラメタ化されたマップが宣言されているメソッド引数の位置
      * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたマップの値型
      */
-    public static Class<?> getValueTypeOfMapFromParameterType(
-            final Method method, final int position) {
+    public static Class<?> getValueTypeOfMapFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
 
         final Type[] parameterTypes = method.getGenericParameterTypes();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getValueTypeOfMap(parameterTypes[position]));
+        return GenericsUtil.getRawClass(GenericsUtil.getValueTypeOfMap(parameterTypes[position]));
     }
 
     /**
@@ -343,8 +323,7 @@ public abstract class MethodUtil {
         assertArgumentNotNull("method", method);
 
         final Type returnType = method.getGenericReturnType();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getValueTypeOfMap(returnType));
+        return GenericsUtil.getRawClass(GenericsUtil.getValueTypeOfMap(returnType));
     }
 
 }

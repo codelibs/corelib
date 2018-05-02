@@ -71,8 +71,7 @@ public class ClRuntimeException extends RuntimeException {
      * @param args arguments for messages
      * @param cause cause of exception
      */
-    public ClRuntimeException(final String messageCode, final Object[] args,
-            final Throwable cause) {
+    public ClRuntimeException(final String messageCode, final Object[] args, final Throwable cause) {
         super(cause);
         this.messageCode = messageCode;
         this.args = args;

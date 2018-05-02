@@ -67,8 +67,7 @@ public class LruHashMap<K, V> extends LinkedHashMap<K, V> {
      * @param loadFactor
      *            負荷係数
      */
-    public LruHashMap(final int limitSize, final int initialCapacity,
-            final float loadFactor) {
+    public LruHashMap(final int limitSize, final int initialCapacity, final float loadFactor) {
         super(initialCapacity, loadFactor, true);
         this.limitSize = limitSize;
     }

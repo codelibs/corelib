@@ -44,11 +44,8 @@ public class NoSuchConstructorRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public NoSuchConstructorRuntimeException(final Class<?> targetClass,
-            final Class<?>[] argTypes, final Throwable cause) {
-        super("ECL0064",
-                asArray(targetClass.getName(), MethodUtil.getSignature(
-                        targetClass.getSimpleName(), argTypes)), cause);
+    public NoSuchConstructorRuntimeException(final Class<?> targetClass, final Class<?>[] argTypes, final Throwable cause) {
+        super("ECL0064", asArray(targetClass.getName(), MethodUtil.getSignature(targetClass.getSimpleName(), argTypes)), cause);
         this.targetClass = targetClass;
         this.argTypes = argTypes;
     }

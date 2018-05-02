@@ -37,17 +37,14 @@ public class StreamUtilTest extends TestCase {
         Object[] o = {};
         assertEquals(0, (int) StreamUtil.stream(o).get(s -> s.toArray().length));
         Map<Object, Object> map = new HashMap<Object, Object>();
-        assertEquals(0,
-                (int) StreamUtil.stream(map).get(s -> s.toArray().length));
+        assertEquals(0, (int) StreamUtil.stream(map).get(s -> s.toArray().length));
     }
 
     public void test_ofMap() {
         Map<String, String> map = new HashMap<String, String>();
         map.put("key1", "value1");
         map.put("key2", "value2");
-        StreamUtil.stream(map).of(
-                s -> s.forEach(m -> assertEquals(map.get(m.getKey()),
-                        m.getValue())));
+        StreamUtil.stream(map).of(s -> s.forEach(m -> assertEquals(map.get(m.getKey()), m.getValue())));
     }
 
 }

@@ -51,11 +51,9 @@ public class FieldDescImplTest {
         assertThat(hoge.isStatic(), is(true));
         assertThat(hoge.isFinal(), is(true));
         assertThat(hoge.isParameterized(), is(not(true)));
-        final ParameterizedClassDesc parameterizedClassDesc = hoge
-                .getParameterizedClassDesc();
+        final ParameterizedClassDesc parameterizedClassDesc = hoge.getParameterizedClassDesc();
         assertThat(parameterizedClassDesc, is(notNullValue()));
-        assertThat(hoge.getParameterizedClassDesc().isParameterizedClass(),
-                is(not(true)));
+        assertThat(hoge.getParameterizedClassDesc().isParameterizedClass(), is(not(true)));
         assertThat(hoge.getStaticFieldValue(), is((Object) "hoge"));
     }
 
@@ -74,12 +72,10 @@ public class FieldDescImplTest {
         assertThat(aaa.isStatic(), is(not(true)));
         assertThat(aaa.isFinal(), is(not(true)));
         assertThat(aaa.isParameterized(), is(true));
-        final ParameterizedClassDesc parameterizedClassDesc = aaa
-                .getParameterizedClassDesc();
+        final ParameterizedClassDesc parameterizedClassDesc = aaa.getParameterizedClassDesc();
         assertThat(parameterizedClassDesc, is(notNullValue()));
         assertThat(parameterizedClassDesc.isParameterizedClass(), is(true));
-        assertThat(parameterizedClassDesc.getRawClass(),
-                is(sameClass(Class.class)));
+        assertThat(parameterizedClassDesc.getRawClass(), is(sameClass(Class.class)));
         final MyBean myBean = new MyBean();
         aaa.setFieldValue(myBean, String.class);
         assertThat(aaa.getFieldValue(myBean), is(sameClass(String.class)));
@@ -112,8 +108,7 @@ public class FieldDescImplTest {
     public void testList() throws Exception {
         final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         final FieldDesc hoge = beanDesc.getFieldDesc("list");
-        assertThat(hoge.getElementClassOfCollection(),
-                is(sameClass(String.class)));
+        assertThat(hoge.getElementClassOfCollection(), is(sameClass(String.class)));
     }
 
     /**

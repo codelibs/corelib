@@ -31,10 +31,8 @@ public class TimestampConverterTest {
      */
     @Test
     public void testGetAsObjectAndGetAsString() throws Exception {
-        final TimestampConverter converter = new TimestampConverter(
-                "yyyy/MM/dd HH:mm:ss");
-        final java.sql.Timestamp result = (java.sql.Timestamp) converter
-                .getAsObject("2008/12/31 12:34:56");
+        final TimestampConverter converter = new TimestampConverter("yyyy/MM/dd HH:mm:ss");
+        final java.sql.Timestamp result = (java.sql.Timestamp) converter.getAsObject("2008/12/31 12:34:56");
         System.out.println(result);
         assertThat(converter.getAsString(result), is("2008/12/31 12:34:56"));
     }
@@ -44,8 +42,7 @@ public class TimestampConverterTest {
      */
     @Test
     public void testIsTarget() throws Exception {
-        final TimestampConverter converter = new TimestampConverter(
-                "yyyy/MM/dd");
+        final TimestampConverter converter = new TimestampConverter("yyyy/MM/dd");
         assertThat(converter.isTarget(java.sql.Timestamp.class), is(true));
         assertThat(converter.isTarget(java.util.Date.class), is(not(true)));
     }

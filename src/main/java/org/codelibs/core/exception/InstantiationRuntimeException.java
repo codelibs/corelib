@@ -36,8 +36,7 @@ public class InstantiationRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public InstantiationRuntimeException(final Class<?> targetClass,
-            final InstantiationException cause) {
+    public InstantiationRuntimeException(final Class<?> targetClass, final InstantiationException cause) {
         super("ECL0041", asArray(targetClass.getName(), cause), cause);
         this.targetClass = targetClass;
     }

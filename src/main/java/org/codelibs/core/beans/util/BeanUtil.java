@@ -93,8 +93,7 @@ public abstract class BeanUtil {
         copyBeanToBean(src, dest, DEFAULT_OPTIONS);
     }
 
-    public static void copyBeanToBean(final Object src, final Object dest,
-            final Consumer<CopyOptions> option) {
+    public static void copyBeanToBean(final Object src, final Object dest, final Consumer<CopyOptions> option) {
         copyBeanToBean(src, dest, buildCopyOptions(option));
     }
 
@@ -108,29 +107,23 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static void copyBeanToBean(final Object src, final Object dest,
-            final CopyOptions options) {
+    public static void copyBeanToBean(final Object src, final Object dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("option", options);
 
-        final BeanDesc srcBeanDesc = BeanDescFactory
-                .getBeanDesc(src.getClass());
-        final BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest
-                .getClass());
-        for (final PropertyDesc srcPropertyDesc : srcBeanDesc
-                .getPropertyDescs()) {
+        final BeanDesc srcBeanDesc = BeanDescFactory.getBeanDesc(src.getClass());
+        final BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest.getClass());
+        for (final PropertyDesc srcPropertyDesc : srcBeanDesc.getPropertyDescs()) {
             final String srcPropertyName = srcPropertyDesc.getPropertyName();
-            if (!srcPropertyDesc.isReadable()
-                    || !options.isTargetProperty(srcPropertyName)) {
+            if (!srcPropertyDesc.isReadable() || !options.isTargetProperty(srcPropertyName)) {
                 continue;
             }
             final String destPropertyName = options.trimPrefix(srcPropertyName);
             if (!destBeanDesc.hasPropertyDesc(destPropertyName)) {
                 continue;
             }
-            final PropertyDesc destPropertyDesc = destBeanDesc
-                    .getPropertyDesc(destPropertyName);
+            final PropertyDesc destPropertyDesc = destBeanDesc.getPropertyDesc(destPropertyName);
             if (!destPropertyDesc.isWritable()) {
                 continue;
             }
@@ -138,8 +131,7 @@ public abstract class BeanUtil {
             if (!options.isTargetValue(value)) {
                 continue;
             }
-            final Object convertedValue = options.convertValue(value,
-                    destPropertyName, destPropertyDesc.getPropertyType());
+            final Object convertedValue = options.convertValue(value, destPropertyName, destPropertyDesc.getPropertyType());
             destPropertyDesc.setValue(dest, convertedValue);
         }
     }
@@ -150,13 +142,11 @@ public abstract class BeanUtil {
      * @param src コピー元のBean。{@literal null}であってはいけません
      * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
      */
-    public static void copyBeanToMap(final Object src,
-            final Map<String, Object> dest) {
+    public static void copyBeanToMap(final Object src, final Map<String, Object> dest) {
         copyBeanToMap(src, dest, DEFAULT_OPTIONS);
     }
 
-    public static void copyBeanToMap(final Object src,
-            final Map<String, Object> dest, final Consumer<CopyOptions> option) {
+    public static void copyBeanToMap(final Object src, final Map<String, Object> dest, final Consumer<CopyOptions> option) {
         copyBeanToMap(src, dest, buildCopyOptions(option));
     }
 
@@ -170,29 +160,23 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static void copyBeanToMap(final Object src,
-            final Map<String, Object> dest, final CopyOptions options) {
+    public static void copyBeanToMap(final Object src, final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
 
-        final BeanDesc srcBeanDesc = BeanDescFactory
-                .getBeanDesc(src.getClass());
-        for (final PropertyDesc srcPropertyDesc : srcBeanDesc
-                .getPropertyDescs()) {
+        final BeanDesc srcBeanDesc = BeanDescFactory.getBeanDesc(src.getClass());
+        for (final PropertyDesc srcPropertyDesc : srcBeanDesc.getPropertyDescs()) {
             final String srcPropertyName = srcPropertyDesc.getPropertyName();
-            if (!srcPropertyDesc.isReadable()
-                    || !options.isTargetProperty(srcPropertyName)) {
+            if (!srcPropertyDesc.isReadable() || !options.isTargetProperty(srcPropertyName)) {
                 continue;
             }
             final Object value = srcPropertyDesc.getValue(src);
             if (!options.isTargetValue(value)) {
                 continue;
             }
-            final String destPropertyName = options
-                    .toMapDestPropertyName(srcPropertyName);
-            final Object convertedValue = options.convertValue(value,
-                    destPropertyName, null);
+            final String destPropertyName = options.toMapDestPropertyName(srcPropertyName);
+            final Object convertedValue = options.convertValue(value, destPropertyName, null);
             dest.put(destPropertyName, convertedValue);
         }
     }
@@ -203,13 +187,11 @@ public abstract class BeanUtil {
      * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
      * @param dest コピー先のBean。{@literal null}であってはいけません
      */
-    public static void copyMapToBean(final Map<String, ? extends Object> src,
-            final Object dest) {
+    public static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest) {
         copyMapToBean(src, dest, DEFAULT_OPTIONS);
     }
 
-    public static void copyMapToBean(final Map<String, ? extends Object> src,
-            final Object dest, final Consumer<CopyOptions> option) {
+    public static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest, final Consumer<CopyOptions> option) {
         copyMapToBean(src, dest, buildCopyOptions(option));
     }
 
@@ -223,26 +205,22 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static void copyMapToBean(final Map<String, ? extends Object> src,
-            final Object dest, final CopyOptions options) {
+    public static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
 
-        final BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest
-                .getClass());
+        final BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest.getClass());
         for (final Entry<String, ? extends Object> entry : src.entrySet()) {
             final String srcPropertyName = entry.getKey();
             if (!options.isTargetProperty(srcPropertyName)) {
                 continue;
             }
-            final String destPropertyName = options
-                    .toBeanDestPropertyName(srcPropertyName);
+            final String destPropertyName = options.toBeanDestPropertyName(srcPropertyName);
             if (!destBeanDesc.hasPropertyDesc(destPropertyName)) {
                 continue;
             }
-            final PropertyDesc destPropertyDesc = destBeanDesc
-                    .getPropertyDesc(destPropertyName);
+            final PropertyDesc destPropertyDesc = destBeanDesc.getPropertyDesc(destPropertyName);
             if (!destPropertyDesc.isWritable()) {
                 continue;
             }
@@ -250,8 +228,7 @@ public abstract class BeanUtil {
             if (!options.isTargetValue(value)) {
                 continue;
             }
-            final Object convertedValue = options.convertValue(value,
-                    destPropertyName, destPropertyDesc.getPropertyType());
+            final Object convertedValue = options.convertValue(value, destPropertyName, destPropertyDesc.getPropertyType());
             destPropertyDesc.setValue(dest, convertedValue);
         }
     }
@@ -262,13 +239,12 @@ public abstract class BeanUtil {
      * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
      * @param dest コピー先の{@literal Map}。{@literal null}であってはいけません
      */
-    public static void copyMapToMap(final Map<String, ? extends Object> src,
-            final Map<String, Object> dest) {
+    public static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest) {
         copyMapToMap(src, dest, DEFAULT_OPTIONS);
     }
 
-    public static void copyMapToMap(final Map<String, ? extends Object> src,
-            final Map<String, Object> dest, final Consumer<CopyOptions> option) {
+    public static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest,
+            final Consumer<CopyOptions> option) {
         copyMapToMap(src, dest, buildCopyOptions(option));
     }
 
@@ -282,8 +258,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static void copyMapToMap(final Map<String, ? extends Object> src,
-            final Map<String, Object> dest, final CopyOptions options) {
+    public static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
@@ -298,8 +273,7 @@ public abstract class BeanUtil {
                 continue;
             }
             final String destPropertyName = options.trimPrefix(srcPropertyName);
-            final Object convertedValue = options.convertValue(value,
-                    destPropertyName, null);
+            final Object convertedValue = options.convertValue(value, destPropertyName, null);
             dest.put(destPropertyName, convertedValue);
         }
     }
@@ -312,13 +286,11 @@ public abstract class BeanUtil {
      * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
      * @return コピーされた新しいBean
      */
-    public static <T> T copyBeanToNewBean(final Object src,
-            final Class<T> destClass) {
+    public static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass) {
         return copyBeanToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
-    public static <T> T copyBeanToNewBean(final Object src,
-            final Class<T> destClass, final Consumer<CopyOptions> option) {
+    public static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass, final Consumer<CopyOptions> option) {
         return copyBeanToNewBean(src, destClass, buildCopyOptions(option));
     }
 
@@ -334,8 +306,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static <T> T copyBeanToNewBean(final Object src,
-            final Class<T> destClass, final CopyOptions options) {
+    public static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
         assertArgumentNotNull("options", options);
@@ -353,13 +324,11 @@ public abstract class BeanUtil {
      * @param destClass コピー先となるBeanの型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
-    public static <T> T copyMapToNewBean(
-            final Map<String, ? extends Object> src, final Class<T> destClass) {
+    public static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass) {
         return copyMapToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
-    public static <T> T copyMapToNewBean(
-            final Map<String, ? extends Object> src, final Class<T> destClass,
+    public static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass,
             final Consumer<CopyOptions> option) {
         return copyMapToNewBean(src, destClass, buildCopyOptions(option));
     }
@@ -376,9 +345,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static <T> T copyMapToNewBean(
-            final Map<String, ? extends Object> src, final Class<T> destClass,
-            final CopyOptions options) {
+    public static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
         assertArgumentNotNull("options", options);
@@ -398,8 +365,7 @@ public abstract class BeanUtil {
         return copyBeanToNewMap(src, DEFAULT_OPTIONS);
     }
 
-    public static Map<String, Object> copyBeanToNewMap(final Object src,
-            final Consumer<CopyOptions> option) {
+    public static Map<String, Object> copyBeanToNewMap(final Object src, final Consumer<CopyOptions> option) {
         return copyBeanToNewMap(src, buildCopyOptions(option));
     }
 
@@ -413,8 +379,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static Map<String, Object> copyBeanToNewMap(final Object src,
-            final CopyOptions options) {
+    public static Map<String, Object> copyBeanToNewMap(final Object src, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("options", options);
 
@@ -431,13 +396,11 @@ public abstract class BeanUtil {
      * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
-    public static <T extends Map<String, Object>> T copyBeanToNewMap(
-            final Object src, final Class<? extends T> destClass) {
+    public static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass) {
         return copyBeanToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
-    public static <T extends Map<String, Object>> T copyBeanToNewMap(
-            final Object src, final Class<? extends T> destClass,
+    public static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass,
             final Consumer<CopyOptions> option) {
         return copyBeanToNewMap(src, destClass, buildCopyOptions(option));
     }
@@ -454,8 +417,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static <T extends Map<String, Object>> T copyBeanToNewMap(
-            final Object src, final Class<? extends T> destClass,
+    public static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass,
             final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
@@ -472,14 +434,11 @@ public abstract class BeanUtil {
      * @param src コピー元の{@literal Map}。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
-    public static Map<String, Object> copyMapToNewMap(
-            final Map<String, ? extends Object> src) {
+    public static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src) {
         return copyMapToNewMap(src, DEFAULT_OPTIONS);
     }
 
-    public static Map<String, Object> copyMapToNewMap(
-            final Map<String, ? extends Object> src,
-            final Consumer<CopyOptions> option) {
+    public static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src, final Consumer<CopyOptions> option) {
         return copyMapToNewMap(src, buildCopyOptions(option));
     }
 
@@ -493,8 +452,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static Map<String, Object> copyMapToNewMap(
-            final Map<String, ? extends Object> src, final CopyOptions options) {
+    public static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("options", options);
 
@@ -511,16 +469,13 @@ public abstract class BeanUtil {
      * @param destClass コピー先となる{@literal Map}の型。{@literal null}であってはいけません
      * @return コピーされた新しい{@literal Map}
      */
-    public static <T extends Map<String, Object>> T copyMapToNewMap(
-            final Map<String, ? extends Object> src,
+    public static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
             final Class<? extends T> destClass) {
         return copyMapToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
-    public static <T extends Map<String, Object>> T copyMapToNewMap(
-            final Map<String, ? extends Object> src,
-            final Class<? extends T> destClass,
-            final Consumer<CopyOptions> option) {
+    public static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
+            final Class<? extends T> destClass, final Consumer<CopyOptions> option) {
         return copyMapToNewMap(src, destClass, buildCopyOptions(option));
     }
 
@@ -536,8 +491,7 @@ public abstract class BeanUtil {
      */
     // TODO change to protected
     @Deprecated
-    public static <T extends Map<String, Object>> T copyMapToNewMap(
-            final Map<String, ? extends Object> src,
+    public static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
             final Class<? extends T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
@@ -548,8 +502,7 @@ public abstract class BeanUtil {
         return dest;
     }
 
-    protected static CopyOptions buildCopyOptions(
-            final Consumer<CopyOptions> option) {
+    protected static CopyOptions buildCopyOptions(final Consumer<CopyOptions> option) {
         final CopyOptions copyOptions = new CopyOptions();
         option.accept(copyOptions);
         return copyOptions;

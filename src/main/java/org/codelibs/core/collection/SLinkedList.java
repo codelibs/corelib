@@ -242,8 +242,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
      * @return エントリ
      */
     public Entry getEntry(final int index) {
-        assertIndex(0 <= index && index < size, "Index: " + index + ", Size: "
-                + size);
+        assertIndex(0 <= index && index < size, "Index: " + index + ", Size: " + size);
         Entry e = header;
         if (index < size / 2) {
             for (int i = 0; i <= index; i++) {
@@ -321,8 +320,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void readExternal(final ObjectInput s) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(final ObjectInput s) throws IOException, ClassNotFoundException {
         final int size = s.readInt();
         header = new Entry(null, null, null);
         header.next = header;
@@ -365,8 +363,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     @SuppressWarnings("unchecked")
     public E[] toArray(E[] array) {
         if (array.length < size) {
-            array = (E[]) Array.newInstance(
-                    array.getClass().getComponentType(), size);
+            array = (E[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
         int i = 0;
         for (Entry e = header.next; e != header; e = e.next) {

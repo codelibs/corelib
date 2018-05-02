@@ -24,8 +24,7 @@ import java.util.Set;
  * @author shinsuke
  *
  */
-public class LruHashSet<E> extends AbstractSet<E> implements Set<E>,
-        java.io.Serializable {
+public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
     private final LruHashMap<E, Object> map;

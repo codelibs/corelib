@@ -295,8 +295,7 @@ public class ArrayMapTest {
     @Test
     public void testSerialize() throws Exception {
         @SuppressWarnings("unchecked")
-        ArrayMap<String, String> copy = (ArrayMap<String, String>) SerializeUtil
-                .serialize(map);
+        ArrayMap<String, String> copy = (ArrayMap<String, String>) SerializeUtil.serialize(map);
         assertThat(copy.getAt(0), is(nullValue()));
         assertThat(copy.getAt(1), is("test"));
         assertThat(copy.getAt(2), is("test2"));
@@ -316,55 +315,45 @@ public class ArrayMapTest {
         for (int i = 0; i < num; i++) {
             hmap.put(String.valueOf(i), null);
         }
-        System.out.println("HashMap.put:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("HashMap.put:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
         for (int i = 0; i < num; i++) {
             amap.put(String.valueOf(i), null);
         }
-        System.out.println("ArrayMap.put:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("ArrayMap.put:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
         for (int i = 0; i < num; i++) {
             hmap.get(String.valueOf(i));
         }
-        System.out.println("HashMap.get:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("HashMap.get:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
         for (int i = 0; i < num; i++) {
             amap.get(String.valueOf(i));
         }
-        System.out.println("ArrayMap.get:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("ArrayMap.get:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
-        for (Iterator<Map.Entry<String, Object>> i = hmap.entrySet().iterator(); i
-                .hasNext();) {
+        for (Iterator<Map.Entry<String, Object>> i = hmap.entrySet().iterator(); i.hasNext();) {
             i.next();
         }
-        System.out.println("HashMap iteration:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("HashMap iteration:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
-        for (Iterator<Map.Entry<String, Object>> i = amap.entrySet().iterator(); i
-                .hasNext();) {
+        for (Iterator<Map.Entry<String, Object>> i = amap.entrySet().iterator(); i.hasNext();) {
             i.next();
         }
-        System.out.println("ArrayMap iteration:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("ArrayMap iteration:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
         SerializeUtil.serialize(hmap);
-        System.out.println("HashMap serialize:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("HashMap serialize:" + (System.currentTimeMillis() - start));
 
         start = System.currentTimeMillis();
         SerializeUtil.serialize(amap);
-        System.out.println("ArrayMap serialize:"
-                + (System.currentTimeMillis() - start));
+        System.out.println("ArrayMap serialize:" + (System.currentTimeMillis() - start));
     }
 
     private static class MyKey {

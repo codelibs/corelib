@@ -62,8 +62,7 @@ public abstract class IntegerConversionUtil {
             }
             return Integer.valueOf((int) ((java.util.Date) o).getTime());
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? Integer.valueOf(1) : Integer
-                    .valueOf(0);
+            return ((Boolean) o).booleanValue() ? Integer.valueOf(1) : Integer.valueOf(0);
         } else {
             return toInteger(o.toString());
         }
@@ -105,8 +104,7 @@ public abstract class IntegerConversionUtil {
             return toPrimitiveInt((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
-                return Integer
-                        .parseInt(new SimpleDateFormat(pattern).format(o));
+                return Integer.parseInt(new SimpleDateFormat(pattern).format(o));
             }
             return (int) ((java.util.Date) o).getTime();
         } else if (o instanceof Boolean) {

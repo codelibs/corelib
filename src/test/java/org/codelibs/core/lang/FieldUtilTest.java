@@ -114,17 +114,14 @@ public class FieldUtilTest {
      */
     @Test
     public void testGetElementType_Rawtype() throws Exception {
-        assertThat(FieldUtil.getElementTypeOfCollection(Baz.class
-                .getField("collectionOfRawtype")), is(nullValue()));
+        assertThat(FieldUtil.getElementTypeOfCollection(Baz.class.getField("collectionOfRawtype")), is(nullValue()));
     }
 
     /**
      * @throws Exception
      */
     public void testGetElementTypeOfCollection() throws Exception {
-        assertEquals(String.class,
-                FieldUtil.getElementTypeOfCollection(Baz.class
-                        .getField("collectionOfString")));
+        assertEquals(String.class, FieldUtil.getElementTypeOfCollection(Baz.class.getField("collectionOfString")));
     }
 
     /**

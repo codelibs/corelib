@@ -34,20 +34,16 @@ public class ResourceUtilTest extends TestCase {
      * @throws Exception
      */
     public void testGetResourcePath() throws Exception {
-        assertEquals("1", "aaa/bbb.xml",
-                ResourceUtil.getResourcePath("aaa/bbb.xml", "xml"));
-        assertEquals("2", "aaa/bbb.xml",
-                ResourceUtil.getResourcePath("aaa.bbb", "xml"));
-        assertEquals("3", "org/codelibs/core/io/ResourceUtilTest.class",
-                ResourceUtil.getResourcePath(getClass()));
+        assertEquals("1", "aaa/bbb.xml", ResourceUtil.getResourcePath("aaa/bbb.xml", "xml"));
+        assertEquals("2", "aaa/bbb.xml", ResourceUtil.getResourcePath("aaa.bbb", "xml"));
+        assertEquals("3", "org/codelibs/core/io/ResourceUtilTest.class", ResourceUtil.getResourcePath(getClass()));
     }
 
     /**
      * @throws Exception
      */
     public void testGetResource() throws Exception {
-        assertNotNull(ResourceUtil.getResource("java/lang/String.class",
-                "class"));
+        assertNotNull(ResourceUtil.getResource("java/lang/String.class", "class"));
         assertNotNull(ResourceUtil.getResource("org/codelibs"));
         try {
             ResourceUtil.getResource("hoge", "xml");
@@ -63,10 +59,8 @@ public class ResourceUtilTest extends TestCase {
      * @throws Exception
      */
     public void testGetResourceAsStreamNoException() throws Exception {
-        assertNotNull(ResourceUtil.getResourceAsStreamNoException(
-                "java/lang/String.class", "class"));
-        assertNull(ResourceUtil.getResourceAsStreamNoException(
-                "java/lang/String2.class", "class"));
+        assertNotNull(ResourceUtil.getResourceAsStreamNoException("java/lang/String.class", "class"));
+        assertNull(ResourceUtil.getResourceAsStreamNoException("java/lang/String2.class", "class"));
     }
 
     /**
@@ -104,8 +98,7 @@ public class ResourceUtilTest extends TestCase {
      * @throws Exception
      */
     public void testRemoteExtension() throws Exception {
-        assertEquals("1", "aaa/bbb",
-                ResourceUtil.removeExtension("aaa/bbb.xml"));
+        assertEquals("1", "aaa/bbb", ResourceUtil.removeExtension("aaa/bbb.xml"));
         assertEquals("2", "aaa/bbb", ResourceUtil.removeExtension("aaa/bbb"));
     }
 
@@ -114,8 +107,7 @@ public class ResourceUtilTest extends TestCase {
      */
     public void testToExternalForm() throws Exception {
         final URL url = new File("/Program File").toURI().toURL();
-        assertEquals("file:" + getRoot() + "Program File",
-                ResourceUtil.toExternalForm(url));
+        assertEquals("file:" + getRoot() + "Program File", ResourceUtil.toExternalForm(url));
     }
 
     /**

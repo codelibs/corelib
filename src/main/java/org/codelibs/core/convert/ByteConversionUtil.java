@@ -62,8 +62,7 @@ public abstract class ByteConversionUtil {
             }
             return Byte.valueOf((byte) ((java.util.Date) o).getTime());
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? Byte.valueOf((byte) 1) : Byte
-                    .valueOf((byte) 0);
+            return ((Boolean) o).booleanValue() ? Byte.valueOf((byte) 1) : Byte.valueOf((byte) 0);
         } else {
             return toByte(o.toString());
         }

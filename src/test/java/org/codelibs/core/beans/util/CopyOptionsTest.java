@@ -111,9 +111,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testIsTargetProperty_includes_prefix() throws Exception {
-        final CopyOptions option = new CopyOptions().include(
-                BeanNames.search_aaa(), BeanNames.bbb()).prefix(
-                BeanNames.search_());
+        final CopyOptions option = new CopyOptions().include(BeanNames.search_aaa(), BeanNames.bbb()).prefix(BeanNames.search_());
         assertThat(option.isTargetProperty("search_aaa"), is(true));
         assertThat(option.isTargetProperty("bbb"), is(not(true)));
     }
@@ -133,8 +131,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testIsTargetProperty_excludes_prefix() throws Exception {
-        final CopyOptions option = new CopyOptions().prefix(BeanNames.abc_())
-                .exclude(BeanNames.abc_exclude());
+        final CopyOptions option = new CopyOptions().prefix(BeanNames.abc_()).exclude(BeanNames.abc_exclude());
         assertThat(option.isTargetProperty("abc_value"), is(true));
         assertThat(option.isTargetProperty("abc_exclude"), is(not(true)));
         assertThat(option.isTargetProperty("ab"), is(not(true)));
@@ -145,8 +142,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testIsTargetProperty_prefix() throws Exception {
-        final CopyOptions option = new CopyOptions()
-                .prefix(BeanNames.search_());
+        final CopyOptions option = new CopyOptions().prefix(BeanNames.search_());
         assertThat(option.isTargetProperty("search_aaa"), is(true));
         assertThat(option.isTargetProperty("bbb"), is(not(true)));
     }
@@ -156,9 +152,8 @@ public class CopyOptionsTest {
      */
     @Test
     public void testIsTargetProperty_includes_excludes() throws Exception {
-        final CopyOptions option = new CopyOptions().include(BeanNames.hoge(),
-                BeanNames.hoge2())
-                .exclude(BeanNames.hoge2(), BeanNames.hoge3());
+        final CopyOptions option =
+                new CopyOptions().include(BeanNames.hoge(), BeanNames.hoge2()).exclude(BeanNames.hoge2(), BeanNames.hoge3());
         assertThat(option.isTargetProperty("hoge"), is(true));
         assertThat(option.isTargetProperty("hoge2"), is(not(true)));
         assertThat(option.isTargetProperty("hoge3"), is(not(true)));
@@ -181,8 +176,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_zeroConverter() throws Exception {
-        assertThat(new CopyOptions().convertValue(new Integer(1), "aaa", null),
-                is((Object) 1));
+        assertThat(new CopyOptions().convertValue(new Integer(1), "aaa", null), is((Object) 1));
     }
 
     /**
@@ -190,9 +184,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_propertyConverter_asString() throws Exception {
-        assertThat(
-                new CopyOptions().converter(new NumberConverter("##0"), "aaa")
-                        .convertValue(new Integer(1), "aaa", null),
+        assertThat(new CopyOptions().converter(new NumberConverter("##0"), "aaa").convertValue(new Integer(1), "aaa", null),
                 is((Object) "1"));
     }
 
@@ -201,10 +193,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_propertyConverter_asObject() throws Exception {
-        assertThat(
-                new CopyOptions().converter(new NumberConverter("##0"),
-                        BeanNames.aaa()).convertValue("1", "aaa", null),
-                is((Object) 1L));
+        assertThat(new CopyOptions().converter(new NumberConverter("##0"), BeanNames.aaa()).convertValue("1", "aaa", null), is((Object) 1L));
     }
 
     /**
@@ -212,8 +201,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_typeConverter_asString() throws Exception {
-        assertThat(new CopyOptions().converter(new NumberConverter("##0"))
-                .convertValue(new Integer(1), "aaa", null), is((Object) "1"));
+        assertThat(new CopyOptions().converter(new NumberConverter("##0")).convertValue(new Integer(1), "aaa", null), is((Object) "1"));
     }
 
     /**
@@ -221,10 +209,8 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_typeConverter_asObject() throws Exception {
-        assertThat(new CopyOptions().converter(new NumberConverter("##0"))
-                .convertValue("1", "aaa", Integer.class), is((Object) 1L));
-        assertThat(new CopyOptions().converter(new DateConverter("yyyyMMdd"))
-                .convertValue(new Timestamp(0), "aaa", String.class),
+        assertThat(new CopyOptions().converter(new NumberConverter("##0")).convertValue("1", "aaa", Integer.class), is((Object) 1L));
+        assertThat(new CopyOptions().converter(new DateConverter("yyyyMMdd")).convertValue(new Timestamp(0), "aaa", String.class),
                 is((Object) "19700101"));
     }
 
@@ -233,8 +219,7 @@ public class CopyOptionsTest {
      */
     @Test(expected = ConverterRuntimeException.class)
     public void testConvertValue_throwable() throws Exception {
-        new CopyOptions().converter(new NumberConverter("##0")).convertValue(
-                "a", "aaa", Integer.class);
+        new CopyOptions().converter(new NumberConverter("##0")).convertValue("a", "aaa", Integer.class);
     }
 
     /**
@@ -243,8 +228,7 @@ public class CopyOptionsTest {
     @Test
     public void testConvertValue_dateToDate() throws Exception {
         final Date date = new Date(1);
-        assertThat(new CopyOptions().convertValue(date, "aaa", Date.class),
-                is((Object) date));
+        assertThat(new CopyOptions().convertValue(date, "aaa", Date.class), is((Object) date));
     }
 
     /**
@@ -252,9 +236,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testDateConverter() throws Exception {
-        assertThat(
-                new CopyOptions().dateConverter("yyyyMMdd").convertValue(
-                        new java.util.Date(0), "aaa", String.class),
+        assertThat(new CopyOptions().dateConverter("yyyyMMdd").convertValue(new java.util.Date(0), "aaa", String.class),
                 is((Object) "19700101"));
     }
 
@@ -263,9 +245,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testSqlDateConverter() throws Exception {
-        assertThat(
-                new CopyOptions().sqlDateConverter("yyyyMMdd").convertValue(
-                        new java.sql.Date(0), "aaa", String.class),
+        assertThat(new CopyOptions().sqlDateConverter("yyyyMMdd").convertValue(new java.sql.Date(0), "aaa", String.class),
                 is((Object) "19700101"));
     }
 
@@ -274,10 +254,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testTimeConverter() throws Exception {
-        assertThat(
-                new CopyOptions().timeConverter("ss").convertValue(
-                        new java.sql.Time(0), "aaa", String.class),
-                is((Object) "00"));
+        assertThat(new CopyOptions().timeConverter("ss").convertValue(new java.sql.Time(0), "aaa", String.class), is((Object) "00"));
     }
 
     /**
@@ -285,8 +262,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testTimestampConverter() throws Exception {
-        assertThat(new CopyOptions().timestampConverter("yyyyMMdd ss")
-                .convertValue(new java.sql.Timestamp(0), "aaa", String.class),
+        assertThat(new CopyOptions().timestampConverter("yyyyMMdd ss").convertValue(new java.sql.Timestamp(0), "aaa", String.class),
                 is((Object) "19700101 00"));
     }
 
@@ -295,17 +271,11 @@ public class CopyOptionsTest {
      */
     @Test
     public void testFindDefaultConverter() throws Exception {
-        assertThat(new CopyOptions().findDefaultConverter(Time.class),
-                is(CopyOptions.DEFAULT_TIME_CONVERTER));
-        assertThat(new CopyOptions().findDefaultConverter(Timestamp.class),
-                is(CopyOptions.DEFAULT_TIMESTAMP_CONVERTER));
-        assertThat(
-                new CopyOptions().findDefaultConverter(java.util.Date.class),
-                is(CopyOptions.DEFAULT_TIMESTAMP_CONVERTER));
-        assertThat(new CopyOptions().findDefaultConverter(java.sql.Date.class),
-                is(CopyOptions.DEFAULT_DATE_CONVERTER));
-        assertThat(new CopyOptions().findDefaultConverter(Integer.class),
-                is(nullValue()));
+        assertThat(new CopyOptions().findDefaultConverter(Time.class), is(CopyOptions.DEFAULT_TIME_CONVERTER));
+        assertThat(new CopyOptions().findDefaultConverter(Timestamp.class), is(CopyOptions.DEFAULT_TIMESTAMP_CONVERTER));
+        assertThat(new CopyOptions().findDefaultConverter(java.util.Date.class), is(CopyOptions.DEFAULT_TIMESTAMP_CONVERTER));
+        assertThat(new CopyOptions().findDefaultConverter(java.sql.Date.class), is(CopyOptions.DEFAULT_DATE_CONVERTER));
+        assertThat(new CopyOptions().findDefaultConverter(Integer.class), is(nullValue()));
     }
 
     /**

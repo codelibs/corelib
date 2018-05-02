@@ -69,8 +69,7 @@ public abstract class NumberConversionUtil {
      *            変換元のオブジェクト
      * @return 指定されたプリミティブ型に対応するラッパー型に変換されたオブジェクト
      */
-    public static Object convertPrimitiveWrapper(final Class<?> type,
-            final Object o) {
+    public static Object convertPrimitiveWrapper(final Class<?> type, final Object o) {
         if (type == int.class) {
             final Integer i = IntegerConversionUtil.toInteger(o);
             if (i != null) {
@@ -158,8 +157,7 @@ public abstract class NumberConversionUtil {
         return Character.toString(symbol.getDecimalSeparator());
     }
 
-    private static DecimalFormatSymbols getDecimalFormatSymbols(
-            final Locale locale) {
+    private static DecimalFormatSymbols getDecimalFormatSymbols(final Locale locale) {
         DecimalFormatSymbols symbol;
         if (locale != null) {
             symbol = DecimalFormatSymbolsUtil.getDecimalFormatSymbols(locale);

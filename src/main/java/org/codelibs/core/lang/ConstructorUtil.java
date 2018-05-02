@@ -50,22 +50,18 @@ public abstract class ConstructorUtil {
      *             このコンストラクタが列挙型に関連している場合
      * @see Constructor#newInstance(Object[])
      */
-    public static <T> T newInstance(final Constructor<T> constructor,
-            final Object... args) throws InstantiationRuntimeException,
+    public static <T> T newInstance(final Constructor<T> constructor, final Object... args) throws InstantiationRuntimeException,
             IllegalAccessRuntimeException {
         assertArgumentNotNull("constructor", constructor);
 
         try {
             return constructor.newInstance(args);
         } catch (final InstantiationException e) {
-            throw new InstantiationRuntimeException(
-                    constructor.getDeclaringClass(), e);
+            throw new InstantiationRuntimeException(constructor.getDeclaringClass(), e);
         } catch (final IllegalAccessException e) {
-            throw new IllegalAccessRuntimeException(
-                    constructor.getDeclaringClass(), e);
+            throw new IllegalAccessRuntimeException(constructor.getDeclaringClass(), e);
         } catch (final InvocationTargetException e) {
-            throw new InvocationTargetRuntimeException(
-                    constructor.getDeclaringClass(), e);
+            throw new InvocationTargetRuntimeException(constructor.getDeclaringClass(), e);
         }
     }
 

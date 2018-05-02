@@ -47,8 +47,7 @@ public class SIllegalStateExceptionTest {
      */
     @Test
     public void testSIllegalStateExceptionString() {
-        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException(
-                "hoge");
+        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException("hoge");
         assertThat(clIllegalStateException.getMessage(), is("hoge"));
     }
 
@@ -59,11 +58,9 @@ public class SIllegalStateExceptionTest {
      */
     @Test
     public void testSIllegalStateExceptionStringThrowable() {
-        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException(
-                "hoge", new NullPointerException());
+        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException("hoge", new NullPointerException());
         assertThat(clIllegalStateException.getMessage(), is("hoge"));
-        assertThat(clIllegalStateException.getCause(),
-                instanceOf(NullPointerException.class));
+        assertThat(clIllegalStateException.getCause(), instanceOf(NullPointerException.class));
     }
 
     /**
@@ -73,10 +70,8 @@ public class SIllegalStateExceptionTest {
      */
     @Test
     public void testSIllegalStateExceptionThrowable() {
-        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException(
-                new NullPointerException());
-        assertThat(clIllegalStateException.getCause(),
-                instanceOf(NullPointerException.class));
+        final ClIllegalStateException clIllegalStateException = new ClIllegalStateException(new NullPointerException());
+        assertThat(clIllegalStateException.getCause(), instanceOf(NullPointerException.class));
     }
 
 }

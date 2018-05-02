@@ -40,8 +40,7 @@ public class NoSuchFieldRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public NoSuchFieldRuntimeException(final Class<?> targetClass,
-            final String fieldName, final Throwable cause) {
+    public NoSuchFieldRuntimeException(final Class<?> targetClass, final String fieldName, final Throwable cause) {
         super("ECL0070", asArray(targetClass.getName(), fieldName), cause);
         this.targetClass = targetClass;
         this.fieldName = fieldName;

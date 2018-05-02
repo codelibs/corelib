@@ -129,8 +129,7 @@ public abstract class TimestampConversionUtil {
      */
     public static String getShortPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
-        return ((SimpleDateFormat) getDateTimeInstance(SHORT, SHORT, locale))
-                .toPattern();
+        return ((SimpleDateFormat) getDateTimeInstance(SHORT, SHORT, locale)).toPattern();
     }
 
     /**
@@ -151,8 +150,7 @@ public abstract class TimestampConversionUtil {
      */
     public static String getMediumPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
-        return ((SimpleDateFormat) getDateTimeInstance(MEDIUM, MEDIUM, locale))
-                .toPattern();
+        return ((SimpleDateFormat) getDateTimeInstance(MEDIUM, MEDIUM, locale)).toPattern();
     }
 
     /**
@@ -172,8 +170,7 @@ public abstract class TimestampConversionUtil {
      * @return {@link DateFormat#LONG}スタイルのパターン文字列
      */
     public static String getLongPattern(final Locale locale) {
-        return ((SimpleDateFormat) getDateTimeInstance(LONG, LONG, locale))
-                .toPattern();
+        return ((SimpleDateFormat) getDateTimeInstance(LONG, LONG, locale)).toPattern();
     }
 
     /**
@@ -194,8 +191,7 @@ public abstract class TimestampConversionUtil {
      */
     public static String getFullPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
-        return ((SimpleDateFormat) getDateTimeInstance(FULL, FULL, locale))
-                .toPattern();
+        return ((SimpleDateFormat) getDateTimeInstance(FULL, FULL, locale)).toPattern();
     }
 
     /**
@@ -247,8 +243,7 @@ public abstract class TimestampConversionUtil {
      *            ロケール
      * @return 変換された{@link Date}
      */
-    protected static Date toDate(final Object src, final String pattern,
-            final Locale locale) {
+    protected static Date toDate(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -266,8 +261,7 @@ public abstract class TimestampConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern,
-                    locale);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return date;
@@ -333,8 +327,7 @@ public abstract class TimestampConversionUtil {
      *            ロケール
      * @return 変換された{@link Date}
      */
-    protected static Calendar toCalendar(final Object src,
-            final String pattern, final Locale locale) {
+    protected static Calendar toCalendar(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -386,8 +379,7 @@ public abstract class TimestampConversionUtil {
      *            パターン文字列
      * @return 変換された{@link Timestamp}
      */
-    public static Timestamp toSqlTimestamp(final Object src,
-            final String pattern) {
+    public static Timestamp toSqlTimestamp(final Object src, final String pattern) {
         return toSqlTimestamp(src, pattern, LocaleUtil.getDefault());
     }
 
@@ -416,8 +408,7 @@ public abstract class TimestampConversionUtil {
      *            ロケール
      * @return 変換された{@link Timestamp}
      */
-    protected static Timestamp toSqlTimestamp(final Object src,
-            final String pattern, final Locale locale) {
+    protected static Timestamp toSqlTimestamp(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -435,8 +426,7 @@ public abstract class TimestampConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern,
-                    locale);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return new Timestamp(date.getTime());
@@ -464,9 +454,7 @@ public abstract class TimestampConversionUtil {
      */
     @SuppressWarnings("unchecked")
     protected static Date toDate(final String str, final Locale locale) {
-        for (final DateFormat format : MultiIterator.iterable(
-                new DateFormatIterator(locale), new PlainDateFormatIterator(
-                        str, locale))) {
+        for (final DateFormat format : MultiIterator.iterable(new DateFormatIterator(locale), new PlainDateFormatIterator(str, locale))) {
             if (format == null) {
                 continue;
             }
@@ -641,8 +629,7 @@ public abstract class TimestampConversionUtil {
      *
      * @author koichik
      */
-    protected static class PlainDateFormatIterator implements
-            Iterator<DateFormat> {
+    protected static class PlainDateFormatIterator implements Iterator<DateFormat> {
 
         /** 変換元の文字列 */
         protected final String src;
@@ -677,8 +664,7 @@ public abstract class TimestampConversionUtil {
                 throw new ClNoSuchElementException();
             }
             final int style = STYLES[index++];
-            final DateFormat format = DateFormat.getDateTimeInstance(style,
-                    style, locale);
+            final DateFormat format = DateFormat.getDateTimeInstance(style, style, locale);
             if (format instanceof SimpleDateFormat) {
                 final SimpleDateFormat simpleFormat = (SimpleDateFormat) format;
                 final String pattern = toPlainPattern(simpleFormat.toPattern());

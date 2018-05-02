@@ -43,8 +43,7 @@ public class ConstructorDescTest {
         final ConstructorDesc ctor = beanDesc.getConstructorDesc();
         assertThat(ctor, is(notNullValue()));
         assertThat(ctor.getBeanDesc(), is(sameInstance(beanDesc)));
-        assertThat(ctor.getConstructor(),
-                is((Constructor) MyBean.class.getConstructor()));
+        assertThat(ctor.getConstructor(), is((Constructor) MyBean.class.getConstructor()));
         assertThat(ctor.getParameterTypes().length, is(0));
         assertThat(ctor.isPublic(), is(true));
         final MyBean myBean = ctor.newInstance();
@@ -62,8 +61,7 @@ public class ConstructorDescTest {
         final ConstructorDesc ctor = beanDesc.getConstructorDesc(String.class);
         assertThat(ctor, is(notNullValue()));
         assertThat(ctor.getBeanDesc(), is(sameInstance(beanDesc)));
-        assertThat(ctor.getConstructor(),
-                is((Constructor) MyBean.class.getConstructor(String.class)));
+        assertThat(ctor.getConstructor(), is((Constructor) MyBean.class.getConstructor(String.class)));
         assertThat(ctor.getParameterTypes().length, is(1));
         assertThat(ctor.isPublic(), is(true));
         final MyBean myBean = ctor.newInstance("hoge");

@@ -32,8 +32,7 @@ public abstract class StringUtil {
     /**
      * A system line separator.
      */
-    public static final String RETURN_STRING = System
-            .getProperty("line.separator");
+    public static final String RETURN_STRING = System.getProperty("line.separator");
 
     /**
      * 空文字<code>""</code>です。
@@ -51,14 +50,10 @@ public abstract class StringUtil {
 
     static {
         try {
-            final Class<?> sharedSecretsClass = Class
-                    .forName("sun.misc.SharedSecrets");
-            javaLangAccess = sharedSecretsClass.getDeclaredMethod(
-                    "getJavaLangAccess").invoke(null);
-            final Class<?> javaLangAccessClass = Class
-                    .forName("sun.misc.JavaLangAccess");
-            newStringUnsafeMethod = javaLangAccessClass.getMethod(
-                    "newStringUnsafe", char[].class);
+            final Class<?> sharedSecretsClass = Class.forName("sun.misc.SharedSecrets");
+            javaLangAccess = sharedSecretsClass.getDeclaredMethod("getJavaLangAccess").invoke(null);
+            final Class<?> javaLangAccessClass = Class.forName("sun.misc.JavaLangAccess");
+            newStringUnsafeMethod = javaLangAccessClass.getMethod("newStringUnsafe", char[].class);
         } catch (final Throwable t) {
             // ignore
             // t.printStackTrace();
@@ -98,8 +93,7 @@ public abstract class StringUtil {
      *            置き換えるテキスト
      * @return 結果
      */
-    public static final String replace(final String text,
-            final String fromText, final String toText) {
+    public static final String replace(final String text, final String fromText, final String toText) {
         if (text == null || fromText == null || toText == null) {
             return null;
         }
@@ -280,8 +274,7 @@ public abstract class StringUtil {
             return name;
         }
         final char[] chars = name.toCharArray();
-        if (chars.length >= 2 && Character.isUpperCase(chars[0])
-                && Character.isUpperCase(chars[1])) {
+        if (chars.length >= 2 && Character.isUpperCase(chars[0]) && Character.isUpperCase(chars[1])) {
             return name;
         }
         chars[0] = Character.toLowerCase(chars[0]);
@@ -397,10 +390,8 @@ public abstract class StringUtil {
      *            文字列2
      * @return 大文字小文字を無視して文字列同士が等しければ{@literal true}
      */
-    public static boolean equalsIgnoreCase(final String target1,
-            final String target2) {
-        return target1 == null ? target2 == null : target1
-                .equalsIgnoreCase(target2);
+    public static boolean equalsIgnoreCase(final String target1, final String target2) {
+        return target1 == null ? target2 == null : target1.equalsIgnoreCase(target2);
     }
 
     /**
@@ -412,8 +403,7 @@ public abstract class StringUtil {
      *            比較する文字列
      * @return 大文字小文字を無視して特定の文字で終わっていれば{@literal true}
      */
-    public static boolean endsWithIgnoreCase(final String target1,
-            final String target2) {
+    public static boolean endsWithIgnoreCase(final String target1, final String target2) {
         if (target1 == null || target2 == null) {
             return false;
         }
@@ -435,8 +425,7 @@ public abstract class StringUtil {
      *            比較する文字列
      * @return 大文字小文字を無視して特定の文字で始まっていれば{@literal true}
      */
-    public static boolean startsWithIgnoreCase(final String target1,
-            final String target2) {
+    public static boolean startsWithIgnoreCase(final String target1, final String target2) {
         if (target1 == null || target2 == null) {
             return false;
         }
@@ -458,8 +447,7 @@ public abstract class StringUtil {
      *            セパレータ
      * @return 結果の文字列
      */
-    public static String substringFromLast(final String str,
-            final String separator) {
+    public static String substringFromLast(final String str, final String separator) {
         if (isEmpty(str) || isEmpty(separator)) {
             return str;
         }
@@ -479,8 +467,7 @@ public abstract class StringUtil {
      *            セパレータ
      * @return 結果の文字列
      */
-    public static String substringToLast(final String str,
-            final String separator) {
+    public static String substringToLast(final String str, final String separator) {
         if (isEmpty(str) || isEmpty(separator)) {
             return str;
         }
@@ -733,8 +720,7 @@ public abstract class StringUtil {
         }
         if (newStringUnsafeMethod != null) {
             try {
-                return (String) newStringUnsafeMethod.invoke(javaLangAccess,
-                        chars);
+                return (String) newStringUnsafeMethod.invoke(javaLangAccess, chars);
             } catch (final Throwable t) {
                 // ignore
             }

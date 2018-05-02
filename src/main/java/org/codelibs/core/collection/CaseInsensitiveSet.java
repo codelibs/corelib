@@ -27,8 +27,7 @@ import java.util.Set;
  *
  * @author higa
  */
-public class CaseInsensitiveSet extends AbstractSet<String> implements
-        Set<String>, Serializable {
+public class CaseInsensitiveSet extends AbstractSet<String> implements Set<String>, Serializable {
 
     static final long serialVersionUID = 0L;
 
@@ -50,8 +49,7 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements
      *            コピー元のコレクション
      */
     public CaseInsensitiveSet(final Collection<String> c) {
-        map = new CaseInsensitiveMap<>(Math.max(
-                (int) (c.size() / .75f) + 1, 16));
+        map = new CaseInsensitiveMap<>(Math.max((int) (c.size() / .75f) + 1, 16));
         addAll(c);
     }
 

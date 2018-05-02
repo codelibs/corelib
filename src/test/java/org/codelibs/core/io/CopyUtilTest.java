@@ -52,8 +52,7 @@ public class CopyUtilTest {
 
     StringBuilder builder = new StringBuilder();
 
-    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/')
-            + ".txt");
+    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/') + ".txt");
 
     File inputFile = URLUtil.toFile(url);
 

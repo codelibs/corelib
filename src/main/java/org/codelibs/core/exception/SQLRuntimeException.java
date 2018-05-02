@@ -38,9 +38,7 @@ public class SQLRuntimeException extends ClRuntimeException {
      *            原因となった例外
      */
     public SQLRuntimeException(final SQLException cause) {
-        super("ECL0072", asArray(getSql(cause), getRealMessage(cause),
-                Integer.toString(cause.getErrorCode()), cause.getSQLState()),
-                cause);
+        super("ECL0072", asArray(getSql(cause), getRealMessage(cause), Integer.toString(cause.getErrorCode()), cause.getSQLState()), cause);
     }
 
     /**
@@ -70,9 +68,7 @@ public class SQLRuntimeException extends ClRuntimeException {
         SQLException next = cause.getNextException();
         while (next != null) {
             buf.append(
-                    MessageFormatter.getSimpleMessage("ECL0071",
-                            next.getMessage(),
-                            Integer.toString(next.getErrorCode()),
+                    MessageFormatter.getSimpleMessage("ECL0071", next.getMessage(), Integer.toString(next.getErrorCode()),
                             next.getSQLState())).append("], [");
             next = next.getNextException();
         }

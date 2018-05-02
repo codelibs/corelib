@@ -38,13 +38,12 @@ public class TimeoutManagerTest extends TestCase {
      * @throws Exception
      */
     public void testExpired() throws Exception {
-        TimeoutTask task = TimeoutManager.getInstance().addTimeoutTarget(
-                new TimeoutTarget() {
-                    public void expired() {
-                        System.out.println("expired");
-                        expiredCount++;
-                    }
-                }, 1, true);
+        TimeoutTask task = TimeoutManager.getInstance().addTimeoutTarget(new TimeoutTarget() {
+            public void expired() {
+                System.out.println("expired");
+                expiredCount++;
+            }
+        }, 1, true);
 
         assertNotNull(TimeoutManager.getInstance().thread);
         Thread.sleep(2000);

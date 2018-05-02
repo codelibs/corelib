@@ -92,11 +92,9 @@ public class PropertyDescImpl implements PropertyDesc {
      * @param beanDesc
      *            {@link BeanDesc}。{@literal null}であってはいけません
      */
-    public PropertyDescImpl(final String propertyName,
-            final Class<?> propertyType, final Method readMethod,
-            final Method writeMethod, final BeanDesc beanDesc) {
-        this(propertyName, propertyType, readMethod, writeMethod, null,
-                beanDesc);
+    public PropertyDescImpl(final String propertyName, final Class<?> propertyType, final Method readMethod, final Method writeMethod,
+            final BeanDesc beanDesc) {
+        this(propertyName, propertyType, readMethod, writeMethod, null, beanDesc);
     }
 
     /**
@@ -115,9 +113,8 @@ public class PropertyDescImpl implements PropertyDesc {
      * @param beanDesc
      *            {@link BeanDesc}。{@literal null}であってはいけません
      */
-    public PropertyDescImpl(final String propertyName,
-            final Class<?> propertyType, final Method readMethod,
-            final Method writeMethod, final Field field, final BeanDesc beanDesc) {
+    public PropertyDescImpl(final String propertyName, final Class<?> propertyType, final Method readMethod, final Method writeMethod,
+            final Field field, final BeanDesc beanDesc) {
         assertArgumentNotEmpty("propertyName", propertyName);
         assertArgumentNotNull("propertyType", propertyType);
         assertArgumentNotNull("beanDesc", beanDesc);
@@ -135,8 +132,7 @@ public class PropertyDescImpl implements PropertyDesc {
 
     private void setupStringConstructor() {
         for (final Constructor<?> con : propertyType.getConstructors()) {
-            if (con.getParameterTypes().length == 1
-                    && con.getParameterTypes()[0].equals(String.class)) {
+            if (con.getParameterTypes().length == 1 && con.getParameterTypes()[0].equals(String.class)) {
                 stringConstructor = con;
                 break;
             }
@@ -148,10 +144,8 @@ public class PropertyDescImpl implements PropertyDesc {
             if (method.isBridge() || method.isSynthetic()) {
                 continue;
             }
-            if (ModifierUtil.isStatic(method.getModifiers())
-                    && method.getName().equals("valueOf")
-                    && method.getParameterTypes().length == 1
-                    && method.getParameterTypes()[0].equals(String.class)) {
+            if (ModifierUtil.isStatic(method.getModifiers()) && method.getName().equals("valueOf")
+                    && method.getParameterTypes().length == 1 && method.getParameterTypes()[0].equals(String.class)) {
                 valueOfMethod = method;
                 break;
             }
@@ -159,17 +153,13 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     private void setUpParameterizedClassDesc() {
-        final Map<TypeVariable<?>, Type> typeVariables = ((BeanDescImpl) beanDesc)
-                .getTypeVariables();
+        final Map<TypeVariable<?>, Type> typeVariables = ((BeanDescImpl) beanDesc).getTypeVariables();
         if (field != null) {
-            parameterizedClassDesc = ParameterizedClassDescFactory
-                    .createParameterizedClassDesc(field, typeVariables);
+            parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(field, typeVariables);
         } else if (readMethod != null) {
-            parameterizedClassDesc = ParameterizedClassDescFactory
-                    .createParameterizedClassDesc(readMethod, typeVariables);
+            parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(readMethod, typeVariables);
         } else if (writeMethod != null) {
-            parameterizedClassDesc = ParameterizedClassDescFactory
-                    .createParameterizedClassDesc(writeMethod, 0, typeVariables);
+            parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(writeMethod, 0, typeVariables);
         }
     }
 
@@ -273,8 +263,7 @@ public class PropertyDescImpl implements PropertyDesc {
             }
             return (T) FieldUtil.get(field, target);
         } catch (final Throwable t) {
-            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(),
-                    propertyName, t);
+            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(), propertyName, t);
         }
     }
 
@@ -287,38 +276,22 @@ public class PropertyDescImpl implements PropertyDesc {
             assertState(writable, propertyName + " is not writable.");
             if (hasWriteMethod()) {
                 try {
-                    MethodUtil.invoke(writeMethod, target,
-                            new Object[] { convertedValue });
+                    MethodUtil.invoke(writeMethod, target, new Object[] { convertedValue });
                 } catch (final Throwable t) {
                     final Class<?> clazz = writeMethod.getDeclaringClass();
-                    final Class<?> valueClass = convertedValue == null ? null
-                            : convertedValue.getClass();
-                    final Class<?> targetClass = target == null ? null : target
-                            .getClass();
-                    throw new ClIllegalArgumentException("target", "ECL0098",
-                            new Object[] {
-                                    clazz.getName(),
-                                    clazz.getClassLoader(),
-                                    propertyType.getName(),
-                                    propertyType.getClassLoader(),
-                                    propertyName,
-                                    valueClass == null ? null
-                                            : valueClass.getName(),
-                                    valueClass == null ? null
-                                            : valueClass.getClassLoader(),
-                                    convertedValue,
-                                    targetClass == null ? null
-                                            : targetClass.getName(),
-                                    targetClass == null ? null
-                                            : targetClass.getClassLoader() })
-                            .initCause(t);
+                    final Class<?> valueClass = convertedValue == null ? null : convertedValue.getClass();
+                    final Class<?> targetClass = target == null ? null : target.getClass();
+                    throw new ClIllegalArgumentException("target", "ECL0098", new Object[] { clazz.getName(), clazz.getClassLoader(),
+                            propertyType.getName(), propertyType.getClassLoader(), propertyName,
+                            valueClass == null ? null : valueClass.getName(), valueClass == null ? null : valueClass.getClassLoader(),
+                            convertedValue, targetClass == null ? null : targetClass.getName(),
+                            targetClass == null ? null : targetClass.getClassLoader() }).initCause(t);
                 }
             } else {
                 FieldUtil.set(field, target, convertedValue);
             }
         } catch (final Throwable t) {
-            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(),
-                    propertyName, t);
+            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(), propertyName, t);
         }
     }
 
@@ -330,11 +303,8 @@ public class PropertyDescImpl implements PropertyDesc {
     @Override
     public final String toString() {
         final StringBuilder buf = new StringBuilder(256);
-        buf.append("propertyName=").append(propertyName)
-                .append(",propertyType=").append(propertyType.getName())
-                .append(",readMethod=")
-                .append(readMethod != null ? readMethod.getName() : "null")
-                .append(",writeMethod=")
+        buf.append("propertyName=").append(propertyName).append(",propertyType=").append(propertyType.getName()).append(",readMethod=")
+                .append(readMethod != null ? readMethod.getName() : "null").append(",writeMethod=")
                 .append(writeMethod != null ? writeMethod.getName() : "null");
         return new String(buf);
     }
@@ -350,8 +320,7 @@ public class PropertyDescImpl implements PropertyDesc {
             return (T) convertDate(arg);
         } else if (Boolean.class.isAssignableFrom(propertyType)) {
             return (T) BooleanConversionUtil.toBoolean(arg);
-        } else if (arg != null && arg.getClass() != String.class
-                && String.class == propertyType) {
+        } else if (arg != null && arg.getClass() != String.class && String.class == propertyType) {
             return (T) arg.toString();
         } else if (arg instanceof String && !String.class.equals(propertyType)) {
             return (T) convertWithString(arg);
@@ -392,8 +361,7 @@ public class PropertyDescImpl implements PropertyDesc {
 
     private Object convertWithString(final Object arg) {
         if (stringConstructor != null) {
-            return ConstructorUtil.newInstance(stringConstructor,
-                    new Object[] { arg });
+            return ConstructorUtil.newInstance(stringConstructor, new Object[] { arg });
         }
         if (valueOfMethod != null) {
             return MethodUtil.invoke(valueOfMethod, null, new Object[] { arg });
@@ -403,8 +371,7 @@ public class PropertyDescImpl implements PropertyDesc {
 
     @Override
     public boolean isParameterized() {
-        return parameterizedClassDesc != null
-                && parameterizedClassDesc.isParameterizedClass();
+        return parameterizedClassDesc != null && parameterizedClassDesc.isParameterizedClass();
     }
 
     @Override
@@ -414,12 +381,10 @@ public class PropertyDescImpl implements PropertyDesc {
 
     @Override
     public Class<?> getElementClassOfCollection() {
-        if (!Collection.class.isAssignableFrom(propertyType)
-                || !isParameterized()) {
+        if (!Collection.class.isAssignableFrom(propertyType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -431,8 +396,7 @@ public class PropertyDescImpl implements PropertyDesc {
         if (!Map.class.isAssignableFrom(propertyType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -444,8 +408,7 @@ public class PropertyDescImpl implements PropertyDesc {
         if (!Map.class.isAssignableFrom(propertyType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[1];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[1];
         if (pcd == null) {
             return null;
         }

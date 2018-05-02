@@ -47,8 +47,7 @@ public abstract class SAXParserUtil {
      * @param handler
      *            使用するSAX {@link DefaultHandler}。{@literal null}であってはいけません
      */
-    public static void parse(final SAXParser parser,
-            final InputSource inputSource, final DefaultHandler handler) {
+    public static void parse(final SAXParser parser, final InputSource inputSource, final DefaultHandler handler) {
         assertArgumentNotNull("parser", parser);
         assertArgumentNotNull("inputSource", inputSource);
         assertArgumentNotNull("handler", handler);
@@ -72,8 +71,7 @@ public abstract class SAXParserUtil {
      * @param value
      *            設定されるプロパティの値
      */
-    public static void setProperty(final SAXParser parser, final String name,
-            final String value) {
+    public static void setProperty(final SAXParser parser, final String name, final String value) {
         assertArgumentNotNull("parser", parser);
         assertArgumentNotEmpty("name", name);
 

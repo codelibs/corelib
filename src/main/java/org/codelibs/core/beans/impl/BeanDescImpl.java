@@ -128,8 +128,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     @Override
-    public PropertyDesc getPropertyDesc(final String propertyName)
-            throws PropertyNotFoundRuntimeException {
+    public PropertyDesc getPropertyDesc(final String propertyName) throws PropertyNotFoundRuntimeException {
         assertArgumentNotEmpty("propertyName", propertyName);
 
         final PropertyDesc pd = propertyDescCache.get(propertyName);
@@ -237,22 +236,18 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     @Override
-    public MethodDesc getMethodDesc(final String methodName,
-            final Class<?>... paramTypes) {
+    public MethodDesc getMethodDesc(final String methodName, final Class<?>... paramTypes) {
         assertArgumentNotEmpty("methodName", methodName);
 
-        final MethodDesc methodDesc = getMethodDescNoException(methodName,
-                paramTypes);
+        final MethodDesc methodDesc = getMethodDescNoException(methodName, paramTypes);
         if (methodDesc != null) {
             return methodDesc;
         }
-        throw new MethodNotFoundRuntimeException(beanClass, methodName,
-                paramTypes);
+        throw new MethodNotFoundRuntimeException(beanClass, methodName, paramTypes);
     }
 
     @Override
-    public MethodDesc getMethodDescNoException(final String methodName,
-            final Class<?>... paramTypes) {
+    public MethodDesc getMethodDescNoException(final String methodName, final Class<?>... paramTypes) {
         assertArgumentNotEmpty("methodName", methodName);
 
         final MethodDesc[] methodDescs = methodDescsCache.get(methodName);
@@ -268,8 +263,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     @Override
-    public MethodDesc getSuitableMethodDesc(final String methodName,
-            final Object... args) {
+    public MethodDesc getSuitableMethodDesc(final String methodName, final Object... args) {
         assertArgumentNotEmpty("methodName", methodName);
 
         final MethodDesc[] methodDescs = getMethodDescs(methodName);
@@ -290,8 +284,7 @@ public class BeanDescImpl implements BeanDesc {
 
         final MethodDesc[] methodDescs = methodDescsCache.get(methodName);
         if (methodDescs == null) {
-            throw new MethodNotFoundRuntimeException(beanClass, methodName,
-                    null);
+            throw new MethodNotFoundRuntimeException(beanClass, methodName, null);
         }
         return methodDescs;
     }
@@ -305,8 +298,7 @@ public class BeanDescImpl implements BeanDesc {
 
     @Override
     public String[] getMethodNames() {
-        return methodDescsCache.keySet().toArray(
-                new String[methodDescsCache.size()]);
+        return methodDescsCache.keySet().toArray(new String[methodDescsCache.size()]);
     }
 
     /**
@@ -346,8 +338,7 @@ public class BeanDescImpl implements BeanDesc {
      *            コンストラクタ引数の並び
      * @return 引数に適合する{@link ConstructorDesc}。存在しない場合は{@literal null}
      */
-    protected ConstructorDesc findSuitableConstructorDescAdjustNumber(
-            final Object... args) {
+    protected ConstructorDesc findSuitableConstructorDescAdjustNumber(final Object... args) {
         for (final ConstructorDesc constructorDesc : constructorDescs) {
             if (isSuitable(constructorDesc.getParameterTypes(), args, true)) {
                 return constructorDesc;
@@ -365,8 +356,7 @@ public class BeanDescImpl implements BeanDesc {
      *            メソッド引数の並び
      * @return 引数に適合する{@link MethodDesc}。存在しない場合は{@literal null}
      */
-    protected MethodDesc findSuitableMethod(final MethodDesc[] methodDescs,
-            final Object[] args) {
+    protected MethodDesc findSuitableMethod(final MethodDesc[] methodDescs, final Object[] args) {
         for (final MethodDesc methodDesc : methodDescs) {
             if (isSuitable(methodDesc.getParameterTypes(), args, false)) {
                 return methodDesc;
@@ -387,8 +377,7 @@ public class BeanDescImpl implements BeanDesc {
      *            メソッド引数の並び
      * @return 引数に適合する{@link MethodDesc}。存在しない場合は{@literal null}
      */
-    protected MethodDesc findSuitableMethodDescAdjustNumber(
-            final MethodDesc[] methodDescs, final Object[] args) {
+    protected MethodDesc findSuitableMethodDescAdjustNumber(final MethodDesc[] methodDescs, final Object[] args) {
         for (final MethodDesc methodDesc : methodDescs) {
             if (isSuitable(methodDesc.getParameterTypes(), args, true)) {
                 return methodDesc;
@@ -408,8 +397,7 @@ public class BeanDescImpl implements BeanDesc {
      *            引数型が数値型の場合に引数を適合するように変換する場合は{@literal true}
      * @return 引数が引数型に適合する場合は{@literal true}
      */
-    protected boolean isSuitable(final Class<?>[] paramTypes,
-            final Object[] args, final boolean adjustNumber) {
+    protected boolean isSuitable(final Class<?>[] paramTypes, final Object[] args, final boolean adjustNumber) {
         if (args == null) {
             return paramTypes.length == 0;
         }
@@ -442,8 +430,7 @@ public class BeanDescImpl implements BeanDesc {
      *            操作対象となる引数のインデックス
      * @return 引数を適合するように変換した場合は{@literal true}
      */
-    protected static boolean adjustNumber(final Class<?>[] paramTypes,
-            final Object[] args, final int index) {
+    protected static boolean adjustNumber(final Class<?>[] paramTypes, final Object[] args, final int index) {
         if (paramTypes[index].isPrimitive()) {
             if (paramTypes[index] == byte.class) {
                 args[index] = ByteConversionUtil.toByte(args[index]);
@@ -498,31 +485,23 @@ public class BeanDescImpl implements BeanDesc {
             }
             final String methodName = m.getName();
             if (methodName.startsWith("get")) {
-                if (m.getParameterTypes().length != 0
-                        || methodName.equals("getClass")
-                        || m.getReturnType() == void.class) {
+                if (m.getParameterTypes().length != 0 || methodName.equals("getClass") || m.getReturnType() == void.class) {
                     continue;
                 }
-                final String propertyName = StringUtil.decapitalize(methodName
-                        .substring(3));
+                final String propertyName = StringUtil.decapitalize(methodName.substring(3));
                 setupReadMethod(m, propertyName);
             } else if (methodName.startsWith("is")) {
-                if (m.getParameterTypes().length != 0
-                        || !m.getReturnType().equals(Boolean.TYPE)
+                if (m.getParameterTypes().length != 0 || !m.getReturnType().equals(Boolean.TYPE)
                         && !m.getReturnType().equals(Boolean.class)) {
                     continue;
                 }
-                final String propertyName = StringUtil.decapitalize(methodName
-                        .substring(2));
+                final String propertyName = StringUtil.decapitalize(methodName.substring(2));
                 setupReadMethod(m, propertyName);
             } else if (methodName.startsWith("set")) {
-                if (m.getParameterTypes().length != 1
-                        || methodName.equals("setClass")
-                        || m.getReturnType() != void.class) {
+                if (m.getParameterTypes().length != 1 || methodName.equals("setClass") || m.getReturnType() != void.class) {
                     continue;
                 }
-                final String propertyName = StringUtil.decapitalize(methodName
-                        .substring(3));
+                final String propertyName = StringUtil.decapitalize(methodName.substring(3));
                 setupWriteMethod(m, propertyName);
             }
         }
@@ -540,14 +519,11 @@ public class BeanDescImpl implements BeanDesc {
      * @param propertyName
      *            プロパティ名
      */
-    protected void setupReadMethod(final Method readMethod,
-            final String propertyName) {
+    protected void setupReadMethod(final Method readMethod, final String propertyName) {
         final Class<?> propertyType = readMethod.getReturnType();
-        PropertyDescImpl propDesc = (PropertyDescImpl) propertyDescCache
-                .get(propertyName);
+        PropertyDescImpl propDesc = (PropertyDescImpl) propertyDescCache.get(propertyName);
         if (propDesc == null) {
-            propDesc = new PropertyDescImpl(propertyName, propertyType,
-                    readMethod, null, null, this);
+            propDesc = new PropertyDescImpl(propertyName, propertyType, readMethod, null, null, this);
             addPropertyDesc(propDesc);
         } else if (propDesc.getPropertyType() != propertyType) {
             invalidPropertyNames.add(propertyName);
@@ -564,14 +540,11 @@ public class BeanDescImpl implements BeanDesc {
      * @param propertyName
      *            プロパティ名
      */
-    protected void setupWriteMethod(final Method writeMethod,
-            final String propertyName) {
+    protected void setupWriteMethod(final Method writeMethod, final String propertyName) {
         final Class<?> propertyType = writeMethod.getParameterTypes()[0];
-        PropertyDescImpl propDesc = (PropertyDescImpl) propertyDescCache
-                .get(propertyName);
+        PropertyDescImpl propDesc = (PropertyDescImpl) propertyDescCache.get(propertyName);
         if (propDesc == null) {
-            propDesc = new PropertyDescImpl(propertyName, propertyType, null,
-                    writeMethod, null, this);
+            propDesc = new PropertyDescImpl(propertyName, propertyType, null, writeMethod, null, this);
             addPropertyDesc(propDesc);
         } else if (propDesc.getPropertyType() != propertyType) {
             invalidPropertyNames.add(propertyName);
@@ -619,8 +592,7 @@ public class BeanDescImpl implements BeanDesc {
         }
         for (int i = 0; i < methodDescListMap.size(); ++i) {
             final List<MethodDesc> methodDescList = methodDescListMap.getAt(i);
-            methodDescsCache.put(methodDescListMap.getKeyAt(i), methodDescList
-                    .toArray(new MethodDesc[methodDescList.size()]));
+            methodDescsCache.put(methodDescListMap.getKeyAt(i), methodDescList.toArray(new MethodDesc[methodDescList.size()]));
         }
     }
 
@@ -685,15 +657,12 @@ public class BeanDescImpl implements BeanDesc {
                 continue;
             }
             if (hasPropertyDesc(fname)) {
-                final PropertyDescImpl pd = (PropertyDescImpl) propertyDescCache
-                        .get(field.getName());
+                final PropertyDescImpl pd = (PropertyDescImpl) propertyDescCache.get(field.getName());
                 pd.setField(field);
                 continue;
             }
             if (FieldUtil.isPublicField(field)) {
-                final PropertyDescImpl pd = new PropertyDescImpl(
-                        field.getName(), field.getType(), null, null, field,
-                        this);
+                final PropertyDescImpl pd = new PropertyDescImpl(field.getName(), field.getType(), null, null, field, this);
                 propertyDescCache.put(fname, pd);
             }
         }
@@ -708,22 +677,19 @@ public class BeanDescImpl implements BeanDesc {
      *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
      * @return 型を表現する{@link ParameterizedClassDesc}
      */
-    protected static ParameterizedClassDesc createParameterizedClassDesc(
-            final Type type, final Map<TypeVariable<?>, Type> map) {
+    protected static ParameterizedClassDesc createParameterizedClassDesc(final Type type, final Map<TypeVariable<?>, Type> map) {
         final Class<?> rowClass = getActualClass(type, map);
         if (rowClass == null) {
             return null;
         }
-        final ParameterizedClassDescImpl desc = new ParameterizedClassDescImpl(
-                rowClass);
+        final ParameterizedClassDescImpl desc = new ParameterizedClassDescImpl(rowClass);
         final Type[] parameterTypes = getGenericParameters(type);
         if (parameterTypes == null) {
             return desc;
         }
         final ParameterizedClassDesc[] parameterDescs = new ParameterizedClassDesc[parameterTypes.length];
         for (int i = 0; i < parameterTypes.length; ++i) {
-            parameterDescs[i] = createParameterizedClassDesc(parameterTypes[i],
-                    map);
+            parameterDescs[i] = createParameterizedClassDesc(parameterTypes[i], map);
         }
         desc.setArguments(parameterDescs);
         return desc;

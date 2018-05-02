@@ -141,8 +141,7 @@ public abstract class CopyUtil {
 
         if (in instanceof FileInputStream) {
             if (out instanceof FileOutputStream) {
-                return copyInternal((FileInputStream) in,
-                        (FileOutputStream) out);
+                return copyInternal((FileInputStream) in, (FileOutputStream) out);
             }
             return copyInternal((FileInputStream) in, wrap(out));
         }
@@ -189,8 +188,7 @@ public abstract class CopyUtil {
      *            ライター
      * @return コピーした文字数。{@literal null}であってはいけません
      */
-    public static int copy(final InputStream in, final String encoding,
-            final Writer out) {
+    public static int copy(final InputStream in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
@@ -266,8 +264,7 @@ public abstract class CopyUtil {
      *            {@link StringBuilder}。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final InputStream in, final String encoding,
-            final StringBuilder out) {
+    public static int copy(final InputStream in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
@@ -313,8 +310,7 @@ public abstract class CopyUtil {
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final Reader in, final OutputStream out,
-            final String encoding) {
+    public static int copy(final Reader in, final OutputStream out, final String encoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("encoding", encoding);
@@ -383,8 +379,7 @@ public abstract class CopyUtil {
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final Reader in, final File out,
-            final String encoding) {
+    public static int copy(final Reader in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("encoding", encoding);
@@ -490,8 +485,7 @@ public abstract class CopyUtil {
      *            ライター。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final File in, final String encoding,
-            final Writer out) {
+    public static int copy(final File in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
@@ -604,8 +598,7 @@ public abstract class CopyUtil {
      *            出力ファイルのエンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final File in, final String inputEncoding,
-            final File out, final String outputEncoding) {
+    public static int copy(final File in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("inputEncoding", inputEncoding);
         assertArgumentNotNull("out", out);
@@ -659,8 +652,7 @@ public abstract class CopyUtil {
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final File in, final String encoding,
-            final StringBuilder out) {
+    public static int copy(final File in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
@@ -751,8 +743,7 @@ public abstract class CopyUtil {
 
         final InputStream is = URLUtil.openStream(in);
         try {
-            return copyInternal(ReaderUtil.create(wrap(is), encoding),
-                    wrap(out));
+            return copyInternal(ReaderUtil.create(wrap(is), encoding), wrap(out));
         } finally {
             CloseableUtil.close(is);
         }
@@ -807,8 +798,7 @@ public abstract class CopyUtil {
         try {
             final Writer os = WriterUtil.create(out);
             try {
-                return copyInternal(ReaderUtil.create(wrap(is), encoding),
-                        wrap(os));
+                return copyInternal(ReaderUtil.create(wrap(is), encoding), wrap(os));
             } finally {
                 CloseableUtil.close(os);
             }
@@ -859,8 +849,7 @@ public abstract class CopyUtil {
      *            ファイルのエンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final URL in, final String inputEncoding,
-            final File out, final String outputEncoding) {
+    public static int copy(final URL in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("inputEncoding", inputEncoding);
         assertArgumentNotNull("out", out);
@@ -870,8 +859,7 @@ public abstract class CopyUtil {
         try {
             final Writer os = WriterUtil.create(out, outputEncoding);
             try {
-                return copyInternal(ReaderUtil.create(wrap(is), inputEncoding),
-                        wrap(os));
+                return copyInternal(ReaderUtil.create(wrap(is), inputEncoding), wrap(os));
             } finally {
                 CloseableUtil.close(os);
             }
@@ -915,8 +903,7 @@ public abstract class CopyUtil {
      *            {@link StringBuilder}。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final URL in, final String encoding,
-            final StringBuilder out) {
+    public static int copy(final URL in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
@@ -992,14 +979,12 @@ public abstract class CopyUtil {
      *            ライター。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final byte[] in, final String encoding,
-            final Writer out) {
+    public static int copy(final byte[] in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
 
-        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in),
-                encoding);
+        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in), encoding);
         return copyInternal(is, wrap(out));
     }
 
@@ -1040,14 +1025,12 @@ public abstract class CopyUtil {
      *            ファイル。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final byte[] in, final String encoding,
-            final File out) {
+    public static int copy(final byte[] in, final String encoding, final File out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
 
-        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in),
-                encoding);
+        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in), encoding);
         final Writer os = WriterUtil.create(out);
         try {
             return copyInternal(is, wrap(os));
@@ -1067,8 +1050,7 @@ public abstract class CopyUtil {
      *            エンコーディング
      * @return コピーした文字数
      */
-    public static int copy(final byte[] in, final File out,
-            final String encoding) {
+    public static int copy(final byte[] in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("encoding", encoding);
@@ -1095,15 +1077,13 @@ public abstract class CopyUtil {
      *            出力のエンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final byte[] in, final String inputEncoding,
-            final File out, final String outputEncoding) {
+    public static int copy(final byte[] in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("inputEncoding", inputEncoding);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("outputEncoding", outputEncoding);
 
-        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in),
-                inputEncoding);
+        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in), inputEncoding);
         final Writer os = WriterUtil.create(out, outputEncoding);
         try {
             return copyInternal(is, wrap(os));
@@ -1143,14 +1123,12 @@ public abstract class CopyUtil {
      *            {@link StringBuilder}。{@literal null}であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final byte[] in, final String encoding,
-            final StringBuilder out) {
+    public static int copy(final byte[] in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
         assertArgumentNotEmpty("encoding", encoding);
         assertArgumentNotNull("out", out);
 
-        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in),
-                encoding);
+        final Reader is = ReaderUtil.create(new ByteArrayInputStream(in), encoding);
         return copyInternal(is, out);
     }
 
@@ -1191,8 +1169,7 @@ public abstract class CopyUtil {
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final String in, final OutputStream out,
-            final String encoding) {
+    public static int copy(final String in, final OutputStream out, final String encoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("encoding", encoding);
@@ -1258,8 +1235,7 @@ public abstract class CopyUtil {
      *            エンコーディング。{@literal null}や空文字列であってはいけません
      * @return コピーした文字数
      */
-    public static int copy(final String in, final File out,
-            final String encoding) {
+    public static int copy(final String in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
         assertArgumentNotNull("out", out);
         assertArgumentNotEmpty("encoding", encoding);
@@ -1287,8 +1263,7 @@ public abstract class CopyUtil {
      *            出力ストリーム
      * @return コピーしたバイト数
      */
-    protected static int copyInternal(final InputStream in,
-            final OutputStream out) {
+    protected static int copyInternal(final InputStream in, final OutputStream out) {
         try {
             final byte[] buf = new byte[DEFAULT_BUF_SIZE];
             int len;
@@ -1316,8 +1291,7 @@ public abstract class CopyUtil {
      *            出力ストリーム
      * @return コピーしたバイト数
      */
-    protected static int copyInternal(final FileInputStream in,
-            final OutputStream out) {
+    protected static int copyInternal(final FileInputStream in, final OutputStream out) {
         try {
             final FileChannel channel = in.getChannel();
             final ByteBuffer buffer = ByteBuffer.allocate(DEFAULT_BUF_SIZE);
@@ -1348,8 +1322,7 @@ public abstract class CopyUtil {
      *            ファイル出力ストリーム
      * @return コピーしたバイト数
      */
-    protected static int copyInternal(final InputStream in,
-            final FileOutputStream out) {
+    protected static int copyInternal(final InputStream in, final FileOutputStream out) {
         try {
             final FileChannel channel = out.getChannel();
             final ByteBuffer buffer = ByteBuffer.allocate(DEFAULT_BUF_SIZE);
@@ -1381,8 +1354,7 @@ public abstract class CopyUtil {
      *            ファイル出力ストリーム
      * @return コピーしたバイト数
      */
-    protected static int copyInternal(final FileInputStream in,
-            final FileOutputStream out) {
+    protected static int copyInternal(final FileInputStream in, final FileOutputStream out) {
         final FileChannel ic = in.getChannel();
         final FileChannel oc = out.getChannel();
         return (int) ChannelUtil.transfer(ic, oc);

@@ -42,8 +42,7 @@ public class ArrayUtilTest {
     public void testAsArray() throws Exception {
         assertArrayEquals(new int[] { 1, 2 }, ArrayUtil.asIntArray(1, 2));
         assertArrayEquals(new Object[] { "a", 2 }, ArrayUtil.asArray("a", 2));
-        assertArrayEquals(new String[] { "a", "b" },
-                ArrayUtil.asArray("a", "b"));
+        assertArrayEquals(new String[] { "a", "b" }, ArrayUtil.asArray("a", "b"));
         assertArrayEquals(new Integer[] { 1, 2 }, ArrayUtil.asArray(1, 2));
     }
 
@@ -59,15 +58,11 @@ public class ArrayUtilTest {
         assertThat(newArray[1], is("222"));
 
         final String[] emptyArray = new String[0];
-        assertThat(ArrayUtil.addAll((Object[]) null, (Object[]) null),
-                is(nullValue()));
+        assertThat(ArrayUtil.addAll((Object[]) null, (Object[]) null), is(nullValue()));
         assertThat(ArrayUtil.addAll(null, emptyArray).length, is(0));
-        assertThat(ArrayUtil.addAll(emptyArray, null),
-                is(sameInstance(emptyArray)));
-        assertThat(ArrayUtil.addAll(emptyArray, null),
-                is(sameInstance(emptyArray)));
-        assertThat(ArrayUtil.addAll(emptyArray, emptyArray),
-                is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, null), is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, null), is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, emptyArray), is(sameInstance(emptyArray)));
         assertThat(ArrayUtil.addAll(emptyArray, array), is(sameInstance(array)));
         assertThat(ArrayUtil.addAll(array, emptyArray), is(sameInstance(array)));
     }
@@ -98,15 +93,11 @@ public class ArrayUtilTest {
         assertThat(newArray[1], is(222));
 
         final int[] emptyArray = new int[0];
-        assertThat(ArrayUtil.addAll((int[]) null, (int[]) null),
-                is(nullValue()));
+        assertThat(ArrayUtil.addAll((int[]) null, (int[]) null), is(nullValue()));
         assertThat(ArrayUtil.addAll(null, emptyArray).length, is(0));
-        assertThat(ArrayUtil.addAll(emptyArray, null),
-                is(sameInstance(emptyArray)));
-        assertThat(ArrayUtil.addAll(emptyArray, null),
-                is(sameInstance(emptyArray)));
-        assertThat(ArrayUtil.addAll(emptyArray, emptyArray),
-                is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, null), is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, null), is(sameInstance(emptyArray)));
+        assertThat(ArrayUtil.addAll(emptyArray, emptyArray), is(sameInstance(emptyArray)));
         assertThat(ArrayUtil.addAll(emptyArray, array), is(sameInstance(array)));
         assertThat(ArrayUtil.addAll(array, emptyArray), is(sameInstance(array)));
     }
@@ -233,26 +224,16 @@ public class ArrayUtilTest {
      */
     @Test
     public void testEqualsIgnoreSequence() throws Exception {
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" },
-                new Object[] { "1" }), is(true));
-        assertThat(
-                ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "3" },
-                        new Object[] { "2", "3", "1" }), is(true));
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" },
-                new Object[] { "2" }), is(not(true)));
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" },
-                new Object[] {}), is(not(true)));
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { new Integer(
-                "1") }, new Object[] { "1" }), is(not(true)));
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "1" },
-                new Object[] { "1", "2" }), is(not(true)));
-        assertThat(
-                ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "1",
-                        "2" }, new Object[] { "2", "2", "1", "1" }), is(true));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" }, new Object[] { "1" }), is(true));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "3" }, new Object[] { "2", "3", "1" }), is(true));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" }, new Object[] { "2" }), is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" }, new Object[] {}), is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { new Integer("1") }, new Object[] { "1" }), is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "1" }, new Object[] { "1", "2" }), is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "1", "2" }, new Object[] { "2", "2", "1", "1" }), is(true));
 
         assertThat(ArrayUtil.equalsIgnoreSequence(null, null), is(true));
-        assertThat(ArrayUtil.equalsIgnoreSequence(null, new Object[] {}),
-                is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(null, new Object[] {}), is(not(true)));
     }
 
     /**
@@ -274,8 +255,7 @@ public class ArrayUtilTest {
     @Test
     public void testToObjectArray() throws Exception {
         final Object[] a = ArrayUtil.toObjectArray(new int[] { 1, 5, 2 });
-        assertArrayEquals(new Integer[] { new Integer(1), new Integer(5),
-                new Integer(2) }, a);
+        assertArrayEquals(new Integer[] { new Integer(1), new Integer(5), new Integer(2) }, a);
     }
 
     /**

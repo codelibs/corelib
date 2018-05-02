@@ -97,8 +97,7 @@ public abstract class FileUtil {
         final FileInputStream is = InputStreamUtil.create(file);
         try {
             final FileChannel channel = is.getChannel();
-            final ByteBuffer buffer = ByteBuffer.allocate((int) ChannelUtil
-                    .size(channel));
+            final ByteBuffer buffer = ByteBuffer.allocate((int) ChannelUtil.size(channel));
             ChannelUtil.read(channel, buffer);
             return buffer.array();
         } finally {
@@ -149,8 +148,7 @@ public abstract class FileUtil {
         }
         final InputStream is = URLUtil.openStream(url);
         try {
-            final Reader reader = ReaderUtil.create(new BufferedInputStream(is,
-                    DEFAULT_BUF_SIZE), encoding);
+            final Reader reader = ReaderUtil.create(new BufferedInputStream(is, DEFAULT_BUF_SIZE), encoding);
             return read(reader, DEFAULT_BUF_SIZE);
         } finally {
             CloseableUtil.close(is);
@@ -172,8 +170,7 @@ public abstract class FileUtil {
 
         final FileInputStream is = InputStreamUtil.create(file);
         try {
-            final Reader reader = ReaderUtil.create(new BufferedInputStream(is,
-                    DEFAULT_BUF_SIZE), encoding);
+            final Reader reader = ReaderUtil.create(new BufferedInputStream(is, DEFAULT_BUF_SIZE), encoding);
             return read(reader, (int) ChannelUtil.size(is.getChannel()));
         } finally {
             CloseableUtil.close(is);

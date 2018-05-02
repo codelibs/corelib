@@ -48,8 +48,7 @@ public abstract class ReaderUtil {
      *            入力ストリームのエンコーディング。{@literal null}や空文字列であってはいけません
      * @return ファイルかへ出力する{@link Reader}
      */
-    public static InputStreamReader create(final InputStream is,
-            final String encoding) {
+    public static InputStreamReader create(final InputStream is, final String encoding) {
         assertArgumentNotNull("is", is);
         assertArgumentNotEmpty("encoding", encoding);
 

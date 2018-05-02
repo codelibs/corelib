@@ -115,8 +115,7 @@ public abstract class SchemaUtil {
      *            スキーマファイル。{@literal null}であってはいけません
      * @return {@link Schema}
      */
-    public static Schema newSchema(final SchemaFactory factory,
-            final File schema) {
+    public static Schema newSchema(final SchemaFactory factory, final File schema) {
         assertArgumentNotNull("factory", factory);
         assertArgumentNotNull("schema", schema);
 
@@ -136,8 +135,7 @@ public abstract class SchemaUtil {
      *            スキーマを読み込むための{@link Source}。{@literal null}であってはいけません
      * @return {@link Schema}
      */
-    public static Schema newSchema(final SchemaFactory factory,
-            final Source schema) {
+    public static Schema newSchema(final SchemaFactory factory, final Source schema) {
         assertArgumentNotNull("factory", factory);
         assertArgumentNotNull("schema", schema);
 

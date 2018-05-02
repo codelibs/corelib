@@ -34,8 +34,7 @@ public class ParserConfigurationRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public ParserConfigurationRuntimeException(
-            final ParserConfigurationException cause) {
+    public ParserConfigurationRuntimeException(final ParserConfigurationException cause) {
         super("ECL0053", asArray(cause), cause);
     }
 

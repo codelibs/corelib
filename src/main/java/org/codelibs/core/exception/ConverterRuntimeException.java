@@ -42,8 +42,7 @@ public class ConverterRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因
      */
-    public ConverterRuntimeException(final String propertyName,
-            final Object value, final Throwable cause) {
+    public ConverterRuntimeException(final String propertyName, final Object value, final Throwable cause) {
         super("ECL0097", asArray(propertyName, value, cause), cause);
         this.propertyName = propertyName;
         this.value = value;

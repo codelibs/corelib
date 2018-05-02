@@ -27,16 +27,13 @@ public class BooleanConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToBoolean() throws Exception {
-        assertEquals("1", Boolean.TRUE,
-                BooleanConversionUtil.toBoolean(Integer.valueOf(1)));
-        assertEquals("2", Boolean.FALSE,
-                BooleanConversionUtil.toBoolean(Integer.valueOf(0)));
+        assertEquals("1", Boolean.TRUE, BooleanConversionUtil.toBoolean(Integer.valueOf(1)));
+        assertEquals("2", Boolean.FALSE, BooleanConversionUtil.toBoolean(Integer.valueOf(0)));
         assertEquals("3", Boolean.FALSE, BooleanConversionUtil.toBoolean("0"));
         assertEquals("4", Boolean.TRUE, BooleanConversionUtil.toBoolean("1"));
         assertEquals("5", Boolean.TRUE, BooleanConversionUtil.toBoolean("2"));
         assertEquals("6", Boolean.TRUE, BooleanConversionUtil.toBoolean("true"));
-        assertEquals("7", Boolean.FALSE,
-                BooleanConversionUtil.toBoolean("false"));
+        assertEquals("7", Boolean.FALSE, BooleanConversionUtil.toBoolean("false"));
         assertEquals("8", Boolean.TRUE, BooleanConversionUtil.toBoolean("fase")); // typo
     }
 }

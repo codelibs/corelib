@@ -53,31 +53,23 @@ public class ClassTraversalTest {
      */
     @Test
     public void testForEachJarFile() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final JarURLConnection con = (JarURLConnection) classURL
-                .openConnection();
-        ClassTraversalUtil
-                .forEach(
-                        con.getJarFile(),
-                        (ClassHandler) (packageName, shortClassName) -> {
-                            if (count < 10) {
-                                System.out.println(ClassUtil.concatName(
-                                        packageName, shortClassName));
-                            }
-                            assertThat(packageName, is(notNullValue()));
-                            assertThat(shortClassName, is(notNullValue()));
-                            assertThat(
-                                    packageName,
-                                    packageName.startsWith("junit")
-                                            || packageName
-                                                    .startsWith("org.junit")
-                                            || packageName
-                                                    .startsWith("org.hamcrest"),
-                                    is(true));
-                            count++;
-                        });
+        final JarURLConnection con = (JarURLConnection) classURL.openConnection();
+        ClassTraversalUtil.forEach(
+                con.getJarFile(),
+                (ClassHandler) (packageName, shortClassName) -> {
+                    if (count < 10) {
+                        System.out.println(ClassUtil.concatName(packageName, shortClassName));
+                    }
+                    assertThat(packageName, is(notNullValue()));
+                    assertThat(shortClassName, is(notNullValue()));
+                    assertThat(
+                            packageName,
+                            packageName.startsWith("junit") || packageName.startsWith("org.junit")
+                                    || packageName.startsWith("org.hamcrest"), is(true));
+                    count++;
+                });
         assertTrue(count > 0);
     }
 
@@ -86,27 +78,18 @@ public class ClassTraversalTest {
      */
     @Test
     public void testForEachJarFile_withPrefix() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final JarURLConnection con = (JarURLConnection) classURL
-                .openConnection();
-        ClassTraversalUtil.forEach(
-                con.getJarFile(),
-                "junit/",
-                (ClassHandler) (packageName, shortClassName) -> {
-                    if (count < 10) {
-                        System.out.println(ClassUtil.concatName(packageName,
-                                shortClassName));
-                    }
-                    assertThat(packageName, is(notNullValue()));
-                    assertThat(shortClassName, is(notNullValue()));
-                    assertThat(
-                            packageName.startsWith("junit")
-                                    || packageName.startsWith("org.junit"),
-                            is(not(true)));
-                    count++;
-                });
+        final JarURLConnection con = (JarURLConnection) classURL.openConnection();
+        ClassTraversalUtil.forEach(con.getJarFile(), "junit/", (ClassHandler) (packageName, shortClassName) -> {
+            if (count < 10) {
+                System.out.println(ClassUtil.concatName(packageName, shortClassName));
+            }
+            assertThat(packageName, is(notNullValue()));
+            assertThat(shortClassName, is(notNullValue()));
+            assertThat(packageName.startsWith("junit") || packageName.startsWith("org.junit"), is(not(true)));
+            count++;
+        });
         assertTrue(count > 0);
     }
 
@@ -115,31 +98,23 @@ public class ClassTraversalTest {
      */
     @Test
     public void testForEachZipInputStream() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL))
-                .toURI().toURL();
-        ClassTraversalUtil
-                .forEach(
-                        new ZipInputStream(jarURL.openStream()),
-                        (ClassHandler) (packageName, shortClassName) -> {
-                            if (count < 10) {
-                                System.out.println(ClassUtil.concatName(
-                                        packageName, shortClassName));
-                            }
-                            assertThat(packageName, is(notNullValue()));
-                            assertThat(shortClassName, is(notNullValue()));
-                            assertThat(
-                                    packageName,
-                                    packageName.startsWith("junit")
-                                            || packageName
-                                                    .startsWith("org.junit")
-                                            || packageName
-                                                    .startsWith("org.hamcrest"),
-                                    is(true));
-                            count++;
-                        });
+        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
+        ClassTraversalUtil.forEach(
+                new ZipInputStream(jarURL.openStream()),
+                (ClassHandler) (packageName, shortClassName) -> {
+                    if (count < 10) {
+                        System.out.println(ClassUtil.concatName(packageName, shortClassName));
+                    }
+                    assertThat(packageName, is(notNullValue()));
+                    assertThat(shortClassName, is(notNullValue()));
+                    assertThat(
+                            packageName,
+                            packageName.startsWith("junit") || packageName.startsWith("org.junit")
+                                    || packageName.startsWith("org.hamcrest"), is(true));
+                    count++;
+                });
         assertTrue(count > 0);
     }
 
@@ -148,27 +123,18 @@ public class ClassTraversalTest {
      */
     @Test
     public void testForEachZipInputStream_withPrefix() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL))
-                .toURI().toURL();
-        ClassTraversalUtil.forEach(
-                new ZipInputStream(jarURL.openStream()),
-                "junit/",
-                (ClassHandler) (packageName, shortClassName) -> {
-                    if (count < 10) {
-                        System.out.println(ClassUtil.concatName(packageName,
-                                shortClassName));
-                    }
-                    assertThat(packageName, is(notNullValue()));
-                    assertThat(shortClassName, is(notNullValue()));
-                    assertThat(
-                            packageName.startsWith("junit")
-                                    || packageName.startsWith("org.junit"),
-                            is(not(true)));
-                    count++;
-                });
+        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
+        ClassTraversalUtil.forEach(new ZipInputStream(jarURL.openStream()), "junit/", (ClassHandler) (packageName, shortClassName) -> {
+            if (count < 10) {
+                System.out.println(ClassUtil.concatName(packageName, shortClassName));
+            }
+            assertThat(packageName, is(notNullValue()));
+            assertThat(shortClassName, is(notNullValue()));
+            assertThat(packageName.startsWith("junit") || packageName.startsWith("org.junit"), is(not(true)));
+            count++;
+        });
         assertTrue(count > 0);
     }
 

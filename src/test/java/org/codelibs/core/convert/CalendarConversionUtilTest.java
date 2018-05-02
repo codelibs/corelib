@@ -73,8 +73,7 @@ public class CalendarConversionUtilTest {
      */
     @Test
     public void testLocalize() throws Exception {
-        final Calendar calendar = Calendar.getInstance(TimeZone
-                .getTimeZone("JST"));
+        final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("JST"));
         final Calendar local = CalendarConversionUtil.localize(calendar);
         assertEquals(TimeZone.getDefault(), local.getTimeZone());
     }

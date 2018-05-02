@@ -81,8 +81,7 @@ public abstract class ResultSetUtil {
      * @throws SQLRuntimeException
      *             SQL例外が起こった場合。
      */
-    public static boolean absolute(final ResultSet resultSet, final int index)
-            throws SQLRuntimeException {
+    public static boolean absolute(final ResultSet resultSet, final int index) throws SQLRuntimeException {
         assertArgumentNotNull("resultSet", resultSet);
 
         try {

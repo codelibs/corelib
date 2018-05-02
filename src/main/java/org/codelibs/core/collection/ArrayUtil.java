@@ -270,8 +270,7 @@ public abstract class ArrayUtil {
 
         final int length = array.length;
         @SuppressWarnings("unchecked")
-        final T[] newArray = (T[]) Array.newInstance(array.getClass()
-                .getComponentType(), length + 1);
+        final T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), length + 1);
         System.arraycopy(array, 0, newArray, 0, length);
         newArray[length] = obj;
         return newArray;
@@ -288,8 +287,7 @@ public abstract class ArrayUtil {
      */
     public static boolean[] add(final boolean[] array, final boolean value) {
         assertArgumentNotNull("array", array);
-        final boolean[] newArray = (boolean[]) Array.newInstance(boolean.class,
-                array.length + 1);
+        final boolean[] newArray = (boolean[]) Array.newInstance(boolean.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -307,8 +305,7 @@ public abstract class ArrayUtil {
     public static byte[] add(final byte[] array, final byte value) {
         assertArgumentNotNull("array", array);
 
-        final byte[] newArray = (byte[]) Array.newInstance(byte.class,
-                array.length + 1);
+        final byte[] newArray = (byte[]) Array.newInstance(byte.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -326,8 +323,7 @@ public abstract class ArrayUtil {
     public static short[] add(final short[] array, final short value) {
         assertArgumentNotNull("array", array);
 
-        final short[] newArray = (short[]) Array.newInstance(short.class,
-                array.length + 1);
+        final short[] newArray = (short[]) Array.newInstance(short.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -345,8 +341,7 @@ public abstract class ArrayUtil {
     public static int[] add(final int[] array, final int value) {
         assertArgumentNotNull("array", array);
 
-        final int[] newArray = (int[]) Array.newInstance(int.class,
-                array.length + 1);
+        final int[] newArray = (int[]) Array.newInstance(int.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -364,8 +359,7 @@ public abstract class ArrayUtil {
     public static long[] add(final long[] array, final long value) {
         assertArgumentNotNull("array", array);
 
-        final long[] newArray = (long[]) Array.newInstance(long.class,
-                array.length + 1);
+        final long[] newArray = (long[]) Array.newInstance(long.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -383,8 +377,7 @@ public abstract class ArrayUtil {
     public static float[] add(final float[] array, final float value) {
         assertArgumentNotNull("array", array);
 
-        final float[] newArray = (float[]) Array.newInstance(float.class,
-                array.length + 1);
+        final float[] newArray = (float[]) Array.newInstance(float.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -402,8 +395,7 @@ public abstract class ArrayUtil {
     public static double[] add(final double[] array, final double value) {
         assertArgumentNotNull("array", array);
 
-        final double[] newArray = (double[]) Array.newInstance(double.class,
-                array.length + 1);
+        final double[] newArray = (double[]) Array.newInstance(double.class, array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = value;
         return newArray;
@@ -438,8 +430,7 @@ public abstract class ArrayUtil {
             return a;
         }
         @SuppressWarnings("unchecked")
-        final T[] array = (T[]) Array.newInstance(a.getClass()
-                .getComponentType(), a.length + b.length);
+        final T[] array = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -471,8 +462,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final boolean[] array = (boolean[]) Array.newInstance(boolean.class,
-                a.length + b.length);
+        final boolean[] array = (boolean[]) Array.newInstance(boolean.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -504,8 +494,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final byte[] array = (byte[]) Array.newInstance(byte.class, a.length
-                + b.length);
+        final byte[] array = (byte[]) Array.newInstance(byte.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -537,8 +526,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final short[] array = (short[]) Array.newInstance(short.class, a.length
-                + b.length);
+        final short[] array = (short[]) Array.newInstance(short.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -570,8 +558,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final int[] array = (int[]) Array.newInstance(int.class, a.length
-                + b.length);
+        final int[] array = (int[]) Array.newInstance(int.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -603,8 +590,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final long[] array = (long[]) Array.newInstance(long.class, a.length
-                + b.length);
+        final long[] array = (long[]) Array.newInstance(long.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -636,8 +622,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final float[] array = (float[]) Array.newInstance(float.class, a.length
-                + b.length);
+        final float[] array = (float[]) Array.newInstance(float.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -669,8 +654,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final double[] array = (double[]) Array.newInstance(double.class,
-                a.length + b.length);
+        final double[] array = (double[]) Array.newInstance(double.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -702,8 +686,7 @@ public abstract class ArrayUtil {
         if (b.length == 0) {
             return a;
         }
-        final char[] array = (char[]) Array.newInstance(char.class, a.length
-                + b.length);
+        final char[] array = (char[]) Array.newInstance(char.class, a.length + b.length);
         System.arraycopy(a, 0, array, 0, a.length);
         System.arraycopy(b, 0, array, a.length, b.length);
         return array;
@@ -737,8 +720,7 @@ public abstract class ArrayUtil {
      *            検索を始めるインデックス
      * @return 配列中からオジェクトが最初に見つかったインデックス。見つからなかった場合は{@literal -1}
      */
-    public static <T> int indexOf(final T[] array, final T obj,
-            final int fromIndex) {
+    public static <T> int indexOf(final T[] array, final T obj, final int fromIndex) {
         if (array != null) {
             for (int i = fromIndex; i < array.length; ++i) {
                 final Object o = array[i];
@@ -935,14 +917,12 @@ public abstract class ArrayUtil {
             return array;
         }
         @SuppressWarnings("unchecked")
-        final T[] newArray = (T[]) Array.newInstance(array.getClass()
-                .getComponentType(), array.length - 1);
+        final T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), array.length - 1);
         if (index > 0) {
             System.arraycopy(array, 0, newArray, 0, index);
         }
         if (index < array.length - 1) {
-            System.arraycopy(array, index + 1, newArray, index, newArray.length
-                    - index);
+            System.arraycopy(array, index + 1, newArray, index, newArray.length - index);
         }
         return newArray;
     }
@@ -1279,8 +1259,7 @@ public abstract class ArrayUtil {
      *            配列2
      * @return 順番は無視して2つの配列が等しければ{@literal true}
      */
-    public static <T> boolean equalsIgnoreSequence(final T[] array1,
-            final T[] array2) {
+    public static <T> boolean equalsIgnoreSequence(final T[] array1, final T[] array2) {
         if (array1 == null && array2 == null) {
             return true;
         } else if (array1 == null || array2 == null) {
@@ -1317,8 +1296,7 @@ public abstract class ArrayUtil {
      */
     public static Object[] toObjectArray(final Object array) {
         assertArgumentNotNull("array", array);
-        assertArgument("array", array.getClass().isArray(),
-                MessageFormatter.getSimpleMessage("ECL0104", array));
+        assertArgument("array", array.getClass().isArray(), MessageFormatter.getSimpleMessage("ECL0104", array));
 
         final int length = Array.getLength(array);
         final Object[] objectArray = new Object[length];
@@ -1343,8 +1321,7 @@ public abstract class ArrayUtil {
     @SuppressWarnings("unchecked")
     public static <T> List<T> toList(final Object array) {
         assertArgumentNotNull("array", array);
-        assertArgument("array", array.getClass().isArray(),
-                MessageFormatter.getSimpleMessage("ECL0104", array));
+        assertArgument("array", array.getClass().isArray(), MessageFormatter.getSimpleMessage("ECL0104", array));
 
         final int length = Array.getLength(array);
         final List<Object> list = newArrayList(length);

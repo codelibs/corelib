@@ -47,20 +47,17 @@ public class CopyOptions {
     /**
      * 日付用のデフォルトコンバータです。
      */
-    protected static final Converter DEFAULT_DATE_CONVERTER = new DateConverter(
-            DateConversionUtil.getMediumPattern());
+    protected static final Converter DEFAULT_DATE_CONVERTER = new DateConverter(DateConversionUtil.getMediumPattern());
 
     /**
      * 時間用のデフォルトコンバータです。
      */
-    protected static final Converter DEFAULT_TIME_CONVERTER = new DateConverter(
-            TimeConversionUtil.getMediumPattern());
+    protected static final Converter DEFAULT_TIME_CONVERTER = new DateConverter(TimeConversionUtil.getMediumPattern());
 
     /**
      * 日時用のデフォルトコンバータです。
      */
-    protected static final Converter DEFAULT_TIMESTAMP_CONVERTER = new DateConverter(
-            TimestampConversionUtil.getMediumPattern());
+    protected static final Converter DEFAULT_TIMESTAMP_CONVERTER = new DateConverter(TimestampConversionUtil.getMediumPattern());
 
     /**
      * 操作の対象に含めるプロパティ名の配列です。
@@ -254,8 +251,7 @@ public class CopyOptions {
      *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
      * @return このインスタンス自身
      */
-    public CopyOptions converter(final Converter converter,
-            final CharSequence... propertyNames) {
+    public CopyOptions converter(final Converter converter, final CharSequence... propertyNames) {
         assertArgumentNotNull("converter", converter);
 
         if (isEmpty(propertyNames)) {
@@ -279,8 +275,7 @@ public class CopyOptions {
      * @return このインスタンス自身
      * @see DateConverter
      */
-    public CopyOptions dateConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public CopyOptions dateConverter(final String pattern, final CharSequence... propertyNames) {
         assertArgumentNotEmpty("pattern", pattern);
 
         return converter(new DateConverter(pattern), propertyNames);
@@ -296,8 +291,7 @@ public class CopyOptions {
      * @return このインスタンス自身
      * @see SqlDateConverter
      */
-    public CopyOptions sqlDateConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public CopyOptions sqlDateConverter(final String pattern, final CharSequence... propertyNames) {
         assertArgumentNotEmpty("pattern", pattern);
 
         return converter(new SqlDateConverter(pattern), propertyNames);
@@ -313,8 +307,7 @@ public class CopyOptions {
      * @return このインスタンス自身
      * @see TimeConverter
      */
-    public CopyOptions timeConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public CopyOptions timeConverter(final String pattern, final CharSequence... propertyNames) {
         assertArgumentNotEmpty("pattern", pattern);
 
         return converter(new TimeConverter(pattern), propertyNames);
@@ -330,8 +323,7 @@ public class CopyOptions {
      * @return このインスタンス自身
      * @see TimestampConverter
      */
-    public CopyOptions timestampConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public CopyOptions timestampConverter(final String pattern, final CharSequence... propertyNames) {
         assertArgumentNotEmpty("pattern", pattern);
 
         return converter(new TimestampConverter(pattern), propertyNames);
@@ -347,8 +339,7 @@ public class CopyOptions {
      * @return このインスタンス自身
      * @see NumberConverter
      */
-    public CopyOptions numberConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public CopyOptions numberConverter(final String pattern, final CharSequence... propertyNames) {
         assertArgumentNotEmpty("pattern", pattern);
 
         return converter(new NumberConverter(pattern), propertyNames);
@@ -415,8 +406,7 @@ public class CopyOptions {
         if (value == null) {
             return !excludesNull;
         }
-        if (value instanceof String && excludesWhitespace
-                && ((String) value).trim().isEmpty()) {
+        if (value instanceof String && excludesWhitespace && ((String) value).trim().isEmpty()) {
             return !excludesWhitespace;
         }
         return true;
@@ -469,11 +459,8 @@ public class CopyOptions {
      *            コピー先のプロパティクラス
      * @return 変換後の値
      */
-    protected Object convertValue(final Object value,
-            final String destPropertyName, final Class<?> destPropertyClass) {
-        if (value == null || value.getClass() != String.class
-                && destPropertyClass != null
-                && destPropertyClass != String.class) {
+    protected Object convertValue(final Object value, final String destPropertyName, final Class<?> destPropertyClass) {
+        if (value == null || value.getClass() != String.class && destPropertyClass != null && destPropertyClass != String.class) {
             return value;
         }
         Converter converter = converterMap.get(destPropertyName);

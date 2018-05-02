@@ -31,8 +31,7 @@ import org.junit.Test;
  */
 public class FileUtilTest {
 
-    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/')
-            + ".txt");
+    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/') + ".txt");
 
     File inputFile = URLUtil.toFile(url);
 
@@ -54,8 +53,7 @@ public class FileUtilTest {
     }
 
     private String getPath(final String fileName) {
-        return getClass().getName().replace('.', '/')
-                .replaceFirst(getClass().getSimpleName(), fileName);
+        return getClass().getName().replace('.', '/').replaceFirst(getClass().getSimpleName(), fileName);
     }
 
 }

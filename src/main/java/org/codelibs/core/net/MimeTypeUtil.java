@@ -44,8 +44,7 @@ public abstract class MimeTypeUtil {
 
         final InputStream is = ResourceUtil.getResourceAsStream(path);
         try {
-            final String mimetype = URLConnection
-                    .guessContentTypeFromStream(is);
+            final String mimetype = URLConnection.guessContentTypeFromStream(is);
             if (mimetype != null) {
                 return mimetype;
             }

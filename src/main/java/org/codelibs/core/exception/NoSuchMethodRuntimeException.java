@@ -46,11 +46,9 @@ public class NoSuchMethodRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public NoSuchMethodRuntimeException(final Class<?> targetClass,
-            final String methodName, final Class<?>[] argTypes,
+    public NoSuchMethodRuntimeException(final Class<?> targetClass, final String methodName, final Class<?>[] argTypes,
             final Throwable cause) {
-        super("ECL0057", asArray(targetClass.getName(),
-                MethodUtil.getSignature(methodName, argTypes)), cause);
+        super("ECL0057", asArray(targetClass.getName(), MethodUtil.getSignature(methodName, argTypes)), cause);
         this.targetClass = targetClass;
         this.methodName = methodName;
         this.argTypes = argTypes;

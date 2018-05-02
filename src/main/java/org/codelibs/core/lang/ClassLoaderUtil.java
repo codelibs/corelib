@@ -45,25 +45,22 @@ public abstract class ClassLoaderUtil {
     private static final Method definePackageMethod = getDefinePackageMethod();
 
     private static Method getFindLoadedClassMethod() {
-        final Method method = ClassUtil.getDeclaredMethod(ClassLoader.class,
-                "findLoadedClass", String.class);
+        final Method method = ClassUtil.getDeclaredMethod(ClassLoader.class, "findLoadedClass", String.class);
         method.setAccessible(true);
         return method;
     }
 
     private static Method getDefineClassMethod() {
-        final Method method = ClassUtil
-                .getDeclaredMethod(ClassLoader.class, "defineClass",
-                        String.class, byte[].class, int.class, int.class);
+        final Method method =
+                ClassUtil.getDeclaredMethod(ClassLoader.class, "defineClass", String.class, byte[].class, int.class, int.class);
         method.setAccessible(true);
         return method;
     }
 
     private static Method getDefinePackageMethod() {
-        final Method method = ClassUtil.getDeclaredMethod(ClassLoader.class,
-                "definePackage", String.class, String.class, String.class,
-                String.class, String.class, String.class, String.class,
-                URL.class);
+        final Method method =
+                ClassUtil.getDeclaredMethod(ClassLoader.class, "definePackage", String.class, String.class, String.class, String.class,
+                        String.class, String.class, String.class, URL.class);
         method.setAccessible(true);
         return method;
     }
@@ -94,15 +91,13 @@ public abstract class ClassLoaderUtil {
     public static ClassLoader getClassLoader(final Class<?> targetClass) {
         assertArgumentNotNull("targetClass", targetClass);
 
-        final ClassLoader contextClassLoader = Thread.currentThread()
-                .getContextClassLoader();
+        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         if (contextClassLoader != null) {
             return contextClassLoader;
         }
 
         final ClassLoader targetClassLoader = targetClass.getClassLoader();
-        final ClassLoader thisClassLoader = ClassLoaderUtil.class
-                .getClassLoader();
+        final ClassLoader thisClassLoader = ClassLoaderUtil.class.getClassLoader();
         if (targetClassLoader != null && thisClassLoader != null) {
             if (isAncestor(thisClassLoader, targetClassLoader)) {
                 return thisClassLoader;
@@ -116,14 +111,12 @@ public abstract class ClassLoaderUtil {
             return thisClassLoader;
         }
 
-        final ClassLoader systemClassLoader = ClassLoader
-                .getSystemClassLoader();
+        final ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
         if (systemClassLoader != null) {
             return systemClassLoader;
         }
 
-        throw new ClIllegalStateException(MessageFormatter.getMessage(
-                "ECL0001", "ClassLoader"));
+        throw new ClIllegalStateException(MessageFormatter.getMessage("ECL0001", "ClassLoader"));
     }
 
     /**
@@ -137,8 +130,7 @@ public abstract class ClassLoaderUtil {
      * @return クラスローダ<code>other</code>がクラスローダ<code>cl</code>の祖先なら
      *         <code>true</code>
      */
-    protected static boolean isAncestor(final ClassLoader cl,
-            final ClassLoader other) {
+    protected static boolean isAncestor(final ClassLoader cl, final ClassLoader other) {
         for (final ClassLoader loader : iterable(cl)) {
             if (loader == other) {
                 return true;
@@ -159,8 +151,7 @@ public abstract class ClassLoaderUtil {
     public static Iterator<URL> getResources(final String name) {
         assertArgumentNotEmpty("name", name);
 
-        return getResources(Thread.currentThread().getContextClassLoader(),
-                name);
+        return getResources(Thread.currentThread().getContextClassLoader(), name);
     }
 
     /**
@@ -174,8 +165,7 @@ public abstract class ClassLoaderUtil {
      *         オブジェクトの列挙。リソースが見つからなかった場合、列挙は空になる。クラスローダがアクセスを持たないリソースは列挙に入らない
      * @see java.lang.ClassLoader#getResources(String)
      */
-    public static Iterator<URL> getResources(final Class<?> targetClass,
-            final String name) {
+    public static Iterator<URL> getResources(final Class<?> targetClass, final String name) {
         assertArgumentNotNull("targetClass", targetClass);
         assertArgumentNotNull("name", name);
 
@@ -193,8 +183,7 @@ public abstract class ClassLoaderUtil {
      *         オブジェクトの列挙。リソースが見つからなかった場合、列挙は空になる。クラスローダがアクセスを持たないリソースは列挙に入らない
      * @see java.lang.ClassLoader#getResources(String)
      */
-    public static Iterator<URL> getResources(final ClassLoader loader,
-            final String name) {
+    public static Iterator<URL> getResources(final ClassLoader loader, final String name) {
         assertArgumentNotNull("loader", loader);
         assertArgumentNotEmpty("name", name);
 
@@ -217,14 +206,12 @@ public abstract class ClassLoaderUtil {
      * @return <code>Class</code>オブジェクト。クラスがロードされていない場合は<code>null</code>
      * @see java.lang.ClassLoader#findLoadedClass(String)
      */
-    public static Class<?> findLoadedClass(final ClassLoader classLoader,
-            final String className) {
+    public static Class<?> findLoadedClass(final ClassLoader classLoader, final String className) {
         assertArgumentNotNull("classLoader", classLoader);
         assertArgumentNotEmpty("className", className);
 
         for (final ClassLoader loader : iterable(classLoader)) {
-            final Class<?> clazz = (Class<?>) MethodUtil.invoke(
-                    findLoadedClassMethod, loader, className);
+            final Class<?> clazz = (Class<?>) MethodUtil.invoke(findLoadedClassMethod, loader, className);
             if (clazz != null) {
                 return clazz;
             }
@@ -249,15 +236,13 @@ public abstract class ClassLoaderUtil {
      * @return 指定されたクラスデータから作成された<code>Class</code>オブジェクト
      * @see java.lang.ClassLoader#defineClass(String, byte[], int, int)
      */
-    public static Class<?> defineClass(final ClassLoader classLoader,
-            final String className, final byte[] bytes, final int offset,
+    public static Class<?> defineClass(final ClassLoader classLoader, final String className, final byte[] bytes, final int offset,
             final int length) {
         assertArgumentNotNull("classLoader", classLoader);
         assertArgumentNotEmpty("className", className);
         assertArgumentNotEmpty("bytes", bytes);
 
-        return (Class<?>) MethodUtil.invoke(defineClassMethod, classLoader,
-                className, bytes, offset, length);
+        return (Class<?>) MethodUtil.invoke(defineClassMethod, classLoader, className, bytes, offset, length);
     }
 
     /**
@@ -286,16 +271,12 @@ public abstract class ClassLoaderUtil {
      * @see java.lang.ClassLoader#definePackage(String, String, String, String,
      *      String, String, String, URL)
      */
-    public static Package definePackage(final ClassLoader classLoader,
-            final String name, final String specTitle,
-            final String specVersion, final String specVendor,
-            final String implTitle, final String implVersion,
-            final String implVendor, final URL sealBase) {
+    public static Package definePackage(final ClassLoader classLoader, final String name, final String specTitle, final String specVersion,
+            final String specVendor, final String implTitle, final String implVersion, final String implVendor, final URL sealBase) {
         assertArgumentNotNull("classLoader", classLoader);
         assertArgumentNotEmpty("name", name);
 
-        return (Package) MethodUtil.invoke(definePackageMethod, classLoader,
-                name, specTitle, specVersion, specVendor, implTitle,
+        return (Package) MethodUtil.invoke(definePackageMethod, classLoader, name, specTitle, specVersion, specVendor, implTitle,
                 implVersion, implVendor, sealBase);
     }
 
@@ -311,8 +292,7 @@ public abstract class ClassLoaderUtil {
      *             クラスが見つからなかった場合
      * @see java.lang.ClassLoader#loadClass(String)
      */
-    public static Class<?> loadClass(final ClassLoader loader,
-            final String className) {
+    public static Class<?> loadClass(final ClassLoader loader, final String className) {
         assertArgumentNotNull("loader", loader);
         assertArgumentNotEmpty("className", className);
 

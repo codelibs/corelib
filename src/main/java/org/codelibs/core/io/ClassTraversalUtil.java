@@ -70,8 +70,7 @@ public abstract class ClassTraversalUtil {
      * @param handler
      *            クラスを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final File rootDir, final String rootPackage,
-            final ClassHandler handler) {
+    public static void forEach(final File rootDir, final String rootPackage, final ClassHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
         assertArgumentNotNull("handler", handler);
 
@@ -124,8 +123,7 @@ public abstract class ClassTraversalUtil {
      * @param handler
      *            クラスを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final JarFile jarFile, final String prefix,
-            final ClassHandler handler) {
+    public static void forEach(final JarFile jarFile, final String prefix, final ClassHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
         assertArgumentNotNull("prefix", prefix);
         assertArgumentNotNull("handler", handler);
@@ -133,16 +131,11 @@ public abstract class ClassTraversalUtil {
         final int startPos = prefix.length();
         for (final JarEntry entry : iterable(jarFile.entries())) {
             final String entryName = entry.getName().replace('\\', '/');
-            if (entryName.startsWith(prefix)
-                    && entryName.endsWith(CLASS_SUFFIX)) {
-                final String className = entryName.substring(startPos,
-                        entryName.length() - CLASS_SUFFIX.length()).replace(
-                        '/', '.');
+            if (entryName.startsWith(prefix) && entryName.endsWith(CLASS_SUFFIX)) {
+                final String className = entryName.substring(startPos, entryName.length() - CLASS_SUFFIX.length()).replace('/', '.');
                 final int pos = className.lastIndexOf('.');
-                final String packageName = pos == -1 ? null : className
-                        .substring(0, pos);
-                final String shortClassName = pos == -1 ? className : className
-                        .substring(pos + 1);
+                final String packageName = pos == -1 ? null : className.substring(0, pos);
+                final String shortClassName = pos == -1 ? className : className.substring(pos + 1);
                 handler.processClass(packageName, shortClassName);
             }
         }
@@ -156,8 +149,7 @@ public abstract class ClassTraversalUtil {
      * @param handler
      *            クラスを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final ZipInputStream zipInputStream,
-            final ClassHandler handler) {
+    public static void forEach(final ZipInputStream zipInputStream, final ClassHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
         assertArgumentNotNull("handler", handler);
 
@@ -182,8 +174,7 @@ public abstract class ClassTraversalUtil {
      * @param handler
      *            クラスを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final ZipInputStream zipInputStream,
-            final String prefix, final ClassHandler handler) {
+    public static void forEach(final ZipInputStream zipInputStream, final String prefix, final ClassHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
         assertArgumentNotNull("prefix", prefix);
         assertArgumentNotNull("handler", handler);
@@ -193,16 +184,11 @@ public abstract class ClassTraversalUtil {
         while ((entry = ZipInputStreamUtil.getNextEntry(zipInputStream)) != null) {
             try {
                 final String entryName = entry.getName().replace('\\', '/');
-                if (entryName.startsWith(prefix)
-                        && entryName.endsWith(CLASS_SUFFIX)) {
-                    final String className = entryName.substring(startPos,
-                            entryName.length() - CLASS_SUFFIX.length())
-                            .replace('/', '.');
+                if (entryName.startsWith(prefix) && entryName.endsWith(CLASS_SUFFIX)) {
+                    final String className = entryName.substring(startPos, entryName.length() - CLASS_SUFFIX.length()).replace('/', '.');
                     final int pos = className.lastIndexOf('.');
-                    final String packageName = pos == -1 ? null : className
-                            .substring(0, pos);
-                    final String shortClassName = pos == -1 ? className
-                            : className.substring(pos + 1);
+                    final String packageName = pos == -1 ? null : className.substring(0, pos);
+                    final String shortClassName = pos == -1 ? className : className.substring(pos + 1);
                     handler.processClass(packageName, shortClassName);
                 }
             } finally {
@@ -221,16 +207,13 @@ public abstract class ClassTraversalUtil {
      * @param handler
      *            クラスを処理するハンドラ
      */
-    protected static void traverseFileSystem(final File dir,
-            final String packageName, final ClassHandler handler) {
+    protected static void traverseFileSystem(final File dir, final String packageName, final ClassHandler handler) {
         for (final File file : dir.listFiles()) {
             final String fileName = file.getName();
             if (file.isDirectory()) {
-                traverseFileSystem(file,
-                        ClassUtil.concatName(packageName, fileName), handler);
+                traverseFileSystem(file, ClassUtil.concatName(packageName, fileName), handler);
             } else if (fileName.endsWith(".class")) {
-                final String shortClassName = fileName.substring(0,
-                        fileName.length() - CLASS_SUFFIX.length());
+                final String shortClassName = fileName.substring(0, fileName.length() - CLASS_SUFFIX.length());
                 handler.processClass(packageName, shortClassName);
             }
         }
@@ -245,8 +228,7 @@ public abstract class ClassTraversalUtil {
      *            ルートパッケージ
      * @return パッケージに対応するディレクトリを表す{@link File}
      */
-    protected static File getPackageDir(final File rootDir,
-            final String rootPackage) {
+    protected static File getPackageDir(final File rootDir, final String rootPackage) {
         File packageDir = rootDir;
         if (rootPackage != null) {
             for (final String name : rootPackage.split("\\.")) {

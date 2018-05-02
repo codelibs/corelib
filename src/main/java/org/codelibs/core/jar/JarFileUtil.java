@@ -85,8 +85,7 @@ public abstract class JarFileUtil {
      *            Jarファイルエントリ。{@literal null}であってはいけません
      * @return 指定されたJarファイルエントリの内容を読み込むための入力ストリーム
      */
-    public static InputStream getInputStream(final JarFile file,
-            final ZipEntry entry) {
+    public static InputStream getInputStream(final JarFile file, final ZipEntry entry) {
         assertArgumentNotNull("file", file);
         assertArgumentNotNull("entry", entry);
 

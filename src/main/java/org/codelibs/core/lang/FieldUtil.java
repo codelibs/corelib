@@ -45,8 +45,7 @@ public abstract class FieldUtil {
      * @see Field#get(Object)
      */
     @SuppressWarnings("unchecked")
-    public static <T> T get(final Field field)
-            throws IllegalAccessRuntimeException {
+    public static <T> T get(final Field field) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         return (T) get(field, null);
@@ -68,15 +67,13 @@ public abstract class FieldUtil {
      * @see Field#get(Object)
      */
     @SuppressWarnings("unchecked")
-    public static <T> T get(final Field field, final Object target)
-            throws IllegalAccessRuntimeException {
+    public static <T> T get(final Field field, final Object target) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         try {
             return (T) field.get(target);
         } catch (final IllegalAccessException ex) {
-            throw new IllegalAccessRuntimeException(field.getDeclaringClass(),
-                    ex);
+            throw new IllegalAccessRuntimeException(field.getDeclaringClass(), ex);
         }
     }
 
@@ -90,8 +87,7 @@ public abstract class FieldUtil {
      *             {@link IllegalAccessException}が発生した場合
      * @see #getInt(Field, Object)
      */
-    public static int getInt(final Field field)
-            throws IllegalAccessRuntimeException {
+    public static int getInt(final Field field) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         return getInt(field, null);
@@ -109,15 +105,13 @@ public abstract class FieldUtil {
      *             {@link IllegalAccessException}が発生した場合
      * @see Field#getInt(Object)
      */
-    public static int getInt(final Field field, final Object target)
-            throws IllegalAccessRuntimeException {
+    public static int getInt(final Field field, final Object target) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         try {
             return field.getInt(target);
         } catch (final IllegalAccessException ex) {
-            throw new IllegalAccessRuntimeException(field.getDeclaringClass(),
-                    ex);
+            throw new IllegalAccessRuntimeException(field.getDeclaringClass(), ex);
         }
     }
 
@@ -131,8 +125,7 @@ public abstract class FieldUtil {
      *             {@link IllegalAccessException}が発生した場合
      * @see #getString(Field, Object)
      */
-    public static String getString(final Field field)
-            throws IllegalAccessRuntimeException {
+    public static String getString(final Field field) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         return getString(field, null);
@@ -150,15 +143,13 @@ public abstract class FieldUtil {
      *             {@link IllegalAccessException}が発生した場合
      * @see Field#get(Object)
      */
-    public static String getString(final Field field, final Object target)
-            throws IllegalAccessRuntimeException {
+    public static String getString(final Field field, final Object target) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         try {
             return (String) field.get(target);
         } catch (final IllegalAccessException ex) {
-            throw new IllegalAccessRuntimeException(field.getDeclaringClass(),
-                    ex);
+            throw new IllegalAccessRuntimeException(field.getDeclaringClass(), ex);
         }
     }
 
@@ -173,8 +164,7 @@ public abstract class FieldUtil {
      *             基本となるフィールドにアクセスできない場合
      * @see Field#set(Object, Object)
      */
-    public static void set(final Field field, final Object value)
-            throws IllegalAccessRuntimeException {
+    public static void set(final Field field, final Object value) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         set(field, null, value);
@@ -193,30 +183,22 @@ public abstract class FieldUtil {
      *             基本となるフィールドにアクセスできない場合
      * @see Field#set(Object, Object)
      */
-    public static void set(final Field field, final Object target,
-            final Object value) throws IllegalAccessRuntimeException {
+    public static void set(final Field field, final Object target, final Object value) throws IllegalAccessRuntimeException {
         assertArgumentNotNull("field", field);
 
         try {
             field.set(target, value);
         } catch (final IllegalAccessException e) {
-            throw new IllegalAccessRuntimeException(field.getDeclaringClass(),
-                    e);
+            throw new IllegalAccessRuntimeException(field.getDeclaringClass(), e);
         } catch (final IllegalArgumentException e) {
             final Class<?> clazz = field.getDeclaringClass();
             final Class<?> fieldClass = field.getType();
             final Class<?> valueClass = value == null ? null : value.getClass();
-            final Class<?> targetClass = target == null ? field
-                    .getDeclaringClass() : target.getClass();
-            throw new ClIllegalArgumentException("field", "ECL0094", asArray(
-                    clazz.getName(), clazz.getClassLoader(),
-                    fieldClass.getName(), fieldClass.getClassLoader(),
-                    field.getName(),
-                    valueClass == null ? null : valueClass.getName(),
-                    valueClass == null ? null : valueClass.getClassLoader(),
-                    value, targetClass == null ? null : targetClass.getName(),
-                    targetClass == null ? null : targetClass.getClassLoader()),
-                    e);
+            final Class<?> targetClass = target == null ? field.getDeclaringClass() : target.getClass();
+            throw new ClIllegalArgumentException("field", "ECL0094", asArray(clazz.getName(), clazz.getClassLoader(), fieldClass.getName(),
+                    fieldClass.getClassLoader(), field.getName(), valueClass == null ? null : valueClass.getName(),
+                    valueClass == null ? null : valueClass.getClassLoader(), value, targetClass == null ? null : targetClass.getName(),
+                    targetClass == null ? null : targetClass.getClassLoader()), e);
         }
     }
 
@@ -270,8 +252,7 @@ public abstract class FieldUtil {
         assertArgumentNotNull("field", field);
 
         final Type type = field.getGenericType();
-        return GenericsUtil.getRawClass(GenericsUtil
-                .getElementTypeOfCollection(type));
+        return GenericsUtil.getRawClass(GenericsUtil.getElementTypeOfCollection(type));
     }
 
     /**

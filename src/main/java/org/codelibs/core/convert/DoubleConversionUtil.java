@@ -102,8 +102,7 @@ public abstract class DoubleConversionUtil {
             return toPrimitiveDouble((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
-                return Double.parseDouble(new SimpleDateFormat(pattern)
-                        .format(o));
+                return Double.parseDouble(new SimpleDateFormat(pattern).format(o));
             }
             return ((java.util.Date) o).getTime();
         } else {

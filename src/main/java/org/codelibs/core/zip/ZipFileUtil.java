@@ -83,8 +83,7 @@ public abstract class ZipFileUtil {
      *            Zipファイルエントリ。{@literal null}であってはいけません
      * @return 指定されたZipファイルエントリの内容を読み込むための入力ストリーム
      */
-    public static InputStream getInputStream(final ZipFile file,
-            final ZipEntry entry) {
+    public static InputStream getInputStream(final ZipFile file, final ZipEntry entry) {
         assertArgumentNotNull("file", file);
         assertArgumentNotNull("entry", entry);
 

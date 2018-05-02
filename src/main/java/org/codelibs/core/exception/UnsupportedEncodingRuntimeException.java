@@ -25,8 +25,7 @@ public class UnsupportedEncodingRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public UnsupportedEncodingRuntimeException(
-            final UnsupportedEncodingException cause) {
+    public UnsupportedEncodingRuntimeException(final UnsupportedEncodingException cause) {
         super("ECL0105", new Object[] { cause.getMessage() }, cause);
     }
 

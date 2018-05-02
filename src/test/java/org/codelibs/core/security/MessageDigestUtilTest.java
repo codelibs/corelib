@@ -35,13 +35,9 @@ public class MessageDigestUtilTest {
     public void testDigest() {
         final String text = "hoge";
         assertNull(MessageDigestUtil.digest("MD5", null));
-        assertEquals("ea703e7aa1efda0064eaa507d9e8ab7e",
-                MessageDigestUtil.digest("MD5", text));
-        assertEquals("31f30ddbcb1bf8446576f0e64aa4c88a9f055e3c",
-                MessageDigestUtil.digest("SHA-1", text));
-        assertEquals(
-                "ecb666d778725ec97307044d642bf4d160aabb76f56c0069c71ea25b1e926825",
-                MessageDigestUtil.digest("SHA-256", text));
+        assertEquals("ea703e7aa1efda0064eaa507d9e8ab7e", MessageDigestUtil.digest("MD5", text));
+        assertEquals("31f30ddbcb1bf8446576f0e64aa4c88a9f055e3c", MessageDigestUtil.digest("SHA-1", text));
+        assertEquals("ecb666d778725ec97307044d642bf4d160aabb76f56c0069c71ea25b1e926825", MessageDigestUtil.digest("SHA-256", text));
 
         try {
             MessageDigestUtil.digest(null, text);

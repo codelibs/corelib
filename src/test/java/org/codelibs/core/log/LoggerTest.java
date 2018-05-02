@@ -44,8 +44,7 @@ public class LoggerTest {
      */
     @Test
     public void testGetLogger() throws Exception {
-        assertThat(Logger.getLogger(getClass()),
-                is(sameInstance(Logger.getLogger(getClass()))));
+        assertThat(Logger.getLogger(getClass()), is(sameInstance(Logger.getLogger(getClass()))));
     }
 
     /**
@@ -148,8 +147,7 @@ public class LoggerTest {
     @Test
     public void testFormat() {
         exception.expect(ClIllegalArgumentException.class);
-        exception
-                .expectMessage(is("[ECL0009]argument[AUTL0009] is illegal. because messageCode : AUTL0009."));
+        exception.expectMessage(is("[ECL0009]argument[AUTL0009] is illegal. because messageCode : AUTL0009."));
         Logger.format("AUTL0009", "hoge");
     }
 

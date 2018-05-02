@@ -52,8 +52,7 @@ public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
      * @param arguments
      *            型引数を表す{@link ParameterizedClassDesc}の配列
      */
-    public ParameterizedClassDescImpl(final Class<?> rawClass,
-            final ParameterizedClassDesc[] arguments) {
+    public ParameterizedClassDescImpl(final Class<?> rawClass, final ParameterizedClassDesc[] arguments) {
         assertArgumentNotNull("rawClass", rawClass);
 
         this.rawClass = rawClass;

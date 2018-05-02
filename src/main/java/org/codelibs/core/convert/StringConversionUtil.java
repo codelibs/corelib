@@ -129,8 +129,7 @@ public abstract class StringConversionUtil {
      *            パターン文字列
      * @return 変換された{@literal String}
      */
-    public static String toString(final java.util.Date value,
-            final String pattern) {
+    public static String toString(final java.util.Date value, final String pattern) {
         if (value != null) {
             if (pattern != null) {
                 return new SimpleDateFormat(pattern).format(value);
@@ -154,26 +153,26 @@ public abstract class StringConversionUtil {
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
             switch (array[i]) {
-                case WAVE_DASH:
-                    array[i] = FULLWIDTH_TILDE;
-                    break;
-                case DOUBLE_VERTICAL_LINE:
-                    array[i] = PARALLEL_TO;
-                    break;
-                case MINUS_SIGN:
-                    array[i] = FULLWIDTH_HYPHEN_MINUS;
-                    break;
-                case CENT_SIGN:
-                    array[i] = FULLWIDTH_CENT_SIGN;
-                    break;
-                case POUND_SIGN:
-                    array[i] = FULLWIDTH_POUND_SIGN;
-                    break;
-                case NOT_SIGN:
-                    array[i] = FULLWIDTH_NOT_SIGN;
-                    break;
-                default:
-                    break;
+            case WAVE_DASH:
+                array[i] = FULLWIDTH_TILDE;
+                break;
+            case DOUBLE_VERTICAL_LINE:
+                array[i] = PARALLEL_TO;
+                break;
+            case MINUS_SIGN:
+                array[i] = FULLWIDTH_HYPHEN_MINUS;
+                break;
+            case CENT_SIGN:
+                array[i] = FULLWIDTH_CENT_SIGN;
+                break;
+            case POUND_SIGN:
+                array[i] = FULLWIDTH_POUND_SIGN;
+                break;
+            case NOT_SIGN:
+                array[i] = FULLWIDTH_NOT_SIGN;
+                break;
+            default:
+                break;
             }
         }
         return new String(array);
@@ -193,26 +192,26 @@ public abstract class StringConversionUtil {
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
             switch (array[i]) {
-                case FULLWIDTH_TILDE:
-                    array[i] = WAVE_DASH;
-                    break;
-                case PARALLEL_TO:
-                    array[i] = DOUBLE_VERTICAL_LINE;
-                    break;
-                case FULLWIDTH_HYPHEN_MINUS:
-                    array[i] = MINUS_SIGN;
-                    break;
-                case FULLWIDTH_CENT_SIGN:
-                    array[i] = CENT_SIGN;
-                    break;
-                case FULLWIDTH_POUND_SIGN:
-                    array[i] = POUND_SIGN;
-                    break;
-                case FULLWIDTH_NOT_SIGN:
-                    array[i] = NOT_SIGN;
-                    break;
-                default:
-                    break;
+            case FULLWIDTH_TILDE:
+                array[i] = WAVE_DASH;
+                break;
+            case PARALLEL_TO:
+                array[i] = DOUBLE_VERTICAL_LINE;
+                break;
+            case FULLWIDTH_HYPHEN_MINUS:
+                array[i] = MINUS_SIGN;
+                break;
+            case FULLWIDTH_CENT_SIGN:
+                array[i] = CENT_SIGN;
+                break;
+            case FULLWIDTH_POUND_SIGN:
+                array[i] = POUND_SIGN;
+                break;
+            case FULLWIDTH_NOT_SIGN:
+                array[i] = NOT_SIGN;
+                break;
+            default:
+                break;
             }
         }
         return new String(array);

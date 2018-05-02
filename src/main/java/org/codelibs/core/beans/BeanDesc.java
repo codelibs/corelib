@@ -230,8 +230,7 @@ public interface BeanDesc {
      *            メソッドの引数型の並び
      * @return 引数の型に応じた{@link MethodDesc}
      */
-    MethodDesc getMethodDescNoException(String methodName,
-            Class<?>... paramTypes);
+    MethodDesc getMethodDescNoException(String methodName, Class<?>... paramTypes);
 
     /**
      * 引数に適合する{@link MethodDesc}を返します。

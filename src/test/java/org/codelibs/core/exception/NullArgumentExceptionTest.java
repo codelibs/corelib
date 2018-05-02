@@ -48,11 +48,9 @@ public class NullArgumentExceptionTest {
     public void testErrorMessage_ja() throws Exception {
         // ## Arrange ##
         Locale.setDefault(Locale.JAPANESE);
-        final NullArgumentException nullArgumentException = new NullArgumentException(
-                "hoge");
+        final NullArgumentException nullArgumentException = new NullArgumentException("hoge");
         assertThat(nullArgumentException.getArgName(), is("hoge"));
-        assertThat(nullArgumentException.getMessage(),
-                is("[ECL0008]argument[hoge] is null."));
+        assertThat(nullArgumentException.getMessage(), is("[ECL0008]argument[hoge] is null."));
     }
 
     /**
@@ -62,10 +60,8 @@ public class NullArgumentExceptionTest {
     public void testErrorMessage_en() throws Exception {
         // ## Arrange ##
         Locale.setDefault(Locale.ENGLISH);
-        final NullArgumentException nullArgumentException = new NullArgumentException(
-                "hoge");
+        final NullArgumentException nullArgumentException = new NullArgumentException("hoge");
         assertThat(nullArgumentException.getArgName(), is("hoge"));
-        assertThat(nullArgumentException.getMessage(),
-                is("[ECL0008]argument[hoge] is null."));
+        assertThat(nullArgumentException.getMessage(), is("[ECL0008]argument[hoge] is null."));
     }
 }

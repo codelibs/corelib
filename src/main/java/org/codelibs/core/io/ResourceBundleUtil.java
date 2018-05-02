@@ -62,8 +62,7 @@ public abstract class ResourceBundleUtil {
      * @return {@link ResourceBundle}
      * @see ResourceBundle#getBundle(String, Locale)
      */
-    public static final ResourceBundle getBundle(final String name,
-            final Locale locale) {
+    public static final ResourceBundle getBundle(final String name, final Locale locale) {
         assertArgumentNotEmpty("name", name);
 
         try {
@@ -85,14 +84,12 @@ public abstract class ResourceBundleUtil {
      * @return {@link ResourceBundle}
      * @see ResourceBundle#getBundle(String, Locale, ClassLoader)
      */
-    public static final ResourceBundle getBundle(final String name,
-            final Locale locale, final ClassLoader classLoader) {
+    public static final ResourceBundle getBundle(final String name, final Locale locale, final ClassLoader classLoader) {
         assertArgumentNotNull("name", name);
         assertArgumentNotNull("classLoader", classLoader);
 
         try {
-            return ResourceBundle.getBundle(name, getLocale(locale),
-                    classLoader);
+            return ResourceBundle.getBundle(name, getLocale(locale), classLoader);
         } catch (final MissingResourceException ignore) {
             return null;
         }
@@ -126,13 +123,11 @@ public abstract class ResourceBundleUtil {
      *            リソースバンドル。{@literal null}であってはいけません
      * @return {@link Map}
      */
-    public static final Map<String, String> convertMap(
-            final ResourceBundle bundle) {
+    public static final Map<String, String> convertMap(final ResourceBundle bundle) {
         assertArgumentNotNull("bundle", bundle);
 
         final Map<String, String> ret = newHashMap();
-        for (final Enumeration<String> e = bundle.getKeys(); e
-                .hasMoreElements();) {
+        for (final Enumeration<String> e = bundle.getKeys(); e.hasMoreElements();) {
             final String key = e.nextElement();
             final String value = bundle.getString(key);
             ret.put(key, value);
@@ -149,8 +144,7 @@ public abstract class ResourceBundleUtil {
      *            ロケール
      * @return {@link Map}
      */
-    public static final Map<String, String> convertMap(final String name,
-            final Locale locale) {
+    public static final Map<String, String> convertMap(final String name, final Locale locale) {
         assertArgumentNotEmpty("name", name);
 
         final ResourceBundle bundle = getBundle(name, locale);

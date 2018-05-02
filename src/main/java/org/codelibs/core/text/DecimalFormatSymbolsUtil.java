@@ -49,8 +49,7 @@ public abstract class DecimalFormatSymbolsUtil {
      *            ロケール。{@literal null}であってはいけません
      * @return {@link DecimalFormatSymbols}
      */
-    public static DecimalFormatSymbols getDecimalFormatSymbols(
-            final Locale locale) {
+    public static DecimalFormatSymbols getDecimalFormatSymbols(final Locale locale) {
         assertArgumentNotNull("locale", locale);
 
         DecimalFormatSymbols symbols = CACHE.get(locale);

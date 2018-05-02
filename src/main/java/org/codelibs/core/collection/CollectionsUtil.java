@@ -68,8 +68,7 @@ public abstract class CollectionsUtil {
      * @return {@link ArrayBlockingQueue}の新しいインスタンス
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int)
      */
-    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
-            final int capacity) {
+    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity) {
         return new ArrayBlockingQueue<E>(capacity);
     }
 
@@ -85,8 +84,7 @@ public abstract class CollectionsUtil {
      * @return {@link ArrayBlockingQueue}の新しいインスタンス
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int, boolean)
      */
-    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
-            final int capacity, final boolean fair) {
+    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity, final boolean fair) {
         return new ArrayBlockingQueue<E>(capacity, fair);
     }
 
@@ -104,9 +102,7 @@ public abstract class CollectionsUtil {
      * @return {@link ArrayBlockingQueue}の新しいインスタンス
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int, boolean, Collection)
      */
-    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(
-            final int capacity, final boolean fair,
-            final Collection<? extends E> c) {
+    public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity, final boolean fair, final Collection<? extends E> c) {
         return new ArrayBlockingQueue<E>(capacity, fair, c);
     }
 
@@ -132,8 +128,7 @@ public abstract class CollectionsUtil {
      * @return {@link ArrayDeque}の新しいインスタンス
      * @see ArrayDeque#ArrayDeque(Collection)
      */
-    public static <E> ArrayDeque<E> newArrayDeque(
-            final Collection<? extends E> c) {
+    public static <E> ArrayDeque<E> newArrayDeque(final Collection<? extends E> c) {
         return new ArrayDeque<E>(c);
     }
 
@@ -217,8 +212,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentHashMap}の新しいインスタンス
      * @see ConcurrentHashMap#ConcurrentHashMap(int)
      */
-    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
-            final int initialCapacity) {
+    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final int initialCapacity) {
         return new ConcurrentHashMap<K, V>(initialCapacity);
     }
 
@@ -238,11 +232,9 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentHashMap}の新しいインスタンス
      * @see ConcurrentHashMap#ConcurrentHashMap(int, float, int)
      */
-    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
-            final int initialCapacity, final float loadFactor,
+    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final int initialCapacity, final float loadFactor,
             final int concurrencyLevel) {
-        return new ConcurrentHashMap<K, V>(initialCapacity, loadFactor,
-                concurrencyLevel);
+        return new ConcurrentHashMap<K, V>(initialCapacity, loadFactor, concurrencyLevel);
     }
 
     /**
@@ -257,8 +249,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentHashMap}の新しいインスタンス
      * @see ConcurrentHashMap#ConcurrentHashMap(Map)
      */
-    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final Map<? extends K, ? extends V> m) {
         return new ConcurrentHashMap<K, V>(m);
     }
 
@@ -284,8 +275,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentLinkedQueue}の新しいインスタンス
      * @see ConcurrentLinkedQueue#ConcurrentLinkedQueue(Collection)
      */
-    public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue(
-            final Collection<? extends E> c) {
+    public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue(final Collection<? extends E> c) {
         return new ConcurrentLinkedQueue<E>(c);
     }
 
@@ -315,8 +305,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListMap}の新しいインスタンス
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(Comparator)
      */
-    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
-            final Comparator<? super K> c) {
+    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final Comparator<? super K> c) {
         return new ConcurrentSkipListMap<K, V>(c);
     }
 
@@ -332,8 +321,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListMap}の新しいインスタンス
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(Map)
      */
-    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final Map<? extends K, ? extends V> m) {
         return new ConcurrentSkipListMap<K, V>(m);
     }
 
@@ -349,8 +337,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListMap}の新しいインスタンス
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(SortedMap)
      */
-    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(
-            final SortedMap<K, ? extends V> m) {
+    public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final SortedMap<K, ? extends V> m) {
         return new ConcurrentSkipListMap<K, V>(m);
     }
 
@@ -376,8 +363,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListSet}の新しいインスタンス
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(Collection)
      */
-    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
-            final Collection<? extends E> c) {
+    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final Collection<? extends E> c) {
         return new ConcurrentSkipListSet<E>(c);
     }
 
@@ -391,8 +377,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListSet}の新しいインスタンス
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(Comparator)
      */
-    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
-            final Comparator<? super E> c) {
+    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final Comparator<? super E> c) {
         return new ConcurrentSkipListSet<E>(c);
     }
 
@@ -406,8 +391,7 @@ public abstract class CollectionsUtil {
      * @return {@link ConcurrentSkipListSet}の新しいインスタンス
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(SortedSet)
      */
-    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(
-            final SortedSet<? extends E> s) {
+    public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final SortedSet<? extends E> s) {
         return new ConcurrentSkipListSet<E>(s);
     }
 
@@ -433,8 +417,7 @@ public abstract class CollectionsUtil {
      * @return {@link CopyOnWriteArrayList}の新しいインスタンス
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList(Collection)
      */
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(
-            final Collection<? extends E> c) {
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(final Collection<? extends E> c) {
         return new CopyOnWriteArrayList<E>(c);
     }
 
@@ -448,8 +431,7 @@ public abstract class CollectionsUtil {
      * @return {@link CopyOnWriteArrayList}の新しいインスタンス
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList(Object[])
      */
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(
-            final E[] toCopyIn) {
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(final E[] toCopyIn) {
         return new CopyOnWriteArrayList<E>(toCopyIn);
     }
 
@@ -475,8 +457,7 @@ public abstract class CollectionsUtil {
      * @return {@link CopyOnWriteArraySet}の新しいインスタンス
      * @see CopyOnWriteArraySet#CopyOnWriteArraySet(Collection)
      */
-    public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet(
-            final Collection<? extends E> c) {
+    public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet(final Collection<? extends E> c) {
         return new CopyOnWriteArraySet<E>(c);
     }
 
@@ -502,8 +483,7 @@ public abstract class CollectionsUtil {
      * @return {@link DelayQueue}の新しいインスタンス
      * @see DelayQueue#DelayQueue(Collection)
      */
-    public static <E extends Delayed> DelayQueue<E> newDelayQueue(
-            final Collection<? extends E> c) {
+    public static <E extends Delayed> DelayQueue<E> newDelayQueue(final Collection<? extends E> c) {
         return new DelayQueue<E>(c);
     }
 
@@ -519,8 +499,7 @@ public abstract class CollectionsUtil {
      * @return {@link EnumMap}の新しいインスタンス
      * @see EnumMap#EnumMap(Class)
      */
-    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
-            final Class<K> keyType) {
+    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final Class<K> keyType) {
         return new EnumMap<K, V>(keyType);
     }
 
@@ -536,8 +515,7 @@ public abstract class CollectionsUtil {
      * @return {@link EnumMap}の新しいインスタンス
      * @see EnumMap#EnumMap(EnumMap)
      */
-    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
-            final EnumMap<K, ? extends V> m) {
+    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final EnumMap<K, ? extends V> m) {
         return new EnumMap<K, V>(m);
     }
 
@@ -553,8 +531,7 @@ public abstract class CollectionsUtil {
      * @return {@link EnumMap}の新しいインスタンス
      * @see EnumMap#EnumMap(Map)
      */
-    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(
-            final Map<K, ? extends V> m) {
+    public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final Map<K, ? extends V> m) {
         return new EnumMap<K, V>(m);
     }
 
@@ -602,8 +579,7 @@ public abstract class CollectionsUtil {
      * @return {@link HashMap}の新しいインスタンス
      * @see HashMap#HashMap(int, float)
      */
-    public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity,
-            final float loadFactor) {
+    public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity, final float loadFactor) {
         return new HashMap<K, V>(initialCapacity, loadFactor);
     }
 
@@ -619,8 +595,7 @@ public abstract class CollectionsUtil {
      * @return {@link HashMap}の新しいインスタンス
      * @see HashMap#HashMap(int, float)
      */
-    public static <K, V> HashMap<K, V> newHashMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> HashMap<K, V> newHashMap(final Map<? extends K, ? extends V> m) {
         return new HashMap<K, V>(m);
     }
 
@@ -676,8 +651,7 @@ public abstract class CollectionsUtil {
      * @return {@link HashSet}の新しいインスタンス
      * @see HashSet#HashSet()
      */
-    public static <E> HashSet<E> newHashSet(final int initialCapacity,
-            final float loadFactor) {
+    public static <E> HashSet<E> newHashSet(final int initialCapacity, final float loadFactor) {
         return new HashSet<E>(initialCapacity, loadFactor);
     }
 
@@ -725,8 +699,7 @@ public abstract class CollectionsUtil {
      * @return {@link Hashtable}の新しいインスタンス
      * @see Hashtable#Hashtable(int, float)
      */
-    public static <K, V> Hashtable<K, V> newHashtable(
-            final int initialCapacity, final float loadFactor) {
+    public static <K, V> Hashtable<K, V> newHashtable(final int initialCapacity, final float loadFactor) {
         return new Hashtable<K, V>(initialCapacity, loadFactor);
     }
 
@@ -742,8 +715,7 @@ public abstract class CollectionsUtil {
      * @return {@link Hashtable}の新しいインスタンス
      * @see Hashtable#Hashtable(Map)
      */
-    public static <K, V> Hashtable<K, V> newHashtable(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> Hashtable<K, V> newHashtable(final Map<? extends K, ? extends V> m) {
         return new Hashtable<K, V>(m);
     }
 
@@ -773,8 +745,7 @@ public abstract class CollectionsUtil {
      * @return {@link IdentityHashMap}の新しいインスタンス
      * @see IdentityHashMap#IdentityHashMap(int)
      */
-    public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(
-            final int expectedMaxSize) {
+    public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(final int expectedMaxSize) {
         return new IdentityHashMap<K, V>(expectedMaxSize);
     }
 
@@ -790,8 +761,7 @@ public abstract class CollectionsUtil {
      * @return {@link IdentityHashMap}の新しいインスタンス
      * @see IdentityHashMap#IdentityHashMap(Map)
      */
-    public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(final Map<? extends K, ? extends V> m) {
         return new IdentityHashMap<K, V>(m);
     }
 
@@ -817,8 +787,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedBlockingDeque}の新しいインスタンス
      * @see LinkedBlockingDeque#LinkedBlockingDeque(Collection)
      */
-    public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(
-            final Collection<? extends E> c) {
+    public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(final Collection<? extends E> c) {
         return new LinkedBlockingDeque<E>(c);
     }
 
@@ -832,8 +801,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedBlockingDeque}の新しいインスタンス
      * @see LinkedBlockingDeque#LinkedBlockingDeque(int)
      */
-    public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(
-            final int initialCapacity) {
+    public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(final int initialCapacity) {
         return new LinkedBlockingDeque<E>(initialCapacity);
     }
 
@@ -859,8 +827,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedBlockingQueue}の新しいインスタンス
      * @see LinkedBlockingQueue#LinkedBlockingQueue(Collection)
      */
-    public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(
-            final Collection<? extends E> c) {
+    public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(final Collection<? extends E> c) {
         return new LinkedBlockingQueue<E>(c);
     }
 
@@ -874,8 +841,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedBlockingQueue}の新しいインスタンス
      * @see LinkedBlockingQueue#LinkedBlockingQueue(int)
      */
-    public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(
-            final int initialCapacity) {
+    public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(final int initialCapacity) {
         return new LinkedBlockingQueue<E>(initialCapacity);
     }
 
@@ -905,8 +871,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashMap}の新しいインスタンス
      * @see LinkedHashMap#LinkedHashMap(int)
      */
-    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
-            final int initialCapacity) {
+    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final int initialCapacity) {
         return new LinkedHashMap<K, V>(initialCapacity);
     }
 
@@ -924,8 +889,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashMap}の新しいインスタンス
      * @see LinkedHashMap#LinkedHashMap(int, float)
      */
-    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
-            final int initialCapacity, final float loadFactor) {
+    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final int initialCapacity, final float loadFactor) {
         return new LinkedHashMap<K, V>(initialCapacity, loadFactor);
     }
 
@@ -941,8 +905,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashMap}の新しいインスタンス
      * @see LinkedHashMap#LinkedHashMap(Map)
      */
-    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final Map<? extends K, ? extends V> m) {
         return new LinkedHashMap<K, V>(m);
     }
 
@@ -968,8 +931,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashSet}の新しいインスタンス
      * @see LinkedHashSet#LinkedHashSet(Collection)
      */
-    public static <E> LinkedHashSet<E> newLinkedHashSet(
-            final Collection<? extends E> c) {
+    public static <E> LinkedHashSet<E> newLinkedHashSet(final Collection<? extends E> c) {
         return new LinkedHashSet<E>(c);
     }
 
@@ -983,8 +945,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashSet}の新しいインスタンス
      * @see LinkedHashSet#LinkedHashSet(int)
      */
-    public static <E> LinkedHashSet<E> newLinkedHashSet(
-            final int initialCapacity) {
+    public static <E> LinkedHashSet<E> newLinkedHashSet(final int initialCapacity) {
         return new LinkedHashSet<E>(initialCapacity);
     }
 
@@ -1000,8 +961,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedHashSet}の新しいインスタンス
      * @see LinkedHashSet#LinkedHashSet(int, float)
      */
-    public static <E> LinkedHashSet<E> newLinkedHashSet(
-            final int initialCapacity, final float loadFactor) {
+    public static <E> LinkedHashSet<E> newLinkedHashSet(final int initialCapacity, final float loadFactor) {
         return new LinkedHashSet<E>(initialCapacity, loadFactor);
     }
 
@@ -1027,8 +987,7 @@ public abstract class CollectionsUtil {
      * @return {@link LinkedList}の新しいインスタンス
      * @see LinkedList#LinkedList(Collection)
      */
-    public static <E> LinkedList<E> newLinkedList(
-            final Collection<? extends E> c) {
+    public static <E> LinkedList<E> newLinkedList(final Collection<? extends E> c) {
         return new LinkedList<E>(c);
     }
 
@@ -1054,8 +1013,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityBlockingQueue}の新しいインスタンス
      * @see PriorityBlockingQueue#PriorityBlockingQueue(Collection)
      */
-    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
-            final Collection<? extends E> c) {
+    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final Collection<? extends E> c) {
         return new PriorityBlockingQueue<E>(c);
     }
 
@@ -1069,8 +1027,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityBlockingQueue}の新しいインスタンス
      * @see PriorityBlockingQueue#PriorityBlockingQueue(int)
      */
-    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
-            final int initialCapacity) {
+    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final int initialCapacity) {
         return new PriorityBlockingQueue<E>(initialCapacity);
     }
 
@@ -1086,8 +1043,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityBlockingQueue}の新しいインスタンス
      * @see PriorityBlockingQueue#PriorityBlockingQueue(int, Comparator)
      */
-    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(
-            final int initialCapacity, final Comparator<? super E> comparator) {
+    public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final int initialCapacity, final Comparator<? super E> comparator) {
         return new PriorityBlockingQueue<E>(initialCapacity, comparator);
     }
 
@@ -1113,8 +1069,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityQueue}の新しいインスタンス
      * @see PriorityQueue#PriorityQueue(Collection)
      */
-    public static <E> PriorityQueue<E> newPriorityQueue(
-            final Collection<? extends E> c) {
+    public static <E> PriorityQueue<E> newPriorityQueue(final Collection<? extends E> c) {
         return new PriorityQueue<E>(c);
     }
 
@@ -1128,8 +1083,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityQueue}の新しいインスタンス
      * @see PriorityQueue#PriorityQueue(int)
      */
-    public static <E> PriorityQueue<E> newPriorityQueue(
-            final int initialCapacity) {
+    public static <E> PriorityQueue<E> newPriorityQueue(final int initialCapacity) {
         return new PriorityQueue<E>(initialCapacity);
     }
 
@@ -1145,8 +1099,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityQueue}の新しいインスタンス
      * @see PriorityQueue#PriorityQueue(int, Comparator)
      */
-    public static <E> PriorityQueue<E> newPriorityQueue(
-            final int initialCapacity, final Comparator<? super E> comparator) {
+    public static <E> PriorityQueue<E> newPriorityQueue(final int initialCapacity, final Comparator<? super E> comparator) {
         return new PriorityQueue<E>(initialCapacity, comparator);
     }
 
@@ -1160,8 +1113,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityQueue}の新しいインスタンス
      * @see PriorityQueue#PriorityQueue(PriorityQueue)
      */
-    public static <E> PriorityQueue<E> newPriorityQueue(
-            final PriorityQueue<? extends E> c) {
+    public static <E> PriorityQueue<E> newPriorityQueue(final PriorityQueue<? extends E> c) {
         return new PriorityQueue<E>(c);
     }
 
@@ -1175,8 +1127,7 @@ public abstract class CollectionsUtil {
      * @return {@link PriorityQueue}の新しいインスタンス
      * @see PriorityQueue#PriorityQueue(SortedSet)
      */
-    public static <E> PriorityQueue<E> newPriorityQueue(
-            final SortedSet<? extends E> c) {
+    public static <E> PriorityQueue<E> newPriorityQueue(final SortedSet<? extends E> c) {
         return new PriorityQueue<E>(c);
     }
 
@@ -1261,8 +1212,7 @@ public abstract class CollectionsUtil {
      * @return {@link TreeMap}の新しいインスタンス
      * @see TreeMap#TreeMap(Map)
      */
-    public static <K, V> TreeMap<K, V> newTreeMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> TreeMap<K, V> newTreeMap(final Map<? extends K, ? extends V> m) {
         return new TreeMap<K, V>(m);
     }
 
@@ -1278,8 +1228,7 @@ public abstract class CollectionsUtil {
      * @return {@link TreeMap}の新しいインスタンス
      * @see TreeMap#TreeMap(SortedMap)
      */
-    public static <K, V> TreeMap<K, V> newTreeMap(
-            final SortedMap<K, ? extends V> m) {
+    public static <K, V> TreeMap<K, V> newTreeMap(final SortedMap<K, ? extends V> m) {
         return new TreeMap<K, V>(m);
     }
 
@@ -1389,8 +1338,7 @@ public abstract class CollectionsUtil {
      * @return {@link Vector}の新しいインスタンス
      * @see Vector#Vector(int, int)
      */
-    public static <E> Vector<E> newVector(final int initialCapacity,
-            final int capacityIncrement) {
+    public static <E> Vector<E> newVector(final int initialCapacity, final int capacityIncrement) {
         return new Vector<E>(initialCapacity, capacityIncrement);
     }
 
@@ -1420,8 +1368,7 @@ public abstract class CollectionsUtil {
      * @return {@link WeakHashMap}の新しいインスタンス
      * @see WeakHashMap#WeakHashMap(int)
      */
-    public static <K, V> WeakHashMap<K, V> newWeakHashMap(
-            final int initialCapacity) {
+    public static <K, V> WeakHashMap<K, V> newWeakHashMap(final int initialCapacity) {
         return new WeakHashMap<K, V>(initialCapacity);
     }
 
@@ -1439,8 +1386,7 @@ public abstract class CollectionsUtil {
      * @return {@link WeakHashMap}の新しいインスタンス
      * @see WeakHashMap#WeakHashMap(int, float)
      */
-    public static <K, V> WeakHashMap<K, V> newWeakHashMap(
-            final int initialCapacity, final float loadFactor) {
+    public static <K, V> WeakHashMap<K, V> newWeakHashMap(final int initialCapacity, final float loadFactor) {
         return new WeakHashMap<K, V>(initialCapacity, loadFactor);
     }
 
@@ -1456,8 +1402,7 @@ public abstract class CollectionsUtil {
      * @return {@link WeakHashMap}の新しいインスタンス
      * @see WeakHashMap#WeakHashMap(Map)
      */
-    public static <K, V> WeakHashMap<K, V> newWeakHashMap(
-            final Map<? extends K, ? extends V> m) {
+    public static <K, V> WeakHashMap<K, V> newWeakHashMap(final Map<? extends K, ? extends V> m) {
         return new WeakHashMap<K, V>(m);
     }
 
@@ -1482,8 +1427,7 @@ public abstract class CollectionsUtil {
      * @return 指定されたキーと関連付けられていた以前の値または、キーに関連付けられる値
      * @see ConcurrentHashMap#putIfAbsent(Object, Object)
      */
-    public static <K, V> V putIfAbsent(final ConcurrentMap<K, V> map,
-            final K key, final V value) {
+    public static <K, V> V putIfAbsent(final ConcurrentMap<K, V> map, final K key, final V value) {
         final V exists = map.putIfAbsent(key, value);
         if (exists != null) {
             return exists;

@@ -46,8 +46,7 @@ public class ClassNotFoundRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public ClassNotFoundRuntimeException(final String className,
-            final ClassNotFoundException cause) {
+    public ClassNotFoundRuntimeException(final String className, final ClassNotFoundException cause) {
         super("ECL0044", asArray(cause), cause);
         this.className = className;
     }

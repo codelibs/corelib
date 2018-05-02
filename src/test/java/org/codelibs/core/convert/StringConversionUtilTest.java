@@ -28,12 +28,9 @@ public class StringConversionUtilTest extends TestCase {
     public void testFromWindowsMapping() throws Exception {
         assertNull(StringConversionUtil.fromWindowsMapping(null));
         assertEquals("", StringConversionUtil.fromWindowsMapping(""));
-        assertEquals("abc 123",
-                StringConversionUtil.fromWindowsMapping("abc 123"));
-        assertEquals(
-                "abc\uFF5E\u2225\uFF0D\uFFE0\uFFE1\uFFE2",
-                StringConversionUtil
-                        .fromWindowsMapping("abc\u301C\u2016\u2212\u00A2\u00A3\u00AC"));
+        assertEquals("abc 123", StringConversionUtil.fromWindowsMapping("abc 123"));
+        assertEquals("abc\uFF5E\u2225\uFF0D\uFFE0\uFFE1\uFFE2",
+                StringConversionUtil.fromWindowsMapping("abc\u301C\u2016\u2212\u00A2\u00A3\u00AC"));
     }
 
     /**
@@ -42,12 +39,9 @@ public class StringConversionUtilTest extends TestCase {
     public void testToWindowsMapping() throws Exception {
         assertNull(StringConversionUtil.toWindowsMapping(null));
         assertEquals("", StringConversionUtil.toWindowsMapping(""));
-        assertEquals("abc 123",
-                StringConversionUtil.toWindowsMapping("abc 123"));
-        assertEquals(
-                "abc\u301C\u2016\u2212\u00A2\u00A3\u00AC",
-                StringConversionUtil
-                        .toWindowsMapping("abc\uFF5E\u2225\uFF0D\uFFE0\uFFE1\uFFE2"));
+        assertEquals("abc 123", StringConversionUtil.toWindowsMapping("abc 123"));
+        assertEquals("abc\u301C\u2016\u2212\u00A2\u00A3\u00AC",
+                StringConversionUtil.toWindowsMapping("abc\uFF5E\u2225\uFF0D\uFFE0\uFFE1\uFFE2"));
     }
 
 }

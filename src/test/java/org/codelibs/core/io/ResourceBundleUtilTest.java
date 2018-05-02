@@ -35,8 +35,7 @@ public class ResourceBundleUtilTest {
      */
     @Test
     public void testConvertMap() throws Exception {
-        final ResourceBundle bundle = ResourceBundleUtil.getBundle(
-                "CLMessages", null);
+        final ResourceBundle bundle = ResourceBundleUtil.getBundle("CLMessages", null);
         final Map<String, String> map = ResourceBundleUtil.convertMap(bundle);
         final String value = map.get("ECL0001");
         System.out.println(value);
@@ -48,8 +47,7 @@ public class ResourceBundleUtilTest {
      */
     @Test
     public void testGetBundle() throws Exception {
-        final ResourceBundle bundle = ResourceBundleUtil.getBundle(
-                "CLMessages", null, this.getClass().getClassLoader());
+        final ResourceBundle bundle = ResourceBundleUtil.getBundle("CLMessages", null, this.getClass().getClassLoader());
         assertThat(bundle, is(notNullValue()));
     }
 
@@ -58,8 +56,7 @@ public class ResourceBundleUtilTest {
      */
     @Test
     public void testGetString() throws Exception {
-        final ResourceBundle bundle = ResourceBundleUtil
-                .getBundle("CLMessages");
+        final ResourceBundle bundle = ResourceBundleUtil.getBundle("CLMessages");
         assertThat(bundle.getString("ECL0001"), is(notNullValue()));
     }
 

@@ -72,8 +72,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_ShortStyle() throws Exception {
         final Date date = toDate("11:49");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:00"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:00"));
     }
 
     /**
@@ -82,8 +81,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_MediumStyle() throws Exception {
         final Date date = toDate("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
     /**
@@ -114,8 +112,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_PlainFormat() throws Exception {
         final Date date = toDate("114910");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
     /**
@@ -124,8 +121,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_JdbcEscapeFormat() throws Exception {
         final Date date = toDate("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
     /**
@@ -134,8 +130,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_SpecificLocale() throws Exception {
         final Date date = toDate("11:49:10 AM", Locale.US);
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
     /**
@@ -144,8 +139,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToDate_SpecificPattern() throws Exception {
         final Date date = toDate("10::49::11", "ss::mm::HH");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(date),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
     /**
@@ -170,8 +164,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_ShortStyle() throws Exception {
         final Calendar calendar = toCalendar("11:49");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:00"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:00"));
     }
 
     /**
@@ -180,8 +173,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_MediumStyle() throws Exception {
         final Calendar calendar = toCalendar("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -212,8 +204,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_PlainFormat() throws Exception {
         final Calendar calendar = toCalendar("114910");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -222,8 +213,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_JdbcEscapeFormat() throws Exception {
         final Calendar calendar = toCalendar("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -232,8 +222,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_SpecificLocale() throws Exception {
         final Calendar calendar = toCalendar("11:49:10 AM", Locale.US);
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -242,8 +231,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToCalendar_SpecificPattern() throws Exception {
         final Calendar calendar = toCalendar("10::49::11", "ss::mm::HH");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
     /**
@@ -268,8 +256,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_ShortStyle() throws Exception {
         final Time time = toSqlTime("11:49");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:00"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:00"));
     }
 
     /**
@@ -278,8 +265,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_MediumStyle() throws Exception {
         final Time time = toSqlTime("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 
     /**
@@ -310,8 +296,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_PlainFormat() throws Exception {
         final Time time = toSqlTime("114910");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 
     /**
@@ -320,8 +305,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_JdbcEscapeFormat() throws Exception {
         final Time time = toSqlTime("11:49:10");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 
     /**
@@ -330,8 +314,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_SpecificLocale() throws Exception {
         final Time time = toSqlTime("11:49:10 AM", Locale.US);
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 
     /**
@@ -340,8 +323,7 @@ public class TimeConversionUtilTest {
     @Test
     public void testToTime_SpecificPattern() throws Exception {
         final Time time = toSqlTime("10::49::11", "ss::mm::HH");
-        assertThat(new SimpleDateFormat("HH:mm:ss").format(time),
-                is("11:49:10"));
+        assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 
     /**

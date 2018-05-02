@@ -71,8 +71,7 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final File rootDir, final String baseDirectory,
-            final ResourceHandler handler) {
+    public static void forEach(final File rootDir, final String baseDirectory, final ResourceHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
         assertArgumentNotNull("handler", handler);
 
@@ -90,8 +89,7 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final JarFile jarFile,
-            final ResourceHandler handler) {
+    public static void forEach(final JarFile jarFile, final ResourceHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
         assertArgumentNotNull("handler", handler);
 
@@ -115,8 +113,7 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final JarFile jarFile, final String prefix,
-            final ResourceHandler handler) {
+    public static void forEach(final JarFile jarFile, final String prefix, final ResourceHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
         assertArgumentNotNull("prefix", prefix);
         assertArgumentNotNull("handler", handler);
@@ -128,8 +125,7 @@ public abstract class ResourceTraversalUtil {
                 if (!entryName.startsWith(prefix)) {
                     continue;
                 }
-                final InputStream is = JarFileUtil.getInputStream(jarFile,
-                        entry);
+                final InputStream is = JarFileUtil.getInputStream(jarFile, entry);
                 try {
                     handler.processResource(entryName.substring(pos), is);
                 } finally {
@@ -147,8 +143,7 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final ZipInputStream zipInputStream,
-            final ResourceHandler handler) {
+    public static void forEach(final ZipInputStream zipInputStream, final ResourceHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
         assertArgumentNotNull("handler", handler);
 
@@ -172,8 +167,7 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ。{@literal null}であってはいけません
      */
-    public static void forEach(final ZipInputStream zipInputStream,
-            final String prefix, final ResourceHandler handler) {
+    public static void forEach(final ZipInputStream zipInputStream, final String prefix, final ResourceHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
         assertArgumentNotNull("prefix", prefix);
         assertArgumentNotNull("handler", handler);
@@ -186,13 +180,12 @@ public abstract class ResourceTraversalUtil {
                 if (!entryName.startsWith(prefix)) {
                     continue;
                 }
-                handler.processResource(entryName.substring(pos),
-                        new FilterInputStream(zipInputStream) {
-                            @Override
-                            public void close() throws IOException {
-                                ZipInputStreamUtil.closeEntry(zipInputStream);
-                            }
-                        });
+                handler.processResource(entryName.substring(pos), new FilterInputStream(zipInputStream) {
+                    @Override
+                    public void close() throws IOException {
+                        ZipInputStreamUtil.closeEntry(zipInputStream);
+                    }
+                });
             }
         }
     }
@@ -207,16 +200,14 @@ public abstract class ResourceTraversalUtil {
      * @param handler
      *            リソースを処理するハンドラ
      */
-    protected static void traverseFileSystem(final File rootDir,
-            final File baseDir, final ResourceHandler handler) {
+    protected static void traverseFileSystem(final File rootDir, final File baseDir, final ResourceHandler handler) {
         for (final File file : baseDir.listFiles()) {
             if (file.isDirectory()) {
                 traverseFileSystem(rootDir, file, handler);
             } else {
                 final int pos = FileUtil.getCanonicalPath(rootDir).length();
                 final String filePath = FileUtil.getCanonicalPath(file);
-                final String resourcePath = filePath.substring(pos + 1)
-                        .replace('\\', '/');
+                final String resourcePath = filePath.substring(pos + 1).replace('\\', '/');
                 final InputStream is = InputStreamUtil.create(file);
                 try {
                     handler.processResource(resourcePath, is);
@@ -236,8 +227,7 @@ public abstract class ResourceTraversalUtil {
      *            ベースディレクトリ
      * @return ベースディレクトリを表す{@link File}
      */
-    protected static File getBaseDir(final File rootDir,
-            final String baseDirectory) {
+    protected static File getBaseDir(final File rootDir, final String baseDirectory) {
         assertArgumentNotNull("rootDir", rootDir);
 
         File baseDir = rootDir;

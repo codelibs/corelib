@@ -63,11 +63,9 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetPrimitiveClass() {
-        assertThat(ClassUtil.getPrimitiveClass(Integer.class),
-                is(sameClass(int.class)));
+        assertThat(ClassUtil.getPrimitiveClass(Integer.class), is(sameClass(int.class)));
         assertThat(ClassUtil.getPrimitiveClass(String.class), is(nullValue()));
-        assertThat(ClassUtil.getPrimitiveClass(Byte.class),
-                is(sameClass(byte.class)));
+        assertThat(ClassUtil.getPrimitiveClass(Byte.class), is(sameClass(byte.class)));
     }
 
     /**
@@ -75,12 +73,9 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetPrimitiveClassIfWrapper() {
-        assertThat(ClassUtil.getPrimitiveClassIfWrapper(Integer.class),
-                is(sameClass(int.class)));
-        assertThat(ClassUtil.getPrimitiveClassIfWrapper(String.class),
-                is(sameClass(String.class)));
-        assertThat(ClassUtil.getPrimitiveClassIfWrapper(Byte.class),
-                is(sameClass(byte.class)));
+        assertThat(ClassUtil.getPrimitiveClassIfWrapper(Integer.class), is(sameClass(int.class)));
+        assertThat(ClassUtil.getPrimitiveClassIfWrapper(String.class), is(sameClass(String.class)));
+        assertThat(ClassUtil.getPrimitiveClassIfWrapper(Byte.class), is(sameClass(byte.class)));
     }
 
     /**
@@ -88,11 +83,9 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetWrapperClass() {
-        assertThat(ClassUtil.getWrapperClass(int.class),
-                is(sameClass(Integer.class)));
+        assertThat(ClassUtil.getWrapperClass(int.class), is(sameClass(Integer.class)));
         assertThat(ClassUtil.getWrapperClass(String.class), is(nullValue()));
-        assertThat(ClassUtil.getWrapperClass(byte.class),
-                is(sameClass(Byte.class)));
+        assertThat(ClassUtil.getWrapperClass(byte.class), is(sameClass(Byte.class)));
     }
 
     /**
@@ -100,12 +93,9 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetWrapperClassIfWrapper() {
-        assertThat(ClassUtil.getWrapperClassIfPrimitive(int.class),
-                is(sameClass(Integer.class)));
-        assertThat(ClassUtil.getWrapperClassIfPrimitive(String.class),
-                is(sameClass(String.class)));
-        assertThat(ClassUtil.getWrapperClassIfPrimitive(byte.class),
-                is(sameClass(Byte.class)));
+        assertThat(ClassUtil.getWrapperClassIfPrimitive(int.class), is(sameClass(Integer.class)));
+        assertThat(ClassUtil.getWrapperClassIfPrimitive(String.class), is(sameClass(String.class)));
+        assertThat(ClassUtil.getWrapperClassIfPrimitive(byte.class), is(sameClass(Byte.class)));
     }
 
     /**
@@ -113,12 +103,9 @@ public class ClassUtilTest {
      */
     @Test
     public void testIsAssignableFrom() {
-        assertThat(ClassUtil.isAssignableFrom(Number.class, Integer.class),
-                is(true));
-        assertThat(ClassUtil.isAssignableFrom(Integer.class, Number.class),
-                is(not(true)));
-        assertThat(ClassUtil.isAssignableFrom(int.class, Integer.class),
-                is(true));
+        assertThat(ClassUtil.isAssignableFrom(Number.class, Integer.class), is(true));
+        assertThat(ClassUtil.isAssignableFrom(Integer.class, Number.class), is(not(true)));
+        assertThat(ClassUtil.isAssignableFrom(int.class, Integer.class), is(true));
     }
 
     /**
@@ -126,8 +113,7 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetPackageName() {
-        assertThat(ClassUtil.getPackageName(getClass()),
-                is("org.codelibs.core.lang"));
+        assertThat(ClassUtil.getPackageName(getClass()), is("org.codelibs.core.lang"));
     }
 
     /**
@@ -135,8 +121,7 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetShortClassName() {
-        assertThat(ClassUtil.getShortClassName(getClass().getName()),
-                is("ClassUtilTest"));
+        assertThat(ClassUtil.getShortClassName(getClass().getName()), is("ClassUtilTest"));
     }
 
     /**
@@ -161,11 +146,9 @@ public class ClassUtilTest {
     @Test
     public void testGetSimpleClassName() {
         assertThat(ClassUtil.getSimpleClassName(int.class), is("int"));
-        assertThat(ClassUtil.getSimpleClassName(String.class),
-                is("java.lang.String"));
+        assertThat(ClassUtil.getSimpleClassName(String.class), is("java.lang.String"));
         assertThat(ClassUtil.getSimpleClassName(int[].class), is("int[]"));
-        assertThat(ClassUtil.getSimpleClassName(String[][].class),
-                is("java.lang.String[][]"));
+        assertThat(ClassUtil.getSimpleClassName(String[][].class), is("java.lang.String[][]"));
     }
 
     /**
@@ -190,8 +173,7 @@ public class ClassUtilTest {
      */
     @Test
     public void testGetResourcePath() {
-        assertThat(ClassUtil.getResourcePath(getClass()),
-                is("org/codelibs/core/lang/ClassUtilTest.class"));
+        assertThat(ClassUtil.getResourcePath(getClass()), is("org/codelibs/core/lang/ClassUtilTest.class"));
     }
 
     /**
@@ -213,8 +195,7 @@ public class ClassUtilTest {
     @Test
     public void testConvertClass() {
         assertThat(ClassUtil.convertClass("int"), is(sameClass(int.class)));
-        assertThat(ClassUtil.convertClass("java.lang.String"),
-                is(sameClass(String.class)));
+        assertThat(ClassUtil.convertClass("java.lang.String"), is(sameClass(String.class)));
     }
 
 }

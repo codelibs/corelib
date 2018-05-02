@@ -285,8 +285,7 @@ public class Tokenizer {
                 }
                 buf[i++] = (char) peekc;
                 peekc = read();
-                peekct = peekc < 0 ? CT_WHITESPACE : peekc < 256 ? ctype[peekc]
-                        : CT_ALPHA;
+                peekct = peekc < 0 ? CT_WHITESPACE : peekc < 256 ? ctype[peekc] : CT_ALPHA;
             } while ((peekct & CT_ALPHA) != 0);
             sval = String.copyValueOf(buf, 0, i);
             ttype = TT_WORD;
@@ -332,8 +331,7 @@ public class Tokenizer {
         if (peekct == 0) {
             ttype = peekc;
             peekc = read();
-            peekct = peekc < 0 ? CT_WHITESPACE : peekc < 256 ? ctype[peekc]
-                    : CT_ALPHA;
+            peekct = peekc < 0 ? CT_WHITESPACE : peekc < 256 ? ctype[peekc] : CT_ALPHA;
             return true;
         }
         return false;

@@ -243,8 +243,7 @@ public abstract class TimeConversionUtil {
      *            ロケール
      * @return 変換された{@link Date}
      */
-    protected static Date toDate(final Object src, final String pattern,
-            final Locale locale) {
+    protected static Date toDate(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -262,8 +261,7 @@ public abstract class TimeConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern,
-                    locale);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return date;
@@ -329,8 +327,7 @@ public abstract class TimeConversionUtil {
      *            ロケール
      * @return 変換された{@link Date}
      */
-    protected static Calendar toCalendar(final Object src,
-            final String pattern, final Locale locale) {
+    protected static Calendar toCalendar(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -345,8 +342,7 @@ public abstract class TimeConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern,
-                    locale);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return toCalendar(date, locale);
@@ -412,8 +408,7 @@ public abstract class TimeConversionUtil {
      *            ロケール
      * @return 変換された{@link Time}
      */
-    protected static Time toSqlTime(final Object src, final String pattern,
-            final Locale locale) {
+    protected static Time toSqlTime(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
             return null;
         }
@@ -431,8 +426,7 @@ public abstract class TimeConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern,
-                    locale);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return new Time(date.getTime());
@@ -460,9 +454,7 @@ public abstract class TimeConversionUtil {
      */
     @SuppressWarnings("unchecked")
     protected static Date toDate(final String str, final Locale locale) {
-        for (final DateFormat format : MultiIterator.iterable(
-                new DateFormatIterator(locale), new PlainDateFormatIterator(
-                        str, locale))) {
+        for (final DateFormat format : MultiIterator.iterable(new DateFormatIterator(locale), new PlainDateFormatIterator(str, locale))) {
             if (format == null) {
                 continue;
             }
@@ -619,8 +611,7 @@ public abstract class TimeConversionUtil {
      *
      * @author koichik
      */
-    protected static class PlainDateFormatIterator implements
-            Iterator<DateFormat> {
+    protected static class PlainDateFormatIterator implements Iterator<DateFormat> {
 
         /** 変換元の文字列 */
         protected final String src;

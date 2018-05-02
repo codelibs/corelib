@@ -66,9 +66,7 @@ public class FieldDescImpl implements FieldDesc {
         this.field = field;
         fieldName = field.getName();
         fieldType = field.getType();
-        parameterizedClassDesc = ParameterizedClassDescFactory
-                .createParameterizedClassDesc(field,
-                        beanDesc.getTypeVariables());
+        parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(field, beanDesc.getTypeVariables());
     }
 
     @Override
@@ -109,8 +107,7 @@ public class FieldDescImpl implements FieldDesc {
 
     @Override
     public boolean isParameterized() {
-        return parameterizedClassDesc != null
-                && parameterizedClassDesc.isParameterizedClass();
+        return parameterizedClassDesc != null && parameterizedClassDesc.isParameterizedClass();
     }
 
     @Override
@@ -123,8 +120,7 @@ public class FieldDescImpl implements FieldDesc {
         if (!Collection.class.isAssignableFrom(fieldType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -136,8 +132,7 @@ public class FieldDescImpl implements FieldDesc {
         if (!Map.class.isAssignableFrom(fieldType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -149,8 +144,7 @@ public class FieldDescImpl implements FieldDesc {
         if (!Map.class.isAssignableFrom(fieldType) || !isParameterized()) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDesc
-                .getArguments()[1];
+        final ParameterizedClassDesc pcd = parameterizedClassDesc.getArguments()[1];
         if (pcd == null) {
             return null;
         }
@@ -169,8 +163,7 @@ public class FieldDescImpl implements FieldDesc {
     @Override
     public <T> T getStaticFieldValue() {
         if (!isStatic()) {
-            throw new FieldNotStaticRuntimeException(beanDesc.getBeanClass(),
-                    fieldName);
+            throw new FieldNotStaticRuntimeException(beanDesc.getBeanClass(), fieldName);
         }
         return (T) FieldUtil.get(field);
     }
@@ -185,8 +178,7 @@ public class FieldDescImpl implements FieldDesc {
     @Override
     public void setStaticFieldValue(final Object value) {
         if (!isStatic()) {
-            throw new FieldNotStaticRuntimeException(beanDesc.getBeanClass(),
-                    fieldName);
+            throw new FieldNotStaticRuntimeException(beanDesc.getBeanClass(), fieldName);
         }
         FieldUtil.set(field, value);
     }

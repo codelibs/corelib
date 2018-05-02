@@ -82,13 +82,11 @@ public abstract class SAXParserFactoryUtil {
      *            XIncludeを有効にするなら<code>true</code>
      * @return XIncludeの有効／無効を設定できた場合は<code>true</code>
      */
-    public static boolean setXIncludeAware(final SAXParserFactory spf,
-            final boolean state) {
+    public static boolean setXIncludeAware(final SAXParserFactory spf, final boolean state) {
         assertArgumentNotNull("spf", spf);
 
         try {
-            final Method method = ClassUtil.getMethod(spf.getClass(),
-                    "setXIncludeAware", boolean.class);
+            final Method method = ClassUtil.getMethod(spf.getClass(), "setXIncludeAware", boolean.class);
             MethodUtil.invoke(method, spf, state);
             return true;
         } catch (final RuntimeException e) {

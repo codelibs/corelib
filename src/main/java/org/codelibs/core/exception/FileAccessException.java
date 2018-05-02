@@ -25,8 +25,7 @@ public class FileAccessException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public FileAccessException(final String messageCode, final Object[] args,
-            final Throwable cause) {
+    public FileAccessException(final String messageCode, final Object[] args, final Throwable cause) {
         super(messageCode, args, cause);
     }
 

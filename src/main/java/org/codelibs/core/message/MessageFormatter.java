@@ -49,10 +49,8 @@ public abstract class MessageFormatter {
      *            引数
      * @return メッセージ
      */
-    public static String getMessage(final String messageCode,
-            final Object... args) {
-        return getFormattedMessage(messageCode == null ? "" : messageCode,
-                getSimpleMessage(messageCode, args));
+    public static String getMessage(final String messageCode, final Object... args) {
+        return getFormattedMessage(messageCode == null ? "" : messageCode, getSimpleMessage(messageCode, args));
     }
 
     /**
@@ -64,8 +62,7 @@ public abstract class MessageFormatter {
      *            引数が展開された単純なメッセージ
      * @return メッセージコードつきのメッセージ
      */
-    public static String getFormattedMessage(final String messageCode,
-            final String simpleMessage) {
+    public static String getFormattedMessage(final String messageCode, final String simpleMessage) {
         return "[" + messageCode + "]" + simpleMessage;
     }
 
@@ -78,8 +75,7 @@ public abstract class MessageFormatter {
      *            引数
      * @return メッセージコードなしの単純なメッセージ
      */
-    public static String getSimpleMessage(final String messageCode,
-            final Object... args) {
+    public static String getSimpleMessage(final String messageCode, final Object... args) {
         try {
             final String pattern = getPattern(messageCode);
             if (pattern != null) {
@@ -109,10 +105,8 @@ public abstract class MessageFormatter {
 
         final int length = messageCode.length();
         if (length > CODE_NUMBER_LENGTH) {
-            final String key = messageCode.charAt(0)
-                    + messageCode.substring(length - CODE_NUMBER_LENGTH);
-            final String pattern = ResourceBundleUtil.getString(resourceBundle,
-                    key);
+            final String key = messageCode.charAt(0) + messageCode.substring(length - CODE_NUMBER_LENGTH);
+            final String pattern = ResourceBundleUtil.getString(resourceBundle, key);
             if (pattern != null) {
                 return pattern;
             }
@@ -128,8 +122,7 @@ public abstract class MessageFormatter {
      * @return システム名
      */
     protected static String getSystemName(final String messageCode) {
-        return messageCode.substring(1,
-                Math.max(1, messageCode.length() - CODE_NUMBER_LENGTH));
+        return messageCode.substring(1, Math.max(1, messageCode.length() - CODE_NUMBER_LENGTH));
     }
 
     /**
@@ -143,8 +136,7 @@ public abstract class MessageFormatter {
         if (!initialized) {
             initialize();
         }
-        return ResourceBundleUtil.getBundle(systemName + MESSAGES,
-                LocaleUtil.getDefault());
+        return ResourceBundleUtil.getBundle(systemName + MESSAGES, LocaleUtil.getDefault());
     }
 
     /**

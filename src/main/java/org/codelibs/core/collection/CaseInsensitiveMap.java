@@ -67,8 +67,7 @@ public class CaseInsensitiveMap<V> extends ArrayMap<String, V> {
 
     @Override
     public void putAll(final Map<? extends String, ? extends V> map) {
-        for (final Map.Entry<? extends String, ? extends V> entry : map
-                .entrySet()) {
+        for (final Map.Entry<? extends String, ? extends V> entry : map.entrySet()) {
             put(convertKey(entry.getKey()), entry.getValue());
         }
     }

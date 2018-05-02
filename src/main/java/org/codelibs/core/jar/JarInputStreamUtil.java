@@ -41,8 +41,7 @@ public abstract class JarInputStreamUtil {
      *             {@link IOException}が発生した場合
      * @see JarInputStream#JarInputStream(InputStream)
      */
-    public static JarInputStream create(final InputStream is)
-            throws IORuntimeException {
+    public static JarInputStream create(final InputStream is) throws IORuntimeException {
         assertArgumentNotNull("is", is);
 
         try {
@@ -62,8 +61,7 @@ public abstract class JarInputStreamUtil {
      *             {@link IOException}が発生した場合
      * @see JarInputStream#getNextJarEntry()
      */
-    public static JarEntry getNextJarEntry(final JarInputStream is)
-            throws IORuntimeException {
+    public static JarEntry getNextJarEntry(final JarInputStream is) throws IORuntimeException {
         assertArgumentNotNull("is", is);
 
         try {

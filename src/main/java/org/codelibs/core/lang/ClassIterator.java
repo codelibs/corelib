@@ -74,8 +74,7 @@ public class ClassIterator implements Iterator<Class<?>> {
      *            {@link Object}クラスも反復する場合は {@literal true}
      * @return {@link ClassIterator}をラップした{@link Iterable}
      */
-    public static Iterable<Class<?>> iterable(final Class<?> clazz,
-            final boolean includeObject) {
+    public static Iterable<Class<?>> iterable(final Class<?> clazz, final boolean includeObject) {
         return () -> new ClassIterator(clazz, includeObject);
     }
 
@@ -99,8 +98,7 @@ public class ClassIterator implements Iterator<Class<?>> {
      */
     public ClassIterator(final Class<?> clazz, final boolean includeObject) {
         assertArgumentNotNull("clazz", clazz);
-        assertArgument("clazz", !clazz.isInterface(),
-                MessageFormatter.getSimpleMessage("ECL0103", clazz));
+        assertArgument("clazz", !clazz.isInterface(), MessageFormatter.getSimpleMessage("ECL0103", clazz));
 
         this.clazz = clazz;
         this.includeObject = includeObject;

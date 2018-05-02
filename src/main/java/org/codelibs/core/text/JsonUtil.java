@@ -47,42 +47,42 @@ public class JsonUtil {
         for (int i = 0; i < len; i++) {
             c = value.charAt(i);
             switch (c) {
-                case '\\':
-                case '"':
-                    buf.append('\\');
-                    buf.append(c);
-                    break;
-                case '/':
-                    buf.append('\\');
-                    buf.append(c);
-                    break;
-                case '\b':
-                    buf.append("\\b");
-                    break;
-                case '\t':
-                    buf.append("\\t");
-                    break;
-                case '\n':
-                    buf.append("\\n");
-                    break;
-                case '\f':
-                    buf.append("\\f");
-                    break;
-                case '\r':
-                    buf.append("\\r");
-                    break;
-                default:
-                    if (c < ' ') {
-                        final String hex = Integer.toHexString(c);
-                        buf.append("\\u");
-                        for (int j = 0; j < 4 - hex.length(); j++) {
-                            buf.append('0');
+            case '\\':
+            case '"':
+                buf.append('\\');
+                buf.append(c);
+                break;
+            case '/':
+                buf.append('\\');
+                buf.append(c);
+                break;
+            case '\b':
+                buf.append("\\b");
+                break;
+            case '\t':
+                buf.append("\\t");
+                break;
+            case '\n':
+                buf.append("\\n");
+                break;
+            case '\f':
+                buf.append("\\f");
+                break;
+            case '\r':
+                buf.append("\\r");
+                break;
+            default:
+                if (c < ' ') {
+                    final String hex = Integer.toHexString(c);
+                    buf.append("\\u");
+                    for (int j = 0; j < 4 - hex.length(); j++) {
+                        buf.append('0');
 
-                        }
-                        buf.append(hex);
-                    } else {
-                        buf.append(c);
                     }
+                    buf.append(hex);
+                } else {
+                    buf.append(c);
+                }
             }
         }
         return buf.toString();

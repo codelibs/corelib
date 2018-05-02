@@ -41,8 +41,7 @@ import org.junit.rules.TemporaryFolder;
  */
 public class PropertiesUtilTest {
 
-    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/')
-            + ".txt");
+    URL url = ResourceUtil.getResource(getClass().getName().replace('.', '/') + ".txt");
 
     File inputFile = URLUtil.toFile(url);
 
@@ -65,8 +64,7 @@ public class PropertiesUtilTest {
      */
     @Test
     public void testLoadPropertiesInputStream() {
-        final InputStream inputStream = ResourceUtil
-                .getResourceAsStream("org/codelibs/core/io/test.properties");
+        final InputStream inputStream = ResourceUtil.getResourceAsStream("org/codelibs/core/io/test.properties");
         final Properties properties = new Properties();
         PropertiesUtil.load(properties, inputStream);
         assertThat(properties.getProperty("hoge"), is("ほげ"));
@@ -81,8 +79,7 @@ public class PropertiesUtilTest {
     public void testLoadPropertiesInputStreamPropsNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[ECL0008]argument[props] is null."));
-        final InputStream inputStream = ResourceUtil
-                .getResourceAsStream("org/codelibs/core/io/test.properties");
+        final InputStream inputStream = ResourceUtil.getResourceAsStream("org/codelibs/core/io/test.properties");
         PropertiesUtil.load(null, inputStream);
     }
 
@@ -107,10 +104,8 @@ public class PropertiesUtilTest {
      */
     @Test
     public void testLoadPropertiesReader() {
-        final InputStreamReader inputStreamReader = ReaderUtil
-                .create(ResourceUtil
-                        .getResourceAsStream("org/codelibs/core/io/test.properties"),
-                        "UTF-8");
+        final InputStreamReader inputStreamReader =
+                ReaderUtil.create(ResourceUtil.getResourceAsStream("org/codelibs/core/io/test.properties"), "UTF-8");
         final Properties properties = new Properties();
         PropertiesUtil.load(properties, inputStreamReader);
         assertThat(properties.getProperty("hoge"), is("ほげ"));
@@ -125,10 +120,8 @@ public class PropertiesUtilTest {
     public void testLoadPropertiesReaderPropsNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[ECL0008]argument[props] is null."));
-        final InputStreamReader inputStreamReader = ReaderUtil
-                .create(ResourceUtil
-                        .getResourceAsStream("org/codelibs/core/io/test.properties"),
-                        "UTF-8");
+        final InputStreamReader inputStreamReader =
+                ReaderUtil.create(ResourceUtil.getResourceAsStream("org/codelibs/core/io/test.properties"), "UTF-8");
         PropertiesUtil.load(null, inputStreamReader);
     }
 
@@ -261,8 +254,7 @@ public class PropertiesUtilTest {
     @Test
     public void testLoadPropertiesUrlThrowIOException() {
         exception.expect(IORuntimeException.class);
-        exception
-                .expectMessage(is("[ECL0040]IOException occurred, because java.io.IOException: load"));
+        exception.expectMessage(is("[ECL0040]IOException occurred, because java.io.IOException: load"));
         final Properties properties = new IOExceptionOccurProperties();
         PropertiesUtil.load(properties, url);
     }
@@ -275,8 +267,7 @@ public class PropertiesUtilTest {
         private static final long serialVersionUID = 1L;
 
         @Override
-        public synchronized void load(final InputStream inStream)
-                throws IOException {
+        public synchronized void load(final InputStream inStream) throws IOException {
             throw new IOException("load");
         }
 

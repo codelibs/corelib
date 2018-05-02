@@ -57,8 +57,7 @@ public class URLUtilTest extends TestCase {
         final File file = new File("Program Files/hoge.txt");
         final URL url = file.toURI().toURL();
         assertEquals(file.getAbsoluteFile(), URLUtil.toFile(url));
-        assertEquals(file.getAbsoluteFile(),
-                URLUtil.toFile(new URL("file:Program%20Files/hoge.txt")));
+        assertEquals(file.getAbsoluteFile(), URLUtil.toFile(new URL("file:Program%20Files/hoge.txt")));
     }
 
 }

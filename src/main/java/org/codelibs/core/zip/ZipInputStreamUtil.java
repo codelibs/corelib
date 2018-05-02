@@ -32,8 +32,7 @@ import org.codelibs.core.log.Logger;
  */
 public abstract class ZipInputStreamUtil {
 
-    private static final Logger logger = Logger
-            .getLogger(ZipInputStreamUtil.class);
+    private static final Logger logger = Logger.getLogger(ZipInputStreamUtil.class);
 
     /**
      * {@link ZipInputStream#getNextEntry()}の例外処理をラップするメソッドです。

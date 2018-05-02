@@ -45,8 +45,7 @@ public class ClIllegalArgumentException extends IllegalArgumentException {
      * @param args
      *            引数の配列
      */
-    public ClIllegalArgumentException(final String argName,
-            final String messageCode, final Object[] args) {
+    public ClIllegalArgumentException(final String argName, final String messageCode, final Object[] args) {
         this(argName, messageCode, args, null);
     }
 
@@ -62,8 +61,7 @@ public class ClIllegalArgumentException extends IllegalArgumentException {
      * @param cause
      *            原因となった例外
      */
-    public ClIllegalArgumentException(final String argName,
-            final String messageCode, final Object[] args, final Throwable cause) {
+    public ClIllegalArgumentException(final String argName, final String messageCode, final Object[] args, final Throwable cause) {
         super(MessageFormatter.getMessage(messageCode, args), cause);
         this.argName = argName;
         this.messageCode = messageCode;

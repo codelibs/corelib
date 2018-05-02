@@ -30,8 +30,7 @@ public class StreamUtil {
 
     @SafeVarargs
     public static <T> StreamOf<T> stream(final T... values) {
-        return new StreamOf<>(() -> values != null ? Arrays.stream(values)
-                : Collections.<T> emptyList().stream());
+        return new StreamOf<>(() -> values != null ? Arrays.stream(values) : Collections.<T> emptyList().stream());
     }
 
     public static StreamOf<String> split(final String value, final String regex) {
@@ -39,8 +38,7 @@ public class StreamUtil {
     }
 
     public static <K, V> StreamOf<Map.Entry<K, V>> stream(final Map<K, V> map) {
-        return new StreamOf<>(() -> map != null ? map.entrySet().stream()
-                : Collections.<K, V> emptyMap().entrySet().stream());
+        return new StreamOf<>(() -> map != null ? map.entrySet().stream() : Collections.<K, V> emptyMap().entrySet().stream());
     }
 
     public static class StreamOf<T> {

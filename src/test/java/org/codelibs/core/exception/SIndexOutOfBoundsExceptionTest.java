@@ -45,8 +45,7 @@ public class SIndexOutOfBoundsExceptionTest {
      */
     @Test
     public void testSIndexOutOfBoundsExceptionString() {
-        final ClIndexOutOfBoundsException clIndexOutOfBoundsException = new ClIndexOutOfBoundsException(
-                "hoge");
+        final ClIndexOutOfBoundsException clIndexOutOfBoundsException = new ClIndexOutOfBoundsException("hoge");
         assertThat(clIndexOutOfBoundsException.getMessage(), is("hoge"));
     }
 

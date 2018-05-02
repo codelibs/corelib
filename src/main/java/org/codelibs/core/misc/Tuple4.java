@@ -63,8 +63,7 @@ public class Tuple4<T1, T2, T3, T4> {
      *            4番目の値
      * @return 4つの値の組
      */
-    public static <T1, T2, T3, T4> Tuple4<T1, T2, T3, T4> tuple4(
-            final T1 value1, final T2 value2, final T3 value3, final T4 value4) {
+    public static <T1, T2, T3, T4> Tuple4<T1, T2, T3, T4> tuple4(final T1 value1, final T2 value2, final T3 value3, final T4 value4) {
         return new Tuple4<>(value1, value2, value3, value4);
     }
 
@@ -86,8 +85,7 @@ public class Tuple4<T1, T2, T3, T4> {
      * @param value4
      *            4番目の値
      */
-    public Tuple4(final T1 value1, final T2 value2, final T3 value3,
-            final T4 value4) {
+    public Tuple4(final T1 value1, final T2 value2, final T3 value3, final T4 value4) {
         this.value1 = value1;
         this.value2 = value2;
         this.value3 = value3;
@@ -172,8 +170,7 @@ public class Tuple4<T1, T2, T3, T4> {
 
     @Override
     public String toString() {
-        return "{" + value1 + ", " + value2 + ", " + value3 + ", " + value4
-                + "}";
+        return "{" + value1 + ", " + value2 + ", " + value3 + ", " + value4 + "}";
     }
 
     @Override

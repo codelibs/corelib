@@ -28,7 +28,6 @@ public class JsonUtilTest {
     @Test
     public void escape() {
         assertThat(JsonUtil.escape("abc123あア亜"), is("abc123あア亜"));
-        assertThat(JsonUtil.escape("\\\"/\b\t\n\f\r\0"),
-                is("\\\\\\\"\\/\\b\\t\\n\\f\\r\\u0000"));
+        assertThat(JsonUtil.escape("\\\"/\b\t\n\f\r\0"), is("\\\\\\\"\\/\\b\\t\\n\\f\\r\\u0000"));
     }
 }

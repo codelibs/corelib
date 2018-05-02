@@ -39,8 +39,7 @@ public class PropertyNotFoundRuntimeException extends ClRuntimeException {
      * @param propertyName
      *            プロパティ名
      */
-    public PropertyNotFoundRuntimeException(final Class<?> targetClass,
-            final String propertyName) {
+    public PropertyNotFoundRuntimeException(final Class<?> targetClass, final String propertyName) {
         super("ECL0065", asArray(targetClass.getName(), propertyName));
         this.targetClass = targetClass;
         this.propertyName = propertyName;

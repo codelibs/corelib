@@ -32,8 +32,7 @@ public class JarFileUtilTest extends TestCase {
         final File f = new File("/Program Files/foo.jar");
         final URL url = new URL("jar:" + f.toURI().toURL() + "!/");
         final String root = new File("/").getCanonicalPath();
-        assertEquals(root + "Program Files" + File.separator + "foo.jar",
-                JarFileUtil.toJarFilePath(url));
+        assertEquals(root + "Program Files" + File.separator + "foo.jar", JarFileUtil.toJarFilePath(url));
     }
 
     /**

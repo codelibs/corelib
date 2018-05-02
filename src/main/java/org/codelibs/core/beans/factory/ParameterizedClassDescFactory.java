@@ -66,8 +66,7 @@ public abstract class ParameterizedClassDescFactory {
      *            パラメータ化された型(クラスまたはインタフェース)。{@literal null}であってはいけません
      * @return パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
      */
-    public static Map<TypeVariable<?>, Type> getTypeVariables(
-            final Class<?> beanClass) {
+    public static Map<TypeVariable<?>, Type> getTypeVariables(final Class<?> beanClass) {
         assertArgumentNotNull("beanClass", beanClass);
 
         return getTypeVariableMap(beanClass);
@@ -83,8 +82,7 @@ public abstract class ParameterizedClassDescFactory {
      *            であってはいけません
      * @return フィールドの型を表現する{@link ParameterizedClassDesc}
      */
-    public static ParameterizedClassDesc createParameterizedClassDesc(
-            final Field field, final Map<TypeVariable<?>, Type> map) {
+    public static ParameterizedClassDesc createParameterizedClassDesc(final Field field, final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("field", field);
         assertArgumentNotNull("map", map);
 
@@ -103,14 +101,12 @@ public abstract class ParameterizedClassDescFactory {
      *            であってはいけません
      * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}
      */
-    public static ParameterizedClassDesc createParameterizedClassDesc(
-            final Constructor<?> constructor, final int index,
+    public static ParameterizedClassDesc createParameterizedClassDesc(final Constructor<?> constructor, final int index,
             final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("constructor", constructor);
         assertArgumentNotNull("map", map);
 
-        return createParameterizedClassDesc(
-                constructor.getGenericParameterTypes()[index], map);
+        return createParameterizedClassDesc(constructor.getGenericParameterTypes()[index], map);
     }
 
     /**
@@ -125,16 +121,13 @@ public abstract class ParameterizedClassDescFactory {
      *            であってはいけません
      * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}
      */
-    public static ParameterizedClassDesc createParameterizedClassDesc(
-            final Method method, final int index,
+    public static ParameterizedClassDesc createParameterizedClassDesc(final Method method, final int index,
             final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("method", method);
-        assertArgumentArrayIndex("index", index,
-                method.getParameterTypes().length);
+        assertArgumentArrayIndex("index", index, method.getParameterTypes().length);
         assertArgumentNotNull("map", map);
 
-        return createParameterizedClassDesc(
-                method.getGenericParameterTypes()[index], map);
+        return createParameterizedClassDesc(method.getGenericParameterTypes()[index], map);
     }
 
     /**
@@ -147,8 +140,7 @@ public abstract class ParameterizedClassDescFactory {
      *            であってはいけません
      * @return メソッドの戻り値型を表現する{@link ParameterizedClassDesc}
      */
-    public static ParameterizedClassDesc createParameterizedClassDesc(
-            final Method method, final Map<TypeVariable<?>, Type> map) {
+    public static ParameterizedClassDesc createParameterizedClassDesc(final Method method, final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("method", method);
         assertArgumentNotNull("map", map);
 
@@ -164,22 +156,19 @@ public abstract class ParameterizedClassDescFactory {
      *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
      * @return 型を表現する{@link ParameterizedClassDesc}
      */
-    protected static ParameterizedClassDesc createParameterizedClassDesc(
-            final Type type, final Map<TypeVariable<?>, Type> map) {
+    protected static ParameterizedClassDesc createParameterizedClassDesc(final Type type, final Map<TypeVariable<?>, Type> map) {
         final Class<?> rowClass = getActualClass(type, map);
         if (rowClass == null) {
             return null;
         }
-        final ParameterizedClassDescImpl desc = new ParameterizedClassDescImpl(
-                rowClass);
+        final ParameterizedClassDescImpl desc = new ParameterizedClassDescImpl(rowClass);
         final Type[] parameterTypes = getGenericParameters(type);
         if (parameterTypes == null) {
             return desc;
         }
         final ParameterizedClassDesc[] parameterDescs = new ParameterizedClassDesc[parameterTypes.length];
         for (final Indexed<Type> parameterType : indexed(iterable(parameterTypes))) {
-            parameterDescs[parameterType.getIndex()] = createParameterizedClassDesc(
-                    parameterType.getElement(), map);
+            parameterDescs[parameterType.getIndex()] = createParameterizedClassDesc(parameterType.getElement(), map);
         }
         desc.setArguments(parameterDescs);
         return desc;

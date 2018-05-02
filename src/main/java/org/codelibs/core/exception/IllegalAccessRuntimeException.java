@@ -36,8 +36,7 @@ public class IllegalAccessRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public IllegalAccessRuntimeException(final Class<?> targetClass,
-            final IllegalAccessException cause) {
+    public IllegalAccessRuntimeException(final Class<?> targetClass, final IllegalAccessException cause) {
         super("ECL0042", asArray(targetClass.getName(), cause), cause);
         this.targetClass = targetClass;
     }

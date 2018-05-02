@@ -42,8 +42,7 @@ public class StringUtilTest {
         assertEquals("2", "1234ef", StringUtil.replace("12345", "5", "ef"));
         assertEquals("3", "ab2345", StringUtil.replace("12345", "1", "ab"));
         assertEquals("4", "a234a", StringUtil.replace("12341", "1", "a"));
-        assertEquals("5", "ab234abab234ab",
-                StringUtil.replace("1234112341", "1", "ab"));
+        assertEquals("5", "ab234abab234ab", StringUtil.replace("1234112341", "1", "ab"));
         assertEquals("6", "a\\nb", StringUtil.replace("a\nb", "\n", "\\n"));
     }
 

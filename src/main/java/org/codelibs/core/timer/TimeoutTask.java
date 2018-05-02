@@ -41,8 +41,7 @@ public class TimeoutTask {
 
     private int status_ = ACTIVE;
 
-    TimeoutTask(final TimeoutTarget timeoutTarget, final int timeout,
-            final boolean permanent) {
+    TimeoutTask(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
         timeoutTarget_ = timeoutTarget;
         timeoutMillis_ = timeout * 1000L;
         permanent_ = permanent;

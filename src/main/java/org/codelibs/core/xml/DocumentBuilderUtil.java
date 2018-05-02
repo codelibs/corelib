@@ -43,8 +43,7 @@ public abstract class DocumentBuilderUtil {
      *            入力ストリーム。{@literal null}であってはいけません
      * @return {@link Document}
      */
-    public static Document parse(final DocumentBuilder builder,
-            final InputStream is) {
+    public static Document parse(final DocumentBuilder builder, final InputStream is) {
         assertArgumentNotNull("builder", builder);
         assertArgumentNotNull("is", is);
 

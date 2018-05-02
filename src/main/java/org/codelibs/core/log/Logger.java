@@ -91,27 +91,24 @@ public class Logger {
      *            引数
      * @return フォーマットされたメッセージ文字列
      */
-    public static LogMessage format(final String messageCode,
-            final Object... args) {
+    public static LogMessage format(final String messageCode, final Object... args) {
         assertArgumentNotEmpty("messageCode", messageCode);
 
         final char messageType = messageCode.charAt(0);
-        final String message = MessageFormatter.getSimpleMessage(messageCode,
-                args);
+        final String message = MessageFormatter.getSimpleMessage(messageCode, args);
         switch (messageType) {
-            case 'D':
-                return new LogMessage(LogLevel.DEBUG, message);
-            case 'I':
-                return new LogMessage(LogLevel.INFO, message);
-            case 'W':
-                return new LogMessage(LogLevel.WARN, message);
-            case 'E':
-                return new LogMessage(LogLevel.ERROR, message);
-            case 'F':
-                return new LogMessage(LogLevel.FATAL, message);
-            default:
-                throw new ClIllegalArgumentException("messageCode", "ECL0009",
-                        asArray(messageCode, "messageCode : " + messageCode));
+        case 'D':
+            return new LogMessage(LogLevel.DEBUG, message);
+        case 'I':
+            return new LogMessage(LogLevel.INFO, message);
+        case 'W':
+            return new LogMessage(LogLevel.WARN, message);
+        case 'E':
+            return new LogMessage(LogLevel.ERROR, message);
+        case 'F':
+            return new LogMessage(LogLevel.FATAL, message);
+        default:
+            throw new ClIllegalArgumentException("messageCode", "ECL0009", asArray(messageCode, "messageCode : " + messageCode));
         }
     }
 
@@ -367,21 +364,21 @@ public class Logger {
         if (isEnabledFor(level)) {
             final String message = logMessage.getMessage();
             switch (level) {
-                case DEBUG:
-                    log.debug(message, throwable);
-                    break;
-                case INFO:
-                    log.info(message, throwable);
-                    break;
-                case WARN:
-                    log.warn(message, throwable);
-                    break;
-                case ERROR:
-                    log.error(message, throwable);
-                    break;
-                case FATAL:
-                    log.fatal(message, throwable);
-                    break;
+            case DEBUG:
+                log.debug(message, throwable);
+                break;
+            case INFO:
+                log.info(message, throwable);
+                break;
+            case WARN:
+                log.warn(message, throwable);
+                break;
+            case ERROR:
+                log.error(message, throwable);
+                break;
+            case FATAL:
+                log.fatal(message, throwable);
+                break;
             }
         }
     }
@@ -395,19 +392,18 @@ public class Logger {
      */
     protected boolean isEnabledFor(final LogLevel logLevel) {
         switch (logLevel) {
-            case DEBUG:
-                return log.isDebugEnabled();
-            case INFO:
-                return log.isInfoEnabled();
-            case WARN:
-                return log.isWarnEnabled();
-            case ERROR:
-                return log.isErrorEnabled();
-            case FATAL:
-                return log.isFatalEnabled();
-            default:
-                throw new ClIllegalArgumentException("logLevel", "ECL0009",
-                        asArray(logLevel, logLevel));
+        case DEBUG:
+            return log.isDebugEnabled();
+        case INFO:
+            return log.isInfoEnabled();
+        case WARN:
+            return log.isWarnEnabled();
+        case ERROR:
+            return log.isErrorEnabled();
+        case FATAL:
+            return log.isFatalEnabled();
+        default:
+            throw new ClIllegalArgumentException("logLevel", "ECL0009", asArray(logLevel, logLevel));
         }
     }
 

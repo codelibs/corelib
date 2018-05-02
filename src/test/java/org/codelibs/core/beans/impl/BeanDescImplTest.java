@@ -187,37 +187,31 @@ public class BeanDescImplTest {
         BeanDesc bd = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc pd = bd.getPropertyDesc("foo");
         assertThat(pd.isParameterized(), is(true));
-        assertThat(pd.getElementClassOfCollection(),
-                is(sameClass(String.class)));
+        assertThat(pd.getElementClassOfCollection(), is(sameClass(String.class)));
 
         ParameterizedClassDesc pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(List.class)));
         assertThat(pcd.getArguments().length, is(1));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(String.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(String.class)));
 
         pd = bd.getPropertyDesc("hoge");
         assertThat(pd.isParameterized(), is(true));
-        assertThat(pd.getElementClassOfCollection(),
-                is(sameClass(Object.class)));
+        assertThat(pd.getElementClassOfCollection(), is(sameClass(Object.class)));
 
         pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(List.class)));
         assertThat(pcd.getArguments().length, is(1));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(Object.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(Object.class)));
 
         bd = BeanDescFactory.getBeanDesc(Bar.class);
         pd = bd.getPropertyDesc("list");
         assertThat(pd.isParameterized(), is(true));
-        assertThat(pd.getElementClassOfCollection(),
-                is(sameClass(String.class)));
+        assertThat(pd.getElementClassOfCollection(), is(sameClass(String.class)));
 
         pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(List.class)));
         assertThat(pcd.getArguments().length, is(1));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(String.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(String.class)));
     }
 
     /**
@@ -227,14 +221,12 @@ public class BeanDescImplTest {
         final BeanDesc bd = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc pd = bd.getPropertyDesc("bar");
         assertThat(pd.isParameterized(), is(true));
-        assertThat(pd.getElementClassOfCollection(),
-                is(sameClass(Integer.class)));
+        assertThat(pd.getElementClassOfCollection(), is(sameClass(Integer.class)));
 
         ParameterizedClassDesc pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(Set.class)));
         assertThat(pcd.getArguments().length, is(1));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(Integer.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(Integer.class)));
 
         pd = bd.getPropertyDesc("fuga");
         assertThat(pd.isParameterized(), is(true));
@@ -243,8 +235,7 @@ public class BeanDescImplTest {
         pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(Set.class)));
         assertThat(pcd.getArguments().length, is(1));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(Enum.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(Enum.class)));
     }
 
     /**
@@ -260,10 +251,8 @@ public class BeanDescImplTest {
         ParameterizedClassDesc pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(Map.class)));
         assertThat(pcd.getArguments().length, is(2));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(String.class)));
-        assertThat(pcd.getArguments()[1].getRawClass(),
-                is(sameClass(Date.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(String.class)));
+        assertThat(pcd.getArguments()[1].getRawClass(), is(sameClass(Date.class)));
 
         pd = bd.getPropertyDesc("hege");
         assertThat(pd.isParameterized(), is(true));
@@ -273,10 +262,8 @@ public class BeanDescImplTest {
         pcd = pd.getParameterizedClassDesc();
         assertThat(pcd.getRawClass(), is(sameClass(Map.class)));
         assertThat(pcd.getArguments().length, is(2));
-        assertThat(pcd.getArguments()[0].getRawClass(),
-                is(sameClass(String.class)));
-        assertThat(pcd.getArguments()[1].getRawClass(),
-                is(sameClass(Number.class)));
+        assertThat(pcd.getArguments()[0].getRawClass(), is(sameClass(String.class)));
+        assertThat(pcd.getArguments()[1].getRawClass(), is(sameClass(Number.class)));
     }
 
     /**
@@ -427,8 +414,7 @@ public class BeanDescImplTest {
          * @param bean1
          * @param bean2
          */
-        public MyBean2(final int num, final String text, final MyBean bean1,
-                final MyBean2 bean2) {
+        public MyBean2(final int num, final String text, final MyBean bean1, final MyBean2 bean2) {
         }
 
         /**

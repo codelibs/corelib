@@ -57,8 +57,7 @@ public class ConstructorDescImpl implements ConstructorDesc {
      * @param constructor
      *            コンストラクタ。{@literal null}であってはいけません
      */
-    public ConstructorDescImpl(final BeanDesc beanDesc,
-            final Constructor<?> constructor) {
+    public ConstructorDescImpl(final BeanDesc beanDesc, final Constructor<?> constructor) {
         assertArgumentNotNull("beanDesc", beanDesc);
         assertArgumentNotNull("constructor", constructor);
 
@@ -66,11 +65,9 @@ public class ConstructorDescImpl implements ConstructorDesc {
         this.constructor = constructor;
         parameterTypes = constructor.getParameterTypes();
         parameterizedClassDescs = new ParameterizedClassDesc[parameterTypes.length];
-        final Map<TypeVariable<?>, Type> typeVariables = beanDesc
-                .getTypeVariables();
+        final Map<TypeVariable<?>, Type> typeVariables = beanDesc.getTypeVariables();
         for (int i = 0; i < parameterTypes.length; ++i) {
-            parameterizedClassDescs[i] = ParameterizedClassDescFactory
-                    .createParameterizedClassDesc(constructor, i, typeVariables);
+            parameterizedClassDescs[i] = ParameterizedClassDescFactory.createParameterizedClassDesc(constructor, i, typeVariables);
         }
     }
 
@@ -111,12 +108,10 @@ public class ConstructorDescImpl implements ConstructorDesc {
     public Class<?> getElementClassOfCollection(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Collection.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Collection.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -127,12 +122,10 @@ public class ConstructorDescImpl implements ConstructorDesc {
     public Class<?> getKeyClassOfMap(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Map.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Map.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[0];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[0];
         if (pcd == null) {
             return null;
         }
@@ -143,12 +136,10 @@ public class ConstructorDescImpl implements ConstructorDesc {
     public Class<?> getValueClassOfMap(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        if (!Map.class.isAssignableFrom(parameterTypes[index])
-                || !isParameterized(index)) {
+        if (!Map.class.isAssignableFrom(parameterTypes[index]) || !isParameterized(index)) {
             return null;
         }
-        final ParameterizedClassDesc pcd = parameterizedClassDescs[index]
-                .getArguments()[1];
+        final ParameterizedClassDesc pcd = parameterizedClassDescs[index].getArguments()[1];
         if (pcd == null) {
             return null;
         }

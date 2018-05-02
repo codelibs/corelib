@@ -20,8 +20,7 @@ package org.codelibs.core.exception;
  *
  * @author wyukawa
  */
-public class ClUnsupportedOperationException extends
-        UnsupportedOperationException {
+public class ClUnsupportedOperationException extends UnsupportedOperationException {
 
     private static final long serialVersionUID = -6732367317955522602L;
 
@@ -49,8 +48,7 @@ public class ClUnsupportedOperationException extends
      * @param cause
      *            元の例外
      */
-    public ClUnsupportedOperationException(final String message,
-            final Throwable cause) {
+    public ClUnsupportedOperationException(final String message, final Throwable cause) {
         super(message, cause);
     }
 

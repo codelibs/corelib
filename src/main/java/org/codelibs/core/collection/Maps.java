@@ -60,8 +60,7 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link Map}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> map(final KEY key,
-            final VALUE value) {
+    public static <KEY, VALUE> Maps<KEY, VALUE> map(final KEY key, final VALUE value) {
         return linkedHashMap(key, value);
     }
 
@@ -78,10 +77,8 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link ConcurrentHashMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> concurrentHashMap(
-            final KEY key, final VALUE value) {
-        return new Maps<>(new ConcurrentHashMap<KEY, VALUE>()).$(key,
-                value);
+    public static <KEY, VALUE> Maps<KEY, VALUE> concurrentHashMap(final KEY key, final VALUE value) {
+        return new Maps<>(new ConcurrentHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
@@ -97,8 +94,7 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link HashMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> hashMap(final KEY key,
-            final VALUE value) {
+    public static <KEY, VALUE> Maps<KEY, VALUE> hashMap(final KEY key, final VALUE value) {
         return new Maps<>(new HashMap<KEY, VALUE>()).$(key, value);
     }
 
@@ -115,8 +111,7 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link Hashtable}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> hashtable(final KEY key,
-            final VALUE value) {
+    public static <KEY, VALUE> Maps<KEY, VALUE> hashtable(final KEY key, final VALUE value) {
         return new Maps<>(new Hashtable<KEY, VALUE>()).$(key, value);
     }
 
@@ -133,10 +128,8 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link IdentityHashMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> identityHashMap(final KEY key,
-            final VALUE value) {
-        return new Maps<>(new IdentityHashMap<KEY, VALUE>()).$(key,
-                value);
+    public static <KEY, VALUE> Maps<KEY, VALUE> identityHashMap(final KEY key, final VALUE value) {
+        return new Maps<>(new IdentityHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
@@ -152,10 +145,8 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link LinkedHashMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> linkedHashMap(final KEY key,
-            final VALUE value) {
-        return new Maps<>(new LinkedHashMap<KEY, VALUE>()).$(key,
-                value);
+    public static <KEY, VALUE> Maps<KEY, VALUE> linkedHashMap(final KEY key, final VALUE value) {
+        return new Maps<>(new LinkedHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
@@ -171,8 +162,7 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link TreeMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> treeMap(final KEY key,
-            final VALUE value) {
+    public static <KEY, VALUE> Maps<KEY, VALUE> treeMap(final KEY key, final VALUE value) {
         return new Maps<>(new TreeMap<KEY, VALUE>()).$(key, value);
     }
 
@@ -189,10 +179,8 @@ public class Maps<K, V> {
      *            <code>Map</code>に追加される値
      * @return 指定されたキーと値を持つ{@link WeakHashMap}を構築するための{@literal Maps}
      */
-    public static <KEY, VALUE> Maps<KEY, VALUE> weakHashMap(final KEY key,
-            final VALUE value) {
-        return new Maps<>(new WeakHashMap<KEY, VALUE>())
-                .$(key, value);
+    public static <KEY, VALUE> Maps<KEY, VALUE> weakHashMap(final KEY key, final VALUE value) {
+        return new Maps<>(new WeakHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**

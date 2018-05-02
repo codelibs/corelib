@@ -72,8 +72,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_ShortStyle() throws Exception {
         final Date date = toDate("10/9/7 11:49");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:00"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date), is("2010/09/07 11:49:00"));
     }
 
     /**
@@ -82,8 +81,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_MediumStyle() throws Exception {
         final Date date = toDate("2010/9/7 11:49:10");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -114,8 +112,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_PlainFormat() throws Exception {
         final Date date = toDate("20100907 114910");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -124,9 +121,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_JdbcEscapeFormat() throws Exception {
         final Date date = toDate("2010-09-07 11:49:10.123");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS").format(date),
-                is("2010/09/07 11:49:10.123"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS").format(date), is("2010/09/07 11:49:10.123"));
     }
 
     /**
@@ -135,8 +130,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_SpecificLocale() throws Exception {
         final Date date = toDate("SEP 7, 2010 11:49:10 AM", Locale.US);
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -145,8 +139,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToDate_SpecificPattern() throws Exception {
         final Date date = toDate("07/09/10 10:49:11", "dd/MM/yy ss:mm:HH");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -171,8 +164,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_ShortStyle() throws Exception {
         final Calendar calendar = toCalendar("10/9/7 11:49");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:00"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:00"));
     }
 
     /**
@@ -181,8 +173,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_MediumStyle() throws Exception {
         final Calendar calendar = toCalendar("2010/9/7 11:49:10");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -213,8 +204,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_PlainFormat() throws Exception {
         final Calendar calendar = toCalendar("20100907 114910");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -223,9 +213,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToCalendar_JdbcEscapeFormat() throws Exception {
         final Calendar calendar = toCalendar("2010-09-07 11:49:10.123");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS").format(calendar
-                        .getTime()), is("2010/09/07 11:49:10.123"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS").format(calendar.getTime()), is("2010/09/07 11:49:10.123"));
     }
 
     /**
@@ -233,10 +221,8 @@ public class TimestampConversionUtilTest {
      */
     @Test
     public void testToCalendar_SpecificLocale() throws Exception {
-        final Calendar calendar = toCalendar("SEP 7, 2010 11:49:10 AM",
-                Locale.US);
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        final Calendar calendar = toCalendar("SEP 7, 2010 11:49:10 AM", Locale.US);
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -244,10 +230,8 @@ public class TimestampConversionUtilTest {
      */
     @Test
     public void testToCalendar_SpecificPattern() throws Exception {
-        final Calendar calendar = toCalendar("07/09/10 10:49:11",
-                "dd/MM/yy ss:mm:HH");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar
-                .getTime()), is("2010/09/07 11:49:10"));
+        final Calendar calendar = toCalendar("07/09/10 10:49:11", "dd/MM/yy ss:mm:HH");
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -272,9 +256,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_ShortStyle() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("10/9/7 11:49");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:00"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp), is("2010/09/07 11:49:00"));
     }
 
     /**
@@ -283,9 +265,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_MediumStyle() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("2010/9/7 11:49:10");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -316,9 +296,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_PlainFormat() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("20100907 114910");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -327,10 +305,7 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToTimestamp_JdbcEscapeFormat() throws Exception {
         final Timestamp timestamp = toSqlTimestamp("2010-09-07 11:49:10.123");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS")
-                        .format(timestamp),
-                is("2010/09/07 11:49:10.123"));
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS").format(timestamp), is("2010/09/07 11:49:10.123"));
     }
 
     /**
@@ -338,11 +313,8 @@ public class TimestampConversionUtilTest {
      */
     @Test
     public void testToTimestamp_SpecificLocale() throws Exception {
-        final Timestamp timestamp = toSqlTimestamp("SEP 7, 2010 11:49:10 AM",
-                Locale.US);
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        final Timestamp timestamp = toSqlTimestamp("SEP 7, 2010 11:49:10 AM", Locale.US);
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**
@@ -350,11 +322,8 @@ public class TimestampConversionUtilTest {
      */
     @Test
     public void testToTimestamp_SpecificPattern() throws Exception {
-        final Timestamp timestamp = toSqlTimestamp("07/09/10 10:49:11",
-                "dd/MM/yy ss:mm:HH");
-        assertThat(
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp),
-                is("2010/09/07 11:49:10"));
+        final Timestamp timestamp = toSqlTimestamp("07/09/10 10:49:11", "dd/MM/yy ss:mm:HH");
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(timestamp), is("2010/09/07 11:49:10"));
     }
 
     /**

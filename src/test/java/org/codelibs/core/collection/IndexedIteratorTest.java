@@ -43,8 +43,7 @@ public class IndexedIteratorTest {
         list.add("bbb");
         list.add("ccc");
 
-        final IndexedIterator<String> it = new IndexedIterator<String>(
-                list.iterator());
+        final IndexedIterator<String> it = new IndexedIterator<String>(list.iterator());
 
         assertThat(it.hasNext(), is(true));
 

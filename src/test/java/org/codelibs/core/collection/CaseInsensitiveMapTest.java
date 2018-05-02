@@ -119,29 +119,25 @@ public class CaseInsensitiveMapTest {
             for (int i = 0; i < num; i++) {
                 hmap.put("a" + String.valueOf(i), null);
             }
-            System.out.println("HashMap.put:"
-                    + (System.currentTimeMillis() - start));
+            System.out.println("HashMap.put:" + (System.currentTimeMillis() - start));
 
             start = System.currentTimeMillis();
             for (int i = 0; i < num; i++) {
                 cimap.put("a" + String.valueOf(i), null);
             }
-            System.out.println("CaseInsensitiveMap.put:"
-                    + (System.currentTimeMillis() - start));
+            System.out.println("CaseInsensitiveMap.put:" + (System.currentTimeMillis() - start));
 
             start = System.currentTimeMillis();
             for (int i = 0; i < num; i++) {
                 hmap.get("a" + String.valueOf(i));
             }
-            System.out.println("HashMap.get:"
-                    + (System.currentTimeMillis() - start));
+            System.out.println("HashMap.get:" + (System.currentTimeMillis() - start));
 
             start = System.currentTimeMillis();
             for (int i = 0; i < num; i++) {
                 cimap.get("a" + String.valueOf(i));
             }
-            System.out.println("CaseInsensitiveMap.get:"
-                    + (System.currentTimeMillis() - start));
+            System.out.println("CaseInsensitiveMap.get:" + (System.currentTimeMillis() - start));
         }
     }
 

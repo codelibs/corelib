@@ -43,8 +43,7 @@ public class ArrayIteratorTest {
      */
     @Test
     public void testNext() {
-        final ArrayIterator<String> itr = new ArrayIterator<String>("a", "b",
-                "c");
+        final ArrayIterator<String> itr = new ArrayIterator<String>("a", "b", "c");
         assertThat(itr.next(), equalTo("a"));
         assertThat(itr.next(), equalTo("b"));
         assertThat(itr.next(), equalTo("c"));
@@ -57,8 +56,7 @@ public class ArrayIteratorTest {
     public void testNoSuchElement() {
         exception.expect(ClNoSuchElementException.class);
         exception.expectMessage(is("index=2"));
-        final ArrayIterator<Integer> itr = new ArrayIterator<Integer>(
-                new Integer[] { 1, 2 });
+        final ArrayIterator<Integer> itr = new ArrayIterator<Integer>(new Integer[] { 1, 2 });
         itr.next();
         itr.next();
         itr.next();

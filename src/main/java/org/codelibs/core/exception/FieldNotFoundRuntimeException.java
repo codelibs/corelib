@@ -41,8 +41,7 @@ public class FieldNotFoundRuntimeException extends ClRuntimeException {
      * @param fieldName
      *            フィールド名
      */
-    public FieldNotFoundRuntimeException(final Class<?> targetClass,
-            final String fieldName) {
+    public FieldNotFoundRuntimeException(final Class<?> targetClass, final String fieldName) {
         super("ECL0070", asArray(targetClass.getName(), fieldName));
         this.targetClass = targetClass;
         this.fieldName = fieldName;

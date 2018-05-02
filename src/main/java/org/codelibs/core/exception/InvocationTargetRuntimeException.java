@@ -38,10 +38,8 @@ public class InvocationTargetRuntimeException extends ClRuntimeException {
      * @param cause
      *            原因となった例外
      */
-    public InvocationTargetRuntimeException(final Class<?> targetClass,
-            final InvocationTargetException cause) {
-        super("ECL0043", asArray(targetClass.getName(),
-                cause.getTargetException()), cause.getTargetException());
+    public InvocationTargetRuntimeException(final Class<?> targetClass, final InvocationTargetException cause) {
+        super("ECL0043", asArray(targetClass.getName(), cause.getTargetException()), cause.getTargetException());
         this.targetClass = targetClass;
     }
 

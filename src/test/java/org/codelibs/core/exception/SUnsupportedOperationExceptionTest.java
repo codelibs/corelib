@@ -46,8 +46,7 @@ public class SUnsupportedOperationExceptionTest {
      */
     @Test
     public void testSUnsupportedOperationExceptionString() {
-        final ClUnsupportedOperationException clUnsupportedOperationException = new ClUnsupportedOperationException(
-                "hoge");
+        final ClUnsupportedOperationException clUnsupportedOperationException = new ClUnsupportedOperationException("hoge");
         assertThat(clUnsupportedOperationException.getMessage(), is("hoge"));
     }
 
@@ -58,11 +57,10 @@ public class SUnsupportedOperationExceptionTest {
      */
     @Test
     public void testSUnsupportedOperationExceptionStringThrowable() {
-        final ClUnsupportedOperationException clUnsupportedOperationException = new ClUnsupportedOperationException(
-                "hoge", new NullPointerException());
+        final ClUnsupportedOperationException clUnsupportedOperationException =
+                new ClUnsupportedOperationException("hoge", new NullPointerException());
         assertThat(clUnsupportedOperationException.getMessage(), is("hoge"));
-        assertThat(clUnsupportedOperationException.getCause(),
-                instanceOf(NullPointerException.class));
+        assertThat(clUnsupportedOperationException.getCause(), instanceOf(NullPointerException.class));
     }
 
     /**
@@ -72,10 +70,9 @@ public class SUnsupportedOperationExceptionTest {
      */
     @Test
     public void testSUnsupportedOperationExceptionThrowable() {
-        final ClUnsupportedOperationException clUnsupportedOperationException = new ClUnsupportedOperationException(
-                new NullPointerException());
-        assertThat(clUnsupportedOperationException.getCause(),
-                instanceOf(NullPointerException.class));
+        final ClUnsupportedOperationException clUnsupportedOperationException =
+                new ClUnsupportedOperationException(new NullPointerException());
+        assertThat(clUnsupportedOperationException.getCause(), instanceOf(NullPointerException.class));
     }
 
 }

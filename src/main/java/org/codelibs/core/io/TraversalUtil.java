@@ -75,25 +75,14 @@ public abstract class TraversalUtil {
     /** URLのプロトコルをキー、{@link TraverserFactory}を値とするマッピングです。 */
     protected static final ConcurrentMap<String, TraverserFactory> traverserFactories = newConcurrentHashMap();
     static {
-        addTraverserFactory("file",
-                (url, rootPackage, rootDir) -> new FileSystemTraverser(
-                        getBaseDir(url, rootDir), rootPackage, rootDir));
-        addTraverserFactory("jar",
-                (url, rootPackage, rootDir) -> new JarFileTraverser(url,
+        addTraverserFactory("file", (url, rootPackage, rootDir) -> new FileSystemTraverser(getBaseDir(url, rootDir), rootPackage, rootDir));
+        addTraverserFactory("jar", (url, rootPackage, rootDir) -> new JarFileTraverser(url, rootPackage, rootDir));
+        addTraverserFactory("zip",
+                (url, rootPackage, rootDir) -> new JarFileTraverser(JarFileUtil.create(new File(ZipFileUtil.toZipFilePath(url))),
                         rootPackage, rootDir));
-        addTraverserFactory(
-                "zip",
-                (url, rootPackage, rootDir) -> new JarFileTraverser(JarFileUtil
-                        .create(new File(ZipFileUtil.toZipFilePath(url))),
-                        rootPackage, rootDir));
-        addTraverserFactory(
-                "code-source",
-                (url, rootPackage, rootDir) -> new JarFileTraverser(URLUtil
-                        .create("jar:file:" + url.getPath()), rootPackage,
-                        rootDir));
-        addTraverserFactory("vfszip",
-                (url, rootPackage, rootDir) -> new VfsZipTraverser(url,
-                        rootPackage, rootDir));
+        addTraverserFactory("code-source", (url, rootPackage, rootDir) -> new JarFileTraverser(URLUtil.create("jar:file:" + url.getPath()),
+                rootPackage, rootDir));
+        addTraverserFactory("vfszip", (url, rootPackage, rootDir) -> new VfsZipTraverser(url, rootPackage, rootDir));
     }
 
     /**
@@ -104,8 +93,7 @@ public abstract class TraversalUtil {
      * @param factory
      *            プロトコルに対応する{@link Traverser}のファクトリ。{@literal null}であってはいけません
      */
-    public static void addTraverserFactory(final String protocol,
-            final TraverserFactory factory) {
+    public static void addTraverserFactory(final String protocol, final TraverserFactory factory) {
         assertArgumentNotEmpty("protocol", protocol);
         assertArgumentNotNull("factory", factory);
 
@@ -127,8 +115,7 @@ public abstract class TraversalUtil {
     public static Traverser getTraverser(final Class<?> referenceClass) {
         assertArgumentNotNull("referenceClass", referenceClass);
 
-        final URL url = ResourceUtil.getResource(toClassFile(referenceClass
-                .getName()));
+        final URL url = ResourceUtil.getResource(toClassFile(referenceClass.getName()));
         final String[] path = referenceClass.getName().split("\\.");
         String baseUrl = url.toExternalForm();
         for (final String element : path) {
@@ -148,8 +135,7 @@ public abstract class TraversalUtil {
     public static Traverser getTraverser(final String rootDir) {
         assertArgumentNotEmpty("rootDir", rootDir);
 
-        final URL url = ResourceUtil
-                .getResource(rootDir.endsWith("/") ? rootDir : rootDir + '/');
+        final URL url = ResourceUtil.getResource(rootDir.endsWith("/") ? rootDir : rootDir + '/');
         return getTraverser(url, null, rootDir);
     }
 
@@ -167,11 +153,9 @@ public abstract class TraversalUtil {
 
         final String baseName = toDirectoryName(rootPackage);
         final List<Traverser> list = newArrayList();
-        for (final Iterator<URL> it = ClassLoaderUtil.getResources(baseName); it
-                .hasNext();) {
+        for (final Iterator<URL> it = ClassLoaderUtil.getResources(baseName); it.hasNext();) {
             final URL url = it.next();
-            final Traverser resourcesType = getTraverser(url, rootPackage,
-                    baseName);
+            final Traverser resourcesType = getTraverser(url, rootPackage, baseName);
             if (resourcesType != null) {
                 list.add(resourcesType);
             }
@@ -197,10 +181,8 @@ public abstract class TraversalUtil {
      *            ルートディレクトリ
      * @return URLを扱う{@link Traverser}
      */
-    protected static Traverser getTraverser(final URL url,
-            final String rootPackage, final String rootDir) {
-        final TraverserFactory factory = traverserFactories.get(URLUtil
-                .toCanonicalProtocol(url.getProtocol()));
+    protected static Traverser getTraverser(final URL url, final String rootPackage, final String rootDir) {
+        final TraverserFactory factory = traverserFactories.get(URLUtil.toCanonicalProtocol(url.getProtocol()));
         if (factory != null) {
             return factory.create(url, rootPackage, rootDir);
         }
@@ -301,8 +283,7 @@ public abstract class TraversalUtil {
          * @param rootDir
          *            ルートディレクトリ
          */
-        public FileSystemTraverser(final File baseDir,
-                final String rootPackage, final String rootDir) {
+        public FileSystemTraverser(final File baseDir, final String rootPackage, final String rootDir) {
             this.baseDir = baseDir;
             this.rootPackage = rootPackage;
             this.rootDir = rootDir;
@@ -318,15 +299,13 @@ public abstract class TraversalUtil {
          * @param rootDir
          *            ルートディレクトリ
          */
-        public FileSystemTraverser(final URL url, final String rootPackage,
-                final String rootDir) {
+        public FileSystemTraverser(final URL url, final String rootPackage, final String rootDir) {
             this(URLUtil.toFile(url), rootPackage, rootDir);
         }
 
         @Override
         public boolean isExistClass(final String className) {
-            final File file = new File(baseDir,
-                    toClassFile(ClassUtil.concatName(rootPackage, className)));
+            final File file = new File(baseDir, toClassFile(ClassUtil.concatName(rootPackage, className)));
             return file.exists();
         }
 
@@ -372,8 +351,7 @@ public abstract class TraversalUtil {
          * @param rootDir
          *            ルートディレクトリ
          */
-        public JarFileTraverser(final JarFile jarFile,
-                final String rootPackage, final String rootDir) {
+        public JarFileTraverser(final JarFile jarFile, final String rootPackage, final String rootDir) {
             this.jarFile = jarFile;
             this.rootPackage = rootPackage;
             this.rootDir = rootDir;
@@ -389,36 +367,31 @@ public abstract class TraversalUtil {
          * @param rootDir
          *            ルートディレクトリ
          */
-        public JarFileTraverser(final URL url, final String rootPackage,
-                final String rootDir) {
+        public JarFileTraverser(final URL url, final String rootPackage, final String rootDir) {
             this(JarFileUtil.toJarFile(url), rootPackage, rootDir);
         }
 
         @Override
         public boolean isExistClass(final String className) {
-            return jarFile.getEntry(toClassFile(ClassUtil.concatName(
-                    rootPackage, className))) != null;
+            return jarFile.getEntry(toClassFile(ClassUtil.concatName(rootPackage, className))) != null;
         }
 
         @Override
         public void forEach(final ClassHandler handler) {
-            ClassTraversalUtil.forEach(jarFile,
-                    (ClassHandler) (packageName, shortClassName) -> {
-                        if (rootPackage == null || packageName != null
-                                && packageName.startsWith(rootPackage)) {
-                            handler.processClass(packageName, shortClassName);
-                        }
-                    });
+            ClassTraversalUtil.forEach(jarFile, (ClassHandler) (packageName, shortClassName) -> {
+                if (rootPackage == null || packageName != null && packageName.startsWith(rootPackage)) {
+                    handler.processClass(packageName, shortClassName);
+                }
+            });
         }
 
         @Override
         public void forEach(final ResourceHandler handler) {
-            ResourceTraversalUtil.forEach(jarFile,
-                    (ResourceHandler) (path, is) -> {
-                        if (rootDir == null || path.startsWith(rootDir)) {
-                            handler.processResource(path, is);
-                        }
-                    });
+            ResourceTraversalUtil.forEach(jarFile, (ResourceHandler) (path, is) -> {
+                if (rootDir == null || path.startsWith(rootDir)) {
+                    handler.processResource(path, is);
+                }
+            });
         }
 
         @Override
@@ -463,8 +436,7 @@ public abstract class TraversalUtil {
          * @param rootDir
          *            ルートディレクトリ
          */
-        public VfsZipTraverser(final URL url, final String rootPackage,
-                final String rootDir) {
+        public VfsZipTraverser(final URL url, final String rootPackage, final String rootDir) {
             URL zipUrl = url;
             String prefix = "";
             if (rootPackage != null) {
@@ -479,10 +451,8 @@ public abstract class TraversalUtil {
                 if (zipUrlString.toUpperCase().endsWith(WAR_CLASSES_PREFIX)) {
                     final URL warUrl = URLUtil.create(zipUrl, "../..");
                     final String path = warUrl.getPath();
-                    zipUrl = FileUtil.toURL(new File(path.substring(0,
-                            path.length() - 1)));
-                    prefix = zipUrlString.substring(warUrl.toExternalForm()
-                            .length());
+                    zipUrl = FileUtil.toURL(new File(path.substring(0, path.length() - 1)));
+                    prefix = zipUrlString.substring(warUrl.toExternalForm().length());
                     loadFromZip(zipUrl);
                 }
             }
@@ -494,8 +464,7 @@ public abstract class TraversalUtil {
         }
 
         private void loadFromZip(final URL zipUrl) {
-            final ZipInputStream zis = new ZipInputStream(
-                    URLUtil.openStream(zipUrl));
+            final ZipInputStream zis = new ZipInputStream(URLUtil.openStream(zipUrl));
             try {
                 ZipEntry entry = null;
                 while ((entry = ZipInputStreamUtil.getNextEntry(zis)) != null) {
@@ -509,20 +478,16 @@ public abstract class TraversalUtil {
 
         @Override
         public boolean isExistClass(final String className) {
-            final String entryName = prefix
-                    + toClassFile(ClassUtil.concatName(rootPackage, className));
+            final String entryName = prefix + toClassFile(ClassUtil.concatName(rootPackage, className));
             return entryNames.contains(entryName);
         }
 
         @Override
         public void forEach(final ClassHandler handler) {
-            final ZipInputStream zis = new ZipInputStream(
-                    URLUtil.openStream(zipUrl));
+            final ZipInputStream zis = new ZipInputStream(URLUtil.openStream(zipUrl));
             try {
-                ClassTraversalUtil.forEach(zis, prefix, (ClassHandler) (
-                        packageName, shortClassName) -> {
-                    if (rootPackage == null || packageName != null
-                            && packageName.startsWith(rootPackage)) {
+                ClassTraversalUtil.forEach(zis, prefix, (ClassHandler) (packageName, shortClassName) -> {
+                    if (rootPackage == null || packageName != null && packageName.startsWith(rootPackage)) {
                         handler.processClass(packageName, shortClassName);
                     }
                 });
@@ -533,11 +498,9 @@ public abstract class TraversalUtil {
 
         @Override
         public void forEach(final ResourceHandler handler) {
-            final ZipInputStream zis = new ZipInputStream(
-                    URLUtil.openStream(zipUrl));
+            final ZipInputStream zis = new ZipInputStream(URLUtil.openStream(zipUrl));
             try {
-                ResourceTraversalUtil.forEach(zis, prefix, (ResourceHandler) (
-                        path, is) -> {
+                ResourceTraversalUtil.forEach(zis, prefix, (ResourceHandler) (path, is) -> {
                     if (rootDir == null || path.startsWith(rootDir)) {
                         handler.processResource(path, is);
                     }

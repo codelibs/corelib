@@ -45,8 +45,7 @@ public abstract class ResourceUtil {
      *            拡張子
      * @return リソースパス
      */
-    public static String getResourcePath(final String path,
-            final String extension) {
+    public static String getResourcePath(final String path, final String extension) {
         assertArgumentNotNull("path", path);
 
         if (extension == null) {
@@ -111,8 +110,7 @@ public abstract class ResourceUtil {
         if (url != null) {
             return url;
         }
-        throw new ResourceNotFoundRuntimeException(getResourcePath(path,
-                extension));
+        throw new ResourceNotFoundRuntimeException(getResourcePath(path, extension));
     }
 
     /**
@@ -139,12 +137,10 @@ public abstract class ResourceUtil {
      * @return リソースの{@link URL}
      * @see #getResourceNoException(String, String, ClassLoader)
      */
-    public static URL getResourceNoException(final String path,
-            final String extension) {
+    public static URL getResourceNoException(final String path, final String extension) {
         assertArgumentNotEmpty("path", path);
 
-        return getResourceNoException(path, extension, Thread.currentThread()
-                .getContextClassLoader());
+        return getResourceNoException(path, extension, Thread.currentThread().getContextClassLoader());
     }
 
     /**
@@ -159,8 +155,7 @@ public abstract class ResourceUtil {
      * @return リソース
      * @see #getResourcePath(String, String)
      */
-    public static URL getResourceNoException(final String path,
-            final String extension, final ClassLoader loader) {
+    public static URL getResourceNoException(final String path, final String extension, final ClassLoader loader) {
         assertArgumentNotNull("loader", loader);
 
         if (path == null || loader == null) {
@@ -194,8 +189,7 @@ public abstract class ResourceUtil {
      * @return ストリーム
      * @see #getResource(String, String)
      */
-    public static InputStream getResourceAsStream(final String path,
-            final String extension) {
+    public static InputStream getResourceAsStream(final String path, final String extension) {
         assertArgumentNotEmpty("path", path);
 
         final URL url = getResource(path, extension);
@@ -228,8 +222,7 @@ public abstract class ResourceUtil {
      * @return ストリーム
      * @see #getResourceNoException(String, String)
      */
-    public static InputStream getResourceAsStreamNoException(final String path,
-            final String extension) {
+    public static InputStream getResourceAsStreamNoException(final String path, final String extension) {
         assertArgumentNotEmpty("path", path);
 
         final URL url = getResourceNoException(path, extension);
@@ -420,8 +413,7 @@ public abstract class ResourceUtil {
      * @return ファイル
      * @see #getFile(URL)
      */
-    public static File getResourceAsFile(final String path,
-            final String extension) {
+    public static File getResourceAsFile(final String path, final String extension) {
         assertArgumentNotEmpty("path", path);
 
         return getFile(getResource(path, extension));
@@ -475,8 +467,7 @@ public abstract class ResourceUtil {
         if (isExist(path)) {
             return path;
         }
-        final String prefix = clazz.getName().replace('.', '/')
-                .replaceFirst("/[^/]+$", "");
+        final String prefix = clazz.getName().replace('.', '/').replaceFirst("/[^/]+$", "");
         final String extendedPath = prefix + "/" + path;
         if (ResourceUtil.getResourceNoException(extendedPath) != null) {
             return extendedPath;

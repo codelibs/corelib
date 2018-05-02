@@ -61,8 +61,7 @@ public class AssertionUtilTest {
     @Test
     public void testAssertArgument() {
         exception.expect(ClIllegalArgumentException.class);
-        exception
-                .expectMessage(is("[ECL0009]argument[hoge] is illegal. because hogeだからです。."));
+        exception.expectMessage(is("[ECL0009]argument[hoge] is illegal. because hogeだからです。."));
         assertArgument("hoge", false, "hogeだからです。");
     }
 

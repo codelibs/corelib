@@ -32,8 +32,7 @@ public class TimeConverterTest {
     @Test
     public void testGetAsObjectAndGetAsString() throws Exception {
         final TimeConverter converter = new TimeConverter("HH:mm:ss");
-        final java.sql.Time result = (java.sql.Time) converter
-                .getAsObject("12:34:56");
+        final java.sql.Time result = (java.sql.Time) converter.getAsObject("12:34:56");
         System.out.println(result);
         assertThat(converter.getAsString(result), is("12:34:56"));
     }

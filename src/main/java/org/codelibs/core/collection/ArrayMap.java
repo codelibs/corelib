@@ -42,8 +42,7 @@ import org.codelibs.core.exception.ClNoSuchElementException;
  *            値の型
  *
  */
-public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
-        Cloneable, Externalizable {
+public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cloneable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -239,8 +238,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         }
         ensureCapacity();
         index = (hashCode & 0x7FFFFFFF) % mapTable.length;
-        final Entry<K, V> e = new Entry<>(hashCode, key, value,
-                mapTable[index]);
+        final Entry<K, V> e = new Entry<>(hashCode, key, value, mapTable[index]);
         mapTable[index] = e;
         listTable[size++] = e;
         return null;
@@ -325,8 +323,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
      */
     public V[] toArray(final V[] proto) {
         @SuppressWarnings("unchecked")
-        final V[] array = proto.length >= size ? proto : (V[]) Array
-                .newInstance(proto.getClass().getComponentType(), size);
+        final V[] array = proto.length >= size ? proto : (V[]) Array.newInstance(proto.getClass().getComponentType(), size);
         for (int i = 0; i < array.length; i++) {
             array[i] = getAt(i);
         }
@@ -379,8 +376,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                 @Override
                 public boolean contains(final Object o) {
                     final Entry<K, V> entry = (Entry<K, V>) o;
-                    final int index = (entry.hashCode & 0x7FFFFFFF)
-                            % mapTable.length;
+                    final int index = (entry.hashCode & 0x7FFFFFFF) % mapTable.length;
                     for (Entry<K, V> e = mapTable[index]; e != null; e = e.next) {
                         if (e.equals(entry)) {
                             return true;
@@ -424,8 +420,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     @SuppressWarnings("unchecked")
     @Override
-    public void readExternal(final ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         final int num = in.readInt();
         mapTable = new Entry[num];
         listTable = new Entry[num];
@@ -607,8 +602,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
      * @param <V>
      *            キーの値
      */
-    protected static class Entry<K, V> implements Map.Entry<K, V>,
-            Externalizable {
+    protected static class Entry<K, V> implements Map.Entry<K, V>, Externalizable {
 
         private static final long serialVersionUID = -6625980241350717177L;
 
@@ -642,8 +636,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
          * @param next
          *            次のエントリ
          */
-        public Entry(final int hashCode, final K key, final V value,
-                final Entry<K, V> next) {
+        public Entry(final int hashCode, final K key, final V value, final Entry<K, V> next) {
             this.hashCode = hashCode;
             this.key = key;
             this.value = value;
@@ -686,8 +679,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             }
             @SuppressWarnings("unchecked")
             final Entry<K, V> e = (Entry<K, V>) o;
-            return (key != null ? key.equals(e.key) : e.key == null)
-                    && (value != null ? value.equals(e.value) : e.value == null);
+            return (key != null ? key.equals(e.key) : e.key == null) && (value != null ? value.equals(e.value) : e.value == null);
         }
 
         @Override
@@ -710,8 +702,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
         @SuppressWarnings("unchecked")
         @Override
-        public void readExternal(final ObjectInput s) throws IOException,
-                ClassNotFoundException {
+        public void readExternal(final ObjectInput s) throws IOException, ClassNotFoundException {
             hashCode = s.readInt();
             key = (K) s.readObject();
             value = (V) s.readObject();

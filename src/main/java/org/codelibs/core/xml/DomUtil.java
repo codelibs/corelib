@@ -60,8 +60,7 @@ public abstract class DomUtil {
      *            エンコーディング。{@literal null}の場合はプラットフォームのデフォルトエンコーディングが使われます
      * @return {@link InputStream}
      */
-    public static InputStream getContentsAsStream(final String contents,
-            final String encoding) {
+    public static InputStream getContentsAsStream(final String contents, final String encoding) {
         assertArgumentNotNull("contents", contents);
 
         if (encoding == null) {
@@ -89,20 +88,20 @@ public abstract class DomUtil {
         final StringBuilder buf = new StringBuilder();
         for (final char element : content) {
             switch (element) {
-                case '<':
-                    buf.append("&lt;");
-                    break;
-                case '>':
-                    buf.append("&gt;");
-                    break;
-                case '&':
-                    buf.append("&amp;");
-                    break;
-                case '"':
-                    buf.append("&quot;");
-                    break;
-                default:
-                    buf.append(element);
+            case '<':
+                buf.append("&lt;");
+                break;
+            case '>':
+                buf.append("&gt;");
+                break;
+            case '&':
+                buf.append("&amp;");
+                break;
+            case '"':
+                buf.append("&quot;");
+                break;
+            default:
+                buf.append(element);
             }
         }
         return buf.toString();
@@ -123,17 +122,17 @@ public abstract class DomUtil {
         final StringBuilder buf = new StringBuilder();
         for (final char ch : content) {
             switch (ch) {
-                case '<':
-                    buf.append("&lt;");
-                    break;
-                case '>':
-                    buf.append("&gt;");
-                    break;
-                case '&':
-                    buf.append("&amp;");
-                    break;
-                default:
-                    buf.append(ch);
+            case '<':
+                buf.append("&lt;");
+                break;
+            case '>':
+                buf.append("&gt;");
+                break;
+            case '&':
+                buf.append("&amp;");
+                break;
+            default:
+                buf.append(ch);
             }
         }
         return new String(buf);
@@ -177,8 +176,7 @@ public abstract class DomUtil {
      * @param buf
      *            文字列バッファ。{@literal null}であってはいけません
      */
-    public static void appendElement(final Element element,
-            final StringBuilder buf) {
+    public static void appendElement(final Element element, final StringBuilder buf) {
         assertArgumentNotNull("element", element);
         assertArgumentNotNull("buf", buf);
 
@@ -201,8 +199,7 @@ public abstract class DomUtil {
      * @param buf
      *            文字列バッファ。{@literal null}であってはいけません
      */
-    public static void appendChildren(final NodeList children,
-            final StringBuilder buf) {
+    public static void appendChildren(final NodeList children, final StringBuilder buf) {
         assertArgumentNotNull("children", children);
         assertArgumentNotNull("buf", buf);
 
@@ -220,8 +217,7 @@ public abstract class DomUtil {
      * @param buf
      *            文字列バッファ。{@literal null}であってはいけません
      */
-    public static void appendAttrs(final NamedNodeMap attrs,
-            final StringBuilder buf) {
+    public static void appendAttrs(final NamedNodeMap attrs, final StringBuilder buf) {
         assertArgumentNotNull("attrs", attrs);
         assertArgumentNotNull("buf", buf);
 
@@ -274,8 +270,7 @@ public abstract class DomUtil {
      * @param buf
      *            文字列バッファ。{@literal null}であってはいけません
      */
-    public static void appendCDATASection(final CDATASection cdataSection,
-            final StringBuilder buf) {
+    public static void appendCDATASection(final CDATASection cdataSection, final StringBuilder buf) {
         assertArgumentNotNull("cdataSection", cdataSection);
         assertArgumentNotNull("buf", buf);
 
@@ -292,8 +287,7 @@ public abstract class DomUtil {
      * @param buf
      *            文字列バッファ。{@literal null}であってはいけません
      */
-    public static void appendEntityReference(
-            final EntityReference entityReference, final StringBuilder buf) {
+    public static void appendEntityReference(final EntityReference entityReference, final StringBuilder buf) {
         assertArgumentNotNull("entityReference", entityReference);
         assertArgumentNotNull("buf", buf);
 
@@ -315,18 +309,18 @@ public abstract class DomUtil {
         assertArgumentNotNull("buf", buf);
 
         switch (node.getNodeType()) {
-            case Node.ELEMENT_NODE:
-                appendElement((Element) node, buf);
-                break;
-            case Node.TEXT_NODE:
-                appendText((Text) node, buf);
-                break;
-            case Node.CDATA_SECTION_NODE:
-                appendCDATASection((CDATASection) node, buf);
-                break;
-            case Node.ENTITY_REFERENCE_NODE:
-                appendEntityReference((EntityReference) node, buf);
-                break;
+        case Node.ELEMENT_NODE:
+            appendElement((Element) node, buf);
+            break;
+        case Node.TEXT_NODE:
+            appendText((Text) node, buf);
+            break;
+        case Node.CDATA_SECTION_NODE:
+            appendCDATASection((CDATASection) node, buf);
+            break;
+        case Node.ENTITY_REFERENCE_NODE:
+            appendEntityReference((EntityReference) node, buf);
+            break;
         }
     }
 

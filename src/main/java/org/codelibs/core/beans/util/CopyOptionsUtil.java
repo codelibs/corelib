@@ -187,8 +187,7 @@ public abstract class CopyOptionsUtil {
      * @return コンバータを設定した{@link CopyOptions}
      * @see CopyOptions#converter(Converter, CharSequence...)
      */
-    public static CopyOptions converter(final Converter converter,
-            final CharSequence... propertyNames) {
+    public static CopyOptions converter(final Converter converter, final CharSequence... propertyNames) {
         return new CopyOptions().converter(converter, propertyNames);
     }
 
@@ -203,8 +202,7 @@ public abstract class CopyOptionsUtil {
      * @see CopyOptions#dateConverter(String, CharSequence...)
      * @see DateConverter
      */
-    public static CopyOptions dateConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public static CopyOptions dateConverter(final String pattern, final CharSequence... propertyNames) {
         return new CopyOptions().dateConverter(pattern, propertyNames);
     }
 
@@ -219,8 +217,7 @@ public abstract class CopyOptionsUtil {
      * @see CopyOptions#sqlDateConverter(String, CharSequence...)
      * @see SqlDateConverter
      */
-    public static CopyOptions sqlDateConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public static CopyOptions sqlDateConverter(final String pattern, final CharSequence... propertyNames) {
         return new CopyOptions().sqlDateConverter(pattern, propertyNames);
     }
 
@@ -235,8 +232,7 @@ public abstract class CopyOptionsUtil {
      * @see CopyOptions#timeConverter(String, CharSequence...)
      * @see TimeConverter
      */
-    public static CopyOptions timeConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public static CopyOptions timeConverter(final String pattern, final CharSequence... propertyNames) {
         return new CopyOptions().timeConverter(pattern, propertyNames);
     }
 
@@ -251,8 +247,7 @@ public abstract class CopyOptionsUtil {
      * @see CopyOptions#timestampConverter(String, CharSequence...)
      * @see TimestampConverter
      */
-    public static CopyOptions timestampConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public static CopyOptions timestampConverter(final String pattern, final CharSequence... propertyNames) {
         return new CopyOptions().timestampConverter(pattern, propertyNames);
     }
 
@@ -267,8 +262,7 @@ public abstract class CopyOptionsUtil {
      * @see CopyOptions#numberConverter(String, CharSequence...)
      * @see NumberConverter
      */
-    public static CopyOptions numberConverter(final String pattern,
-            final CharSequence... propertyNames) {
+    public static CopyOptions numberConverter(final String pattern, final CharSequence... propertyNames) {
         return new CopyOptions().numberConverter(pattern, propertyNames);
     }
 

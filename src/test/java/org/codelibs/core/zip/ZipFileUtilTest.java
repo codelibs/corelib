@@ -32,24 +32,19 @@ public class ZipFileUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToJarFilePath() throws Exception {
-        final URL url = new URL(null, "zip:/Program Files/foo.zip!/",
-                new URLStreamHandler() {
-                    @Override
-                    protected void parseURL(final URL u, final String spec,
-                            final int start, final int limit) {
-                        setURL(u, "zip", null, 0, null, null,
-                                spec.substring(4), null, null);
-                    }
+        final URL url = new URL(null, "zip:/Program Files/foo.zip!/", new URLStreamHandler() {
+            @Override
+            protected void parseURL(final URL u, final String spec, final int start, final int limit) {
+                setURL(u, "zip", null, 0, null, null, spec.substring(4), null, null);
+            }
 
-                    @Override
-                    protected URLConnection openConnection(final URL u)
-                            throws IOException {
-                        return null;
-                    }
-                });
+            @Override
+            protected URLConnection openConnection(final URL u) throws IOException {
+                return null;
+            }
+        });
         final String root = new File("/").getCanonicalPath();
-        assertEquals(root + "Program Files" + File.separator + "foo.zip",
-                ZipFileUtil.toZipFilePath(url));
+        assertEquals(root + "Program Files" + File.separator + "foo.zip", ZipFileUtil.toZipFilePath(url));
     }
 
 }

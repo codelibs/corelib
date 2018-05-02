@@ -62,8 +62,7 @@ public abstract class ShortConversionUtil {
             }
             return Short.valueOf((short) ((java.util.Date) o).getTime());
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? Short.valueOf((short) 1)
-                    : Short.valueOf((short) 0);
+            return ((Boolean) o).booleanValue() ? Short.valueOf((short) 1) : Short.valueOf((short) 0);
         } else {
             return toShort(o.toString());
         }
@@ -105,8 +104,7 @@ public abstract class ShortConversionUtil {
             return toPrimitiveShort((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
-                return Short
-                        .parseShort(new SimpleDateFormat(pattern).format(o));
+                return Short.parseShort(new SimpleDateFormat(pattern).format(o));
             }
             return (short) ((java.util.Date) o).getTime();
         } else if (o instanceof Boolean) {

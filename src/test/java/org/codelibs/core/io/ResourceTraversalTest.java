@@ -56,19 +56,18 @@ public class ResourceTraversalTest {
         final String path = ResourceUtil.getResourcePath(getClass());
         final int pos = path.lastIndexOf("/");
         final String baseDirectory = path.substring(0, pos);
-        ResourceTraversalUtil.forEach(rootDir, baseDirectory,
-                (ResourceHandler) (path1, is) -> {
-                    try {
-                        if (count < 10) {
-                            System.out.println(path1);
-                        }
-                        assertThat(path1, is(notNullValue()));
-                        assertThat(is, is(notNullValue()));
-                        count++;
-                    } finally {
-                        CloseableUtil.close(is);
-                    }
-                });
+        ResourceTraversalUtil.forEach(rootDir, baseDirectory, (ResourceHandler) (path1, is) -> {
+            try {
+                if (count < 10) {
+                    System.out.println(path1);
+                }
+                assertThat(path1, is(notNullValue()));
+                assertThat(is, is(notNullValue()));
+                count++;
+            } finally {
+                CloseableUtil.close(is);
+            }
+        });
         assertTrue(count > 0);
     }
 
@@ -77,35 +76,26 @@ public class ResourceTraversalTest {
      */
     @Test
     public void testForEachJarFile() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final JarURLConnection con = (JarURLConnection) classURL
-                .openConnection();
-        ResourceTraversalUtil
-                .forEach(
-                        con.getJarFile(),
-                        (ResourceHandler) (path, is) -> {
-                            try {
-                                if (count < 10) {
-                                    System.out.println(path);
-                                }
-                                System.out.println(path);
-                                assertThat(path, is(notNullValue()));
-                                assertThat(
-                                        path,
-                                        path.startsWith("junit")
-                                                || path.startsWith("org/junit")
-                                                || path.startsWith("org/hamcrest")
-                                                || path.startsWith("META-INF/")
-                                                || path.equals("LICENSE.txt"),
-                                        is(true));
-                                assertThat(is, is(notNullValue()));
-                                count++;
-                            } finally {
-                                CloseableUtil.close(is);
-                            }
-                        });
+        final JarURLConnection con = (JarURLConnection) classURL.openConnection();
+        ResourceTraversalUtil.forEach(
+                con.getJarFile(),
+                (ResourceHandler) (path, is) -> {
+                    try {
+                        if (count < 10) {
+                            System.out.println(path);
+                        }
+                        System.out.println(path);
+                        assertThat(path, is(notNullValue()));
+                        assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
+                                || path.startsWith("META-INF/") || path.equals("LICENSE.txt"), is(true));
+                        assertThat(is, is(notNullValue()));
+                        count++;
+                    } finally {
+                        CloseableUtil.close(is);
+                    }
+                });
         assertTrue(count > 0);
     }
 
@@ -113,25 +103,22 @@ public class ResourceTraversalTest {
      * @throws Exception
      */
     public void testForEachJarFile_withPrefix() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final JarURLConnection con = (JarURLConnection) classURL
-                .openConnection();
-        ResourceTraversalUtil.forEach(con.getJarFile(), "junit/",
-                (ResourceHandler) (path, is) -> {
-                    try {
-                        if (count < 10) {
-                            System.out.println(path);
-                        }
-                        assertThat(path.startsWith("junit"), is(not(true)));
-                        assertThat(path, is(notNullValue()));
-                        assertThat(is, is(notNullValue()));
-                        count++;
-                    } finally {
-                        CloseableUtil.close(is);
-                    }
-                });
+        final JarURLConnection con = (JarURLConnection) classURL.openConnection();
+        ResourceTraversalUtil.forEach(con.getJarFile(), "junit/", (ResourceHandler) (path, is) -> {
+            try {
+                if (count < 10) {
+                    System.out.println(path);
+                }
+                assertThat(path.startsWith("junit"), is(not(true)));
+                assertThat(path, is(notNullValue()));
+                assertThat(is, is(notNullValue()));
+                count++;
+            } finally {
+                CloseableUtil.close(is);
+            }
+        });
         assertTrue(count > 0);
     }
 
@@ -140,34 +127,25 @@ public class ResourceTraversalTest {
      */
     @Test
     public void testForEachZipInputStream() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL))
-                .toURI().toURL();
-        ResourceTraversalUtil
-                .forEach(
-                        new ZipInputStream(jarURL.openStream()),
-                        (ResourceHandler) (path, is) -> {
-                            try {
-                                if (count < 10) {
-                                    System.out.println(path);
-                                }
-                                assertThat(path, is(notNullValue()));
-                                assertThat(
-                                        path,
-                                        path.startsWith("junit")
-                                                || path.startsWith("org/junit")
-                                                || path.startsWith("org/hamcrest")
-                                                || path.startsWith("META-INF/")
-                                                || path.equals("LICENSE.txt"),
-                                        is(true));
-                                assertThat(is, is(notNullValue()));
-                                count++;
-                            } finally {
-                                CloseableUtil.close(is);
-                            }
-                        });
+        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
+        ResourceTraversalUtil.forEach(
+                new ZipInputStream(jarURL.openStream()),
+                (ResourceHandler) (path, is) -> {
+                    try {
+                        if (count < 10) {
+                            System.out.println(path);
+                        }
+                        assertThat(path, is(notNullValue()));
+                        assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
+                                || path.startsWith("META-INF/") || path.equals("LICENSE.txt"), is(true));
+                        assertThat(is, is(notNullValue()));
+                        count++;
+                    } finally {
+                        CloseableUtil.close(is);
+                    }
+                });
         assertTrue(count > 0);
     }
 
@@ -176,25 +154,22 @@ public class ResourceTraversalTest {
      */
     @Test
     public void testForEachZipInputStream_withPrefix() throws Exception {
-        final String classFilePath = TestCase.class.getName().replace('.', '/')
-                + ".class";
+        final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
-        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL))
-                .toURI().toURL();
-        ResourceTraversalUtil.forEach(new ZipInputStream(jarURL.openStream()),
-                "junit/", (ResourceHandler) (path, is) -> {
-                    try {
-                        if (count < 10) {
-                            System.out.println(path);
-                        }
-                        assertThat(path.startsWith("junit"), is(not(true)));
-                        assertThat(path, is(notNullValue()));
-                        assertThat(is, is(notNullValue()));
-                        count++;
-                    } finally {
-                        CloseableUtil.close(is);
-                    }
-                });
+        final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
+        ResourceTraversalUtil.forEach(new ZipInputStream(jarURL.openStream()), "junit/", (ResourceHandler) (path, is) -> {
+            try {
+                if (count < 10) {
+                    System.out.println(path);
+                }
+                assertThat(path.startsWith("junit"), is(not(true)));
+                assertThat(path, is(notNullValue()));
+                assertThat(is, is(notNullValue()));
+                count++;
+            } finally {
+                CloseableUtil.close(is);
+            }
+        });
         assertTrue(count > 0);
     }
 

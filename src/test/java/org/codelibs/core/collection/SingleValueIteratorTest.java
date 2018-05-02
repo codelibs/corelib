@@ -32,8 +32,7 @@ public class SingleValueIteratorTest {
      */
     @Test
     public void test() {
-        final SingleValueIterator<String> it = new SingleValueIterator<String>(
-                "Foo");
+        final SingleValueIterator<String> it = new SingleValueIterator<String>("Foo");
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is("Foo"));
         assertThat(it.hasNext(), is(not(true)));

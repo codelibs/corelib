@@ -69,18 +69,15 @@ public class DynamicProperties extends Properties {
             final File parentDir = this.propertiesFile.getParentFile();
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
-                    throw new FileAccessException("ECL0109",
-                            new Object[] { file.getAbsolutePath() });
+                    throw new FileAccessException("ECL0109", new Object[] { file.getAbsolutePath() });
                 }
             } else if (!parentDir.isDirectory()) {
-                throw new FileAccessException("ECL0110",
-                        new Object[] { file.getAbsolutePath() });
+                throw new FileAccessException("ECL0110", new Object[] { file.getAbsolutePath() });
             }
             properties = new Properties();
             store();
         } else if (!this.propertiesFile.isFile()) {
-            throw new FileAccessException("ECL0111",
-                    new Object[] { file.getAbsolutePath() });
+            throw new FileAccessException("ECL0111", new Object[] { file.getAbsolutePath() });
         }
         load();
     }
@@ -91,8 +88,7 @@ public class DynamicProperties extends Properties {
             final File parentDir = file.getParentFile();
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
-                    throw new FileAccessException("ECL0109",
-                            new Object[] { path });
+                    throw new FileAccessException("ECL0109", new Object[] { path });
                 }
             } else if (!parentDir.isDirectory()) {
                 throw new FileAccessException("ECL0110", new Object[] { path });
@@ -140,8 +136,7 @@ public class DynamicProperties extends Properties {
             fos = new FileOutputStream(propertiesFile);
             properties.store(fos, propertiesFile.getName());
         } catch (final IOException e) {
-            throw new FileAccessException("ECL0112",
-                    new Object[] { propertiesFile.getAbsolutePath() }, e);
+            throw new FileAccessException("ECL0112", new Object[] { propertiesFile.getAbsolutePath() }, e);
         } finally {
             if (fos != null) {
                 try {
@@ -168,8 +163,7 @@ public class DynamicProperties extends Properties {
 
     @Override
     public Object clone() {
-        final DynamicProperties dynamicProperties = new DynamicProperties(
-                propertiesFile.getAbsolutePath());
+        final DynamicProperties dynamicProperties = new DynamicProperties(propertiesFile.getAbsolutePath());
         dynamicProperties.checkInterval = checkInterval;
         return dynamicProperties;
     }
@@ -250,8 +244,7 @@ public class DynamicProperties extends Properties {
     }
 
     @Override
-    public synchronized void load(final InputStream inStream)
-            throws IOException {
+    public synchronized void load(final InputStream inStream) throws IOException {
         final Properties prop = new Properties();
         lastModified = propertiesFile.lastModified();
         prop.load(inStream);
@@ -267,8 +260,7 @@ public class DynamicProperties extends Properties {
     }
 
     @Override
-    public synchronized void loadFromXML(final InputStream in) throws IOException,
-            InvalidPropertiesFormatException {
+    public synchronized void loadFromXML(final InputStream in) throws IOException, InvalidPropertiesFormatException {
         final Properties prop = new Properties();
         lastModified = propertiesFile.lastModified();
         prop.loadFromXML(in);
@@ -311,26 +303,22 @@ public class DynamicProperties extends Properties {
     }
 
     @Override
-    public void store(final OutputStream out, final String comments)
-            throws IOException {
+    public void store(final OutputStream out, final String comments) throws IOException {
         getProperties().store(out, comments);
     }
 
     @Override
-    public void store(final Writer writer, final String comments)
-            throws IOException {
+    public void store(final Writer writer, final String comments) throws IOException {
         getProperties().store(writer, comments);
     }
 
     @Override
-    public void storeToXML(final OutputStream os, final String comment,
-            final String encoding) throws IOException {
+    public void storeToXML(final OutputStream os, final String comment, final String encoding) throws IOException {
         getProperties().storeToXML(os, comment, encoding);
     }
 
     @Override
-    public void storeToXML(final OutputStream os, final String comment)
-            throws IOException {
+    public void storeToXML(final OutputStream os, final String comment) throws IOException {
         getProperties().storeToXML(os, comment);
     }
 

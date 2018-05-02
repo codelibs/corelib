@@ -27,22 +27,19 @@ public abstract class SystemUtil {
     /**
      * <code>file.encoding</code>システムプロパティ。例:UTF-8
      */
-    public static final String FILE_ENCODING = System
-            .getProperty("file.encoding");
+    public static final String FILE_ENCODING = System.getProperty("file.encoding");
 
     /**
      * <code>line.separator</code> システムプロパティ。例えばMac OS Xなら
      * <code>&quot;\n&quot;</code>
      */
-    public static final String LINE_SEPARATOR = System
-            .getProperty("line.separator");
+    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     /**
      * <code>path.separator</code> システムプロパティ。例えばMac OS Xなら
      * <code>&quot;:&quot;</code>
      */
-    public static final String PATH_SEPARATOR = System
-            .getProperty("path.separator");
+    public static final String PATH_SEPARATOR = System.getProperty("path.separator");
 
     /**
      * <code>os.name</code> システムプロパティ。例:<code>Mac OS X</code>
@@ -52,8 +49,7 @@ public abstract class SystemUtil {
     /**
      * <code>java.io.tmpdir</code> システムプロパティ。例：/tmp
      */
-    public static final String JAVA_IO_TMPDIR = System
-            .getProperty("java.io.tmpdir");
+    public static final String JAVA_IO_TMPDIR = System.getProperty("java.io.tmpdir");
 
     /**
      * <code>user.dir</code> システムプロパティ。
