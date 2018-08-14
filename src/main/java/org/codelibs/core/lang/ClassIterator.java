@@ -19,8 +19,8 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgument;
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 import org.codelibs.core.message.MessageFormatter;
 
@@ -115,7 +115,7 @@ public class ClassIterator implements Iterator<Class<?>> {
     @Override
     public Class<?> next() {
         if (!hasNext()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         final Class<?> result = clazz;
         clazz = clazz.getSuperclass();

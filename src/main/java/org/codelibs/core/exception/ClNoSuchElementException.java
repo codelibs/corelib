@@ -22,6 +22,7 @@ import java.util.NoSuchElementException;
  *
  * @author wyukawa
  */
+@Deprecated
 public class ClNoSuchElementException extends NoSuchElementException {
 
     private static final long serialVersionUID = 1632854460852262479L;

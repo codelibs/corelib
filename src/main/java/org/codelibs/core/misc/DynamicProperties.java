@@ -40,7 +40,7 @@ public class DynamicProperties extends Properties {
 
     private static final long serialVersionUID = 1L;
 
-    public long checkInterval = 5000L;
+    protected long checkInterval = 5000L;
 
     protected volatile long lastChecked = 0L;
 
@@ -335,5 +335,9 @@ public class DynamicProperties extends Properties {
     @Override
     public Collection<Object> values() {
         return getProperties().values();
+    }
+
+    public void setCheckInterval(long checkInterval) {
+        this.checkInterval = checkInterval;
     }
 }

@@ -20,7 +20,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
+import java.util.NoSuchElementException;
+
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -54,7 +55,7 @@ public class ArrayIteratorTest {
      */
     @Test
     public void testNoSuchElement() {
-        exception.expect(ClNoSuchElementException.class);
+        exception.expect(NoSuchElementException.class);
         exception.expectMessage(is("index=2"));
         final ArrayIterator<Integer> itr = new ArrayIterator<Integer>(new Integer[] { 1, 2 });
         itr.next();

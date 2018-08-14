@@ -20,8 +20,8 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 import java.io.BufferedReader;
 import java.io.Reader;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
@@ -110,7 +110,7 @@ public class LineIterator implements Iterator<String> {
     @Override
     public String next() {
         if (!hasNext()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         final String result = line;
         line = EMPTY;

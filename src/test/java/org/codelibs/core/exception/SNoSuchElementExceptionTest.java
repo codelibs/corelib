@@ -25,6 +25,7 @@ import org.junit.Test;
  * @author wyukawa
  *
  */
+@Deprecated
 public class SNoSuchElementExceptionTest {
 
     /**

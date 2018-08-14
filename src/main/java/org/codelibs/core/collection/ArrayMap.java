@@ -28,9 +28,8 @@ import java.util.AbstractSet;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
-
-import org.codelibs.core.exception.ClNoSuchElementException;
 
 /**
  * 配列の性質を併せ持つ {@link Map}です。
@@ -579,7 +578,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
                 last = current++;
                 return n;
             } catch (final IndexOutOfBoundsException e) {
-                throw new ClNoSuchElementException("current=" + current);
+                throw new NoSuchElementException("current=" + current);
             }
         }
 

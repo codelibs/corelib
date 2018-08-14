@@ -16,8 +16,8 @@
 package org.codelibs.core.collection;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
@@ -66,7 +66,7 @@ public class SingleValueIterator<E> implements Iterator<E> {
     @Override
     public E next() {
         if (!hasNext) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         hasNext = false;
         return value;

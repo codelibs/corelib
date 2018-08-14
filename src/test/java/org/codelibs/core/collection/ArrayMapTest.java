@@ -25,10 +25,10 @@ import static org.junit.Assert.assertThat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.codelibs.core.exception.ClIllegalStateException;
 import org.codelibs.core.exception.ClIndexOutOfBoundsException;
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.io.SerializeUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -270,7 +270,7 @@ public class ArrayMapTest {
      */
     @Test
     public void testArrayMapIteratorNextException() {
-        exception.expect(ClNoSuchElementException.class);
+        exception.expect(NoSuchElementException.class);
         exception.expectMessage(is("current=1"));
         ArrayMap<String, String> m = new ArrayMap<String, String>(1);
         Iterator<Map.Entry<String, String>> i = m.entrySet().iterator();

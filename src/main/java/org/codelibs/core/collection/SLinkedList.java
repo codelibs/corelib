@@ -22,8 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.lang.reflect.Array;
-
-import org.codelibs.core.exception.ClNoSuchElementException;
+import java.util.NoSuchElementException;
 
 /**
  * Seasar2用の連結リストです。
@@ -56,7 +55,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
      */
     public E getFirst() {
         if (isEmpty()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         return getFirstEntry().element;
     }
@@ -68,7 +67,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
      */
     public E getLast() {
         if (isEmpty()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         return getLastEntry().element;
     }
@@ -104,7 +103,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
      */
     public E removeFirst() {
         if (isEmpty()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         final E first = header.next.element;
         header.next.remove();
@@ -118,7 +117,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
      */
     public E removeLast() {
         if (isEmpty()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         final E last = header.previous.element;
         header.previous.remove();

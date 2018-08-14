@@ -18,8 +18,8 @@ package org.codelibs.core.lang;
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
@@ -74,7 +74,7 @@ public class ClassLoaderIterator implements Iterator<ClassLoader> {
     @Override
     public ClassLoader next() {
         if (!hasNext()) {
-            throw new ClNoSuchElementException();
+            throw new NoSuchElementException();
         }
         final ClassLoader result = classLoader;
         classLoader = classLoader.getParent();

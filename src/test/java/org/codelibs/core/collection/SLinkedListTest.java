@@ -22,8 +22,9 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.util.NoSuchElementException;
+
 import org.codelibs.core.exception.ClIndexOutOfBoundsException;
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.io.SerializeUtil;
 import org.junit.Test;
 
@@ -52,7 +53,7 @@ public class SLinkedListTest {
         try {
             list.getFirst();
             fail();
-        } catch (final ClNoSuchElementException ex) {
+        } catch (final NoSuchElementException ex) {
             System.out.println(ex);
         }
         list.addFirst("1");
@@ -77,7 +78,7 @@ public class SLinkedListTest {
         try {
             list.getLast();
             fail();
-        } catch (final ClNoSuchElementException ex) {
+        } catch (final NoSuchElementException ex) {
             System.out.println(ex);
         }
         list.addLast("1");

@@ -32,8 +32,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 import org.codelibs.core.exception.ParseRuntimeException;
 import org.codelibs.core.misc.LocaleUtil;
@@ -593,7 +593,7 @@ public abstract class DateConversionUtil {
         @Override
         public DateFormat next() {
             if (!hasNext()) {
-                throw new ClNoSuchElementException();
+                throw new NoSuchElementException();
             }
             final int style = STYLES[index++];
             return DateFormat.getDateInstance(style, locale);
@@ -643,7 +643,7 @@ public abstract class DateConversionUtil {
         @Override
         public DateFormat next() {
             if (!hasNext()) {
-                throw new ClNoSuchElementException();
+                throw new NoSuchElementException();
             }
             final int style = STYLES[index++];
             final DateFormat format = DateFormat.getDateInstance(style, locale);

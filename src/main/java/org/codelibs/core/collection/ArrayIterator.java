@@ -18,8 +18,8 @@ package org.codelibs.core.collection;
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.codelibs.core.exception.ClNoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
@@ -86,7 +86,7 @@ public class ArrayIterator<T> implements Iterator<T> {
             index++;
             return o;
         } catch (final IndexOutOfBoundsException e) {
-            throw new ClNoSuchElementException("index=" + index);
+            throw new NoSuchElementException("index=" + index);
         }
     }
 
