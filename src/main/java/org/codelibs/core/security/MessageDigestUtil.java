@@ -76,7 +76,7 @@ public abstract class MessageDigestUtil {
         }
         final byte[] digest = msgDigest.digest();
 
-        final StringBuilder buffer = new StringBuilder();
+        final StringBuilder buffer = new StringBuilder(200);
         for (final byte element : digest) {
             final String tmp = Integer.toHexString(element & 0xff);
             if (tmp.length() == 1) {

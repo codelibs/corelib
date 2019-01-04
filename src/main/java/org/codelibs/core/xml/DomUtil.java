@@ -85,7 +85,7 @@ public abstract class DomUtil {
             return null;
         }
         final char[] content = s.toCharArray();
-        final StringBuilder buf = new StringBuilder();
+        final StringBuilder buf = new StringBuilder(s.length() + 100);
         for (final char element : content) {
             switch (element) {
             case '<':
@@ -119,7 +119,7 @@ public abstract class DomUtil {
             return null;
         }
         final char[] content = s.toCharArray();
-        final StringBuilder buf = new StringBuilder();
+        final StringBuilder buf = new StringBuilder(s.length() + 100);
         for (final char ch : content) {
             switch (ch) {
             case '<':
@@ -148,7 +148,7 @@ public abstract class DomUtil {
     public static String toString(final Document document) {
         assertArgumentNotNull("document", document);
 
-        final StringBuilder buf = new StringBuilder();
+        final StringBuilder buf = new StringBuilder(1000);
         appendElement(document.getDocumentElement(), buf);
         return new String(buf);
     }
@@ -163,7 +163,7 @@ public abstract class DomUtil {
     public static String toString(final Element element) {
         assertArgumentNotNull("element", element);
 
-        final StringBuilder buf = new StringBuilder();
+        final StringBuilder buf = new StringBuilder(1000);
         appendElement(element, buf);
         return new String(buf);
     }
