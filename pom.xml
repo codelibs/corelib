@@ -5,7 +5,7 @@
 	<artifactId>corelib</artifactId>
 	<packaging>jar</packaging>
 	<name>CodeLibs Core Library</name>
-	<version>0.4.1</version>
+	<version>0.4.2-SNAPSHOT</version>
 	<description />
 	<url>https://github.com/codelibs/corelib</url>
 	<inceptionYear>2012</inceptionYear>
