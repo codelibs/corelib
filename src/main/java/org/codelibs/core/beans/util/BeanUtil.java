@@ -105,9 +105,7 @@ public abstract class BeanUtil {
      * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static void copyBeanToBean(final Object src, final Object dest, final CopyOptions options) {
+    protected static void copyBeanToBean(final Object src, final Object dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("option", options);
@@ -158,9 +156,7 @@ public abstract class BeanUtil {
      * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static void copyBeanToMap(final Object src, final Map<String, Object> dest, final CopyOptions options) {
+    protected static void copyBeanToMap(final Object src, final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
@@ -203,9 +199,7 @@ public abstract class BeanUtil {
      * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest, final CopyOptions options) {
+    protected static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
@@ -256,9 +250,7 @@ public abstract class BeanUtil {
      * @param options コピーのオプション。{@literal null}であってはいけません
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest, final CopyOptions options) {
+    protected static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("dest", dest);
         assertArgumentNotNull("options", options);
@@ -304,9 +296,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しいBean
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass, final CopyOptions options) {
+    protected static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
         assertArgumentNotNull("options", options);
@@ -343,9 +333,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass, final CopyOptions options) {
+    protected static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
         assertArgumentNotNull("options", options);
@@ -377,9 +365,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しいBean
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static Map<String, Object> copyBeanToNewMap(final Object src, final CopyOptions options) {
+    protected static Map<String, Object> copyBeanToNewMap(final Object src, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("options", options);
 
@@ -415,9 +401,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass,
+    protected static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass,
             final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);
@@ -450,9 +434,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src, final CopyOptions options) {
+    protected static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("options", options);
 
@@ -489,9 +471,7 @@ public abstract class BeanUtil {
      * @return コピーされた新しい{@literal Map}
      * @see CopyOptionsUtil
      */
-    // TODO change to protected
-    @Deprecated
-    public static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
+    protected static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
             final Class<? extends T> destClass, final CopyOptions options) {
         assertArgumentNotNull("src", src);
         assertArgumentNotNull("destClass", destClass);

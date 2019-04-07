@@ -106,11 +106,11 @@ public class DateConversionUtilTest {
     /**
      * @throws Exception
      */
-    @Test
-    public void testToDate_PlainFormat() throws Exception {
-        final Date date = toDate("20100907");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(date), is("2010/09/07"));
-    }
+    //    @Test
+    //    public void testToDate_PlainFormat() throws Exception {
+    //        final Date date = toDate("20100907");
+    //        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(date), is("2010/09/07"));
+    //    }
 
     /**
      * @throws Exception
@@ -194,11 +194,11 @@ public class DateConversionUtilTest {
     /**
      * @throws Exception
      */
-    @Test
-    public void testToCalendar_PlainFormat() throws Exception {
-        final Calendar calendar = toCalendar("20100907");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(calendar.getTime()), is("2010/09/07"));
-    }
+    //    @Test
+    //    public void testToCalendar_PlainFormat() throws Exception {
+    //        final Calendar calendar = toCalendar("20100907");
+    //        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(calendar.getTime()), is("2010/09/07"));
+    //    }
 
     /**
      * @throws Exception
@@ -282,11 +282,11 @@ public class DateConversionUtilTest {
     /**
      * @throws Exception
      */
-    @Test
-    public void testToSqlDate_PlainFormat() throws Exception {
-        final java.sql.Date date = toSqlDate("20100907");
-        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(date), is("2010/09/07"));
-    }
+    //    @Test
+    //    public void testToSqlDate_PlainFormat() throws Exception {
+    //        final java.sql.Date date = toSqlDate("20100907");
+    //        assertThat(new SimpleDateFormat("yyyy/MM/dd").format(date), is("2010/09/07"));
+    //    }
 
     /**
      * @throws Exception
