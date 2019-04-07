@@ -108,9 +108,9 @@ public class TimeoutManager implements Runnable {
     /**
      * {@link TimeoutTarget}を追加します。
      *
-     * @param timeoutTarget
-     * @param timeout
-     * @param permanent
+     * @param timeoutTarget target
+     * @param timeout timeout
+     * @param permanent permanent
      * @return {@link TimeoutTask}
      */
     public synchronized TimeoutTask addTimeoutTarget(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {

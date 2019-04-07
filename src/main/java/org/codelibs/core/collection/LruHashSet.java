@@ -59,9 +59,9 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Ser
     }
 
     /**
-     * Returns <tt>true</tt> if this set contains no elements.
+     * Returns true if this set contains no elements.
      *
-     * @return <tt>true</tt> if this set contains no elements.
+     * @return true if this set contains no elements.
      */
     @Override
     public boolean isEmpty() {
@@ -69,11 +69,11 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Ser
     }
 
     /**
-     * Returns <tt>true</tt> if this set contains the specified element.
+     * Returns true if this set contains the specified element.
      *
      * @param o
      *            element whose presence in this set is to be tested.
-     * @return <tt>true</tt> if this set contains the specified element.
+     * @return true if this set contains the specified element.
      */
     @Override
     public boolean contains(final Object o) {
@@ -85,7 +85,7 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Ser
      *
      * @param o
      *            element to be added to this set.
-     * @return <tt>true</tt> if the set did not already contain the specified
+     * @return true if the set did not already contain the specified
      *         element.
      */
     @Override
@@ -98,7 +98,7 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Ser
      *
      * @param o
      *            object to be removed from this set, if present.
-     * @return <tt>true</tt> if the set contained the specified element.
+     * @return true if the set contained the specified element.
      */
     @Override
     public boolean remove(final Object o) {
