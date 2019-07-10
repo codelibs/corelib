@@ -337,7 +337,7 @@ public class DynamicProperties extends Properties {
         return getProperties().values();
     }
 
-    public void setCheckInterval(long checkInterval) {
+    public void setCheckInterval(final long checkInterval) {
         this.checkInterval = checkInterval;
     }
 }

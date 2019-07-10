@@ -15,6 +15,7 @@
  */
 package org.codelibs.core.xml;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +35,14 @@ public abstract class DocumentBuilderFactoryUtil {
      * @return 新しい {@link DocumentBuilderFactory}のインスタンス
      */
     public static DocumentBuilderFactory newInstance() {
-        return DocumentBuilderFactory.newInstance();
+        final DocumentBuilderFactory factory = DocumentBuilderFactory
+                .newInstance();
+        try {
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        } catch (final ParserConfigurationException e) {
+            throw new ParserConfigurationRuntimeException(e);
+        }
+        return factory;
     }
 
     /**

@@ -42,7 +42,7 @@ public class InstantiationRuntimeException extends ClRuntimeException {
     }
 
     @Override
-    public InstantiationRuntimeException initCause(final Throwable cause) {
+    public synchronized InstantiationRuntimeException initCause(final Throwable cause) {
         return (InstantiationRuntimeException) super.initCause(cause);
     }
 

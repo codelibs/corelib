@@ -128,7 +128,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     @Override
-    public PropertyDesc getPropertyDesc(final String propertyName) throws PropertyNotFoundRuntimeException {
+    public PropertyDesc getPropertyDesc(final String propertyName) {
         assertArgumentNotEmpty("propertyName", propertyName);
 
         final PropertyDesc pd = propertyDescCache.get(propertyName);
@@ -190,11 +190,10 @@ public class BeanDescImpl implements BeanDesc {
         return unmodifiableCollection(fieldDescCache.values());
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T newInstance(final Object... args) {
         final ConstructorDesc constructorDesc = getSuitableConstructorDesc(args);
-        return (T) constructorDesc.newInstance(args);
+        return constructorDesc.newInstance(args);
     }
 
     @Override

@@ -227,20 +227,18 @@ public class MethodDescImpl implements MethodDesc {
         return pcd.getRawClass();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T invoke(final Object target, final Object... args) {
         assertArgumentNotNull("target", target);
 
-        return (T) MethodUtil.invoke(method, target, args);
+        return MethodUtil.invoke(method, target, args);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T invokeStatic(final Object... args) {
         if (!isStatic()) {
             throw new MethodNotStaticRuntimeException(getBeanDesc().getBeanClass(), methodName);
         }
-        return (T) MethodUtil.invokeStatic(method, args);
+        return MethodUtil.invokeStatic(method, args);
     }
 }

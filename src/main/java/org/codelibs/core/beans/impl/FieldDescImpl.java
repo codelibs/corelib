@@ -151,21 +151,19 @@ public class FieldDescImpl implements FieldDesc {
         return pcd.getRawClass();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getFieldValue(final Object target) {
         assertArgumentNotNull("target", target);
 
-        return (T) FieldUtil.get(field, target);
+        return FieldUtil.get(field, target);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getStaticFieldValue() {
         if (!isStatic()) {
             throw new FieldNotStaticRuntimeException(beanDesc.getBeanClass(), fieldName);
         }
-        return (T) FieldUtil.get(field);
+        return FieldUtil.get(field);
     }
 
     @Override

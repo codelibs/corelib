@@ -19,6 +19,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.lang.reflect.Method;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -28,6 +29,8 @@ import org.codelibs.core.exception.SAXRuntimeException;
 import org.codelibs.core.lang.ClassUtil;
 import org.codelibs.core.lang.MethodUtil;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXNotRecognizedException;
+import org.xml.sax.SAXNotSupportedException;
 
 /**
  * {@link SAXParser}用のユーティリティクラスです。
@@ -42,7 +45,15 @@ public abstract class SAXParserFactoryUtil {
      * @return {@link SAXParserFactory}の新しいインスタンス
      */
     public static SAXParserFactory newInstance() {
-        return SAXParserFactory.newInstance();
+        final SAXParserFactory factory = SAXParserFactory.newInstance();
+        try {
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
+            throw new SAXRuntimeException(e);
+        } catch (final ParserConfigurationException e) {
+            throw new ParserConfigurationRuntimeException(e);
+        }
+        return factory;
     }
 
     /**
