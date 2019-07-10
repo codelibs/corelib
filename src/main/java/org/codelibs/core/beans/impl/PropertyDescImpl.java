@@ -251,7 +251,6 @@ public class PropertyDescImpl implements PropertyDesc {
         return writable;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getValue(final Object target) {
         assertArgumentNotNull("target", target);
@@ -259,9 +258,9 @@ public class PropertyDescImpl implements PropertyDesc {
         try {
             assertState(readable, propertyName + " is not readable.");
             if (hasReadMethod()) {
-                return (T) MethodUtil.invoke(readMethod, target, EMPTY_ARGS);
+                return MethodUtil.invoke(readMethod, target, EMPTY_ARGS);
             }
-            return (T) FieldUtil.get(field, target);
+            return FieldUtil.get(field, target);
         } catch (final Throwable t) {
             throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(), propertyName, t);
         }

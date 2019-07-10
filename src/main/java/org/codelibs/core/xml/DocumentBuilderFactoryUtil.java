@@ -35,8 +35,7 @@ public abstract class DocumentBuilderFactoryUtil {
      * @return 新しい {@link DocumentBuilderFactory}のインスタンス
      */
     public static DocumentBuilderFactory newInstance() {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory
-                .newInstance();
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         } catch (final ParserConfigurationException e) {

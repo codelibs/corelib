@@ -392,7 +392,7 @@ public abstract class CollectionsUtil {
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(SortedSet)
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final SortedSet<? extends E> s) {
-        return new ConcurrentSkipListSet<>(s);
+        return new ConcurrentSkipListSet<E>(s);
     }
 
     /**
@@ -1283,7 +1283,7 @@ public abstract class CollectionsUtil {
      * @see TreeSet#TreeSet(SortedSet)
      */
     public static <E> TreeSet<E> newTreeSet(final SortedSet<? extends E> s) {
-        return new TreeSet<>(s);
+        return new TreeSet<E>(s);
     }
 
     /**
