@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codelibs.core.collection.SLinkedList;
+import org.codelibs.core.log.Logger;
 
 /**
  * Timerを扱うクラスです。
@@ -27,6 +28,8 @@ import org.codelibs.core.collection.SLinkedList;
  *
  */
 public class TimeoutManager implements Runnable {
+
+    private static final Logger logger = Logger.getLogger(TimeoutManager.class);
 
     /**
      * シングルトンのためのインスタンスです。
@@ -63,6 +66,9 @@ public class TimeoutManager implements Runnable {
             thread = new Thread(this, "CoreLib-TimeoutManager");
             thread.setDaemon(true);
             thread.start();
+            if (logger.isDebugEnabled()) {
+                logger.debug("TimeoutManager started.");
+            }
         }
     }
 
@@ -73,6 +79,9 @@ public class TimeoutManager implements Runnable {
         if (thread != null) {
             thread.interrupt();
             thread = null;
+            if (logger.isDebugEnabled()) {
+                logger.debug("TimeoutManager stopped.");
+            }
         }
     }
 
@@ -86,16 +95,19 @@ public class TimeoutManager implements Runnable {
      *             待機中に割り込まれた場合
      */
     public boolean stop(final long timeoutMillis) throws InterruptedException {
-        final Thread thread = this.thread;
+        final Thread t = this.thread;
         synchronized (this) {
-            if (thread == null) {
+            if (t == null) {
                 return true;
             }
             this.thread = null;
         }
-        thread.interrupt();
-        thread.join(timeoutMillis);
-        return !thread.isAlive();
+        t.interrupt();
+        if (logger.isDebugEnabled()) {
+            logger.debug("TimeoutManager stopped.");
+        }
+        t.join(timeoutMillis);
+        return !t.isAlive();
     }
 
     /**
@@ -113,12 +125,13 @@ public class TimeoutManager implements Runnable {
      * @param permanent permanent
      * @return {@link TimeoutTask}
      */
-    public synchronized TimeoutTask addTimeoutTarget(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
-        final TimeoutTask task = new TimeoutTask(timeoutTarget, timeout, permanent);
+    public synchronized TimeoutTask addTimeoutTarget(
+            final TimeoutTarget timeoutTarget, final int timeout,
+            final boolean permanent) {
+        final TimeoutTask task = new TimeoutTask(timeoutTarget, timeout,
+                permanent);
         timeoutTaskList.addLast(task);
-        if (timeoutTaskList.size() == 1) {
-            start();
-        }
+        start();
         return task;
     }
 
@@ -134,24 +147,46 @@ public class TimeoutManager implements Runnable {
     @Override
     public void run() {
         boolean interrupted = false;
-        for (;;) {
-            final List<TimeoutTask> expiredTask = getExpiredTask();
-            for (final TimeoutTask timeoutTask : expiredTask) {
-                final TimeoutTask task = timeoutTask;
-                task.expired();
-                if (task.isPermanent()) {
-                    task.restart();
+        try {
+            for (;;) {
+                final List<TimeoutTask> expiredTask = getExpiredTask();
+                for (final TimeoutTask timeoutTask : expiredTask) {
+                    final TimeoutTask task = timeoutTask;
+                    try {
+                        task.expired();
+                    } catch (Exception e) {
+                        if (e instanceof InterruptedException) {
+                            interrupted = true;
+                        } else {
+                            logger.warn("Failed to process a task.", e);
+                        }
+                    }
+                    if (task.isPermanent()) {
+                        task.restart();
+                    }
+                }
+                if (interrupted || isInterrupted() || stopIfLeisure()) {
+                    return;
+                }
+                try {
+                    Thread.sleep(1000L);
+                } catch (final InterruptedException e) {
+                    interrupted = true;
                 }
             }
-            if (interrupted || thread.isInterrupted() || stopIfLeisure()) {
-                return;
+        } finally {
+            if (logger.isDebugEnabled()) {
+                logger.debug("TimeoutManagerThread stopped.");
             }
-            try {
-                Thread.sleep(1000);
-            } catch (final InterruptedException e) {
-                interrupted = true;
-            }
+            thread = null;
         }
+    }
+
+    private synchronized boolean isInterrupted() {
+        if (thread != null) {
+            return thread.isInterrupted();
+        }
+        return true;
     }
 
     /**
@@ -161,23 +196,15 @@ public class TimeoutManager implements Runnable {
      */
     protected synchronized List<TimeoutTask> getExpiredTask() {
         final List<TimeoutTask> expiredTask = new ArrayList<>();
-        try {
-            if (timeoutTaskList == null || timeoutTaskList.isEmpty()) {
-                return expiredTask;
-            }
-        } catch (final Exception e) {
+        if (timeoutTaskList.isEmpty()) {
             return expiredTask;
         }
-        for (SLinkedList<TimeoutTask>.Entry e = timeoutTaskList.getFirstEntry(); e != null; e = e.getNext()) {
+        for (SLinkedList<TimeoutTask>.Entry e = timeoutTaskList
+                .getFirstEntry(); e != null; e = e.getNext()) {
             final TimeoutTask task = e.getElement();
             if (task.isCanceled()) {
                 e.remove();
-                continue;
-            }
-            if (task.isStopped()) {
-                continue;
-            }
-            if (task.isExpired()) {
+            } else if (!task.isStopped() && task.isExpired()) {
                 expiredTask.add(task);
                 if (!task.isPermanent()) {
                     e.remove();
@@ -193,12 +220,8 @@ public class TimeoutManager implements Runnable {
      * @return 停止したかどうか
      */
     protected synchronized boolean stopIfLeisure() {
-        try {
-            if (timeoutTaskList == null || timeoutTaskList.isEmpty()) {
-                thread = null;
-                return true;
-            }
-        } catch (final Exception e) {
+        if (timeoutTaskList.isEmpty()) {
+            thread = null;
             return true;
         }
         return false;

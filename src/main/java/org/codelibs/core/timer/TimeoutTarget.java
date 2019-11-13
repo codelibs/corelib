@@ -27,5 +27,5 @@ public interface TimeoutTarget {
     /**
      * タイムアウトの処理を記述します。
      */
-    public void expired();
+    void expired();
 }

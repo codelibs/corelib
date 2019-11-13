@@ -25,27 +25,27 @@ import org.codelibs.core.exception.ClIllegalStateException;
  */
 public class TimeoutTask {
 
-    private final static int ACTIVE = 0;
+    private static final int ACTIVE = 0;
 
-    private final static int STOPPED = 1;
+    private static final int STOPPED = 1;
 
-    private final static int CANCELED = 2;
+    private static final int CANCELED = 2;
 
-    private final TimeoutTarget timeoutTarget_;
+    private final TimeoutTarget timeoutTarget;
 
-    private final long timeoutMillis_;
+    private final long timeoutMillis;
 
-    private final boolean permanent_;
+    private final boolean permanent;
 
-    private long startTime_;
+    private long startTime;
 
-    private int status_ = ACTIVE;
+    private int status = ACTIVE;
 
     TimeoutTask(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
-        timeoutTarget_ = timeoutTarget;
-        timeoutMillis_ = timeout * 1000L;
-        permanent_ = permanent;
-        startTime_ = System.currentTimeMillis();
+        this.timeoutTarget = timeoutTarget;
+        this.timeoutMillis = timeout * 1000L;
+        this.permanent = permanent;
+        this.startTime = System.currentTimeMillis();
     }
 
     /**
@@ -54,7 +54,7 @@ public class TimeoutTask {
      * @return 期限切れかどうか
      */
     public boolean isExpired() {
-        return System.currentTimeMillis() >= startTime_ + timeoutMillis_;
+        return System.currentTimeMillis() >= startTime + timeoutMillis;
     }
 
     /**
@@ -63,7 +63,7 @@ public class TimeoutTask {
      * @return 永続的かどうか
      */
     public boolean isPermanent() {
-        return permanent_;
+        return permanent;
     }
 
     /**
@@ -72,14 +72,14 @@ public class TimeoutTask {
      * @return キャンセルされているか
      */
     public boolean isCanceled() {
-        return status_ == CANCELED;
+        return status == CANCELED;
     }
 
     /**
      * キャンセルします。
      */
     public void cancel() {
-        status_ = CANCELED;
+        status = CANCELED;
     }
 
     /**
@@ -88,28 +88,28 @@ public class TimeoutTask {
      * @return 止まっているかどうか
      */
     public boolean isStopped() {
-        return status_ == STOPPED;
+        return status == STOPPED;
     }
 
     /**
      * タイマーをとめます。
      */
     public void stop() {
-        if (status_ != ACTIVE) {
-            throw new ClIllegalStateException(String.valueOf(status_));
+        if (status != ACTIVE) {
+            throw new ClIllegalStateException(String.valueOf(status));
         }
-        status_ = STOPPED;
+        status = STOPPED;
     }
 
     /**
      * タイマーを再開始します。
      */
     public void restart() {
-        status_ = ACTIVE;
-        startTime_ = System.currentTimeMillis();
+        status = ACTIVE;
+        startTime = System.currentTimeMillis();
     }
 
     void expired() {
-        timeoutTarget_.expired();
+        timeoutTarget.expired();
     }
 }
