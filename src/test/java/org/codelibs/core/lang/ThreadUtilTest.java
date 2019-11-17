@@ -32,6 +32,16 @@ public class ThreadUtilTest {
     public void test_sleep() throws Exception {
         ThreadUtil.sleep(1L);
         assertTrue(true);
+        ThreadUtil.sleepQuietly(1L);
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void test_sleepQuietly() throws Exception {
+        ThreadUtil.sleepQuietly(1L);
+        assertTrue(true);
     }
 
 }
