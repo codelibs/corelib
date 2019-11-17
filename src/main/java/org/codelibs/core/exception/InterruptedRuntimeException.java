@@ -13,25 +13,20 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.codelibs.core.lang;
-
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+package org.codelibs.core.exception;
 
 /**
+ * Wrapped InterruptedException.
+ * 
  * @author shinsuke
  *
  */
-public class ThreadUtilTest {
+public class InterruptedRuntimeException extends RuntimeException {
 
-    /**
-     * @throws Exception
-     */
-    @Test
-    public void test_sleep() throws Exception {
-        ThreadUtil.sleep(1L);
-        assertTrue(true);
+    private static final long serialVersionUID = 1L;
+
+    public InterruptedRuntimeException(final InterruptedException e) {
+        super(e);
     }
 
 }

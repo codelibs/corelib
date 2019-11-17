@@ -15,7 +15,7 @@
  */
 package org.codelibs.core.lang;
 
-import org.codelibs.core.log.Logger;
+import org.codelibs.core.exception.InterruptedRuntimeException;
 
 /**
  * Utility class for Thread class
@@ -25,17 +25,11 @@ import org.codelibs.core.log.Logger;
  */
 public abstract class ThreadUtil {
 
-    private static final Logger logger = Logger.getLogger(ThreadUtil.class);
-
-    public static boolean sleepQuietly(final long millis) {
+    public static void sleep(final long millis) {
         try {
             Thread.sleep(millis);
         } catch (final InterruptedException e) {
-            if (logger.isDebugEnabled()) {
-                logger.debug(Thread.currentThread().getName() + " is interrupted.", e);
-            }
-            return false;
+            throw new InterruptedRuntimeException(e);
         }
-        return true;
     }
 }
