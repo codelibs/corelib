@@ -29,6 +29,9 @@ public abstract class ThreadUtil {
     private static final Logger logger = Logger.getLogger(ThreadUtil.class);
 
     public static void sleep(final long millis) {
+        if (millis < 1L) {
+            return;
+        }
         try {
             Thread.sleep(millis);
         } catch (final InterruptedException e) {
@@ -37,6 +40,9 @@ public abstract class ThreadUtil {
     }
 
     public static void sleepQuietly(final long millis) {
+        if (millis < 1L) {
+            return;
+        }
         try {
             Thread.sleep(millis);
         } catch (final InterruptedException e) {
