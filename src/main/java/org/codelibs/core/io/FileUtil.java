@@ -29,9 +29,9 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 
 import org.codelibs.core.exception.IORuntimeException;
-import org.codelibs.core.log.Logger;
 import org.codelibs.core.net.URLUtil;
 import org.codelibs.core.nio.ChannelUtil;
 import org.codelibs.core.timer.TimeoutManager;
@@ -42,8 +42,6 @@ import org.codelibs.core.timer.TimeoutManager;
  * @author higa
  */
 public abstract class FileUtil {
-
-    private static final Logger logger = Logger.getLogger(FileUtil.class);
 
     /** UTF-8のエンコーディング名 */
     private static final String UTF8 = "UTF-8";
@@ -251,8 +249,10 @@ public abstract class FileUtil {
     public static void deleteInBackground(final File file) {
         if (file != null) {
             TimeoutManager.getInstance().addTimeoutTarget(() -> {
-                if (!file.delete()) {
-                    logger.warn("Failed to delete " + file.getAbsolutePath());
+                try {
+                    Files.delete(file.toPath());
+                } catch (IOException e) {
+                    throw new IORuntimeException(e);
                 }
             }, 0, false);
         }
