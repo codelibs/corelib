@@ -47,7 +47,7 @@ public abstract class ThreadUtil {
             Thread.sleep(millis);
         } catch (final InterruptedException e) {
             if (logger.isDebugEnabled()) {
-                logger.debug(Thread.currentThread().getName() + " is interrupted.", e);
+                logger.debug("{} is interrupted.", Thread.currentThread().getName(), e);
             }
         }
     }
