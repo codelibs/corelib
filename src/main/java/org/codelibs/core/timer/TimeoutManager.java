@@ -17,8 +17,13 @@ package org.codelibs.core.timer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.codelibs.core.collection.SLinkedList;
+import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.log.Logger;
 
 /**
@@ -143,39 +148,70 @@ public class TimeoutManager implements Runnable {
 
     @Override
     public void run() {
-        boolean interrupted = false;
+        int nThreads = Runtime.getRuntime().availableProcessors() / 2;
+        final String value = System.getProperty("corelib.timeout_task.num_of_threads");
+        if (StringUtil.isNotBlank(value)) {
+            try {
+                nThreads = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                logger.warn("Failed to parse " + value, e);
+            }
+        }
+        if (nThreads < 1) {
+            nThreads = 1;
+        }
+        final ExecutorService executorService =
+                new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(nThreads),
+                        new ThreadPoolExecutor.CallerRunsPolicy());
         try {
-            for (;;) {
-                final List<TimeoutTask> expiredTask = getExpiredTask();
-                for (final TimeoutTask timeoutTask : expiredTask) {
-                    final TimeoutTask task = timeoutTask;
-                    try {
-                        task.expired();
-                    } catch (Exception e) {
-                        if (e instanceof InterruptedException) {
-                            interrupted = true;
-                        } else {
-                            logger.warn("Failed to process a task.", e);
-                        }
-                    }
-                    if (task.isPermanent()) {
-                        task.restart();
-                    }
+            while (!isInterrupted() && !stopIfLeisure()) {
+                for (final TimeoutTask task : getExpiredTask()) {
+                    processTask(executorService, task);
                 }
-                if (interrupted || isInterrupted() || stopIfLeisure()) {
-                    return;
-                }
-                try {
-                    Thread.sleep(1000L);
-                } catch (final InterruptedException e) {
-                    interrupted = true;
-                }
+                Thread.sleep(1000L);
+            }
+        } catch (final InterruptedException e) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Interrupted.", e);
             }
         } finally {
             if (logger.isDebugEnabled()) {
                 logger.debug("TimeoutManagerThread stopped.");
             }
             thread = null;
+            try {
+                executorService.shutdown();
+                executorService.awaitTermination(60, TimeUnit.SECONDS);
+            } catch (final InterruptedException e) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Interrupted.", e);
+                }
+            } finally {
+                executorService.shutdownNow();
+            }
+        }
+    }
+
+    private void processTask(final ExecutorService executorService, final TimeoutTask task) {
+        try {
+            executorService.execute(() -> {
+                try {
+                    task.expired();
+                } catch (Exception e) {
+                    if (e instanceof InterruptedException) {
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("Interrupted.", e);
+                        }
+                    } else {
+                        logger.warn("Failed to process a task.", e);
+                    }
+                }
+                if (task.isPermanent()) {
+                    task.restart();
+                }
+            });
+        } catch (final Exception e) {
+            logger.warn("Failed to process a task.", e);
         }
     }
 
