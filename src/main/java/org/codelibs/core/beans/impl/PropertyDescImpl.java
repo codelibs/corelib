@@ -275,7 +275,7 @@ public class PropertyDescImpl implements PropertyDesc {
             assertState(writable, propertyName + " is not writable.");
             if (hasWriteMethod()) {
                 try {
-                    MethodUtil.invoke(writeMethod, target, new Object[] { convertedValue });
+                    MethodUtil.invoke(writeMethod, target, convertedValue);
                 } catch (final Throwable t) {
                     final Class<?> clazz = writeMethod.getDeclaringClass();
                     final Class<?> valueClass = convertedValue == null ? null : convertedValue.getClass();
@@ -360,10 +360,10 @@ public class PropertyDescImpl implements PropertyDesc {
 
     private Object convertWithString(final Object arg) {
         if (stringConstructor != null) {
-            return ConstructorUtil.newInstance(stringConstructor, new Object[] { arg });
+            return ConstructorUtil.newInstance(stringConstructor, arg);
         }
         if (valueOfMethod != null) {
-            return MethodUtil.invoke(valueOfMethod, null, new Object[] { arg });
+            return MethodUtil.invoke(valueOfMethod, null, arg);
         }
         return arg;
     }

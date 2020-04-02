@@ -53,16 +53,16 @@ public abstract class IntegerConversionUtil {
         } else if (o instanceof Integer) {
             return (Integer) o;
         } else if (o instanceof Number) {
-            return Integer.valueOf(((Number) o).intValue());
+            return ((Number) o).intValue();
         } else if (o instanceof String) {
             return toInteger((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
                 return Integer.valueOf(new SimpleDateFormat(pattern).format(o));
             }
-            return Integer.valueOf((int) ((java.util.Date) o).getTime());
+            return (int) ((java.util.Date) o).getTime();
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? Integer.valueOf(1) : Integer.valueOf(0);
+            return ((Boolean) o) ? 1 : 0;
         } else {
             return toInteger(o.toString());
         }
@@ -108,7 +108,7 @@ public abstract class IntegerConversionUtil {
             }
             return (int) ((java.util.Date) o).getTime();
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? 1 : 0;
+            return ((Boolean) o) ? 1 : 0;
         } else {
             return toPrimitiveInt(o.toString());
         }

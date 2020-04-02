@@ -36,7 +36,7 @@ public abstract class BooleanConversionUtil {
             return (Boolean) o;
         } else if (o instanceof Number) {
             final int num = ((Number) o).intValue();
-            return Boolean.valueOf(num != 0);
+            return num != 0;
         } else if (o instanceof String) {
             final String s = (String) o;
             if ("true".equalsIgnoreCase(s)) {
@@ -63,7 +63,7 @@ public abstract class BooleanConversionUtil {
     public static boolean toPrimitiveBoolean(final Object o) {
         final Boolean b = toBoolean(o);
         if (b != null) {
-            return b.booleanValue();
+            return b;
         }
         return false;
     }

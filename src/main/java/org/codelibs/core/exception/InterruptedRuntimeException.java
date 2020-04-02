@@ -17,7 +17,7 @@ package org.codelibs.core.exception;
 
 /**
  * Wrapped InterruptedException.
- * 
+ *
  * @author shinsuke
  *
  */

@@ -76,13 +76,13 @@ public abstract class TraversalUtil {
     protected static final ConcurrentMap<String, TraverserFactory> traverserFactories = newConcurrentHashMap();
     static {
         addTraverserFactory("file", (url, rootPackage, rootDir) -> new FileSystemTraverser(getBaseDir(url, rootDir), rootPackage, rootDir));
-        addTraverserFactory("jar", (url, rootPackage, rootDir) -> new JarFileTraverser(url, rootPackage, rootDir));
+        addTraverserFactory("jar", JarFileTraverser::new);
         addTraverserFactory("zip",
                 (url, rootPackage, rootDir) -> new JarFileTraverser(JarFileUtil.create(new File(ZipFileUtil.toZipFilePath(url))),
                         rootPackage, rootDir));
         addTraverserFactory("code-source", (url, rootPackage, rootDir) -> new JarFileTraverser(URLUtil.create("jar:file:" + url.getPath()),
                 rootPackage, rootDir));
-        addTraverserFactory("vfszip", (url, rootPackage, rootDir) -> new VfsZipTraverser(url, rootPackage, rootDir));
+        addTraverserFactory("vfszip", VfsZipTraverser::new);
     }
 
     /**
@@ -161,7 +161,7 @@ public abstract class TraversalUtil {
             }
         }
         if (list.isEmpty()) {
-            logger.log("WCL0014", new Object[] { rootPackage });
+            logger.log("WCL0014", rootPackage);
             return EMPTY_ARRAY;
         }
         return list.toArray(new Traverser[list.size()]);

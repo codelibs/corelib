@@ -251,7 +251,7 @@ public abstract class FileUtil {
             TimeoutManager.getInstance().addTimeoutTarget(() -> {
                 try {
                     Files.deleteIfExists(file.toPath());
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     throw new IORuntimeException(e);
                 }
             }, 0, false);

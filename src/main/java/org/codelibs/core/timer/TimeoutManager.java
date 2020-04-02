@@ -153,7 +153,7 @@ public class TimeoutManager implements Runnable {
         if (StringUtil.isNotBlank(value)) {
             try {
                 nThreads = Integer.parseInt(value);
-            } catch (NumberFormatException e) {
+            } catch (final NumberFormatException e) {
                 logger.warn("Failed to parse " + value, e);
             }
         }
@@ -197,7 +197,7 @@ public class TimeoutManager implements Runnable {
             executorService.execute(() -> {
                 try {
                     task.expired();
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     if (e instanceof InterruptedException) {
                         if (logger.isDebugEnabled()) {
                             logger.debug("Interrupted.", e);

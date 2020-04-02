@@ -81,7 +81,7 @@ public abstract class BeanDescFactory {
     public static void initialize() {
         synchronized (BeanDescFactory.class) {
             if (!initialized) {
-                DisposableUtil.add(() -> clear());
+                DisposableUtil.add(BeanDescFactory::clear);
                 initialized = true;
             }
         }

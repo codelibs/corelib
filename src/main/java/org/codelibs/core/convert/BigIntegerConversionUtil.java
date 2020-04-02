@@ -54,7 +54,7 @@ public abstract class BigIntegerConversionUtil {
             if (l == null) {
                 return null;
             }
-            return BigInteger.valueOf(l.longValue());
+            return BigInteger.valueOf(l);
         }
     }
 
