@@ -585,7 +585,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
         @Override
         public void remove() {
             assertState(last != -1, "last == -1");
-            ArrayMap.this.remove(last);
+            ArrayMap.this.removeAt(last);
             if (last < current) {
                 current--;
             }
