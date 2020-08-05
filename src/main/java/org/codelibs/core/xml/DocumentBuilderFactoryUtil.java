@@ -35,7 +35,16 @@ public abstract class DocumentBuilderFactoryUtil {
      * @return 新しい {@link DocumentBuilderFactory}のインスタンス
      */
     public static DocumentBuilderFactory newInstance() {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        return newInstance(false);
+    }
+
+    public static DocumentBuilderFactory newInstance(final boolean external) {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory
+                .newInstance();
+        if (!external) {
+            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        }
         try {
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         } catch (final ParserConfigurationException e) {

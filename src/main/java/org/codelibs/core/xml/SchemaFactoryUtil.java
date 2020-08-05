@@ -18,6 +18,9 @@ package org.codelibs.core.xml;
 import javax.xml.XMLConstants;
 import javax.xml.validation.SchemaFactory;
 
+import org.codelibs.core.exception.SAXRuntimeException;
+import org.xml.sax.SAXException;
+
 /**
  * {@link SchemaFactory}のためのユーティリティ・クラスです。
  *
@@ -31,7 +34,20 @@ public abstract class SchemaFactoryUtil {
      * @return W3C XML Schemaのための{@link SchemaFactory}
      */
     public static SchemaFactory newW3cXmlSchemaFactory() {
-        return SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        return newW3cXmlSchemaFactory(false);
+    }
+
+    public static SchemaFactory newW3cXmlSchemaFactory(final boolean external) {
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        if (!external) {
+            try {
+                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            } catch (SAXException e) {
+                throw new SAXRuntimeException(e);
+            }
+        }
+        return schemaFactory;
     }
 
     /**
@@ -40,7 +56,20 @@ public abstract class SchemaFactoryUtil {
      * @return RELAX NGのための{@link SchemaFactory}
      */
     public static SchemaFactory newRelaxNgSchemaFactory() {
-        return SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
+        return newRelaxNgSchemaFactory(false);
+    }
+
+    public static SchemaFactory newRelaxNgSchemaFactory(final boolean external) {
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
+        if (!external) {
+            try {
+                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            } catch (SAXException e) {
+                throw new SAXRuntimeException(e);
+            }
+        }
+        return schemaFactory;
     }
 
 }
