@@ -18,7 +18,7 @@ package org.codelibs.core.xml;
 import javax.xml.XMLConstants;
 import javax.xml.validation.SchemaFactory;
 
-import org.codelibs.core.exception.SAXRuntimeException;
+import org.codelibs.core.log.Logger;
 import org.xml.sax.SAXException;
 
 /**
@@ -27,6 +27,8 @@ import org.xml.sax.SAXException;
  * @author koichik
  */
 public abstract class SchemaFactoryUtil {
+
+    private static final Logger logger = Logger.getLogger(SchemaFactoryUtil.class);
 
     /**
      * W3C XML Schemaのための{@link SchemaFactory}を生成します。
@@ -40,12 +42,7 @@ public abstract class SchemaFactoryUtil {
     public static SchemaFactory newW3cXmlSchemaFactory(final boolean external) {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         if (!external) {
-            try {
-                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            } catch (SAXException e) {
-                throw new SAXRuntimeException(e);
-            }
+            disableExternalResources(schemaFactory);
         }
         return schemaFactory;
     }
@@ -62,14 +59,20 @@ public abstract class SchemaFactoryUtil {
     public static SchemaFactory newRelaxNgSchemaFactory(final boolean external) {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
         if (!external) {
-            try {
-                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-                schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            } catch (SAXException e) {
-                throw new SAXRuntimeException(e);
-            }
+            disableExternalResources(schemaFactory);
         }
         return schemaFactory;
     }
 
+    private static void disableExternalResources(
+            final SchemaFactory schemaFactory) {
+        try {
+            schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+            schemaFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        } catch (final Exception e) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Failed to set a property.", e);
+            }
+        }
+    }
 }

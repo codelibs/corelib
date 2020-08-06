@@ -21,6 +21,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.codelibs.core.exception.ParserConfigurationRuntimeException;
+import org.codelibs.core.log.Logger;
 
 /**
  * {@link DocumentBuilderFactory}の用のユーティリティクラスです。
@@ -28,6 +29,8 @@ import org.codelibs.core.exception.ParserConfigurationRuntimeException;
  * @author higa
  */
 public abstract class DocumentBuilderFactoryUtil {
+
+    private static final Logger logger = Logger.getLogger(DocumentBuilderFactoryUtil.class);
 
     /**
      * 新しい {@link DocumentBuilderFactory}のインスタンスを返します。
@@ -42,8 +45,14 @@ public abstract class DocumentBuilderFactoryUtil {
         final DocumentBuilderFactory factory = DocumentBuilderFactory
                 .newInstance();
         if (!external) {
-            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+            try {
+                factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+            } catch (final Exception e) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Failed to set a property.", e);
+                }
+            }
         }
         try {
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
