@@ -105,10 +105,10 @@ public class TraverserUtilTest {
 
         final List<String> list = new ArrayList<String>();
         traverser.forEach((ResourceHandler) (path, is) -> list.add(path));
-        assertThat(list.size(), is(3));
+        list.sort((s1, s2) -> s1.compareTo(s2));
+        assertThat(list.size(), is(2));
         assertThat(list.get(0), is("junit/textui/ResultPrinter.class"));
         assertThat(list.get(1), is("junit/textui/TestRunner.class"));
-        assertThat(list.get(2), is("junit/textui/package-info.class"));
     }
 
     /**
@@ -151,10 +151,10 @@ public class TraverserUtilTest {
 
         final Set<String> set = new HashSet<String>();
         traverser.forEach((ClassHandler) (packageName, shortClassName) -> set.add(ClassUtil.concatName(packageName, shortClassName)));
-        assertThat(set.size(), is(3));
+        assertThat(set.size(), is(2));
         assertThat(set.contains(ResultPrinter.class.getName()), is(true));
         assertThat(set.contains(TestRunner.class.getName()), is(true));
-        assertThat(set.contains("junit.textui.package-info"), is(true));
+        assertThat(set.contains("junit.textui.package-info"), is(false));
         assertThat(set.contains(junit.extensions.TestDecorator.class.getName()), is(not(true)));
     }
 
