@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -238,8 +238,8 @@ public abstract class ClassUtil {
      * @see #forName(String)
      */
     @SuppressWarnings("unchecked")
-    public static <T> T newInstance(final String className) throws ClassNotFoundRuntimeException, InstantiationRuntimeException,
-            IllegalAccessRuntimeException {
+    public static <T> T newInstance(final String className)
+            throws ClassNotFoundRuntimeException, InstantiationRuntimeException, IllegalAccessRuntimeException {
         assertArgumentNotNull("className", className);
 
         return (T) newInstance(forName(className));
@@ -265,8 +265,8 @@ public abstract class ClassUtil {
      * @see #forName(String, ClassLoader)
      */
     @SuppressWarnings("unchecked")
-    public static <T> T newInstance(final String className, final ClassLoader loader) throws ClassNotFoundRuntimeException,
-            InstantiationRuntimeException, IllegalAccessRuntimeException {
+    public static <T> T newInstance(final String className, final ClassLoader loader)
+            throws ClassNotFoundRuntimeException, InstantiationRuntimeException, IllegalAccessRuntimeException {
         assertArgumentNotEmpty("className", className);
 
         return (T) newInstance(forName(className, loader));
@@ -475,7 +475,8 @@ public abstract class ClassUtil {
      *             一致するメソッドが見つからない場合
      * @see Class#getMethod(String, Class...)
      */
-    public static Method getMethod(final Class<?> clazz, final String name, final Class<?>... argTypes) throws NoSuchMethodRuntimeException {
+    public static Method getMethod(final Class<?> clazz, final String name, final Class<?>... argTypes)
+            throws NoSuchMethodRuntimeException {
         assertArgumentNotNull("clazz", clazz);
         assertArgumentNotEmpty("name", name);
 

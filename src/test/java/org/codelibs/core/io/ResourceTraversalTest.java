@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,23 +79,21 @@ public class ResourceTraversalTest {
         final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
         final JarURLConnection con = (JarURLConnection) classURL.openConnection();
-        ResourceTraversalUtil.forEach(
-                con.getJarFile(),
-                (ResourceHandler) (path, is) -> {
-                    try {
-                        if (count < 10) {
-                            System.out.println(path);
-                        }
-                        System.out.println(path);
-                        assertThat(path, is(notNullValue()));
-                        assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
-                                || path.startsWith("META-INF/") || path.equals("LICENSE-junit.txt"), is(true));
-                        assertThat(is, is(notNullValue()));
-                        count++;
-                    } finally {
-                        CloseableUtil.close(is);
-                    }
-                });
+        ResourceTraversalUtil.forEach(con.getJarFile(), (ResourceHandler) (path, is) -> {
+            try {
+                if (count < 10) {
+                    System.out.println(path);
+                }
+                System.out.println(path);
+                assertThat(path, is(notNullValue()));
+                assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
+                        || path.startsWith("META-INF/") || path.equals("LICENSE-junit.txt"), is(true));
+                assertThat(is, is(notNullValue()));
+                count++;
+            } finally {
+                CloseableUtil.close(is);
+            }
+        });
         assertTrue(count > 0);
     }
 
@@ -130,22 +128,20 @@ public class ResourceTraversalTest {
         final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
         final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
-        ResourceTraversalUtil.forEach(
-                new ZipInputStream(jarURL.openStream()),
-                (ResourceHandler) (path, is) -> {
-                    try {
-                        if (count < 10) {
-                            System.out.println(path);
-                        }
-                        assertThat(path, is(notNullValue()));
-                        assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
-                                || path.startsWith("META-INF/") || path.equals("LICENSE-junit.txt"), is(true));
-                        assertThat(is, is(notNullValue()));
-                        count++;
-                    } finally {
-                        CloseableUtil.close(is);
-                    }
-                });
+        ResourceTraversalUtil.forEach(new ZipInputStream(jarURL.openStream()), (ResourceHandler) (path, is) -> {
+            try {
+                if (count < 10) {
+                    System.out.println(path);
+                }
+                assertThat(path, is(notNullValue()));
+                assertThat(path, path.startsWith("junit") || path.startsWith("org/junit") || path.startsWith("org/hamcrest")
+                        || path.startsWith("META-INF/") || path.equals("LICENSE-junit.txt"), is(true));
+                assertThat(is, is(notNullValue()));
+                count++;
+            } finally {
+                CloseableUtil.close(is);
+            }
+        });
         assertTrue(count > 0);
     }
 

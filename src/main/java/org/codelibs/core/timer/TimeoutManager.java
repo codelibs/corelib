@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -160,9 +160,8 @@ public class TimeoutManager implements Runnable {
         if (nThreads < 1) {
             nThreads = 1;
         }
-        final ExecutorService executorService =
-                new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(nThreads),
-                        new ThreadPoolExecutor.CallerRunsPolicy());
+        final ExecutorService executorService = new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(nThreads), new ThreadPoolExecutor.CallerRunsPolicy());
         try {
             while (!isInterrupted() && !stopIfLeisure()) {
                 for (final TimeoutTask task : getExpiredTask()) {

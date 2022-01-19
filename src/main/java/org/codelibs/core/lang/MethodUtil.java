@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,8 +52,8 @@ public abstract class MethodUtil {
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
-    public static <T> T invoke(final Method method, final Object target, final Object... args) throws InvocationTargetRuntimeException,
-            IllegalAccessRuntimeException {
+    public static <T> T invoke(final Method method, final Object target, final Object... args)
+            throws InvocationTargetRuntimeException, IllegalAccessRuntimeException {
         assertArgumentNotNull("method", method);
 
         try {
@@ -89,8 +89,8 @@ public abstract class MethodUtil {
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
-    public static <T> T invokeStatic(final Method method, final Object... args) throws InvocationTargetRuntimeException,
-            IllegalAccessRuntimeException {
+    public static <T> T invokeStatic(final Method method, final Object... args)
+            throws InvocationTargetRuntimeException, IllegalAccessRuntimeException {
         assertArgumentNotNull("method", method);
 
         return (T) invoke(method, null, args);

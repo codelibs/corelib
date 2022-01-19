@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -490,8 +490,8 @@ public class BeanDescImpl implements BeanDesc {
                 final String propertyName = StringUtil.decapitalize(methodName.substring(3));
                 setupReadMethod(m, propertyName);
             } else if (methodName.startsWith("is")) {
-                if (m.getParameterTypes().length != 0 || !m.getReturnType().equals(Boolean.TYPE)
-                        && !m.getReturnType().equals(Boolean.class)) {
+                if (m.getParameterTypes().length != 0
+                        || !m.getReturnType().equals(Boolean.TYPE) && !m.getReturnType().equals(Boolean.class)) {
                     continue;
                 }
                 final String propertyName = StringUtil.decapitalize(methodName.substring(2));

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,20 +56,17 @@ public class ClassTraversalTest {
         final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
         final JarURLConnection con = (JarURLConnection) classURL.openConnection();
-        ClassTraversalUtil.forEach(
-                con.getJarFile(),
-                (ClassHandler) (packageName, shortClassName) -> {
-                    if (count < 10) {
-                        System.out.println(ClassUtil.concatName(packageName, shortClassName));
-                    }
-                    assertThat(packageName, is(notNullValue()));
-                    assertThat(shortClassName, is(notNullValue()));
-                    assertThat(
-                            packageName,
-                            packageName.startsWith("junit") || packageName.startsWith("org.junit")
-                                    || packageName.startsWith("org.hamcrest"), is(true));
-                    count++;
-                });
+        ClassTraversalUtil.forEach(con.getJarFile(), (ClassHandler) (packageName, shortClassName) -> {
+            if (count < 10) {
+                System.out.println(ClassUtil.concatName(packageName, shortClassName));
+            }
+            assertThat(packageName, is(notNullValue()));
+            assertThat(shortClassName, is(notNullValue()));
+            assertThat(packageName,
+                    packageName.startsWith("junit") || packageName.startsWith("org.junit") || packageName.startsWith("org.hamcrest"),
+                    is(true));
+            count++;
+        });
         assertTrue(count > 0);
     }
 
@@ -101,20 +98,17 @@ public class ClassTraversalTest {
         final String classFilePath = TestCase.class.getName().replace('.', '/') + ".class";
         final URL classURL = ResourceUtil.getResource(classFilePath);
         final URL jarURL = new File(JarFileUtil.toJarFilePath(classURL)).toURI().toURL();
-        ClassTraversalUtil.forEach(
-                new ZipInputStream(jarURL.openStream()),
-                (ClassHandler) (packageName, shortClassName) -> {
-                    if (count < 10) {
-                        System.out.println(ClassUtil.concatName(packageName, shortClassName));
-                    }
-                    assertThat(packageName, is(notNullValue()));
-                    assertThat(shortClassName, is(notNullValue()));
-                    assertThat(
-                            packageName,
-                            packageName.startsWith("junit") || packageName.startsWith("org.junit")
-                                    || packageName.startsWith("org.hamcrest"), is(true));
-                    count++;
-                });
+        ClassTraversalUtil.forEach(new ZipInputStream(jarURL.openStream()), (ClassHandler) (packageName, shortClassName) -> {
+            if (count < 10) {
+                System.out.println(ClassUtil.concatName(packageName, shortClassName));
+            }
+            assertThat(packageName, is(notNullValue()));
+            assertThat(shortClassName, is(notNullValue()));
+            assertThat(packageName,
+                    packageName.startsWith("junit") || packageName.startsWith("org.junit") || packageName.startsWith("org.hamcrest"),
+                    is(true));
+            count++;
+        });
         assertTrue(count > 0);
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -193,7 +193,8 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_propertyConverter_asObject() throws Exception {
-        assertThat(new CopyOptions().converter(new NumberConverter("##0"), BeanNames.aaa()).convertValue("1", "aaa", null), is((Object) 1L));
+        assertThat(new CopyOptions().converter(new NumberConverter("##0"), BeanNames.aaa()).convertValue("1", "aaa", null),
+                is((Object) 1L));
     }
 
     /**

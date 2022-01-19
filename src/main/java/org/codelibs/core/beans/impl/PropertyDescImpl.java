@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2019 CodeLibs Project and the Others.
+ * Copyright 2012-2022 CodeLibs Project and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -144,8 +144,8 @@ public class PropertyDescImpl implements PropertyDesc {
             if (method.isBridge() || method.isSynthetic()) {
                 continue;
             }
-            if (ModifierUtil.isStatic(method.getModifiers()) && method.getName().equals("valueOf")
-                    && method.getParameterTypes().length == 1 && method.getParameterTypes()[0].equals(String.class)) {
+            if (ModifierUtil.isStatic(method.getModifiers()) && method.getName().equals("valueOf") && method.getParameterTypes().length == 1
+                    && method.getParameterTypes()[0].equals(String.class)) {
                 valueOfMethod = method;
                 break;
             }
@@ -280,11 +280,12 @@ public class PropertyDescImpl implements PropertyDesc {
                     final Class<?> clazz = writeMethod.getDeclaringClass();
                     final Class<?> valueClass = convertedValue == null ? null : convertedValue.getClass();
                     final Class<?> targetClass = target == null ? null : target.getClass();
-                    throw new ClIllegalArgumentException("target", "ECL0098", new Object[] { clazz.getName(), clazz.getClassLoader(),
-                            propertyType.getName(), propertyType.getClassLoader(), propertyName,
-                            valueClass == null ? null : valueClass.getName(), valueClass == null ? null : valueClass.getClassLoader(),
-                            convertedValue, targetClass == null ? null : targetClass.getName(),
-                            targetClass == null ? null : targetClass.getClassLoader() }).initCause(t);
+                    throw new ClIllegalArgumentException("target", "ECL0098",
+                            new Object[] { clazz.getName(), clazz.getClassLoader(), propertyType.getName(), propertyType.getClassLoader(),
+                                    propertyName, valueClass == null ? null : valueClass.getName(),
+                                    valueClass == null ? null : valueClass.getClassLoader(), convertedValue,
+                                    targetClass == null ? null : targetClass.getName(),
+                                    targetClass == null ? null : targetClass.getClassLoader() }).initCause(t);
                 }
             } else {
                 FieldUtil.set(field, target, convertedValue);
