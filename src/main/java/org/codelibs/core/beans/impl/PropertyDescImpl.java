@@ -285,7 +285,8 @@ public class PropertyDescImpl implements PropertyDesc {
                                     propertyName, valueClass == null ? null : valueClass.getName(),
                                     valueClass == null ? null : valueClass.getClassLoader(), convertedValue,
                                     targetClass == null ? null : targetClass.getName(),
-                                    targetClass == null ? null : targetClass.getClassLoader() }).initCause(t);
+                                    targetClass == null ? null : targetClass.getClassLoader() })
+                            .initCause(t);
                 }
             } else {
                 FieldUtil.set(field, target, convertedValue);

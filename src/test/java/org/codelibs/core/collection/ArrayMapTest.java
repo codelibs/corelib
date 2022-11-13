@@ -38,7 +38,7 @@ import org.junit.rules.ExpectedException;
 
 /**
  * @author higa
- * 
+ *
  */
 public class ArrayMapTest {
 
@@ -266,7 +266,7 @@ public class ArrayMapTest {
     }
 
     /**
-     * 
+     *
      */
     @Test
     public void testArrayMapIteratorNextException() {
@@ -279,7 +279,7 @@ public class ArrayMapTest {
     }
 
     /**
-     * 
+     *
      */
     @Test
     public void testArrayMapGetEntryException() {
