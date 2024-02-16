@@ -48,6 +48,8 @@ public abstract class SAXParserFactoryUtil {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
             throw new SAXRuntimeException(e);
         } catch (final ParserConfigurationException e) {
