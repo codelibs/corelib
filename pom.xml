@@ -5,7 +5,7 @@
 	<artifactId>corelib</artifactId>
 	<packaging>jar</packaging>
 	<name>CodeLibs Core Library</name>
-	<version>0.5.6-SNAPSHOT</version>
+	<version>0.6.0-SNAPSHOT</version>
 	<description />
 	<url>https://github.com/codelibs/corelib</url>
 	<inceptionYear>2012</inceptionYear>
@@ -37,10 +37,10 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+				<version>3.12.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<release>11</release>
+					<release>17</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -58,7 +58,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.6.0</version>
+				<version>3.6.3</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<docencoding>UTF-8</docencoding>
@@ -78,12 +78,12 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.2</version>
+				<version>3.2.5</version>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.10</version>
+				<version>0.8.11</version>
 				<executions>
 					<execution>
 						<goals>
@@ -102,11 +102,11 @@
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>4.2</version>
+				<version>4.3</version>
 				<configuration>
 					<header>https://www.codelibs.org/assets/license/header.txt</header>
 					<properties>
-						<year>2022</year>
+						<year>2024</year>
 					</properties>
 					<includes>
 						<include>src/**/*.java</include>

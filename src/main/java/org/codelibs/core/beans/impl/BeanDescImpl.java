@@ -50,6 +50,7 @@ import org.codelibs.core.convert.FloatConversionUtil;
 import org.codelibs.core.convert.IntegerConversionUtil;
 import org.codelibs.core.convert.LongConversionUtil;
 import org.codelibs.core.convert.ShortConversionUtil;
+import org.codelibs.core.exception.BeanFieldSetAccessibleFailureException;
 import org.codelibs.core.exception.ConstructorNotFoundRuntimeException;
 import org.codelibs.core.exception.FieldNotFoundRuntimeException;
 import org.codelibs.core.exception.MethodNotFoundRuntimeException;
@@ -649,7 +650,7 @@ public class BeanDescImpl implements BeanDesc {
             if (fieldDescCache.containsKey(fname)) {
                 continue;
             }
-            field.setAccessible(true);
+            setFieldAccessible(field);
             final FieldDescImpl fieldDesc = new FieldDescImpl(this, field);
             fieldDescCache.put(fname, fieldDesc);
             if (!FieldUtil.isInstanceField(field)) {
@@ -665,6 +666,24 @@ public class BeanDescImpl implements BeanDesc {
                 propertyDescCache.put(fname, pd);
             }
         }
+    }
+
+    private void setFieldAccessible(Field field) {
+        if (isExceptPrivateAccessible(field)) {
+            return;
+        }
+        try {
+            field.setAccessible(true);
+        } catch (RuntimeException e) {
+            throw new BeanFieldSetAccessibleFailureException(beanClass, field, e);
+        }
+    }
+
+    private boolean isExceptPrivateAccessible(Field field) {
+        // to avoid warning of JDK-internal access at Java11
+        // Lasta Di does not need private access to the classes
+        final String fqcn = field.getDeclaringClass().getName();
+        return fqcn.startsWith("java.") || fqcn.startsWith("jdk.") || fqcn.startsWith("com.sun.") || fqcn.startsWith("sun.");
     }
 
     /**

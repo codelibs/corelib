@@ -99,8 +99,7 @@ public abstract class SAXParserFactoryUtil {
         assertArgumentNotNull("spf", spf);
 
         try {
-            final Method method = ClassUtil.getMethod(spf.getClass(), "setXIncludeAware", boolean.class);
-            MethodUtil.invoke(method, spf, state);
+            spf.setXIncludeAware(state);
             return true;
         } catch (final RuntimeException e) {
             return false;

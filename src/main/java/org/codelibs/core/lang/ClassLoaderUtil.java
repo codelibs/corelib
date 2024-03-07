@@ -38,32 +38,6 @@ import org.codelibs.core.message.MessageFormatter;
  */
 public abstract class ClassLoaderUtil {
 
-    private static final Method findLoadedClassMethod = getFindLoadedClassMethod();
-
-    private static final Method defineClassMethod = getDefineClassMethod();
-
-    private static final Method definePackageMethod = getDefinePackageMethod();
-
-    private static Method getFindLoadedClassMethod() {
-        final Method method = ClassUtil.getDeclaredMethod(ClassLoader.class, "findLoadedClass", String.class);
-        method.setAccessible(true);
-        return method;
-    }
-
-    private static Method getDefineClassMethod() {
-        final Method method =
-                ClassUtil.getDeclaredMethod(ClassLoader.class, "defineClass", String.class, byte[].class, int.class, int.class);
-        method.setAccessible(true);
-        return method;
-    }
-
-    private static Method getDefinePackageMethod() {
-        final Method method = ClassUtil.getDeclaredMethod(ClassLoader.class, "definePackage", String.class, String.class, String.class,
-                String.class, String.class, String.class, String.class, URL.class);
-        method.setAccessible(true);
-        return method;
-    }
-
     /**
      * クラスローダを返します。
      * <p>
@@ -192,91 +166,6 @@ public abstract class ClassLoaderUtil {
         } catch (final IOException e) {
             throw new IORuntimeException(e);
         }
-    }
-
-    /**
-     * 指定のクラスローダまたはその祖先のクラスローダが、 このバイナリ名を持つクラスの起動ローダとしてJava仮想マシンにより記録されていた場合は、
-     * 指定されたバイナリ名を持つクラスを返します。 記録されていなかった場合は<code>null</code>を返します。
-     *
-     * @param classLoader
-     *            クラスローダ。{@literal null}であってはいけません
-     * @param className
-     *            クラスのバイナリ名。{@literal null}や空文字列であってはいけません
-     * @return <code>Class</code>オブジェクト。クラスがロードされていない場合は<code>null</code>
-     * @see java.lang.ClassLoader#findLoadedClass(String)
-     */
-    public static Class<?> findLoadedClass(final ClassLoader classLoader, final String className) {
-        assertArgumentNotNull("classLoader", classLoader);
-        assertArgumentNotEmpty("className", className);
-
-        for (final ClassLoader loader : iterable(classLoader)) {
-            final Class<?> clazz = (Class<?>) MethodUtil.invoke(findLoadedClassMethod, loader, className);
-            if (clazz != null) {
-                return clazz;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * バイトの配列を<code>Class</code>クラスのインスタンスに変換します。
-     *
-     * @param classLoader
-     *            バイナリデータから<code>Class</code>クラスのインスタンスに変換するクラスローダ。
-     *            {@literal null}であってはいけません
-     * @param className
-     *            クラスのバイナリ名。{@literal null}や空文字列であってはいけません
-     * @param bytes
-     *            クラスデータを構成するバイト列。{@literal null}や空配列であってはいけません
-     * @param offset
-     *            クラスデータ<code>bytes</code>の開始オフセット
-     * @param length
-     *            クラスデータの長さ
-     * @return 指定されたクラスデータから作成された<code>Class</code>オブジェクト
-     * @see java.lang.ClassLoader#defineClass(String, byte[], int, int)
-     */
-    public static Class<?> defineClass(final ClassLoader classLoader, final String className, final byte[] bytes, final int offset,
-            final int length) {
-        assertArgumentNotNull("classLoader", classLoader);
-        assertArgumentNotEmpty("className", className);
-        assertArgumentNotEmpty("bytes", bytes);
-
-        return (Class<?>) MethodUtil.invoke(defineClassMethod, classLoader, className, bytes, offset, length);
-    }
-
-    /**
-     * 指定の<code>ClassLoader</code>で名前を使ってパッケージを定義します。
-     *
-     * @param classLoader
-     *            パッケージを定義するクラスローダ。{@literal null}であってはいけません
-     * @param name
-     *            パッケージ名。{@literal null}や空文字列であってはいけません
-     * @param specTitle
-     *            仕様のタイトル
-     * @param specVersion
-     *            仕様のバージョン
-     * @param specVendor
-     *            仕様のベンダー
-     * @param implTitle
-     *            実装のタイトル
-     * @param implVersion
-     *            実装のバージョン
-     * @param implVendor
-     *            実装のベンダー
-     * @param sealBase
-     *            <code>null</code>でない場合、このパッケージは指定されたコードソース<code>URL</code>
-     *            オブジェクトを考慮してシールされる。そうでない場合、パッケージはシールされない
-     * @return 新しく定義された<code>Package</code>オブジェクト
-     * @see java.lang.ClassLoader#definePackage(String, String, String, String,
-     *      String, String, String, URL)
-     */
-    public static Package definePackage(final ClassLoader classLoader, final String name, final String specTitle, final String specVersion,
-            final String specVendor, final String implTitle, final String implVersion, final String implVendor, final URL sealBase) {
-        assertArgumentNotNull("classLoader", classLoader);
-        assertArgumentNotEmpty("name", name);
-
-        return (Package) MethodUtil.invoke(definePackageMethod, classLoader, name, specTitle, specVersion, specVendor, implTitle,
-                implVersion, implVendor, sealBase);
     }
 
     /**

@@ -58,16 +58,6 @@ public class ClassLoaderUtilTest {
      * @throws Exception
      */
     @Test
-    public void testFindLoadedClass() throws Exception {
-        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        final Class<?> clazz = ClassLoaderUtil.findLoadedClass(loader, getClass().getName());
-        assertThat(clazz, is(sameClass(getClass())));
-    }
-
-    /**
-     * @throws Exception
-     */
-    @Test
     public void testGetResources() throws Exception {
         final String name = TestCase.class.getName().replace('.', '/') + ".class";
         final Iterator<URL> itr = ClassLoaderUtil.getResources(this.getClass(), name);

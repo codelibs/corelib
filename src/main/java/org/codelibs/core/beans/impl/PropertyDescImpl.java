@@ -39,6 +39,7 @@ import org.codelibs.core.convert.DateConversionUtil;
 import org.codelibs.core.convert.NumberConversionUtil;
 import org.codelibs.core.convert.TimeConversionUtil;
 import org.codelibs.core.convert.TimestampConversionUtil;
+import org.codelibs.core.exception.BeanMethodSetAccessibleFailureException;
 import org.codelibs.core.exception.ClIllegalArgumentException;
 import org.codelibs.core.exception.IllegalPropertyRuntimeException;
 import org.codelibs.core.exception.ParseRuntimeException;
@@ -189,7 +190,7 @@ public class PropertyDescImpl implements PropertyDesc {
         this.readMethod = readMethod;
         if (readMethod != null) {
             readable = true;
-            readMethod.setAccessible(true);
+            setMethodAccessible(readMethod);
         }
     }
 
@@ -213,13 +214,31 @@ public class PropertyDescImpl implements PropertyDesc {
         this.writeMethod = writeMethod;
         if (writeMethod != null) {
             writable = true;
-            writeMethod.setAccessible(true);
+            setMethodAccessible(writeMethod);
         }
     }
 
     @Override
     public final boolean hasWriteMethod() {
         return writeMethod != null;
+    }
+
+    private void setMethodAccessible(Method method) {
+        if (isExceptPrivateAccessible(method)) {
+            return;
+        }
+        try {
+            method.setAccessible(true);
+        } catch (RuntimeException e) {
+            throw new BeanMethodSetAccessibleFailureException(beanDesc.getBeanClass(), method, e);
+        }
+    }
+
+    private boolean isExceptPrivateAccessible(Method method) {
+        // to avoid warning of JDK-internal access at Java11
+        // Lasta Di does not need private access to the classes
+        final String fqcn = method.getDeclaringClass().getName();
+        return fqcn.startsWith("java.") || fqcn.startsWith("jdk.") || fqcn.startsWith("com.sun.") || fqcn.startsWith("sun.");
     }
 
     @Override
