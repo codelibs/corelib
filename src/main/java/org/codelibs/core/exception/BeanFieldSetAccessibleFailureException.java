@@ -22,7 +22,7 @@ public class BeanFieldSetAccessibleFailureException extends ClRuntimeException {
 
     protected final Class<?> targetClass;
 
-    protected final Field targetField;
+    protected final transient Field targetField;
 
     public BeanFieldSetAccessibleFailureException(final Class<?> componentClass, final Field targetField, final Throwable cause) {
         super("ECL0115", new Object[] { targetField }, cause);

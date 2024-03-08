@@ -23,7 +23,7 @@ public class BeanMethodSetAccessibleFailureException extends ClRuntimeException 
 
     protected final Class<?> targetClass;
 
-    protected final Method targetMethod;
+    protected final transient Method targetMethod;
 
     public BeanMethodSetAccessibleFailureException(final Class<?> componentClass, final Method targetMethod, final Throwable cause) {
         super("ECL0116", new Object[] { targetMethod }, cause);
