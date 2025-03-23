@@ -20,178 +20,176 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * メソッドを扱うためのインターフェースです。
+ * Interface for handling methods.
  *
  * @author koichik
  */
 public interface MethodDesc {
 
     /**
-     * このメソッドを所有するクラスの{@link BeanDesc}を返します。
+     * Returns the {@link BeanDesc} of the class that owns this method.
      *
      * @return {@link BeanDesc}
      */
     BeanDesc getBeanDesc();
 
     /**
-     * メソッドを返します。
+     * Returns the method.
      *
-     * @return コンストラクタ
+     * @return the method
      */
     Method getMethod();
 
     /**
-     * メソッド名を返します。
+     * Returns the method name.
      *
-     * @return メソッド名
+     * @return the method name
      */
     String getMethodName();
 
     /**
-     * メソッドの引数型の配列を返します。
+     * Returns an array of the method's parameter types.
      *
-     * @return メソッドの引数型の配列
+     * @return an array of the method's parameter types
      */
     Class<?>[] getParameterTypes();
 
     /**
-     * メソッドの戻り値の型を返します。
+     * Returns the return type of the method.
      *
      * @param <T>
-     *            メソッドの戻り値の型
-     * @return メソッドの戻り値の型
+     *            the return type of the method
+     * @return the return type of the method
      */
     <T> Class<T> getReturnType();
 
     /**
-     * {@literal public}メソッドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the method is {@literal public}.
      *
-     * @return {@literal public}メソッドの場合は{@literal true}
+     * @return {@literal true} if the method is {@literal public}
      */
     boolean isPublic();
 
     /**
-     * {@literal static}メソッドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the method is {@literal static}.
      *
-     * @return {@literal static}メソッドの場合は{@literal true}
+     * @return {@literal true} if the method is {@literal static}
      */
     boolean isStatic();
 
     /**
-     * {@literal final}メソッドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the method is {@literal final}.
      *
-     * @return {@literal final}メソッドの場合は{@literal true}
+     * @return {@literal true} if the method is {@literal final}
      */
     boolean isFinal();
 
     /**
-     * {@literal abstract}メソッドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the method is {@literal abstract}.
      *
-     * @return {@literal abstract}メソッドの場合は{@literal true}
+     * @return {@literal true} if the method is {@literal abstract}
      */
     boolean isAbstract();
 
     /**
-     * メソッドの引数型がパラメタ化された型の場合は{@literal true}を返します。
+     * Returns {@literal true} if the method's parameter type at the specified index is parameterized.
      *
      * @param index
-     *            引数のインデックス
-     * @return 引数型がパラメタ化された型の場合は{@literal true}
+     *            the index of the parameter
+     * @return {@literal true} if the parameter type at the specified index is parameterized
      */
     boolean isParameterized(int index);
 
     /**
-     * 戻り値型がパラメタ化された型の場合は{@literal true}を返します。
+     * Returns {@literal true} if the return type is parameterized.
      *
-     * @return 戻り値型がパラメタ化された型の場合は{@literal true}
+     * @return {@literal true} if the return type is parameterized
      */
     boolean isParameterized();
 
     /**
-     * メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列を返します。
+     * Returns an array of {@link ParameterizedClassDesc} representing the parameter types of the method.
      *
-     * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列
+     * @return an array of {@link ParameterizedClassDesc} representing the parameter types of the method
      */
     ParameterizedClassDesc[] getParameterizedClassDescs();
 
     /**
-     * メソッドの戻り値型を表現する{@link ParameterizedClassDesc}を返します。
+     * Returns the {@link ParameterizedClassDesc} representing the return type of the method.
      *
-     * @return メソッドの戻り値型を表現する{@link ParameterizedClassDesc}
+     * @return the {@link ParameterizedClassDesc} representing the return type of the method
      */
     ParameterizedClassDesc getParameterizedClassDesc();
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Collection}の場合、その要素型を返します。
+     * Returns the element type if the method's parameter type at the specified index is a parameterized {@link Collection}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数型がパラメタ化された{@link Collection}の場合はその要素型、そうでない場合は
-     *         {@literal null}
+     *            the index of the parameter
+     * @return the element type if the parameter type at the specified index is a parameterized {@link Collection}, otherwise {@literal null}
      */
     Class<?> getElementClassOfCollection(int index);
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Map}の場合、そのキー型を返します。
+     * Returns the key type if the method's parameter type at the specified index is a parameterized {@link Map}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数がパラメタ化された{@link Map}の場合はそのキー型、そうでない場合は{@literal null}
+     *            the index of the parameter
+     * @return the key type if the parameter type at the specified index is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getKeyClassOfMap(int index);
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Map}の場合、その値型を返します。
+     * Returns the value type if the method's parameter type at the specified index is a parameterized {@link Map}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数型がパラメタ化された{@link Map}の場合はその値型、そうでない場合は{@literal null}
+     *            the index of the parameter
+     * @return the value type if the parameter type at the specified index is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getValueClassOfMap(int index);
 
     /**
-     * メソッドの戻り値型がパラメタ化された{@link Collection}の場合、その要素型を返します。
+     * Returns the element type if the return type of the method is a parameterized {@link Collection}.
      *
-     * @return メソッドの戻り値型がパラメタ化された{@link Collection}の場合はその要素型、そうでない場合は
-     *         {@literal null}
+     * @return the element type if the return type of the method is a parameterized {@link Collection}, otherwise {@literal null}
      */
     Class<?> getElementClassOfCollection();
 
     /**
-     * メソッドの戻り値型がパラメタ化された{@link Map}の場合、そのキー型を返します。
+     * Returns the key type if the return type of the method is a parameterized {@link Map}.
      *
-     * @return メソッドの戻り値型がパラメタ化された{@link Map}の場合はそのキー型、そうでない場合は{@literal null}
+     * @return the key type if the return type of the method is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getKeyClassOfMap();
 
     /**
-     * メソッドの戻り値型がパラメタ化された{@link Map}の場合、その値型を返します。
+     * Returns the value type if the return type of the method is a parameterized {@link Map}.
      *
-     * @return メソッドの戻り値型がパラメタ化された{@link Map}の場合はその値型、そうでない場合は{@literal null}
+     * @return the value type if the return type of the method is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getValueClassOfMap();
 
     /**
-     * メソッドを呼び出してその戻り値を返します。
+     * Invokes the method and returns its result.
      *
      * @param <T>
-     *            メソッドの戻り値の型
+     *            the return type of the method
      * @param target
-     *            対象のオブジェクト。{@literal null}であってはいけません
+     *            the target object. Must not be {@literal null}
      * @param args
-     *            メソッドの引数
-     * @return メソッドの戻り値
+     *            the method arguments
+     * @return the result of the method
      */
     <T> T invoke(Object target, Object... args);
 
     /**
-     * staticなメソッドを呼び出してその戻り値を返します。
+     * Invokes a static method and returns its result.
      *
      * @param <T>
-     *            メソッドの戻り値の型
+     *            the return type of the method
      * @param args
-     *            メソッドの引数
-     * @return メソッドの戻り値
+     *            the method arguments
+     * @return the result of the method
      */
     <T> T invokeStatic(Object... args);
 

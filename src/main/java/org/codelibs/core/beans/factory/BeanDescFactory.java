@@ -26,17 +26,16 @@ import org.codelibs.core.beans.impl.BeanDescImpl;
 import org.codelibs.core.misc.DisposableUtil;
 
 /**
- * {@link BeanDesc}を生成するクラスです。
+ * This class generates {@link BeanDesc}.
  * <p>
- * 指定されたJavaBeansのメタデータを扱う{@link BeanDesc}を返します。
+ * It returns a {@link BeanDesc} that handles the metadata of the specified JavaBeans.
  * </p>
  *
  * <pre>
  * BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Foo.class);
  * </pre>
  * <p>
- * {@link BeanDesc}はキャッシュされます。 キャッシュをクリアするには{@link DisposableUtil#dispose()}
- * を呼び出してください。
+ * {@link BeanDesc} is cached. To clear the cache, call {@link DisposableUtil#dispose()}.
  * </p>
  *
  * @author higa
@@ -45,10 +44,10 @@ import org.codelibs.core.misc.DisposableUtil;
  */
 public abstract class BeanDescFactory {
 
-    /** 初期化済みなら{@literal true} */
+    /** True if initialized */
     private static volatile boolean initialized;
 
-    /** {@link BeanDesc}のキャッシュ */
+    /** Cache of {@link BeanDesc} */
     private static final ConcurrentMap<Class<?>, BeanDesc> beanDescCache = newConcurrentHashMap(1024);
 
     static {
@@ -56,10 +55,10 @@ public abstract class BeanDescFactory {
     }
 
     /**
-     * {@link BeanDesc}を返します。
+     * Returns a {@link BeanDesc}.
      *
      * @param clazz
-     *            Beanクラス。{@literal null}であってはいけません
+     *            the Bean class. Must not be {@literal null}
      * @return {@link BeanDesc}
      */
     public static BeanDesc getBeanDesc(final Class<?> clazz) {
@@ -76,7 +75,7 @@ public abstract class BeanDescFactory {
     }
 
     /**
-     * 初期化を行ないます。
+     * Performs initialization.
      */
     public static void initialize() {
         synchronized (BeanDescFactory.class) {
@@ -88,7 +87,7 @@ public abstract class BeanDescFactory {
     }
 
     /**
-     * キャッシュをクリアします。
+     * Clears the cache.
      */
     public static void clear() {
         beanDescCache.clear();

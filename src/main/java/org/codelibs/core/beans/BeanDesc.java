@@ -23,34 +23,34 @@ import java.util.Map;
 import org.codelibs.core.beans.factory.BeanDescFactory;
 
 /**
- * JavaBeansのメタデータを扱うためのインターフェースです。
+ * Interface for handling JavaBeans metadata.
  * <p>
- * {@link BeanDesc}のインスタンスは{@link BeanDescFactory}から取得します。
+ * Instances of {@link BeanDesc} are obtained from {@link BeanDescFactory}.
  * </p>
  *
  * <pre>
  * BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Foo.class);
  * </pre>
  * <p>
- * 取得した{@link BeanDesc}から，対象となるJavaBeansのプロパティやフィールド、コンストラクタ、メソッドのメタデータを取得できます。
+ * From the obtained {@link BeanDesc}, you can retrieve metadata of the properties, fields, constructors, and methods of the target JavaBeans.
  * </p>
  *
  * <pre>
  * for (PropertyDesc propertyDesc : beanDesc.getPropertyDescs()) {
- *     propertyDesc.getValue(foo); // Foo のプロパティの値を取得
+ *     propertyDesc.getValue(foo); // Retrieve the value of Foo's property
  * }
  *
  * for (FieldDesc fieldDesc : beanDesc.getFieldDescs()) {
- *     fieldDesc.getFileldValue(foo); // Foo のフィールドの値を取得
+ *     fieldDesc.getFieldValue(foo); // Retrieve the value of Foo's field
  * }
  *
  * for (ConstructorDesc constructorDesc : beanDesc.getConstructorDescs()) {
- *     constructorDesc.newInstance(...); // Foo のインスタンスを生成
+ *     constructorDesc.newInstance(...); // Create an instance of Foo
  * }
  *
  * for (String methodName : beanDesc.getMethodNames()) {
  *     for (MethodDesc methodDesc : beanDesc.getMethodDescs(methodName)) {
- *         methodDesc.invoke(foo, ...); // Foo のメソッドを起動
+ *         methodDesc.invoke(foo, ...); // Invoke Foo's method
  *     }
  * }
  * </pre>
@@ -61,210 +61,210 @@ import org.codelibs.core.beans.factory.BeanDescFactory;
 public interface BeanDesc {
 
     /**
-     * Beanのクラスを返します。
+     * Returns the class of the Bean.
      *
      * @param <T>
-     *            Beanのクラス
-     * @return Beanのクラス
+     *            The class of the Bean
+     * @return The class of the Bean
      */
     <T> Class<T> getBeanClass();
 
     /**
-     * 型変数から型引数へのマップを返します。
+     * Returns a map from type variables to type arguments.
      *
-     * @return 型変数から型引数へのマップ
+     * @return A map from type variables to type arguments
      */
     Map<TypeVariable<?>, Type> getTypeVariables();
 
     /**
-     * {@link PropertyDesc}を持っているかどうかを返します。
+     * Returns whether the {@link PropertyDesc} exists.
      *
      * @param propertyName
-     *            プロパティ名。{@literal null}や空文字列であってはいけません
-     * @return {@link PropertyDesc}を持っているかどうか
+     *            The property name. Must not be {@literal null} or empty string
+     * @return Whether the {@link PropertyDesc} exists
      */
     boolean hasPropertyDesc(String propertyName);
 
     /**
-     * {@link PropertyDesc}を返します。
+     * Returns the {@link PropertyDesc}.
      *
      * @param propertyName
-     *            プロパティ名。{@literal null}や空文字列であってはいけません
+     *            The property name. Must not be {@literal null} or empty string
      * @return {@link PropertyDesc}
      */
     PropertyDesc getPropertyDesc(String propertyName);
 
     /**
-     * {@link PropertyDesc}を返します。
+     * Returns the {@link PropertyDesc}.
      *
      * @param index
-     *            {@link PropertyDesc}のインデックス
+     *            The index of the {@link PropertyDesc}
      * @return {@link PropertyDesc}
      */
     PropertyDesc getPropertyDesc(int index);
 
     /**
-     * {@link PropertyDesc}の数を返します。
+     * Returns the number of {@link PropertyDesc}.
      *
-     * @return {@link PropertyDesc}の数
+     * @return The number of {@link PropertyDesc}
      */
     int getPropertyDescSize();
 
     /**
-     * {@link PropertyDesc}の{@link Iterable}を返します。
+     * Returns an {@link Iterable} of {@link PropertyDesc}.
      *
-     * @return {@link PropertyDesc}の{@link Iterable}
+     * @return An {@link Iterable} of {@link PropertyDesc}
      */
     Iterable<PropertyDesc> getPropertyDescs();
 
     /**
-     * {@link FieldDesc}を持っているかどうかを返します。
+     * Returns whether the {@link FieldDesc} exists.
      *
      * @param fieldName
-     *            フィールド名。{@literal null}や空文字列であってはいけません
-     * @return {@link FieldDesc}を持っているかどうか
+     *            The field name. Must not be {@literal null} or empty string
+     * @return Whether the {@link FieldDesc} exists
      */
     boolean hasFieldDesc(String fieldName);
 
     /**
-     * {@link FieldDesc}を返します。
+     * Returns the {@link FieldDesc}.
      *
      * @param fieldName
-     *            フィールド名。{@literal null}や空文字列であってはいけません
+     *            The field name. Must not be {@literal null} or empty string
      * @return {@link FieldDesc}
      */
     FieldDesc getFieldDesc(String fieldName);
 
     /**
-     * {@link FieldDesc}を返します。
+     * Returns the {@link FieldDesc}.
      *
      * @param index
-     *            {@link FieldDesc}のインデックス
+     *            The index of the {@link FieldDesc}
      * @return {@link FieldDesc}
      */
     FieldDesc getFieldDesc(int index);
 
     /**
-     * {@link FieldDesc}の数を返します。
+     * Returns the number of {@link FieldDesc}.
      *
-     * @return {@link FieldDesc}の数
+     * @return The number of {@link FieldDesc}
      */
     int getFieldDescSize();
 
     /**
-     * {@link FieldDesc}の{@link Iterable}を返します。
+     * Returns an {@link Iterable} of {@link FieldDesc}.
      *
-     * @return {@link FieldDesc}の{@link Iterable}
+     * @return An {@link Iterable} of {@link FieldDesc}
      */
     Iterable<FieldDesc> getFieldDescs();
 
     /**
-     * 新しいインスタンスを作成します。
+     * Creates a new instance.
      *
      * @param <T>
-     *            Beanクラスの型
+     *            The type of the Bean class
      * @param args
-     *            コンストラクタに渡す引数の並び
-     * @return 新しいインスタンス
+     *            The arguments to pass to the constructor
+     * @return A new instance
      */
     <T> T newInstance(Object... args);
 
     /**
-     * 引数の型に応じた{@link ConstructorDesc}を返します。
+     * Returns the {@link ConstructorDesc} for the given parameter types.
      *
      * @param paramTypes
-     *            コンストラクタに渡す引数型の並び
-     * @return 引数の型に応じた{@link ConstructorDesc}
+     *            The array of parameter types for the constructor
+     * @return The {@link ConstructorDesc} for the given parameter types
      */
     ConstructorDesc getConstructorDesc(Class<?>... paramTypes);
 
     /**
-     * 引数に適合する{@link ConstructorDesc}を返します。
+     * Returns the {@link ConstructorDesc} that matches the given arguments.
      *
      * @param args
-     *            コンストラクタに渡す引数の並び
-     * @return 引数に適合する{@link Constructor}
+     *            The arguments to pass to the constructor
+     * @return The {@link ConstructorDesc} that matches the given arguments
      */
     ConstructorDesc getSuitableConstructorDesc(Object... args);
 
     /**
-     * {@link ConstructorDesc}を返します。
+     * Returns the {@link ConstructorDesc}.
      *
      * @param index
-     *            {@link ConstructorDesc}のインデックス
+     *            The index of the {@link ConstructorDesc}
      * @return {@link ConstructorDesc}
      */
     ConstructorDesc getConstructorDesc(int index);
 
     /**
-     * {@link ConstructorDesc}の数を返します。
+     * Returns the number of {@link ConstructorDesc}.
      *
-     * @return {@link ConstructorDesc}の数
+     * @return The number of {@link ConstructorDesc}
      */
     int getConstructorDescSize();
 
     /**
-     * {@link ConstructorDesc}の{@link Iterable}を返します。
+     * Returns an {@link Iterable} of {@link ConstructorDesc}.
      *
-     * @return {@link ConstructorDesc}の{@link Iterable}
+     * @return An {@link Iterable} of {@link ConstructorDesc}
      */
     Iterable<ConstructorDesc> getConstructorDescs();
 
     /**
-     * 引数の型に応じた{@link MethodDesc}を返します。
+     * Returns the {@link MethodDesc} for the given parameter types.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
+     *            The method name. Must not be {@literal null} or empty string
      * @param paramTypes
-     *            メソッドの引数型の並び
-     * @return 引数の型に応じた{@link MethodDesc} メソッド
+     *            The array of parameter types for the method
+     * @return The {@link MethodDesc} for the given parameter types
      */
     MethodDesc getMethodDesc(String methodName, Class<?>... paramTypes);
 
     /**
-     * 引数の型に応じた{@link MethodDesc}を返します。見つからない場合は、{@literal null}を返します。
+     * Returns the {@link MethodDesc} that matches the given parameter types. If not found, returns {@literal null}.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
+     *            The method name. Must not be {@literal null} or empty string
      * @param paramTypes
-     *            メソッドの引数型の並び
-     * @return 引数の型に応じた{@link MethodDesc}
+     *            The array of parameter types for the method
+     * @return The {@link MethodDesc} that matches the given parameter types
      */
     MethodDesc getMethodDescNoException(String methodName, Class<?>... paramTypes);
 
     /**
-     * 引数に適合する{@link MethodDesc}を返します。
+     * Returns the {@link MethodDesc} that matches the given arguments.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
+     *            The method name. Must not be {@literal null} or empty string
      * @param args
-     *            メソッドの引数の並び
-     * @return 引数に適合する{@link MethodDesc} メソッド
+     *            The array of arguments for the method
+     * @return The {@link MethodDesc} that matches the given arguments
      */
     MethodDesc getSuitableMethodDesc(String methodName, Object... args);
 
     /**
-     * {@link MethodDesc}があるかどうか返します。
+     * Returns whether the {@link MethodDesc} exists.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
-     * @return {@link MethodDesc}があるかどうか
+     *            The method name. Must not be {@literal null} or empty string
+     * @return Whether the {@link MethodDesc} exists
      */
     boolean hasMethodDesc(String methodName);
 
     /**
-     * {@link MethodDesc}の配列を返します。
+     * Returns an array of {@link MethodDesc}.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
-     * @return {@link MethodDesc}の配列
+     *            The method name. Must not be {@literal null} or empty string
+     * @return An array of {@link MethodDesc}
      */
     MethodDesc[] getMethodDescs(String methodName);
 
     /**
-     * メソッド名の配列を返します。
+     * Returns an array of method names.
      *
-     * @return メソッド名の配列
+     * @return An array of method names
      */
     String[] getMethodNames();
 

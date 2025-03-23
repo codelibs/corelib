@@ -30,40 +30,40 @@ import org.codelibs.core.exception.MethodNotStaticRuntimeException;
 import org.codelibs.core.lang.MethodUtil;
 
 /**
- * {@link MethodDesc}の実装クラスです。
+ * Implementation class of {@link MethodDesc}.
  *
  * @author koichik
  */
 public class MethodDescImpl implements MethodDesc {
 
-    /** このメソッドを所有するクラスの{@link BeanDesc} */
+    /** The {@link BeanDesc} of the class that owns this method */
     protected final BeanDesc beanDesc;
 
-    /** メソッド */
+    /** The method */
     protected final Method method;
 
-    /** メソッド名 */
+    /** The method name */
     protected final String methodName;
 
-    /** メソッドの引数型の配列 */
+    /** Array of method parameter types */
     protected final Class<?>[] parameterTypes;
 
-    /** メソッドの戻り値型 */
+    /** The return type of the method */
     protected final Class<?> returnType;
 
-    /** パラメータ化された引数型の情報 */
+    /** Information about parameterized argument types */
     protected final ParameterizedClassDesc[] parameterizedClassDescs;
 
-    /** パラメータ化された戻り値型の情報 */
+    /** Information about the parameterized return type */
     protected final ParameterizedClassDesc parameterizedClassDesc;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param beanDesc
-     *            このメソッドを所有するクラスの{@link BeanDesc}。{@literal null}であってはいけません
+     *            The {@link BeanDesc} of the class that owns this method. Must not be {@literal null}.
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Must not be {@literal null}.
      */
     public MethodDescImpl(final BeanDesc beanDesc, final Method method) {
         assertArgumentNotNull("beanDesc", beanDesc);

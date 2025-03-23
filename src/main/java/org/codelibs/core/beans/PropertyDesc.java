@@ -21,149 +21,148 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * プロパティを扱うためのインターフェースです。
+ * Interface for handling properties.
  *
  * @author higa
  */
 public interface PropertyDesc {
 
     /**
-     * プロパティ名を返します。
+     * Returns the property name.
      *
-     * @return プロパティ名
+     * @return the property name
      */
     String getPropertyName();
 
     /**
-     * プロパティの型を返します。
+     * Returns the property type.
      *
      * @param <T>
-     *            プロパティの型
-     * @return プロパティの型
+     *            the property type
+     * @return the property type
      */
     <T> Class<T> getPropertyType();
 
     /**
-     * getterメソッドを返します。
+     * Returns the getter method.
      *
-     * @return getterメソッド
+     * @return the getter method
      */
     Method getReadMethod();
 
     /**
-     * getterメソッドを持っているかどうか返します。
+     * Returns whether the property has a getter method.
      *
-     * @return getterメソッドを持っているかどうか
+     * @return whether the property has a getter method
      */
     boolean hasReadMethod();
 
     /**
-     * setterメソッドを返します。
+     * Returns the setter method.
      *
-     * @return setterメソッド
+     * @return the setter method
      */
     Method getWriteMethod();
 
     /**
-     * setterメソッドを持っているかどうか返します。
+     * Returns whether the property has a setter method.
      *
-     * @return setterメソッドを持っているかどうか
+     * @return whether the property has a setter method
      */
     boolean hasWriteMethod();
 
     /**
-     * プロパティの値が取得できるかどうかを返します。
+     * Returns whether the property value can be retrieved.
      *
-     * @return プロパティの値が取得できるかどうか
+     * @return whether the property value can be retrieved
      */
     boolean isReadable();
 
     /**
-     * プロパティの値が設定できるかどうかを返します。
+     * Returns whether the property value can be set.
      *
-     * @return プロパティの値が設定できるかどうか
+     * @return whether the property value can be set
      */
     boolean isWritable();
 
     /**
-     * プロパティとして認識しているpublicフィールドを返します。
+     * Returns the public field recognized as a property.
      *
-     * @return プロパティとして認識するpublicフィールド
+     * @return the public field recognized as a property
      */
     Field getField();
 
     /**
-     * プロパティの値を返します。
+     * Returns the property value.
      *
      * @param <T>
-     *            プロパティの型
+     *            the property type
      * @param target
-     *            ターゲットオブジェクト。{@literal null}であってはいけません
-     * @return プロパティの値
+     *            the target object. Must not be {@literal null}
+     * @return the property value
      */
     <T> T getValue(Object target);
 
     /**
-     * プロパティに値を設定します。
+     * Sets the value of the property.
      *
      * @param target
-     *            ターゲットオブジェクト。{@literal null}であってはいけません
+     *            the target object. Must not be {@literal null}
      * @param value
-     *            プロパティに設定する値
+     *            the value to set to the property
      */
     void setValue(Object target, Object value);
 
     /**
-     * プロパティの型に応じて必要なら適切に変換します。
+     * Converts the value to the appropriate type if necessary based on the property type.
      *
      * @param <T>
-     *            変換された型
+     *            the converted type
      * @param value
-     *            値
-     * @return 変換された値
+     *            the value to be converted
+     * @return the converted value
      */
     <T> T convertIfNeed(Object value);
 
     /**
-     * {@link BeanDesc}を返します。
+     * Returns the {@link BeanDesc}.
      *
-     * @return {@link BeanDesc}
+     * @return the {@link BeanDesc}
      */
     BeanDesc getBeanDesc();
 
     /**
-     * このプロパティがパラメタ化された型の場合は{@literal true}を返します。
+     * Returns {@literal true} if this property is parameterized.
      *
-     * @return このプロパティがパラメタ化された型の場合は{@literal true}
+     * @return {@literal true} if this property is parameterized
      */
     boolean isParameterized();
 
     /**
-     * このプロパティがパラメタ化された型の場合、その情報を返します。
+     * Returns the information if this property is parameterized.
      *
-     * @return このプロパティがパラメタ化された型の場合はその情報、そうでない場合は{@literal null}
+     * @return the information if this property is parameterized, otherwise {@literal null}
      */
     ParameterizedClassDesc getParameterizedClassDesc();
 
     /**
-     * このプロパティがパラメタ化された{@link Collection}の場合、その要素型を返します。
+     * Returns the element type if this property is a parameterized {@link Collection}.
      *
-     * @return このプロパティがパラメタ化された{@link Collection}の場合はその要素型、そうでない場合は
-     *         {@literal null}
+     * @return the element type if this property is a parameterized {@link Collection}, otherwise {@literal null}
      */
     Class<?> getElementClassOfCollection();
 
     /**
-     * このプロパティがパラメタ化された{@link Map}の場合、そのキー型を返します。
+     * Returns the key type if this property is a parameterized {@link Map}.
      *
-     * @return このプロパティがパラメタ化された{@link Map}の場合はそのキー型、そうでない場合は{@literal null}
+     * @return the key type if this property is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getKeyClassOfMap();
 
     /**
-     * このプロパティがパラメタ化された{@link Map}の場合、その値型を返します。
+     * Returns the value type if this property is a parameterized {@link Map}.
      *
-     * @return このプロパティがパラメタ化された{@link Map}の場合はその値型、そうでない場合は{@literal null}
+     * @return the value type if this property is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getValueClassOfMap();
 

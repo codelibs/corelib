@@ -18,36 +18,36 @@ package org.codelibs.core.beans;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * パラメタ化されたクラスを扱うためのインターフェースです。
+ * Interface for handling parameterized classes.
  *
  * @author koichik
  */
 public interface ParameterizedClassDesc {
 
     /**
-     * このインスタンスが表現するクラスがパラメタ化されていれば<code>true</code>を返します。
+     * Returns <code>true</code> if the class represented by this instance is parameterized.
      *
-     * @return このインスタンスが表現するクラスがパラメタ化されていれば<code>true</code>
+     * @return <code>true</code> if the class represented by this instance is parameterized
      */
     boolean isParameterizedClass();
 
     /**
-     * 原型となるクラスを返します。
+     * Returns the raw class.
      *
      * @param <T>
-     *            原型となるクラスの型
-     * @return 原型となるクラス
+     *            the type of the raw class
+     * @return the raw class
      * @see ParameterizedType#getRawType()
      */
     <T> Class<T> getRawClass();
 
     /**
-     * 型引数を表す{@link ParameterizedClassDesc}の配列を返します。
+     * Returns an array of {@link ParameterizedClassDesc} representing the type arguments.
      * <p>
-     * このインスタンスが表現するクラスがパラメタ化されたクラスでない場合は、{@literal null}を返します。
+     * If the class represented by this instance is not a parameterized class, returns {@literal null}.
      * </p>
      *
-     * @return 型引数を表す{@link ParameterizedClassDesc}の配列
+     * @return an array of {@link ParameterizedClassDesc} representing the type arguments
      * @see ParameterizedType#getActualTypeArguments()
      */
     ParameterizedClassDesc[] getArguments();

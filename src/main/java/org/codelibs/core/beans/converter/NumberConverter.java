@@ -26,22 +26,22 @@ import org.codelibs.core.exception.ParseRuntimeException;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * 数値用のコンバータです。
+ * Converter for numbers.
  *
  * @author higa
  */
 public class NumberConverter implements Converter {
 
     /**
-     * 数値のパターンです。
+     * The pattern for numbers.
      */
     protected String pattern;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param pattern
-     *            数値のパターン
+     *            the pattern for numbers
      */
     public NumberConverter(final String pattern) {
         assertArgumentNotEmpty("pattern", pattern);

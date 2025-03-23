@@ -27,22 +27,22 @@ import org.codelibs.core.convert.StringConversionUtil;
 import org.codelibs.core.convert.TimeConversionUtil;
 
 /**
- * 時間用のコンバータです。
+ * Converter for time.
  *
  * @author higa
  */
 public class TimeConverter implements Converter {
 
     /**
-     * 時間のパターンです。
+     * The pattern for time.
      */
     protected String pattern;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param pattern
-     *            時間のパターン
+     *            the pattern for time
      */
     public TimeConverter(final String pattern) {
         assertArgumentNotEmpty("pattern", pattern);

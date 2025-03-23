@@ -60,7 +60,7 @@ import org.codelibs.core.lang.FieldUtil;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * {@link BeanDesc}の実装クラスです。
+ * Implementation class of {@link BeanDesc}.
  *
  * @author higa
  */
@@ -476,7 +476,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * {@link PropertyDesc}を準備します。
+     * Prepares {@link PropertyDesc}.
      */
     protected void setupPropertyDescs() {
         for (final Method m : beanClass.getMethods()) {
@@ -512,12 +512,12 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * getterメソッドを準備します。
+     * Prepares the getter method.
      *
      * @param readMethod
-     *            getterメソッド
+     *            the getter method
      * @param propertyName
-     *            プロパティ名
+     *            the property name
      */
     protected void setupReadMethod(final Method readMethod, final String propertyName) {
         final Class<?> propertyType = readMethod.getReturnType();
@@ -533,12 +533,12 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * setterメソッドを準備します。
+     * Prepares the setter method.
      *
      * @param writeMethod
-     *            setterメソッド
+     *            the setter method
      * @param propertyName
-     *            プロパティ名
+     *            the property name
      */
     protected void setupWriteMethod(final Method writeMethod, final String propertyName) {
         final Class<?> propertyType = writeMethod.getParameterTypes()[0];
@@ -554,7 +554,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * {@link PropertyDesc}を追加します．
+     * Adds a {@link PropertyDesc}.
      *
      * @param propertyDesc
      *            {@link PropertyDesc}
@@ -565,7 +565,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * コンストラクタを準備します。
+     * Prepares the constructors.
      */
     protected void setupConstructorDescs() {
         for (final Constructor<?> constructor : beanClass.getConstructors()) {
@@ -574,7 +574,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * メソッドを準備します。
+     * Prepares the methods.
      */
     protected void setupMethodDescs() {
         final ArrayMap<String, List<MethodDesc>> methodDescListMap = new ArrayMap<>();
@@ -597,7 +597,7 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * フィールドを準備します。
+     * Prepares the fields.
      */
     protected void setupFieldDescs() {
         if (beanClass.isInterface()) {
@@ -608,10 +608,10 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * インターフェースに定義されたフィールドを準備します。
+     * Prepares the fields defined in the interface.
      *
      * @param interfaceClass
-     *            対象のインターフェース
+     *            the target interface
      */
     protected void setupFieldDescsByInterface(final Class<?> interfaceClass) {
         addFieldDescs(interfaceClass);
@@ -622,10 +622,10 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * クラスに定義されたフィールドを準備します。
+     * Prepares the fields defined in the class.
      *
      * @param targetClass
-     *            対象のクラス
+     *            the target class
      */
     private void setupFieldDescsByClass(final Class<?> targetClass) {
         addFieldDescs(targetClass);
@@ -639,10 +639,10 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * クラスまたはインターフェースに定義されたフィールドを追加します。
+     * Adds fields defined in the class or interface.
      *
      * @param clazz
-     *            対象のクラスまたはインターフェース
+     *            the target class or interface
      */
     protected void addFieldDescs(final Class<?> clazz) {
         for (final Field field : clazz.getDeclaredFields()) {
@@ -687,13 +687,13 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * {@link Type}を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} representing the {@link Type}.
      *
      * @param type
-     *            型
+     *            the type
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return 型を表現する{@link ParameterizedClassDesc}
+     *            a {@link Map} with type variables as keys and type arguments as values for the parameterized type
+     * @return a {@link ParameterizedClassDesc} representing the type
      */
     protected static ParameterizedClassDesc createParameterizedClassDesc(final Type type, final Map<TypeVariable<?>, Type> map) {
         final Class<?> rowClass = getActualClass(type, map);

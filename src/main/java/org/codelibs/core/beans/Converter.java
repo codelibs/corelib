@@ -16,36 +16,36 @@
 package org.codelibs.core.beans;
 
 /**
- * 文字列とオブジェクトの変換を行なうインターフェースです。
+ * This interface performs conversion between strings and objects.
  *
  * @author higa
  */
 public interface Converter {
 
     /**
-     * 値を文字列として返します。
+     * Returns the value as a string.
      *
      * @param value
-     *            値
-     * @return 文字列としての値
+     *            the value
+     * @return the value as a string
      */
     String getAsString(Object value);
 
     /**
-     * 値をオブジェクトとして返します。
+     * Returns the value as an object.
      *
      * @param value
-     *            値
-     * @return オブジェクトとしての値
+     *            the value
+     * @return the value as an object
      */
     Object getAsObject(String value);
 
     /**
-     * このコンバータの変換対象なら{@literal true}を返します。
+     * Returns {@literal true} if this converter can handle the specified type.
      *
      * @param clazz
-     *            型。{@literal null}であってはいけません
-     * @return このコンバータの変換対象なら{@literal true}
+     *            the type. Must not be {@literal null}
+     * @return {@literal true} if this converter can handle the specified type
      */
     boolean isTarget(Class<?> clazz);
 

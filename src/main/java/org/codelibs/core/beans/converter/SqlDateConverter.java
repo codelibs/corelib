@@ -26,22 +26,22 @@ import org.codelibs.core.convert.StringConversionUtil;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * SQLの日付用のコンバータです。
+ * Converter for SQL dates.
  *
  * @author higa
  */
 public class SqlDateConverter implements Converter {
 
     /**
-     * 日付のパターンです。
+     * The date pattern.
      */
     protected String pattern;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param pattern
-     *            日付のパターン
+     *            the date pattern
      */
     public SqlDateConverter(final String pattern) {
         assertArgumentNotEmpty("pattern", pattern);

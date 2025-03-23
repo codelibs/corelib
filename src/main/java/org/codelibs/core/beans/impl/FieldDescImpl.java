@@ -29,34 +29,34 @@ import org.codelibs.core.exception.FieldNotStaticRuntimeException;
 import org.codelibs.core.lang.FieldUtil;
 
 /**
- * {@link FieldDesc}の実装クラスです。
+ * Implementation class of {@link FieldDesc}.
  *
  * @author koichik
  */
 public class FieldDescImpl implements FieldDesc {
 
-    /** このフィールドを所有するクラスの{@link BeanDesc} */
+    /** The {@link BeanDesc} of the class that owns this field */
     protected final BeanDesc beanDesc;
 
-    /** フィールド */
+    /** The field */
     protected final Field field;
 
-    /** フィールド名 */
+    /** The field name */
     protected final String fieldName;
 
-    /** フィールドの型 */
+    /** The type of the field */
     protected final Class<?> fieldType;
 
-    /** パラメータ化された型の情報 */
+    /** Information about the parameterized type */
     protected final ParameterizedClassDesc parameterizedClassDesc;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param beanDesc
-     *            このフィールドを所有するクラスの{@link BeanDesc}。{@literal null}であってはいけません
+     *            The {@link BeanDesc} of the class that owns this field. Must not be {@literal null}.
      * @param field
-     *            フィールド。{@literal null}であってはいけません
+     *            The field. Must not be {@literal null}.
      */
     public FieldDescImpl(final BeanDesc beanDesc, final Field field) {
         assertArgumentNotNull("beanDesc", beanDesc);

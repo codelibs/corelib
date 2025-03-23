@@ -26,22 +26,22 @@ import org.codelibs.core.convert.StringConversionUtil;
 import org.codelibs.core.convert.TimestampConversionUtil;
 
 /**
- * 日時用のコンバータです。
+ * Converter for timestamps.
  *
  * @author higa
  */
 public class TimestampConverter implements Converter {
 
     /**
-     * 日時のパターンです。
+     * The pattern for the date and time.
      */
     protected String pattern;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param pattern
-     *            日時のパターン
+     *            the pattern for date and time
      */
     public TimestampConverter(final String pattern) {
         assertArgumentNotEmpty("pattern", pattern);

@@ -20,23 +20,23 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 import org.codelibs.core.beans.ParameterizedClassDesc;
 
 /**
- * {@link ParameterizedClassDesc}の実装クラスです。
+ * Implementation class of {@link ParameterizedClassDesc}.
  *
  * @author koichik
  */
 public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
 
-    /** 原型となるクラス */
+    /** The raw class */
     protected Class<?> rawClass;
 
-    /** 型引数を表す{@link ParameterizedClassDesc}の配列 */
+    /** An array of {@link ParameterizedClassDesc} representing type arguments */
     protected ParameterizedClassDesc[] arguments;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param rawClass
-     *            原型となるクラス。{@literal null}であってはいけません
+     *            The raw class. Must not be {@literal null}.
      */
     public ParameterizedClassDescImpl(final Class<?> rawClass) {
         assertArgumentNotNull("rawClass", rawClass);
@@ -45,12 +45,12 @@ public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param rawClass
-     *            原型となるクラス。{@literal null}であってはいけません
+     *            The raw class. Must not be {@literal null}.
      * @param arguments
-     *            型引数を表す{@link ParameterizedClassDesc}の配列
+     *            An array of {@link ParameterizedClassDesc} representing type arguments
      */
     public ParameterizedClassDescImpl(final Class<?> rawClass, final ParameterizedClassDesc[] arguments) {
         assertArgumentNotNull("rawClass", rawClass);
@@ -71,10 +71,10 @@ public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
     }
 
     /**
-     * 原型となるクラスを設定します。
+     * Sets the raw class.
      *
      * @param rawClass
-     *            原型となるクラス。{@literal null}であってはいけません
+     *            The raw class. Must not be {@literal null}.
      */
     public void setRawClass(final Class<?> rawClass) {
         assertArgumentNotNull("rawClass", rawClass);
@@ -88,10 +88,10 @@ public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
     }
 
     /**
-     * 型引数を表す{@link ParameterizedClassDesc}の配列を設定します。
+     * Sets an array of {@link ParameterizedClassDesc} representing type arguments.
      *
      * @param arguments
-     *            型引数を表す{@link ParameterizedClassDesc}の配列
+     *            An array of {@link ParameterizedClassDesc} representing type arguments
      */
     public void setArguments(final ParameterizedClassDesc[] arguments) {
         this.arguments = arguments;

@@ -20,94 +20,93 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * コンストラクタを扱うためのインターフェースです。
+ * Interface for handling constructors.
  *
  * @author koichik
  */
 public interface ConstructorDesc {
 
     /**
-     * このコンストラクタを所有するクラスの{@link BeanDesc}を返します。
+     * Returns the {@link BeanDesc} of the class that owns this constructor.
      *
      * @return {@link BeanDesc}
      */
     BeanDesc getBeanDesc();
 
     /**
-     * コンストラクタを返します。
+     * Returns the constructor.
      *
      * @param <T>
-     *            Beanの型
-     * @return コンストラクタ
+     *            The type of the Bean
+     * @return The constructor
      */
     <T> Constructor<T> getConstructor();
 
     /**
-     * コンストラクタの引数型の配列を返します。
+     * Returns an array of the parameter types of the constructor.
      *
-     * @return コンストラクタの引数型の配列
+     * @return An array of the parameter types of the constructor
      */
     Class<?>[] getParameterTypes();
 
     /**
-     * {@literal public}コンストラクタの場合は{@literal true}を返します。
+     * Returns {@literal true} if the constructor is {@literal public}.
      *
-     * @return {@literal public}コンストラクタの場合は{@literal true}
+     * @return {@literal true} if the constructor is {@literal public}
      */
     boolean isPublic();
 
     /**
-     * コンストラクタの引数型がパラメタ化された型の場合は{@literal true}を返します。
+     * Returns {@literal true} if the parameter type of the constructor is parameterized.
      *
      * @param index
-     *            引数のインデックス
-     * @return 引数型がパラメタ化された型の場合は{@literal true}
+     *            The index of the parameter
+     * @return {@literal true} if the parameter type is parameterized
      */
     boolean isParameterized(int index);
 
     /**
-     * メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列を返します。
+     * Returns an array of {@link ParameterizedClassDesc} representing the parameter types of the method.
      *
-     * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列
+     * @return An array of {@link ParameterizedClassDesc} representing the parameter types of the method
      */
     ParameterizedClassDesc[] getParameterizedClassDescs();
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Collection}の場合、その要素型を返します。
+     * Returns the element type if the parameter type of the method is a parameterized {@link Collection}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数型がパラメタ化された{@link Collection}の場合はその要素型、そうでない場合は
-     *         {@literal null}
+     *            The index of the parameter
+     * @return The element type if the parameter type is a parameterized {@link Collection}, otherwise {@literal null}
      */
     Class<?> getElementClassOfCollection(int index);
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Map}の場合、そのキー型を返します。
+     * Returns the key type if the parameter type of the method is a parameterized {@link Map}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数がパラメタ化された{@link Map}の場合はそのキー型、そうでない場合は{@literal null}
+     *            The index of the parameter
+     * @return The key type if the parameter type is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getKeyClassOfMap(int index);
 
     /**
-     * メソッドの引数型がパラメタ化された{@link Map}の場合、その値型を返します。
+     * Returns the value type if the parameter type of the method is a parameterized {@link Map}.
      *
      * @param index
-     *            引数のインデックス
-     * @return メソッドの引数型がパラメタ化された{@link Map}の場合はその値型、そうでない場合は{@literal null}
+     *            The index of the parameter
+     * @return The value type if the parameter type is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getValueClassOfMap(int index);
 
     /**
-     * コンストラクタを呼び出して生成したインスタンスを返します。
+     * Returns an instance created by invoking the constructor.
      *
      * @param <T>
-     *            生成するBeanの型
+     *            The type of the Bean to be created
      * @param args
-     *            メソッドの引数
-     * @return コンストラクタを呼び出して生成したインスタンス
+     *            The arguments for the constructor
+     * @return An instance created by invoking the constructor
      */
     <T> T newInstance(Object... args);
 

@@ -20,134 +20,133 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * フィールドを扱うためのインターフェースです。
+ * Interface for handling fields.
  *
  * @author koichik
  */
 public interface FieldDesc {
 
     /**
-     * このフィールドを所有するクラスの{@link BeanDesc}を返します。
+     * Returns the {@link BeanDesc} of the class that owns this field.
      *
      * @return {@link BeanDesc}
      */
     BeanDesc getBeanDesc();
 
     /**
-     * フィールドを返します。
+     * Returns the field.
      *
-     * @return フィールド
+     * @return the field
      */
     Field getField();
 
     /**
-     * フィールド名を返します。
+     * Returns the field name.
      *
-     * @return フィールド名
+     * @return the field name
      */
     String getFieldName();
 
     /**
-     * フィールドの型を返します。
+     * Returns the type of the field.
      *
      * @param <T>
-     *            フィールドの型
-     * @return フィールドの型
+     *            the type of the field
+     * @return the type of the field
      */
     <T> Class<T> getFieldType();
 
     /**
-     * {@literal public}フィールドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the field is {@literal public}.
      *
-     * @return {@literal public}フィールドの場合は{@literal true}
+     * @return {@literal true} if the field is {@literal public}
      */
     boolean isPublic();
 
     /**
-     * {@literal static}フィールドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the field is {@literal static}.
      *
-     * @return {@literal static}フィールドの場合は{@literal true}
+     * @return {@literal true} if the field is {@literal static}
      */
     boolean isStatic();
 
     /**
-     * {@literal final}フィールドの場合は{@literal true}を返します。
+     * Returns {@literal true} if the field is {@literal final}.
      *
-     * @return {@literal final}フィールドの場合は{@literal true}
+     * @return {@literal true} if the field is {@literal final}
      */
     boolean isFinal();
 
     /**
-     * このフィールドがパラメタ化された型の場合は{@literal true}を返します。
+     * Returns {@literal true} if the field is parameterized.
      *
-     * @return このフィールドがパラメタ化された型の場合は{@literal true}
+     * @return {@literal true} if the field is parameterized
      */
     boolean isParameterized();
 
     /**
-     * フィールドの型を表現する{@link ParameterizedClassDesc}を返します。
+     * Returns the {@link ParameterizedClassDesc} that represents the type of the field.
      *
-     * @return フィールドの型を表現する{@link ParameterizedClassDesc}
+     * @return the {@link ParameterizedClassDesc} that represents the type of the field
      */
     ParameterizedClassDesc getParameterizedClassDesc();
 
     /**
-     * このフィールドがパラメタ化された{@link Collection}の場合、その要素型を返します。
+     * Returns the element type if this field is a parameterized {@link Collection}.
      *
-     * @return このフィールドがパラメタ化された{@link Collection}の場合はその要素型、そうでない場合は
-     *         {@literal null}
+     * @return the element type if this field is a parameterized {@link Collection}, otherwise {@literal null}
      */
     Class<?> getElementClassOfCollection();
 
     /**
-     * このフィールドがパラメタ化された{@link Map}の場合、そのキー型を返します。
+     * Returns the key type if this field is a parameterized {@link Map}.
      *
-     * @return このフィールドがパラメタ化された{@link Map}の場合はそのキー型、そうでない場合は{@literal null}
+     * @return the key type if this field is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getKeyClassOfMap();
 
     /**
-     * このフィールドがパラメタ化された{@link Map}の場合、その値型を返します。
+     * Returns the value type if this field is a parameterized {@link Map}.
      *
-     * @return このフィールドがパラメタ化された{@link Map}の場合はその値型、そうでない場合は{@literal null}
+     * @return the value type if this field is a parameterized {@link Map}, otherwise {@literal null}
      */
     Class<?> getValueClassOfMap();
 
     /**
-     * {@link Field}の値を返します。
+     * Returns the value of the {@link Field}.
      *
      * @param <T>
-     *            フィールドの型
+     *            the type of the field
      * @param target
-     *            対象のオブジェクト。{@literal null}であってはいけません
-     * @return {@link Field}の値
+     *            the target object. Must not be {@literal null}
+     * @return the value of the {@link Field}
      */
     <T> T getFieldValue(Object target);
 
     /**
-     * staticな{@link Field}の値を返します。
+     * Returns the value of the static {@link Field}.
      *
      * @param <T>
-     *            フィールドの型
-     * @return {@link Field}の値
+     *            the type of the field
+     * @return the value of the {@link Field}
      */
     <T> T getStaticFieldValue();
 
     /**
-     * {@link Field}の値を設定します。
+     * Sets the value of the {@link Field}.
      *
      * @param target
-     *            対象のオブジェクト。{@literal null}であってはいけません
+     *            the target object. Must not be {@literal null}
      * @param value
-     *            {@link Field}の値
+     *            the value of the {@link Field}
      */
     void setFieldValue(Object target, Object value);
 
     /**
-     * staticな{@link Field}の値を設定します。
+     * Sets the value of the static {@link Field}.
      *
      * @param value
-     *            {@link Field}の値
+     *            the value of the {@link Field}
      */
     void setStaticFieldValue(Object value);
 

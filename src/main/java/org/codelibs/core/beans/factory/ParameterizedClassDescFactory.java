@@ -40,10 +40,9 @@ import org.codelibs.core.beans.impl.ParameterizedClassDescImpl;
 import org.codelibs.core.collection.Indexed;
 
 /**
- * フィールの型やメソッドの引数型、戻り値型を表現する{@link ParameterizedClassDesc}を作成するファクトリです。
+ * Factory for creating {@link ParameterizedClassDesc} that represents the type of fields, method argument types, and return types.
  * <p>
- * このクラスでは{@link ParameterizedClassDesc}のインスタンスをキャッシュしません。 {@link BeanDesc}経由で
- * {@link ParameterizedClassDesc}を取得するようにしてください。
+ * This class does not cache instances of {@link ParameterizedClassDesc}. Please obtain {@link ParameterizedClassDesc} via {@link BeanDesc}.
  * </p>
  *
  * @author koichik
@@ -57,14 +56,14 @@ import org.codelibs.core.collection.Indexed;
 public abstract class ParameterizedClassDescFactory {
 
     /**
-     * パラメータ化された型(クラスまたはインタフェース)が持つ型変数をキー、型引数を値とする{@link Map}を返します。
+     * Returns a {@link Map} with type variables as keys and type arguments as values for a parameterized type (class or interface).
      * <p>
-     * 型がパラメタ化されていない場合は空の{@link Map}を返します。
+     * If the type is not parameterized, an empty {@link Map} is returned.
      * </p>
      *
      * @param beanClass
-     *            パラメータ化された型(クラスまたはインタフェース)。{@literal null}であってはいけません
-     * @return パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
+     *            The parameterized type (class or interface). Must not be {@literal null}.
+     * @return A {@link Map} with type variables as keys and type arguments as values for the parameterized type.
      */
     public static Map<TypeVariable<?>, Type> getTypeVariables(final Class<?> beanClass) {
         assertArgumentNotNull("beanClass", beanClass);
@@ -73,14 +72,13 @@ public abstract class ParameterizedClassDescFactory {
     }
 
     /**
-     * フィールドの型を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} that represents the type of the field.
      *
      * @param field
-     *            フィールド。{@literal null}であってはいけません
+     *            The field. Must not be {@literal null}.
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}。{@literal null}
-     *            であってはいけません
-     * @return フィールドの型を表現する{@link ParameterizedClassDesc}
+     *            A {@link Map} with type variables as keys and type arguments as values for the parameterized type. Must not be {@literal null}.
+     * @return A {@link ParameterizedClassDesc} that represents the type of the field.
      */
     public static ParameterizedClassDesc createParameterizedClassDesc(final Field field, final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("field", field);
@@ -90,16 +88,15 @@ public abstract class ParameterizedClassDescFactory {
     }
 
     /**
-     * コンストラクタの引数型を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} that represents the type of the constructor argument.
      *
      * @param constructor
-     *            コンストラクタ。{@literal null}であってはいけません
+     *            The constructor. Must not be {@literal null}.
      * @param index
-     *            引数の位置
+     *            The position of the argument.
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}。{@literal null}
-     *            であってはいけません
-     * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}
+     *            A {@link Map} with type variables as keys and type arguments as values for the parameterized type. Must not be {@literal null}.
+     * @return A {@link ParameterizedClassDesc} that represents the type of the constructor argument.
      */
     public static ParameterizedClassDesc createParameterizedClassDesc(final Constructor<?> constructor, final int index,
             final Map<TypeVariable<?>, Type> map) {
@@ -110,16 +107,15 @@ public abstract class ParameterizedClassDescFactory {
     }
 
     /**
-     * メソッドの引数型を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} that represents the type of the method argument.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Must not be {@literal null}.
      * @param index
-     *            引数の位置
+     *            The position of the argument.
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}。{@literal null}
-     *            であってはいけません
-     * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}
+     *            A {@link Map} with type variables as keys and type arguments as values for the parameterized type. Must not be {@literal null}.
+     * @return A {@link ParameterizedClassDesc} that represents the type of the method argument.
      */
     public static ParameterizedClassDesc createParameterizedClassDesc(final Method method, final int index,
             final Map<TypeVariable<?>, Type> map) {
@@ -131,14 +127,13 @@ public abstract class ParameterizedClassDescFactory {
     }
 
     /**
-     * メソッドの戻り値型を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} that represents the return type of the method.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Must not be {@literal null}.
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}。{@literal null}
-     *            であってはいけません
-     * @return メソッドの戻り値型を表現する{@link ParameterizedClassDesc}
+     *            A {@link Map} with type variables as keys and type arguments as values for the parameterized type. Must not be {@literal null}.
+     * @return A {@link ParameterizedClassDesc} that represents the return type of the method.
      */
     public static ParameterizedClassDesc createParameterizedClassDesc(final Method method, final Map<TypeVariable<?>, Type> map) {
         assertArgumentNotNull("method", method);
@@ -148,13 +143,13 @@ public abstract class ParameterizedClassDescFactory {
     }
 
     /**
-     * {@link Type}を表現する{@link ParameterizedClassDesc}を作成して返します。
+     * Creates and returns a {@link ParameterizedClassDesc} that represents the {@link Type}.
      *
      * @param type
-     *            型
+     *            The type.
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return 型を表現する{@link ParameterizedClassDesc}
+     *            A {@link Map} with type variables as keys and type arguments as values for the parameterized type.
+     * @return A {@link ParameterizedClassDesc} that represents the type.
      */
     protected static ParameterizedClassDesc createParameterizedClassDesc(final Type type, final Map<TypeVariable<?>, Type> map) {
         final Class<?> rowClass = getActualClass(type, map);

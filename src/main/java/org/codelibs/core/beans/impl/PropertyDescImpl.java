@@ -49,7 +49,7 @@ import org.codelibs.core.lang.MethodUtil;
 import org.codelibs.core.lang.ModifierUtil;
 
 /**
- * {@link PropertyDesc}の実装クラスです。
+ * Implementation class of {@link PropertyDesc}.
  *
  * @author higa
  */
@@ -80,18 +80,18 @@ public class PropertyDescImpl implements PropertyDesc {
     private ParameterizedClassDesc parameterizedClassDesc;
 
     /**
-     * {@link PropertyDescImpl}を作成します。
+     * Creates an instance of {@link PropertyDescImpl}.
      *
      * @param propertyName
-     *            プロパティ名。{@literal null}や空文字列であってはいけません
+     *            The property name. Must not be {@literal null} or an empty string.
      * @param propertyType
-     *            プロパティの型。{@literal null}であってはいけません
+     *            The property type. Must not be {@literal null}.
      * @param readMethod
-     *            getterメソッド
+     *            The getter method.
      * @param writeMethod
-     *            setterメソッド
+     *            The setter method.
      * @param beanDesc
-     *            {@link BeanDesc}。{@literal null}であってはいけません
+     *            The {@link BeanDesc}. Must not be {@literal null}.
      */
     public PropertyDescImpl(final String propertyName, final Class<?> propertyType, final Method readMethod, final Method writeMethod,
             final BeanDesc beanDesc) {
@@ -99,20 +99,20 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     /**
-     * {@link PropertyDescImpl}を作成します。
+     * Creates an instance of {@link PropertyDescImpl}.
      *
      * @param propertyName
-     *            プロパティ名。{@literal null}や空文字列であってはいけません
+     *            The property name. Must not be {@literal null} or an empty string.
      * @param propertyType
-     *            プロパティの型。{@literal null}であってはいけません
+     *            The property type. Must not be {@literal null}.
      * @param readMethod
-     *            getterメソッド
+     *            The getter method.
      * @param writeMethod
-     *            setterメソッド
+     *            The setter method.
      * @param field
-     *            フィールド
+     *            The field.
      * @param beanDesc
-     *            {@link BeanDesc}。{@literal null}であってはいけません
+     *            The {@link BeanDesc}. Must not be {@literal null}.
      */
     public PropertyDescImpl(final String propertyName, final Class<?> propertyType, final Method readMethod, final Method writeMethod,
             final Field field, final BeanDesc beanDesc) {
@@ -181,10 +181,10 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     /**
-     * getterメソッドを設定します。
+     * Sets the getter method.
      *
      * @param readMethod
-     *            getterメソッド
+     *            The getter method.
      */
     protected final void setReadMethod(final Method readMethod) {
         this.readMethod = readMethod;
@@ -205,10 +205,10 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     /**
-     * setterメソッドを設定します。
+     * Sets the setter method.
      *
      * @param writeMethod
-     *            setterメソッド
+     *            The setter method.
      */
     protected final void setWriteMethod(final Method writeMethod) {
         this.writeMethod = writeMethod;
@@ -247,10 +247,10 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     /**
-     * プロパティとして認識しているpublicフィールドを設定します。
+     * Sets the public field recognized as a property.
      *
      * @param field
-     *            プロパティとして認識するpublicフィールド
+     *            The public field recognized as a property.
      */
     public void setField(final Field field) {
         this.field = field;
