@@ -26,7 +26,7 @@ import org.codelibs.core.exception.IORuntimeException;
 import org.codelibs.core.log.Logger;
 
 /**
- * {@link java.util.zip.ZipInputStream}を扱うユーティリティクラスです。
+ * Utility class for handling {@link java.util.zip.ZipInputStream}.
  *
  * @author koichik
  */
@@ -35,10 +35,10 @@ public abstract class ZipInputStreamUtil {
     private static final Logger logger = Logger.getLogger(ZipInputStreamUtil.class);
 
     /**
-     * {@link ZipInputStream#getNextEntry()}の例外処理をラップするメソッドです。
+     * A method that wraps the exception handling of {@link ZipInputStream#getNextEntry()}.
      *
      * @param zis
-     *            {@link ZipInputStream}。{@literal null}であってはいけません
+     *            {@link ZipInputStream}. Must not be {@literal null}.
      * @return {@link ZipEntry}
      * @see ZipInputStream#getNextEntry()
      */
@@ -53,10 +53,10 @@ public abstract class ZipInputStreamUtil {
     }
 
     /**
-     * {@link ZipInputStream#reset()}の例外処理をラップするメソッドです。
+     * A method that wraps the exception handling of {@link ZipInputStream#reset()}.
      *
      * @param zis
-     *            {@link ZipInputStream}。{@literal null}であってはいけません
+     *            {@link ZipInputStream}. Must not be {@literal null}.
      * @see ZipInputStream#reset()
      */
     public static void reset(final ZipInputStream zis) {
@@ -70,14 +70,14 @@ public abstract class ZipInputStreamUtil {
     }
 
     /**
-     * {@link ZipInputStream}をクローズします。
+     * Closes the {@link ZipInputStream}.
      * <p>
-     * {@link ZipInputStream#closeEntry()}が例外をスローした場合はログにエラーメッセージを出力します。
-     * 例外は再スローされません。
+     * If {@link ZipInputStream#closeEntry()} throws an exception, an error message is logged.
+     * The exception is not rethrown.
      * </p>
      *
      * @param zis
-     *            {@link ZipInputStream}。{@literal null}であってはいけません
+     *            {@link ZipInputStream}. Must not be {@literal null}.
      * @see ZipInputStream#closeEntry()
      */
     public static void closeEntry(final ZipInputStream zis) {

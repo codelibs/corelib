@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import org.codelibs.core.exception.IllegalKeyOfBeanMapException;
 
 /**
- * Stringがキーで、存在しないキーにアクセスする(get)と例外を投げるマップです。
+ * A map with String keys that throws an exception when accessing (get) a non-existent key.
  *
  * @author higa
  */

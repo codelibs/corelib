@@ -25,7 +25,7 @@ import org.codelibs.core.beans.converter.TimeConverter;
 import org.codelibs.core.beans.converter.TimestampConverter;
 
 /**
- * {@link CopyOptions}のインスタンス化を容易にするために{@literal static import}して使うためのユーティリティです。
+ * A utility for {@literal static import} to facilitate the instantiation of {@link CopyOptions}.
  *
  * <pre>
  * import static org.codelibs.core.beans.util.CopyOptionsUtil.*;
@@ -33,8 +33,8 @@ import org.codelibs.core.beans.converter.TimestampConverter;
  * copyBeanToBean(srcBean, destBean, excludeNull());
  * </pre>
  * <p>
- * {@literal CopyOptionsUtil}の戻り値は{@link CopyOptions}
- * なので、メソッドチェーンでオプションを複数指定することもできます。
+ * The return value of {@literal CopyOptionsUtil} is {@link CopyOptions},
+ * so you can specify multiple options using method chaining.
  * </p>
  *
  * <pre>
@@ -46,11 +46,11 @@ import org.codelibs.core.beans.converter.TimestampConverter;
 public abstract class CopyOptionsUtil {
 
     /**
-     * 操作の対象に含めるプロパティ名を指定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified property names to include in the operation.
      *
      * @param propertyNames
-     *            プロパティ名の配列。{@literal null}や空配列であってはいけません
-     * @return 操作の対象に含めるプロパティ名を指定した{@link CopyOptions}
+     *            An array of property names. Must not be {@literal null} or an empty array.
+     * @return A {@link CopyOptions} with the specified property names to include in the operation.
      * @see CopyOptions#include(CharSequence...)
      */
     public static CopyOptions include(final CharSequence... propertyNames) {
@@ -58,11 +58,11 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 操作の対象に含めないプロパティ名を指定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified property names to exclude from the operation.
      *
      * @param propertyNames
-     *            プロパティ名の配列。{@literal null}や空配列であってはいけません
-     * @return 操作の対象に含めないプロパティ名を指定した{@link CopyOptions}
+     *            An array of property names. Must not be {@literal null} or an empty array.
+     * @return A {@link CopyOptions} with the specified property names to exclude from the operation.
      * @see CopyOptions#exclude(CharSequence...)
      */
     public static CopyOptions exclude(final CharSequence... propertyNames) {
@@ -70,9 +70,9 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * {@literal null}値のプロパティを操作の対象外にした{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} that excludes properties with {@literal null} values from the operation.
      *
-     * @return {@literal null}値のプロパティを操作の対象外にした{@link CopyOptions}を返します。
+     * @return A {@link CopyOptions} that excludes properties with {@literal null} values from the operation.
      * @see CopyOptions#excludeNull()
      */
     public static CopyOptions excludeNull() {
@@ -80,9 +80,9 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 空白のプロパティを操作の対象外にした{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} that excludes properties with whitespace values from the operation.
      *
-     * @return 空白のプロパティを操作の対象外にした{@link CopyOptions}
+     * @return A {@link CopyOptions} that excludes properties with whitespace values from the operation.
      * @see CopyOptions#excludeWhitespace()
      */
     public static CopyOptions excludeWhitespace() {
@@ -90,15 +90,15 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * プレフィックスを指定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified prefix.
      * <p>
-     * プレフィックスを指定すると、コピー元のプロパティ名がプレフィックスで始まるプロパティだけがコピーの対象となります。
-     * また、コピー元のプロパティ名からプレフィックスを除去した名前がコピー先のプロパティ名となります。
+     * When a prefix is specified, only the properties from the source whose names start with the prefix will be copied.
+     * Additionally, the prefix will be removed from the source property names to determine the target property names.
      * </p>
      *
      * @param prefix
-     *            プレフィックス。{@literal null}や空文字列であってはいけません
-     * @return プレフィックスを指定した{@link CopyOptions}
+     *            The prefix. Must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with the specified prefix.
      * @see CopyOptions#prefix(CharSequence)
      */
     public static CopyOptions prefix(final CharSequence prefix) {
@@ -106,17 +106,17 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * JavaBeansのデリミタを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified delimiter for JavaBeans.
      * <p>
-     * JavaBeansから{@link Map}へ、あるいはその逆にコピーする際に、プロパティ名のデリミタを変更することが出来ます。
-     * 例えばJavaBeans側のデリミタにアンダースコア、{@link Map}側のデリミタにピリオドを指定した場合、
-     * コピー元とコピー先のプリパティ名は次のようになります。
+     * When copying between JavaBeans and {@link Map}, you can change the delimiter for property names.
+     * For example, if you specify an underscore as the delimiter for JavaBeans and a period as the delimiter for {@link Map},
+     * the property names for the source and destination will be as follows:
      * </p>
      * <table border="1">
      * <caption>Copied JavaBeans Properties</caption>
      * <tr>
-     * <th>JavaBeansのプロパティ名</th>
-     * <th>{@literal Map}のプロパティ名</th>
+     * <th>JavaBeans Property Name</th>
+     * <th>{@literal Map} Property Name</th>
      * </tr>
      * <tr>
      * <td>{@literal foo}</td>
@@ -133,8 +133,8 @@ public abstract class CopyOptionsUtil {
      * </table>
      *
      * @param beanDelimiter
-     *            JavaBeansのデリミタ
-     * @return JavaBeansのデリミタを設定した{@link CopyOptions}
+     *            The delimiter for JavaBeans.
+     * @return A {@link CopyOptions} with the specified delimiter for JavaBeans.
      * @see CopyOptions#beanDelimiter(char)
      */
     public static CopyOptions beanDelimiter(final char beanDelimiter) {
@@ -142,17 +142,17 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * {@literal Map}のデリミタを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified delimiter for {@literal Map}.
      * <p>
-     * JavaBeansから{@link Map}へ、あるいはその逆にコピーする際に、プロパティ名のデリミタを変更することが出来ます。
-     * 例えばJavaBeans側のデリミタにアンダースコア、{@link Map}側のデリミタにピリオドを指定した場合、
-     * コピー元とコピー先のプリパティ名は次のようになります。
+     * When copying between JavaBeans and {@link Map}, you can change the delimiter for property names.
+     * For example, if you specify an underscore as the delimiter for JavaBeans and a period as the delimiter for {@link Map},
+     * the property names for the source and destination will be as follows:
      * </p>
      * <table border="1">
      * <caption>Copied JavaBeans Properties</caption>
      * <tr>
-     * <th>JavaBeansのプロパティ名</th>
-     * <th>{@literal Map}のプロパティ名</th>
+     * <th>JavaBeans Property Name</th>
+     * <th>{@literal Map} Property Name</th>
      * </tr>
      * <tr>
      * <td>{@literal foo}</td>
@@ -169,8 +169,8 @@ public abstract class CopyOptionsUtil {
      * </table>
      *
      * @param mapDelimiter
-     *            {@literal Map}のデリミタ
-     * @return {@literal Map}のデリミタを設定した{@link CopyOptions}
+     *            The delimiter for {@literal Map}.
+     * @return A {@link CopyOptions} with the specified delimiter for {@literal Map}.
      * @see CopyOptions#mapDelimiter(char)
      */
     public static CopyOptions mapDelimiter(final char mapDelimiter) {
@@ -178,13 +178,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * コンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with the specified converter applied.
      *
      * @param converter
-     *            コンバータ。{@literal null}であってはいけません
+     *            The converter. Must not be {@literal null}.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return コンバータを設定した{@link CopyOptions}
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with the specified converter applied.
      * @see CopyOptions#converter(Converter, CharSequence...)
      */
     public static CopyOptions converter(final Converter converter, final CharSequence... propertyNames) {
@@ -192,13 +192,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 日付のコンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with a date converter applied.
      *
      * @param pattern
-     *            日付のパターン。{@literal null}や空文字列であってはいけません
+     *            The date pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            プロパティ名の配列。各要素は{@literal null}や空文字列であってはいけません
-     * @return 日付のコンバータを設定した{@link CopyOptions}
+     *            An array of property names. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with a date converter applied.
      * @see CopyOptions#dateConverter(String, CharSequence...)
      * @see DateConverter
      */
@@ -207,13 +207,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * SQL用日付のコンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with a SQL date converter applied.
      *
      * @param pattern
-     *            日付のパターン。{@literal null}や空文字列であってはいけません
+     *            The date pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            プロパティ名の配列。各要素は{@literal null}や空文字列であってはいけません
-     * @return SQL用日付のコンバータを設定した{@link CopyOptions}
+     *            An array of property names. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with a SQL date converter applied.
      * @see CopyOptions#sqlDateConverter(String, CharSequence...)
      * @see SqlDateConverter
      */
@@ -222,13 +222,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 時間のコンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with a time converter applied.
      *
      * @param pattern
-     *            時間のパターン。{@literal null}や空文字列であってはいけません
+     *            The time pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            プロパティ名の配列。各要素は{@literal null}や空文字列であってはいけません
-     * @return 時間のコンバータを設定した{@link CopyOptions}
+     *            An array of property names. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with a time converter applied.
      * @see CopyOptions#timeConverter(String, CharSequence...)
      * @see TimeConverter
      */
@@ -237,13 +237,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 日時のコンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with a timestamp converter applied.
      *
      * @param pattern
-     *            日時のパターン。{@literal null}や空文字列であってはいけません
+     *            The timestamp pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            プロパティ名の配列。各要素は{@literal null}や空文字列であってはいけません
-     * @return 日時のコンバータを設定した{@link CopyOptions}
+     *            An array of property names. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with a timestamp converter applied.
      * @see CopyOptions#timestampConverter(String, CharSequence...)
      * @see TimestampConverter
      */
@@ -252,13 +252,13 @@ public abstract class CopyOptionsUtil {
     }
 
     /**
-     * 数値のコンバータを設定した{@link CopyOptions}を返します。
+     * Returns a {@link CopyOptions} with a number converter applied.
      *
      * @param pattern
-     *            数値のパターン。{@literal null}や空文字列であってはいけません
+     *            The number pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            プロパティ名の配列。各要素は{@literal null}や空文字列であってはいけません
-     * @return 数値のコンバータを設定した{@link CopyOptions}
+     *            An array of property names. Each element must not be {@literal null} or an empty string.
+     * @return A {@link CopyOptions} with a number converter applied.
      * @see CopyOptions#numberConverter(String, CharSequence...)
      * @see NumberConverter
      */

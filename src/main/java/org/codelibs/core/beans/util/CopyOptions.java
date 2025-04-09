@@ -38,78 +38,78 @@ import org.codelibs.core.convert.TimestampConversionUtil;
 import org.codelibs.core.exception.ConverterRuntimeException;
 
 /**
- * {@link BeanUtil}でJavaBeansや{@link Map}をコピーする際に指定するオプションです。
+ * Options to specify when copying JavaBeans or {@link Map} using {@link BeanUtil}.
  *
  * @author higa
  */
 public class CopyOptions {
 
     /**
-     * 日付用のデフォルトコンバータです。
+     * Default converter for dates.
      */
     protected static final Converter DEFAULT_DATE_CONVERTER = new DateConverter(DateConversionUtil.getMediumPattern());
 
     /**
-     * 時間用のデフォルトコンバータです。
+     * Default converter for time.
      */
     protected static final Converter DEFAULT_TIME_CONVERTER = new DateConverter(TimeConversionUtil.getMediumPattern());
 
     /**
-     * 日時用のデフォルトコンバータです。
+     * Default converter for timestamps.
      */
     protected static final Converter DEFAULT_TIMESTAMP_CONVERTER = new DateConverter(TimestampConversionUtil.getMediumPattern());
 
     /**
-     * 操作の対象に含めるプロパティ名の配列です。
+     * Array of property names to include in the operation.
      */
     protected final List<String> includePropertyNames = newArrayList();
 
     /**
-     * 操作の対象に含めないプロパティ名の配列です。
+     * Array of property names to exclude from the operation.
      */
     protected final List<String> excludePropertyNames = newArrayList();
 
     /**
-     * null値のプロパティを操作の対象外にするかどうかです。
+     * Whether to exclude properties with null values from the operation.
      */
     protected boolean excludesNull = false;
 
     /**
-     * 空白のみの文字列を操作の対象外にするかどうかです。
+     * Whether to exclude strings that consist only of whitespace from the operation.
      */
     protected boolean excludesWhitespace = false;
 
     /**
-     * プレフィックスです。
+     * The prefix.
      */
     protected String prefix;
 
     /**
-     * JavaBeanのデリミタです。
+     * Delimiter for JavaBeans.
      */
     protected char beanDelimiter = '$';
 
     /**
-     * Mapのデリミタです。
+     * Delimiter for Map.
      */
     protected char mapDelimiter = '.';
 
     /**
-     * 特定のプロパティに関連付けられたコンバータです。
+     * Converter associated with specific properties.
      */
     protected final Map<String, Converter> converterMap = newHashMap();
 
     /**
-     * 特定のプロパティに関連付けられていないコンバータです。
+     * Converter not associated with specific properties.
      */
     protected final List<Converter> converters = newArrayList();
 
     /**
-     * 操作の対象に含めるプロパティ名を追加します。
+     * Adds property names to include in the operation.
      *
      * @param propertyNames
-     *            プロパティ名の並び。{@literal null}や空配列であってはいけません
-     * @return このインスタンス自身
+     *            Array of property names. Must not be {@literal null} or an empty array.
+     * @return This instance itself
      */
     public CopyOptions include(final CharSequence... propertyNames) {
         assertArgumentNotEmpty("propertyNames", propertyNames);
@@ -119,11 +119,11 @@ public class CopyOptions {
     }
 
     /**
-     * 操作の対象に含めないプロパティ名を追加します。
+     * Adds property names to exclude from the operation.
      *
      * @param propertyNames
-     *            プロパティ名の並び。{@literal null}や空配列であってはいけません
-     * @return このインスタンス自身
+     *            Array of property names. Must not be {@literal null} or an empty array.
+     * @return This instance itself
      */
     public CopyOptions exclude(final CharSequence... propertyNames) {
         assertArgumentNotEmpty("propertyNames", propertyNames);
@@ -133,9 +133,9 @@ public class CopyOptions {
     }
 
     /**
-     * {@literal null}値のプロパティを操作の対象外にします。
+     * Excludes properties with {@literal null} values from the operation.
      *
-     * @return このインスタンス自身
+     * @return This instance itself
      */
     public CopyOptions excludeNull() {
         excludesNull = true;
@@ -143,9 +143,9 @@ public class CopyOptions {
     }
 
     /**
-     * 空白のプロパティを操作の対象外にします。
+     * Excludes properties with only whitespace from the operation.
      *
-     * @return このインスタンス自身
+     * @return This instance itself
      */
     public CopyOptions excludeWhitespace() {
         excludesWhitespace = true;
@@ -153,15 +153,15 @@ public class CopyOptions {
     }
 
     /**
-     * プレフィックスを指定します。
+     * Specifies the prefix.
      * <p>
-     * プレフィックスを指定すると、コピー元のプロパティ名がプレフィックスで始まるプロパティだけがコピーの対象となります。
-     * また、コピー元のプロパティ名からプレフィックスを除去した名前がコピー先のプロパティ名となります。
+     * When a prefix is specified, only properties whose names start with the prefix will be included in the copy operation.
+     * Additionally, the prefix will be removed from the source property name to form the destination property name.
      * </p>
      *
      * @param prefix
-     *            プレフィックス。{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The prefix. Must not be {@literal null} or an empty string.
+     * @return This instance itself
      */
     public CopyOptions prefix(final CharSequence prefix) {
         assertArgumentNotEmpty("propertyNames", prefix);
@@ -171,17 +171,17 @@ public class CopyOptions {
     }
 
     /**
-     * JavaBeansのデリミタを設定します。
+     * Sets the delimiter for JavaBeans.
      * <p>
-     * JavaBeansから{@link Map}へ、あるいはその逆にコピーする際に、プロパティ名のデリミタを変更することが出来ます。
-     * 例えばJavaBeans側のデリミタにアンダースコア、{@link Map}側のデリミタにピリオドを指定した場合、
-     * コピー元とコピー先のプリパティ名は次のようになります。
+     * When copying between JavaBeans and {@link Map}, you can change the delimiter used in property names.
+     * For example, if you specify an underscore as the delimiter for JavaBeans and a period as the delimiter for {@link Map},
+     * the property names for the source and destination will be as follows:
      * </p>
      * <table border="1">
      * <caption>Copied JavaBeans Properties</caption>
      * <tr>
-     * <th>JavaBeansのプロパティ名</th>
-     * <th>{@literal Map}のプロパティ名</th>
+     * <th>JavaBeans Property Name</th>
+     * <th>{@literal Map} Property Name</th>
      * </tr>
      * <tr>
      * <td>{@literal foo}</td>
@@ -198,8 +198,8 @@ public class CopyOptions {
      * </table>
      *
      * @param beanDelimiter
-     *            JavaBeansのデリミタ
-     * @return このインスタンス自身
+     *            The delimiter for JavaBeans
+     * @return This instance itself
      */
     public CopyOptions beanDelimiter(final char beanDelimiter) {
         this.beanDelimiter = beanDelimiter;
@@ -207,17 +207,17 @@ public class CopyOptions {
     }
 
     /**
-     * {@link Map}のデリミタを設定します。
+     * Sets the delimiter for {@link Map}.
      * <p>
-     * JavaBeansから{@link Map}へ、あるいはその逆にコピーする際に、プロパティ名のデリミタを変更することが出来ます。
-     * 例えばJavaBeans側のデリミタにアンダースコア、{@link Map}側のデリミタにピリオドを指定した場合、
-     * コピー元とコピー先のプリパティ名は次のようになります。
+     * When copying between JavaBeans and {@link Map}, you can change the delimiter used in property names.
+     * For example, if you specify an underscore as the delimiter for JavaBeans and a period as the delimiter for {@link Map},
+     * the property names for the source and destination will be as follows:
      * </p>
      * <table border="1">
      * <caption>Copied JavaBeans Properties</caption>
      * <tr>
-     * <th>JavaBeansのプロパティ名</th>
-     * <th>{@literal Map}のプロパティ名</th>
+     * <th>JavaBeans Property Name</th>
+     * <th>{@literal Map} Property Name</th>
      * </tr>
      * <tr>
      * <td>{@literal foo}</td>
@@ -234,8 +234,8 @@ public class CopyOptions {
      * </table>
      *
      * @param mapDelimiter
-     *            {@link Map}のデリミタ
-     * @return このインスタンス自身
+     *            The delimiter for {@link Map}
+     * @return This instance itself
      */
     public CopyOptions mapDelimiter(final char mapDelimiter) {
         this.mapDelimiter = mapDelimiter;
@@ -243,13 +243,13 @@ public class CopyOptions {
     }
 
     /**
-     * コンバータを設定します。
+     * Sets a converter.
      *
      * @param converter
-     *            コンバータ。{@literal null}であってはいけません
+     *            The converter. Must not be {@literal null}.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      */
     public CopyOptions converter(final Converter converter, final CharSequence... propertyNames) {
         assertArgumentNotNull("converter", converter);
@@ -266,13 +266,13 @@ public class CopyOptions {
     }
 
     /**
-     * 日付のコンバータを設定します。
+     * Sets a converter for dates.
      *
      * @param pattern
-     *            日付のパターン。{@literal null}や空文字列であってはいけません
+     *            The date pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      * @see DateConverter
      */
     public CopyOptions dateConverter(final String pattern, final CharSequence... propertyNames) {
@@ -282,13 +282,13 @@ public class CopyOptions {
     }
 
     /**
-     * SQL用日付のコンバータを設定します。
+     * Sets a converter for SQL dates.
      *
      * @param pattern
-     *            日付のパターン。{@literal null}や空文字列であってはいけません
+     *            The date pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      * @see SqlDateConverter
      */
     public CopyOptions sqlDateConverter(final String pattern, final CharSequence... propertyNames) {
@@ -298,13 +298,13 @@ public class CopyOptions {
     }
 
     /**
-     * 時間のコンバータを設定します。
+     * Sets a converter for time.
      *
      * @param pattern
-     *            時間のパターン。{@literal null}や空文字列であってはいけません
+     *            The time pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      * @see TimeConverter
      */
     public CopyOptions timeConverter(final String pattern, final CharSequence... propertyNames) {
@@ -314,13 +314,13 @@ public class CopyOptions {
     }
 
     /**
-     * 日時のコンバータを設定します。
+     * Sets a converter for date and time.
      *
      * @param pattern
-     *            日時のパターン。{@literal null}や空文字列であってはいけません
+     *            The date and time pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      * @see TimestampConverter
      */
     public CopyOptions timestampConverter(final String pattern, final CharSequence... propertyNames) {
@@ -330,13 +330,13 @@ public class CopyOptions {
     }
 
     /**
-     * 数値のコンバータを設定します。
+     * Sets a converter for numbers.
      *
      * @param pattern
-     *            数値のパターン。{@literal null}や空文字列であってはいけません
+     *            The number pattern. Must not be {@literal null} or an empty string.
      * @param propertyNames
-     *            このコンバータを適用するプロパティ名の並び。各要素は{@literal null}や空文字列であってはいけません
-     * @return このインスタンス自身
+     *            The property names to which this converter will be applied. Each element must not be {@literal null} or an empty string.
+     * @return This instance itself
      * @see NumberConverter
      */
     public CopyOptions numberConverter(final String pattern, final CharSequence... propertyNames) {
@@ -346,11 +346,11 @@ public class CopyOptions {
     }
 
     /**
-     * {@literal CharSequence}の配列を{@literal String}の{@literal List}に変換します。
+     * Converts an array of {@literal CharSequence} to a {@literal List} of {@literal String}.
      *
      * @param array
-     *            {@literal CharSequence}の配列
-     * @return {@literal String}の{@literal List}
+     *            An array of {@literal CharSequence}
+     * @return A {@literal List} of {@literal String}
      */
     protected static List<String> toStringList(final CharSequence[] array) {
         final List<String> list = newArrayList(array.length);
@@ -361,11 +361,11 @@ public class CopyOptions {
     }
 
     /**
-     * 対象のプロパティかどうかを返します。
+     * Returns whether the property is a target property.
      *
      * @param name
-     *            プロパティ名
-     * @return 対象のプロパティかどうか
+     *            The property name
+     * @return Whether the property is a target property
      */
     protected boolean isTargetProperty(final String name) {
         if (prefix != null && !name.startsWith(prefix)) {
@@ -396,11 +396,11 @@ public class CopyOptions {
     }
 
     /**
-     * 値がコピーの対象なら{@literal true}を返します。
+     * Returns {@literal true} if the value is a target for copying.
      *
      * @param value
-     *            コピー元の値
-     * @return 値がコピーの対象なら{@literal true}
+     *            The source value to be copied
+     * @return {@literal true} if the value is a target for copying
      */
     protected boolean isTargetValue(final Object value) {
         if (value == null) {
@@ -413,33 +413,33 @@ public class CopyOptions {
     }
 
     /**
-     * コピー元のプロパティ名をコピー先となる{@literal Map}用のプロパティ名に変換して返します。
+     * Converts the source property name to the destination property name for use in a {@literal Map}.
      *
      * @param srcPropertyName
-     *            コピー元のプロパティ名
-     * @return コピー先のプロパティ名
+     *            The source property name
+     * @return The destination property name
      */
     protected String toMapDestPropertyName(final String srcPropertyName) {
         return trimPrefix(srcPropertyName.replace(beanDelimiter, mapDelimiter));
     }
 
     /**
-     * コピー元のプロパティ名をコピー先となるBean用のプロパティ名に変換して返します。
+     * Converts the source property name to the destination property name for use in a Bean.
      *
      * @param srcPropertyName
-     *            コピー元のプロパティ名
-     * @return コピー先のプロパティ名
+     *            The source property name
+     * @return The destination property name
      */
     protected String toBeanDestPropertyName(final String srcPropertyName) {
         return trimPrefix(srcPropertyName.replace(mapDelimiter, beanDelimiter));
     }
 
     /**
-     * プレフィックスを削ります。
+     * Trims the prefix.
      *
      * @param propertyName
-     *            プロパティ名
-     * @return 削った結果
+     *            The property name
+     * @return The result after trimming
      */
     protected String trimPrefix(final String propertyName) {
         if (prefix == null) {
@@ -449,15 +449,15 @@ public class CopyOptions {
     }
 
     /**
-     * 値を変換します。
+     * Converts a value.
      *
      * @param value
-     *            値
+     *            The value
      * @param destPropertyName
-     *            コピー先のプロパティ名
+     *            The destination property name
      * @param destPropertyClass
-     *            コピー先のプロパティクラス
-     * @return 変換後の値
+     *            The destination property class
+     * @return The converted value
      */
     protected Object convertValue(final Object value, final String destPropertyName, final Class<?> destPropertyClass) {
         if (value == null || value.getClass() != String.class && destPropertyClass != null && destPropertyClass != String.class) {
@@ -498,11 +498,11 @@ public class CopyOptions {
     }
 
     /**
-     * クラスに対応するコンバータを探します。
+     * Finds the converter corresponding to the class.
      *
      * @param clazz
-     *            クラス
-     * @return コンバータ
+     *            The class
+     * @return The converter
      */
     protected Converter findConverter(final Class<?> clazz) {
         for (final Converter c : converters) {
@@ -514,11 +514,11 @@ public class CopyOptions {
     }
 
     /**
-     * クラスに対応するデフォルトのコンバータを探します。
+     * Finds the default converter corresponding to the class.
      *
      * @param clazz
-     *            クラス
-     * @return コンバータ
+     *            The class
+     * @return The converter
      */
     protected Converter findDefaultConverter(final Class<?> clazz) {
         if (clazz == java.sql.Date.class) {

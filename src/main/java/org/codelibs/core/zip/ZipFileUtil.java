@@ -32,7 +32,7 @@ import org.codelibs.core.log.Logger;
 import org.codelibs.core.net.URLUtil;
 
 /**
- * {@link java.util.zip.ZipFile}を扱うユーティリティクラスです。
+ * Utility class for handling {@link java.util.zip.ZipFile}.
  *
  * @author higa
  */
@@ -41,11 +41,11 @@ public abstract class ZipFileUtil {
     private static final Logger logger = Logger.getLogger(ZipFileUtil.class);
 
     /**
-     * 指定されたZipファイルを読み取るための<code>ZipFile</code>を作成して返します。
+     * Creates and returns a <code>ZipFile</code> for reading the specified Zip file.
      *
      * @param file
-     *            ファイルパス。{@literal null}や空文字列であってはいけません
-     * @return 指定されたZipファイルを読み取るための<code>ZipFile</code>
+     *            File path. Must not be {@literal null} or an empty string.
+     * @return A <code>ZipFile</code> for reading the specified Zip file.
      */
     public static ZipFile create(final String file) {
         assertArgumentNotEmpty("file", file);
@@ -58,11 +58,11 @@ public abstract class ZipFileUtil {
     }
 
     /**
-     * 指定されたZipファイルを読み取るための<code>ZipFile</code>を作成して返します。
+     * Creates and returns a <code>ZipFile</code> for reading the specified file.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return 指定されたZipファイルを読み取るための<code>ZipFile</code>
+     *            File. Must not be {@literal null}.
+     * @return A <code>ZipFile</code> for reading the specified file.
      */
     public static ZipFile create(final File file) {
         assertArgumentNotNull("file", file);
@@ -75,13 +75,13 @@ public abstract class ZipFileUtil {
     }
 
     /**
-     * 指定されたZipファイルエントリの内容を読み込むための入力ストリームを返します。
+     * Returns an input stream for reading the contents of the specified Zip file entry.
      *
      * @param file
-     *            Zipファイル。{@literal null}であってはいけません
+     *            Zip file. Must not be {@literal null}.
      * @param entry
-     *            Zipファイルエントリ。{@literal null}であってはいけません
-     * @return 指定されたZipファイルエントリの内容を読み込むための入力ストリーム
+     *            Zip file entry. Must not be {@literal null}.
+     * @return An input stream for reading the contents of the specified Zip file entry.
      */
     public static InputStream getInputStream(final ZipFile file, final ZipEntry entry) {
         assertArgumentNotNull("file", file);
@@ -95,11 +95,11 @@ public abstract class ZipFileUtil {
     }
 
     /**
-     * URLで指定されたZipファイルを読み取るための<code>ZipFile</code>を作成して返します。
+     * Creates and returns a <code>ZipFile</code> for reading the Zip file specified by the URL.
      *
      * @param zipUrl
-     *            Zipファイルを示すURL。{@literal null}であってはいけません
-     * @return 指定されたZipファイルを読み取るための<code>ZipFile</code>
+     *            URL pointing to the Zip file. Must not be {@literal null}.
+     * @return A <code>ZipFile</code> for reading the specified Zip file.
      */
     public static ZipFile toZipFile(final URL zipUrl) {
         assertArgumentNotNull("zipUrl", zipUrl);
@@ -108,11 +108,11 @@ public abstract class ZipFileUtil {
     }
 
     /**
-     * URLで指定されたZipファイルのパスを返します。
+     * Returns the path of the Zip file specified by the URL.
      *
      * @param zipUrl
-     *            Zipファイルを示すURL。{@literal null}であってはいけません
-     * @return URLで指定されたZipファイルのパス
+     *            URL pointing to the Zip file. Must not be {@literal null}.
+     * @return The path of the Zip file specified by the URL.
      */
     public static String toZipFilePath(final URL zipUrl) {
         assertArgumentNotNull("zipUrl", zipUrl);
@@ -125,13 +125,13 @@ public abstract class ZipFileUtil {
     }
 
     /**
-     * Zipファイルをクローズします。
+     * Closes the Zip file.
      * <p>
-     * {@link ZipFile#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
+     * If {@link ZipFile#close()} throws an exception, an error message is logged. The exception is not rethrown.
      * </p>
      *
      * @param zipFile
-     *            Zipファイル。{@literal null}であってはいけません
+     *            Zip file. Must not be {@literal null}.
      */
     public static void close(final ZipFile zipFile) {
         assertArgumentNotNull("zipFile", zipFile);
