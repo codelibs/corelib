@@ -132,6 +132,15 @@
 					<configFile>https://www.codelibs.org/assets/formatter/eclipse-formatter-1.0.xml</configFile>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.7.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
