@@ -28,19 +28,19 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- * {@link DocumentBuilder}用のユーティリティクラスです。
+ * Utility class for {@link DocumentBuilder}.
  *
  * @author higa
  */
 public abstract class DocumentBuilderUtil {
 
     /**
-     * XMLを解析します。
+     * Parses the XML.
      *
      * @param builder
-     *            {@link DocumentBuilder}。{@literal null}であってはいけません
+     *            {@link DocumentBuilder}; must not be {@literal null}.
      * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
+     *            Input stream; must not be {@literal null}.
      * @return {@link Document}
      */
     public static Document parse(final DocumentBuilder builder, final InputStream is) {

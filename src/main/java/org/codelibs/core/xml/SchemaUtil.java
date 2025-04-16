@@ -28,17 +28,17 @@ import org.codelibs.core.exception.SAXRuntimeException;
 import org.xml.sax.SAXException;
 
 /**
- * {@link Schema}のためのユーティリティ・クラスです。
+ * Utility class for {@link Schema}.
  *
  * @author koichik
  */
 public abstract class SchemaUtil {
 
     /**
-     * ファイルからW3C XML Schemaのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for W3C XML Schema from a file.
      *
      * @param schema
-     *            W3C XML Schemaファイル。{@literal null}であってはいけません
+     *            W3C XML Schema file. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newW3cXmlSchema(final File schema) {
@@ -47,10 +47,10 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * {@link Source}からW3C XML Schemaのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for W3C XML Schema from a {@link Source}.
      *
      * @param schema
-     *            W3C XML Schemaを読み込むための{@link Source}。{@literal null}であってはいけません
+     *            {@link Source} to load the W3C XML Schema. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newW3cXmlSchema(final Source schema) {
@@ -59,10 +59,10 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * URLからW3C XML Schemaのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for W3C XML Schema from a URL.
      *
      * @param schema
-     *            W3C XML SchemaのURL。{@literal null}であってはいけません
+     *            URL of the W3C XML Schema. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newW3cXmlSchema(final URL schema) {
@@ -71,10 +71,10 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * ファイルからRELAX NGのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for RELAX NG from a file.
      *
      * @param schema
-     *            RELAX NGファイル。{@literal null}であってはいけません
+     *            RELAX NG file. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newRelaxNgSchema(final File schema) {
@@ -83,10 +83,10 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * {@link Source}からRELAX NGのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for RELAX NG from a {@link Source}.
      *
      * @param schema
-     *            RELAX NGを読み込むための{@link Source}。{@literal null}であってはいけません
+     *            {@link Source} to load the RELAX NG. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newRelaxNgSchema(final Source schema) {
@@ -95,10 +95,10 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * URLからRELAX NGのための{@link Schema}を生成します。
+     * Generates a {@link Schema} for RELAX NG from a URL.
      *
      * @param schema
-     *            RELAX NGのURL。{@literal null}であってはいけません
+     *            URL of the RELAX NG. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newRelaxNgSchema(final URL schema) {
@@ -107,12 +107,12 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * 指定の{@link SchemaFactory}を使用して{@link Schema}を作成します。
+     * Creates a {@link Schema} using the specified {@link SchemaFactory}.
      *
      * @param factory
-     *            {@link SchemaFactory}。{@literal null}であってはいけません
+     *            {@link SchemaFactory}. Must not be {@literal null}.
      * @param schema
-     *            スキーマファイル。{@literal null}であってはいけません
+     *            Schema file. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newSchema(final SchemaFactory factory, final File schema) {
@@ -127,12 +127,12 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * 指定の{@link SchemaFactory}を使用して{@link Schema}を作成します。
+     * Creates a {@link Schema} using the specified {@link SchemaFactory}.
      *
      * @param factory
-     *            {@link SchemaFactory}。{@literal null}であってはいけません
+     *            {@link SchemaFactory}. Must not be {@literal null}.
      * @param schema
-     *            スキーマを読み込むための{@link Source}。{@literal null}であってはいけません
+     *            {@link Source} to load the schema. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newSchema(final SchemaFactory factory, final Source schema) {
@@ -147,12 +147,12 @@ public abstract class SchemaUtil {
     }
 
     /**
-     * 指定の{@link SchemaFactory}を使用して{@link Schema}を作成します。
+     * Creates a {@link Schema} using the specified {@link SchemaFactory}.
      *
      * @param factory
-     *            {@link SchemaFactory}。{@literal null}であってはいけません
+     *            {@link SchemaFactory}. Must not be {@literal null}.
      * @param schema
-     *            スキーマのURL。{@literal null}であってはいけません
+     *            URL of the schema. Must not be {@literal null}.
      * @return {@link Schema}
      */
     public static Schema newSchema(final SchemaFactory factory, final URL schema) {

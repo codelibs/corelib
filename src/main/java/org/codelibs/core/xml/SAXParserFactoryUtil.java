@@ -33,16 +33,16 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 /**
- * {@link SAXParser}用のユーティリティクラスです。
+ * Utility class for {@link SAXParser}.
  *
  * @author higa
  */
 public abstract class SAXParserFactoryUtil {
 
     /**
-     * {@link SAXParserFactory}の新しいインスタンスを作成します。
+     * Creates a new instance of {@link SAXParserFactory}.
      *
-     * @return {@link SAXParserFactory}の新しいインスタンス
+     * @return A new instance of {@link SAXParserFactory}.
      */
     public static SAXParserFactory newInstance() {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -59,20 +59,20 @@ public abstract class SAXParserFactoryUtil {
     }
 
     /**
-     * デフォルト構成の{@link SAXParserFactory}を使って{@link SAXParser}の新しいインスタンスを作成します。
+     * Creates a new instance of {@link SAXParser} using the default configuration of {@link SAXParserFactory}.
      *
-     * @return {@link SAXParser}の新しいインスタンス
+     * @return A new instance of {@link SAXParser}.
      */
     public static SAXParser newSAXParser() {
         return newSAXParser(newInstance());
     }
 
     /**
-     * 指定の{@link SAXParserFactory}を使って{@link SAXParser}の新しいインスタンスを作成します。
+     * Creates a new instance of {@link SAXParser} using the specified {@link SAXParserFactory}.
      *
      * @param factory
-     *            {@link SAXParserFactory}。{@literal null}であってはいけません
-     * @return {@link SAXParser}の新しいインスタンス
+     *            {@link SAXParserFactory}. Must not be {@literal null}.
+     * @return A new instance of {@link SAXParser}.
      */
     public static SAXParser newSAXParser(final SAXParserFactory factory) {
         assertArgumentNotNull("factory", factory);
@@ -87,13 +87,13 @@ public abstract class SAXParserFactoryUtil {
     }
 
     /**
-     * XIncludeの有効／無効を設定します。
+     * Sets the enable/disable state of XInclude.
      *
      * @param spf
-     *            {@link SAXParserFactory}。{@literal null}であってはいけません
+     *            {@link SAXParserFactory}. Must not be {@literal null}.
      * @param state
-     *            XIncludeを有効にするなら<code>true</code>
-     * @return XIncludeの有効／無効を設定できた場合は<code>true</code>
+     *            <code>true</code> to enable XInclude.
+     * @return <code>true</code> if the XInclude state was successfully set.
      */
     public static boolean setXIncludeAware(final SAXParserFactory spf, final boolean state) {
         assertArgumentNotNull("spf", spf);

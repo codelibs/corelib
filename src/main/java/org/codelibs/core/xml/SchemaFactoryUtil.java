@@ -22,7 +22,7 @@ import org.codelibs.core.log.Logger;
 import org.xml.sax.SAXException;
 
 /**
- * {@link SchemaFactory}のためのユーティリティ・クラスです。
+ * Utility class for {@link SchemaFactory}.
  *
  * @author koichik
  */
@@ -31,9 +31,9 @@ public abstract class SchemaFactoryUtil {
     private static final Logger logger = Logger.getLogger(SchemaFactoryUtil.class);
 
     /**
-     * W3C XML Schemaのための{@link SchemaFactory}を生成します。
+     * Creates a {@link SchemaFactory} for W3C XML Schema.
      *
-     * @return W3C XML Schemaのための{@link SchemaFactory}
+     * @return a {@link SchemaFactory} for W3C XML Schema
      */
     public static SchemaFactory newW3cXmlSchemaFactory() {
         return newW3cXmlSchemaFactory(false);
@@ -48,9 +48,9 @@ public abstract class SchemaFactoryUtil {
     }
 
     /**
-     * RELAX NGのための{@link SchemaFactory}を生成します。
+     * Creates a {@link SchemaFactory} for RELAX NG.
      *
-     * @return RELAX NGのための{@link SchemaFactory}
+     * @return a {@link SchemaFactory} for RELAX NG
      */
     public static SchemaFactory newRelaxNgSchemaFactory() {
         return newRelaxNgSchemaFactory(false);

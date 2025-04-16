@@ -27,7 +27,7 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.log.Logger;
 
 /**
- * Timerを扱うクラスです。
+ * A class that handles timers.
  *
  * @author higa
  *
@@ -37,17 +37,17 @@ public class TimeoutManager implements Runnable {
     private static final Logger logger = Logger.getLogger(TimeoutManager.class);
 
     /**
-     * シングルトンのためのインスタンスです。
+     * Instance for the singleton.
      */
     protected static final TimeoutManager instance = new TimeoutManager();
 
     /**
-     * Timerのための{@link Thread}です。
+     * {@link Thread} for the timer.
      */
     protected Thread thread;
 
     /**
-     * {@link TimeoutTask}管理用のリストです。
+     * A list for managing {@link TimeoutTask}.
      */
     protected final SLinkedList<TimeoutTask> timeoutTaskList = new SLinkedList<>();
 
@@ -55,16 +55,16 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * シングルトン用のインスタンスを返します。
+     * Returns the instance for the singleton.
      *
-     * @return シングルトン用のインスタンス
+     * @return the instance for the singleton
      */
     public static TimeoutManager getInstance() {
         return instance;
     }
 
     /**
-     * 処理を開始します。
+     * Starts the process.
      */
     public synchronized void start() {
         if (thread == null) {
@@ -78,7 +78,7 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * 処理を停止します。
+     * Stops the process.
      */
     public synchronized void stop() {
         if (thread != null) {
@@ -91,13 +91,13 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * スレッドに割り込みを行い、終了するまで待機します。
+     * Interrupts the thread and waits for it to terminate.
      *
      * @param timeoutMillis
-     *            待機する時間(ミリ秒単位)
-     * @return スレッドが終了した場合は<code>true</code>
+     *            The time to wait (in milliseconds)
+     * @return <code>true</code> if the thread has terminated
      * @throws InterruptedException
-     *             待機中に割り込まれた場合
+     *             If interrupted while waiting
      */
     public boolean stop(final long timeoutMillis) throws InterruptedException {
         final Thread t = this.thread;
@@ -116,19 +116,19 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * 管理している {@link TimeoutTask}をクリアします。
+     * Clears the managed {@link TimeoutTask}.
      */
     public synchronized void clear() {
         timeoutTaskList.clear();
     }
 
     /**
-     * {@link TimeoutTarget}を追加します。
+     * Adds a {@link TimeoutTarget}.
      *
-     * @param timeoutTarget target
-     * @param timeout timeout
-     * @param permanent permanent
-     * @return {@link TimeoutTask}
+     * @param timeoutTarget the target
+     * @param timeout the timeout duration
+     * @param permanent whether the task is permanent
+     * @return the {@link TimeoutTask}
      */
     public synchronized TimeoutTask addTimeoutTarget(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
         final TimeoutTask task = new TimeoutTask(timeoutTarget, timeout, permanent);
@@ -138,9 +138,9 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * 管理している {@link TimeoutTask}の数を返します。
+     * Returns the number of managed {@link TimeoutTask}.
      *
-     * @return 管理している {@link TimeoutTask}の数
+     * @return the number of managed {@link TimeoutTask}
      */
     public synchronized int getTimeoutTaskCount() {
         return timeoutTaskList.size();
@@ -222,9 +222,9 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * 期限の切れた {@link TimeoutTask}のリストを返します。
+     * Returns the list of expired {@link TimeoutTask}.
      *
-     * @return 期限の切れた {@link TimeoutTask}のリスト
+     * @return the list of expired {@link TimeoutTask}
      */
     protected synchronized List<TimeoutTask> getExpiredTask() {
         final List<TimeoutTask> expiredTask = new ArrayList<>();
@@ -246,9 +246,9 @@ public class TimeoutManager implements Runnable {
     }
 
     /**
-     * 管理しているタスクが無いなら処理を停止します。
+     * Stops the process if there are no managed tasks.
      *
-     * @return 停止したかどうか
+     * @return whether the process was stopped
      */
     protected synchronized boolean stopIfLeisure() {
         if (timeoutTaskList.isEmpty()) {

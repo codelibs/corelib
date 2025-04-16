@@ -18,7 +18,7 @@ package org.codelibs.core.timer;
 import org.codelibs.core.exception.ClIllegalStateException;
 
 /**
- * タイムアウトを管理するクラスです。
+ * This class manages timeouts.
  *
  * @author higa
  *
@@ -49,50 +49,50 @@ public class TimeoutTask {
     }
 
     /**
-     * 期限切れかどうかを返します。
+     * Returns whether the task has expired.
      *
-     * @return 期限切れかどうか
+     * @return whether the task has expired
      */
     public boolean isExpired() {
         return System.currentTimeMillis() >= startTime + timeoutMillis;
     }
 
     /**
-     * 永続的かどうかを返します。
+     * Returns whether the task is permanent.
      *
-     * @return 永続的かどうか
+     * @return whether the task is permanent
      */
     public boolean isPermanent() {
         return permanent;
     }
 
     /**
-     * キャンセルされているかどうかを返します。
+     * Returns whether the task has been canceled.
      *
-     * @return キャンセルされているか
+     * @return whether the task has been canceled
      */
     public boolean isCanceled() {
         return status == CANCELED;
     }
 
     /**
-     * キャンセルします。
+     * Cancels the task.
      */
     public void cancel() {
         status = CANCELED;
     }
 
     /**
-     * 止まっているかどうか返します。
+     * Returns whether the task is stopped.
      *
-     * @return 止まっているかどうか
+     * @return whether the task is stopped
      */
     public boolean isStopped() {
         return status == STOPPED;
     }
 
     /**
-     * タイマーをとめます。
+     * Stops the timer.
      */
     public void stop() {
         if (status != ACTIVE) {
@@ -102,7 +102,7 @@ public class TimeoutTask {
     }
 
     /**
-     * タイマーを再開始します。
+     * Restarts the timer.
      */
     public void restart() {
         status = ACTIVE;

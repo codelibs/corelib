@@ -16,7 +16,7 @@
 package org.codelibs.core.timer;
 
 /**
- * タイムアウトを処理するインターフェースです。
+ * This is an interface for handling timeouts.
  *
  * @author higa
  *
@@ -25,7 +25,7 @@ package org.codelibs.core.timer;
 public interface TimeoutTarget {
 
     /**
-     * タイムアウトの処理を記述します。
+     * Describes the processing for a timeout.
      */
     void expired();
 }

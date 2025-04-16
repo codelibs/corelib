@@ -24,7 +24,7 @@ import org.codelibs.core.exception.ParserConfigurationRuntimeException;
 import org.codelibs.core.log.Logger;
 
 /**
- * {@link DocumentBuilderFactory}の用のユーティリティクラスです。
+ * Utility class for {@link DocumentBuilderFactory}.
  *
  * @author higa
  */
@@ -33,9 +33,9 @@ public abstract class DocumentBuilderFactoryUtil {
     private static final Logger logger = Logger.getLogger(DocumentBuilderFactoryUtil.class);
 
     /**
-     * 新しい {@link DocumentBuilderFactory}のインスタンスを返します。
+     * Returns a new instance of {@link DocumentBuilderFactory}.
      *
-     * @return 新しい {@link DocumentBuilderFactory}のインスタンス
+     * @return A new instance of {@link DocumentBuilderFactory}.
      */
     public static DocumentBuilderFactory newInstance() {
         return newInstance(false);
@@ -62,9 +62,9 @@ public abstract class DocumentBuilderFactoryUtil {
     }
 
     /**
-     * 新しい {@link DocumentBuilder}を作成します。
+     * Creates a new {@link DocumentBuilder}.
      *
-     * @return 新しい {@link DocumentBuilder}
+     * @return A new {@link DocumentBuilder}.
      */
     public static DocumentBuilder newDocumentBuilder() {
         try {

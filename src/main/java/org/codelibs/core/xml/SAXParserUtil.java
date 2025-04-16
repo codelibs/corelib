@@ -30,22 +30,21 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * {@link SAXParser}用のユーティリティ・クラスです。
+ * Utility class for {@link SAXParser}.
  *
  * @author higa
  */
 public abstract class SAXParserUtil {
 
     /**
-     * 指定された{@link InputSource}のコンテンツを、指定された{@link DefaultHandler}
-     * を使用してXMLとして構文解析します。
+     * Parses the content of the specified {@link InputSource} as XML using the specified {@link DefaultHandler}.
      *
      * @param parser
-     *            使用する{@link SAXParser}。{@literal null}であってはいけません
+     *            The {@link SAXParser} to use. Must not be {@literal null}.
      * @param inputSource
-     *            構文解析されるコンテンツを含む{@link InputSource}。{@literal null}であってはいけません
+     *            The {@link InputSource} containing the content to be parsed. Must not be {@literal null}.
      * @param handler
-     *            使用するSAX {@link DefaultHandler}。{@literal null}であってはいけません
+     *            The SAX {@link DefaultHandler} to use. Must not be {@literal null}.
      */
     public static void parse(final SAXParser parser, final InputSource inputSource, final DefaultHandler handler) {
         assertArgumentNotNull("parser", parser);
@@ -62,14 +61,14 @@ public abstract class SAXParserUtil {
     }
 
     /**
-     * {@link XMLReader}の基本となる実装に特定のプロパティを設定します。
+     * Sets a specific property on the base implementation of {@link XMLReader}.
      *
      * @param parser
-     *            プロパティを設定する{@link SAXParser}。{@literal null}であってはいけません
+     *            The {@link SAXParser} on which the property is to be set. Must not be {@literal null}.
      * @param name
-     *            設定されるプロパティの名前。{@literal null}や空文字列であってはいけません
+     *            The name of the property to be set. Must not be {@literal null} or an empty string.
      * @param value
-     *            設定されるプロパティの値
+     *            The value of the property to be set.
      */
     public static void setProperty(final SAXParser parser, final String name, final String value) {
         assertArgumentNotNull("parser", parser);
