@@ -25,7 +25,7 @@ import org.codelibs.core.exception.ClIllegalStateException;
 import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 
 /**
- * {@link MessageDigest}を扱うユーティリティです。
+ * Utility for handling {@link MessageDigest}.
  *
  * @author higa
  * @author shinsuke
@@ -33,14 +33,14 @@ import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 public abstract class MessageDigestUtil {
 
     /**
-     * {@link MessageDigest#getInstance(String)}の例外処理をラップします。
+     * Wraps the exception handling of {@link MessageDigest#getInstance(String)}.
      *
      * @param algorithm
-     *            アルゴリズム (利用可能なアルゴリズムは{@link MessageDigest}のJavadoc等を参照してください)。
-     *            {@literal null}や空文字列であってはいけません
+     *            The algorithm (refer to the Javadoc of {@link MessageDigest} for available algorithms).
+     *            Must not be {@literal null} or an empty string.
      * @return {@link MessageDigest}
      * @throws RuntimeException
-     *             {@link NoSuchAlgorithmException}が発生した場合
+     *             If a {@link NoSuchAlgorithmException} occurs
      */
     public static MessageDigest getInstance(final String algorithm) {
         assertArgumentNotEmpty("algorithm", algorithm);
@@ -53,13 +53,13 @@ public abstract class MessageDigestUtil {
     }
 
     /**
-     * 指定されたアルゴリズムでテキストをハッシュ化して文字列にします。
+     * Hashes the specified text using the given algorithm and converts it to a string.
      *
      * @param algorithm
-     *            アルゴリズム。{@literal null}や空文字列であってはいけません
+     *            The algorithm. Must not be {@literal null} or an empty string.
      * @param text
-     *            ハッシュ化する文字列
-     * @return ハッシュ化された文字列
+     *            The string to be hashed.
+     * @return The hashed string.
      */
     public static String digest(final String algorithm, final String text) {
         assertArgumentNotEmpty("algorithm", algorithm);

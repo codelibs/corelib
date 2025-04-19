@@ -24,20 +24,20 @@ import java.sql.SQLException;
 import org.codelibs.core.exception.SQLRuntimeException;
 
 /**
- * {@link PreparedStatement}用のユーティリティクラスです。
+ * Utility class for {@link PreparedStatement}.
  *
  * @author higa
  */
 public abstract class PreparedStatementUtil {
 
     /**
-     * クエリを実行します。
+     * Executes the query.
      *
      * @param ps
-     *            {@link PreparedStatement}。{@literal null}であってはいけません
+     *            {@link PreparedStatement}. Must not be {@literal null}.
      * @return {@link ResultSet}
      * @throws SQLRuntimeException
-     *             {@link SQLException}が発生した場合
+     *             If a {@link SQLException} occurs.
      */
     public static ResultSet executeQuery(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
@@ -50,13 +50,13 @@ public abstract class PreparedStatementUtil {
     }
 
     /**
-     * 更新を実行します。
+     * Executes the update.
      *
      * @param ps
-     *            {@link PreparedStatement}。{@literal null}であってはいけません
-     * @return 更新した結果の行数
+     *            {@link PreparedStatement}. Must not be {@literal null}.
+     * @return The number of rows affected by the update.
      * @throws SQLRuntimeException
-     *             {@link SQLException}が発生した場合
+     *             If a {@link SQLException} occurs.
      */
     public static int executeUpdate(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
@@ -69,13 +69,13 @@ public abstract class PreparedStatementUtil {
     }
 
     /**
-     * 実行します。
+     * Executes the statement.
      *
      * @param ps
-     *            {@link PreparedStatement}。{@literal null}であってはいけません
-     * @return 結果セットを返すかどうか
+     *            {@link PreparedStatement}. Must not be {@literal null}.
+     * @return Whether the result is a {@link ResultSet}.
      * @throws SQLRuntimeException
-     *             {@link SQLException}が発生した場合
+     *             If a {@link SQLException} occurs.
      * @see PreparedStatement#execute()
      */
     public static boolean execute(final PreparedStatement ps) throws SQLRuntimeException {
@@ -89,13 +89,13 @@ public abstract class PreparedStatementUtil {
     }
 
     /**
-     * バッチ更新を行ないます。
+     * Executes a batch update.
      *
      * @param ps
-     *            {@link PreparedStatement}。{@literal null}であってはいけません
-     * @return 更新した結果の行数の配列
+     *            {@link PreparedStatement}. Must not be {@literal null}.
+     * @return An array of the number of rows affected by each command in the batch.
      * @throws SQLRuntimeException
-     *             {@link SQLException}が発生した場合
+     *             If a {@link SQLException} occurs.
      */
     public static int[] executeBatch(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);
@@ -108,12 +108,12 @@ public abstract class PreparedStatementUtil {
     }
 
     /**
-     * バッチを追加します。
+     * Adds a batch.
      *
      * @param ps
-     *            {@link PreparedStatement}。{@literal null}であってはいけません
+     *            {@link PreparedStatement}. Must not be {@literal null}.
      * @throws SQLRuntimeException
-     *             {@link SQLException}が発生した場合
+     *             If a {@link SQLException} occurs.
      */
     public static void addBatch(final PreparedStatement ps) throws SQLRuntimeException {
         assertArgumentNotNull("ps", ps);

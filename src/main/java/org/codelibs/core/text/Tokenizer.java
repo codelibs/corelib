@@ -19,7 +19,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotEmpty;
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 /**
- * トークンを認識するクラスです。
+ * A class that recognizes tokens.
  *
  * @author higa
  *
@@ -27,17 +27,17 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 public class Tokenizer {
 
     /**
-     * EOFをあらわします。
+     * Represents EOF (End of File).
      */
     public static final int TT_EOF = -1;
 
     /**
-     * Quoteをあらわします。
+     * Represents a Quote.
      */
     public static final int TT_QUOTE = '\'';
 
     /**
-     * 単語をあらわします。
+     * Represents a word.
      */
     public static final int TT_WORD = -3;
 
@@ -74,22 +74,22 @@ public class Tokenizer {
     }
 
     /**
-     * {@link Tokenizer}を作成します。
+     * Creates a {@link Tokenizer}.
      *
      * @param str
-     *            文字列。{@literal null}であってはいけません
+     *            The string. Must not be {@literal null}.
      */
     public Tokenizer(final String str) {
         this(str, defaultCtype);
     }
 
     /**
-     * {@link Tokenizer}を作成します。
+     * Creates a {@link Tokenizer}.
      *
      * @param str
-     *            文字列。{@literal null}であってはいけません
+     *            The string. Must not be {@literal null}.
      * @param ctype
-     *            文字のタイプの配列。{@literal null}や空配列であってはいけません
+     *            The array of character types. Must not be {@literal null} or empty.
      */
     public Tokenizer(final String str, final byte[] ctype) {
         assertArgumentNotNull("str", str);
@@ -101,7 +101,7 @@ public class Tokenizer {
 
     /**
      * @param ctype2
-     *            文字のタイプの配列
+     *            The array of character types.
      */
     protected static void setup(final byte[] ctype2) {
         wordChars(ctype2, 'a', 'z');
@@ -137,26 +137,26 @@ public class Tokenizer {
     }
 
     /**
-     * 単語用の文字として設定します。
+     * Sets a character as a word character.
      *
      * @param ctype2
-     *            文字のタイプの配列
+     *            The array of character types.
      * @param val
-     *            文字コード
+     *            The character code.
      */
     protected static void wordChar(final byte[] ctype2, final int val) {
         ctype2[val] |= CT_ALPHA;
     }
 
     /**
-     * 空白用の文字として設定します。
+     * Sets characters as whitespace.
      *
      * @param ctype2
-     *            文字のタイプの配列
+     *            The array of character types.
      * @param low
-     *            最小の文字コード
+     *            The minimum character code.
      * @param hi
-     *            最大の文字コード
+     *            The maximum character code.
      */
     protected static void whitespaceChars(final byte[] ctype2, int low, int hi) {
         if (low < 0) {
@@ -171,12 +171,12 @@ public class Tokenizer {
     }
 
     /**
-     * 単独で存在する文字として設定します。
+     * Sets a character as a standalone character.
      *
      * @param ctype2
-     *            文字のタイプの配列
+     *            The array of character types.
      * @param ch
-     *            文字コード
+     *            The character code.
      */
     protected static void ordinaryChar(final byte[] ctype2, final int ch) {
         if (ch >= 0 && ch < ctype2.length) {
@@ -185,18 +185,18 @@ public class Tokenizer {
     }
 
     /**
-     * 文字列の値を返します。
+     * Returns the value of the string.
      *
-     * @return 文字列の値
+     * @return The value of the string.
      */
     public String getStringValue() {
         return sval;
     }
 
     /**
-     * 次のトークンに進めます。
+     * Advances to the next token.
      *
-     * @return トークンのタイプ
+     * @return The type of the token.
      */
     public int nextToken() {
         initVal();
@@ -220,9 +220,9 @@ public class Tokenizer {
     }
 
     /**
-     * 既に読み込んだ文字列を返します。
+     * Returns the string that has already been read.
      *
-     * @return 既に読み込んだ文字列
+     * @return The string that has already been read.
      */
     public String getReadString() {
         return str.substring(0, colno - 1);

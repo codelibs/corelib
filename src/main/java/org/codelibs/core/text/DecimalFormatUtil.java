@@ -24,18 +24,18 @@ import java.util.Locale;
 import org.codelibs.core.misc.LocaleUtil;
 
 /**
- * {@link DecimalFormat}用のユーティリティクラスです。
+ * Utility class for {@link DecimalFormat}.
  *
  * @author higa
  */
 public abstract class DecimalFormatUtil {
 
     /**
-     * 数値の文字列での表記を正規化します。
+     * Normalizes the string representation of a number.
      *
      * @param s
-     *            数値を表す文字列
-     * @return 正規化された文字列
+     *            A string representing a number
+     * @return The normalized string
      * @see #normalize(String, Locale)
      */
     public static String normalize(final String s) {
@@ -43,13 +43,14 @@ public abstract class DecimalFormatUtil {
     }
 
     /**
-     * 数値の文字列での表記をグルーピングセパレータを削除し、小数点を.であらわした標準形に正規化します。
+     * Normalizes the string representation of a number by removing grouping separators
+     * and representing the decimal point with '.'.
      *
      * @param s
-     *            数値を表す文字列
+     *            A string representing a number
      * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return 正規化された文字列
+     *            The locale. Must not be {@literal null}.
+     * @return The normalized string
      */
     public static String normalize(final String s, final Locale locale) {
         assertArgumentNotNull("locale", locale);

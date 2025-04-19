@@ -27,17 +27,17 @@ import org.codelibs.core.exception.SQLRuntimeException;
 import org.codelibs.core.lang.ClassUtil;
 
 /**
- * {@link java.sql.DriverManager}のためのユーティリティクラスです。
+ * Utility class for {@link java.sql.DriverManager}.
  *
  * @author koichik
  */
 public abstract class DriverManagerUtil {
 
     /**
-     * JDBCドライバを登録します。
+     * Registers a JDBC driver.
      *
      * @param driverClassName
-     *            登録するJDBCドライバのクラス名。{@literal null}や空文字列であってはいけません
+     *            The class name of the JDBC driver to register. Must not be {@literal null} or an empty string.
      */
     public static void registerDriver(final String driverClassName) {
         assertArgumentNotEmpty("driverClassName", driverClassName);
@@ -47,10 +47,10 @@ public abstract class DriverManagerUtil {
     }
 
     /**
-     * JDBCドライバを登録します。
+     * Registers a JDBC driver.
      *
      * @param driverClass
-     *            登録するJDBCドライバのクラス。{@literal null}であってはいけません
+     *            The class of the JDBC driver to register. Must not be {@literal null}.
      */
     public static void registerDriver(final Class<Driver> driverClass) {
         assertArgumentNotNull("driverClass", driverClass);
@@ -58,10 +58,10 @@ public abstract class DriverManagerUtil {
     }
 
     /**
-     * JDBCドライバを登録します。
+     * Registers a JDBC driver.
      *
      * @param driver
-     *            登録するJDBCドライバ。{@literal null}であってはいけません
+     *            The JDBC driver to register. Must not be {@literal null}.
      */
     public static void registerDriver(final Driver driver) {
         assertArgumentNotNull("driver", driver);
@@ -74,10 +74,10 @@ public abstract class DriverManagerUtil {
     }
 
     /**
-     * JDBCドライバを登録解除します。
+     * Deregisters a JDBC driver.
      *
      * @param driver
-     *            登録解除するJDBCドライバ。{@literal null}であってはいけません
+     *            The JDBC driver to deregister. Must not be {@literal null}.
      */
     public static void deregisterDriver(final Driver driver) {
         assertArgumentNotNull("driver", driver);
@@ -90,7 +90,7 @@ public abstract class DriverManagerUtil {
     }
 
     /**
-     * 現在のクラスローダに結びつけられている全てのJDBCドライバを登録解除します。
+     * Deregisters all JDBC drivers associated with the current class loader.
      */
     public static synchronized void deregisterAllDrivers() {
         for (final Enumeration<Driver> e = DriverManager.getDrivers(); e.hasMoreElements();) {

@@ -25,7 +25,7 @@ import java.util.Map;
 import org.codelibs.core.misc.LocaleUtil;
 
 /**
- * {@link DecimalFormatSymbols}用のユーティリティクラスです。
+ * Utility class for {@link DecimalFormatSymbols}.
  *
  * @author higa
  */
@@ -34,7 +34,7 @@ public abstract class DecimalFormatSymbolsUtil {
     private static final Map<Locale, DecimalFormatSymbols> CACHE = newConcurrentHashMap();
 
     /**
-     * {@link DecimalFormatSymbols}を返します。
+     * Returns {@link DecimalFormatSymbols}.
      *
      * @return {@link DecimalFormatSymbols}
      */
@@ -43,10 +43,10 @@ public abstract class DecimalFormatSymbolsUtil {
     }
 
     /**
-     * {@link DecimalFormatSymbols}を返します。
+     * Returns {@link DecimalFormatSymbols}.
      *
      * @param locale
-     *            ロケール。{@literal null}であってはいけません
+     *            The locale. Must not be {@literal null}.
      * @return {@link DecimalFormatSymbols}
      */
     public static DecimalFormatSymbols getDecimalFormatSymbols(final Locale locale) {

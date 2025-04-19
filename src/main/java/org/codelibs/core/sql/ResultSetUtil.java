@@ -25,7 +25,7 @@ import org.codelibs.core.exception.SQLRuntimeException;
 import org.codelibs.core.log.Logger;
 
 /**
- * {@link ResultSet}のためのユーティリティクラスです。
+ * Utility class for {@link ResultSet}.
  *
  * @author higa
  */
@@ -34,13 +34,13 @@ public abstract class ResultSetUtil {
     private static final Logger logger = Logger.getLogger(ResultSetUtil.class);
 
     /**
-     * 結果セットを閉じます。
+     * Closes the result set.
      * <p>
-     * {@link ResultSet#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
+     * If {@link ResultSet#close()} throws an exception, an error message is logged. The exception is not rethrown.
      * </p>
      *
      * @param resultSet
-     *            結果セット
+     *            The result set
      */
     public static void close(final ResultSet resultSet) {
         if (resultSet == null) {
@@ -54,11 +54,11 @@ public abstract class ResultSetUtil {
     }
 
     /**
-     * 結果セットを次に進めます。
+     * Moves the result set to the next position.
      *
      * @param resultSet
-     *            結果セット。{@literal null}であってはいけません
-     * @return 次に進めたかどうか
+     *            The result set. Must not be {@literal null}.
+     * @return Whether the result set successfully moved to the next position.
      */
     public static boolean next(final ResultSet resultSet) {
         assertArgumentNotNull("resultSet", resultSet);
@@ -71,15 +71,15 @@ public abstract class ResultSetUtil {
     }
 
     /**
-     * カーソルを指定した位置まで進めます。
+     * Moves the cursor to the specified position.
      *
      * @param resultSet
-     *            結果セット。{@literal null}であってはいけません
+     *            The result set. Must not be {@literal null}.
      * @param index
-     *            位置
-     * @return 指定した位置まで進めたかどうか
+     *            The position.
+     * @return Whether the cursor successfully moved to the specified position.
      * @throws SQLRuntimeException
-     *             SQL例外が起こった場合。
+     *             If an SQL exception occurs.
      */
     public static boolean absolute(final ResultSet resultSet, final int index) throws SQLRuntimeException {
         assertArgumentNotNull("resultSet", resultSet);

@@ -27,7 +27,7 @@ import org.codelibs.core.exception.SQLRuntimeException;
 import org.codelibs.core.log.Logger;
 
 /**
- * {@link Statement}用のユーティリティクラスです。
+ * Utility class for {@link Statement}.
  *
  * @author higa
  */
@@ -36,13 +36,13 @@ public abstract class StatementUtil {
     private static final Logger logger = Logger.getLogger(StatementUtil.class);
 
     /**
-     * SQLを実行します。
+     * Executes the SQL.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
+     *            {@link Statement}. Must not be {@literal null}.
      * @param sql
-     *            SQL文字列。{@literal null}や空文字列であってはいけません
-     * @return 実行した結果
+     *            SQL string. Must not be {@literal null} or empty.
+     * @return The result of the execution.
      * @see Statement#execute(String)
      */
     public static boolean execute(final Statement statement, final String sql) {
@@ -57,12 +57,12 @@ public abstract class StatementUtil {
     }
 
     /**
-     * フェッチサイズを設定します。
+     * Sets the fetch size.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
+     *            {@link Statement}. Must not be {@literal null}.
      * @param fetchSize
-     *            フェッチサイズ
+     *            Fetch size.
      * @see Statement#setFetchSize(int)
      */
     public static void setFetchSize(final Statement statement, final int fetchSize) {
@@ -76,12 +76,12 @@ public abstract class StatementUtil {
     }
 
     /**
-     * 最大行数を設定します。
+     * Sets the maximum number of rows.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
+     *            {@link Statement}. Must not be {@literal null}.
      * @param maxRows
-     *            最大の行数
+     *            Maximum number of rows.
      * @see Statement#setMaxRows(int)
      */
     public static void setMaxRows(final Statement statement, final int maxRows) {
@@ -95,12 +95,12 @@ public abstract class StatementUtil {
     }
 
     /**
-     * クエリタイムアウトを設定します。
+     * Sets the query timeout.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
+     *            {@link Statement}. Must not be {@literal null}.
      * @param queryTimeout
-     *            クエリタイムアウト
+     *            Query timeout.
      * @see Statement#setQueryTimeout(int)
      */
     public static void setQueryTimeout(final Statement statement, final int queryTimeout) {
@@ -114,9 +114,9 @@ public abstract class StatementUtil {
     }
 
     /**
-     * {@link Statement}を閉じます。
+     * Closes the {@link Statement}.
      * <p>
-     * {@link Statement#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
+     * If {@link Statement#close()} throws an exception, an error message is logged. The exception is not rethrown.
      * </p>
      *
      * @param statement
@@ -135,11 +135,11 @@ public abstract class StatementUtil {
     }
 
     /**
-     * 結果セットを返します。
+     * Returns the result set.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
-     * @return 結果セット
+     *            {@link Statement}. Must not be {@literal null}.
+     * @return The result set.
      */
     public static ResultSet getResultSet(final Statement statement) {
         assertArgumentNotNull("statement", statement);
@@ -152,11 +152,11 @@ public abstract class StatementUtil {
     }
 
     /**
-     * 更新カウントを返します。
+     * Returns the update count.
      *
      * @param statement
-     *            {@link Statement}。{@literal null}であってはいけません
-     * @return 更新カウント
+     *            {@link Statement}. Must not be {@literal null}.
+     * @return The update count.
      */
     public static int getUpdateCount(final Statement statement) {
         assertArgumentNotNull("statement", statement);
