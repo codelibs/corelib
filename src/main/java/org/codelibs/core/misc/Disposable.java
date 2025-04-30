@@ -16,10 +16,10 @@
 package org.codelibs.core.misc;
 
 /**
- * 破棄可能なリソースを表現します。
+ * Represents a disposable resource.
  * <p>
- * S2コンテナの終了時に破棄しなければならないリソースがある場合は、 このインタフェースを実装したクラスを作成し、
- * {@link DisposableUtil}に登録します。
+ * If there are resources that must be disposed of when the S2 container shuts down,
+ * create a class that implements this interface and register it with {@link DisposableUtil}.
  * </p>
  *
  * @author koichik
@@ -27,7 +27,7 @@ package org.codelibs.core.misc;
 public interface Disposable {
 
     /**
-     * このオブジェクトが保持しているリソースを破棄します。
+     * Disposes of the resources held by this object.
      *
      */
     void dispose();

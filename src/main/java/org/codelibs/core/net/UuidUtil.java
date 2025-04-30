@@ -22,7 +22,7 @@ import java.security.SecureRandom;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * UUIDを作成するユーティリティです。
+ * Utility for creating UUIDs.
  *
  * @author higa
  */
@@ -35,9 +35,9 @@ public abstract class UuidUtil {
     private static final String BASE = StringUtil.toHex(getAddress()) + StringUtil.toHex(System.identityHashCode(RANDOM));
 
     /**
-     * UUIDを作成します。
+     * Creates a UUID.
      *
-     * @return UUIDの文字列
+     * @return the UUID string
      */
     public static String create() {
         final StringBuilder buf = new StringBuilder(BASE.length() * 2);

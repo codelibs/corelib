@@ -24,17 +24,17 @@ import java.util.jar.JarFile;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link JarURLConnection}用のユーティリティクラスです。
+ * Utility class for {@link JarURLConnection}.
  *
  * @author higa
  */
 public abstract class JarURLConnectionUtil {
 
     /**
-     * {@link JarURLConnection#getJarFile()}の例外処理をラップするメソッドです。
+     * A method that wraps the exception handling of {@link JarURLConnection#getJarFile()}.
      *
      * @param conn
-     *            {@link JarURLConnection}。{@literal null}であってはいけません
+     *            {@link JarURLConnection}. Must not be {@literal null}.
      * @return {@link JarFile}
      */
     public static JarFile getJarFile(final JarURLConnection conn) {

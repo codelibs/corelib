@@ -16,47 +16,47 @@
 package org.codelibs.core.misc;
 
 /**
- * 値を保持するクラスです。
+ * A class that holds a value.
  *
  * @author koichik
  * @param <T>
- *            値の型
+ *            The type of the value
  */
 public class ValueHolder<T> {
 
-    /** 値 */
+    /** The value */
     protected T value;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      */
     public ValueHolder() {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param value
-     *            値
+     *            The value
      */
     public ValueHolder(final T value) {
         this.value = value;
     }
 
     /**
-     * 値を返します。
+     * Returns the value.
      *
-     * @return 値
+     * @return The value
      */
     public T getValue() {
         return value;
     }
 
     /**
-     * 値を設定します。
+     * Sets the value.
      *
      * @param value
-     *            値
+     *            The value
      */
     public void setValue(final T value) {
         this.value = value;

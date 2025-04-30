@@ -34,13 +34,13 @@ import org.codelibs.core.exception.ClRuntimeException;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link URL}を扱うユーティリティ・クラスです。
+ * Utility class for handling {@link URL}.
  *
  * @author higa
  */
 public abstract class URLUtil {
 
-    /** プロトコルを正規化するためのマップ */
+    /** Map for normalizing protocols */
     protected static final Map<String, String> CANONICAL_PROTOCOLS = newHashMap();
     static {
         CANONICAL_PROTOCOLS.put("wsjar", "jar"); // WebSphereがJarファイルのために使用する固有のプロトコル
@@ -48,11 +48,11 @@ public abstract class URLUtil {
     }
 
     /**
-     * URLをオープンして{@link InputStream}を返します。
+     * Opens a URL and returns an {@link InputStream}.
      *
      * @param url
-     *            URL。{@literal null}であってはいけません
-     * @return URLが表すリソースを読み込むための{@link InputStream}
+     *            The URL. Must not be {@literal null}.
+     * @return An {@link InputStream} to read the resource represented by the URL.
      */
     public static InputStream openStream(final URL url) {
         assertArgumentNotNull("url", url);
@@ -67,11 +67,11 @@ public abstract class URLUtil {
     }
 
     /**
-     * URLが参照するリモートオブジェクトへの接続を表す{@link URLConnection}オブジェクトを返します。
+     * Returns a {@link URLConnection} object that represents a connection to the remote object referred to by the URL.
      *
      * @param url
-     *            URL。{@literal null}であってはいけません
-     * @return URLへの{@link URLConnection}オブジェクト
+     *            The URL. Must not be {@literal null}.
+     * @return A {@link URLConnection} object to the URL.
      */
     public static URLConnection openConnection(final URL url) {
         assertArgumentNotNull("url", url);
@@ -86,11 +86,11 @@ public abstract class URLUtil {
     }
 
     /**
-     * 文字列表現から<code>URL</code>オブジェクトを作成します。
+     * Creates a <code>URL</code> object from its string representation.
      *
      * @param spec
-     *            <code>URL</code>として構文解析される文字列。{@literal null}や空文字列であってはいけません
-     * @return <code>URL</code>
+     *            A string to be parsed as a <code>URL</code>. Must not be {@literal null} or empty.
+     * @return A <code>URL</code> object.
      */
     public static URL create(final String spec) {
         assertArgumentNotEmpty("spec", spec);
@@ -103,13 +103,13 @@ public abstract class URLUtil {
     }
 
     /**
-     * 指定されたコンテキスト内の指定された仕様で構文解析することによって、<code>URL</code>を生成します。
+     * Creates a <code>URL</code> by parsing the specified spec within the specified context.
      *
      * @param context
-     *            仕様を構文解析するコンテキスト。{@literal null}であってはいけません
+     *            The context in which to parse the spec. Must not be {@literal null}.
      * @param spec
-     *            <code>URL</code>として構文解析される文字列。{@literal null}や空文字列であってはいけません
-     * @return <code>URL</code>
+     *            A string to be parsed as a <code>URL</code>. Must not be {@literal null} or empty.
+     * @return A <code>URL</code>.
      */
     public static URL create(final URL context, final String spec) {
         assertArgumentNotNull("context", context);
@@ -123,14 +123,14 @@ public abstract class URLUtil {
     }
 
     /**
-     * 指定のエンコーディング方式を使用して文字列を<code>application/x-www-form-urlencoded</code>
-     * 形式に変換します。
+     * Converts a string into <code>application/x-www-form-urlencoded</code>
+     * format using the specified encoding scheme.
      *
      * @param s
-     *            変換対象の文字列。{@literal null}や空文字列であってはいけません
+     *            The string to be converted. Must not be {@literal null} or empty.
      * @param enc
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return <code>application/x-www-form-urlencoded</code>でエンコード文字列
+     *            The encoding scheme. Must not be {@literal null} or empty.
+     * @return The string encoded in <code>application/x-www-form-urlencoded</code> format.
      */
     public static String encode(final String s, final String enc) {
         assertArgumentNotEmpty("s", s);
@@ -144,14 +144,14 @@ public abstract class URLUtil {
     }
 
     /**
-     * 指定のエンコーディング方式で<code>application/x-www-form-urlencoded</code>文字列をデコードします。
+     * Decodes a <code>application/x-www-form-urlencoded</code> string using the specified encoding scheme.
      *
      * @param s
-     *            <code>application/x-www-form-urlencoded</code>でエンコードされた文字列。
-     *            {@literal null}や空文字列であってはいけません
+     *            The string encoded in <code>application/x-www-form-urlencoded</code> format.
+     *            Must not be {@literal null} or empty.
      * @param enc
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return デコードされた文字列
+     *            The encoding scheme. Must not be {@literal null} or empty.
+     * @return The decoded string.
      */
     public static String decode(final String s, final String enc) {
         assertArgumentNotEmpty("s", s);
@@ -165,11 +165,11 @@ public abstract class URLUtil {
     }
 
     /**
-     * プロトコルを正規化して返します。
+     * Returns the normalized protocol.
      *
      * @param protocol
-     *            プロトコル。{@literal null}や空文字列であってはいけません
-     * @return 正規化されたプロトコル
+     *            The protocol. Must not be {@literal null} or empty.
+     * @return The normalized protocol.
      */
     public static String toCanonicalProtocol(final String protocol) {
         assertArgumentNotEmpty("protocol", protocol);
@@ -182,11 +182,11 @@ public abstract class URLUtil {
     }
 
     /**
-     * URLが示すJarファイルの{@link File}オブジェクトを返します。
+     * Returns the {@link File} object of the Jar file indicated by the URL.
      *
      * @param fileUrl
-     *            JarファイルのURL。{@literal null}であってはいけません
-     * @return Jarファイルの{@link File}
+     *            The URL of the Jar file. Must not be {@literal null}.
+     * @return The {@link File} of the Jar file.
      */
     public static File toFile(final URL fileUrl) {
         assertArgumentNotNull("fileUrl", fileUrl);

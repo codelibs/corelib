@@ -19,17 +19,17 @@ import java.util.Locale;
 import java.util.function.Supplier;
 
 /**
- * {@link Locale}用のユーティリティクラスです。
+ * Utility class for {@link Locale}.
  *
  * @author higa
  */
 public abstract class LocaleUtil {
 
     /**
-     * {@link Locale}を返します。
+     * Returns a {@link Locale}.
      *
      * @param localeStr
-     *            ロケールを表す文字列
+     *            A string representing the locale
      * @return {@link Locale}
      */
     public static Locale getLocale(final String localeStr) {

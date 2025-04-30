@@ -26,16 +26,16 @@ import javax.naming.NamingException;
 import org.codelibs.core.exception.NamingRuntimeException;
 
 /**
- * {@link javax.naming.InitialContext 初期コンテキスト}を扱うためのユーティリティ・クラスです。
+ * Utility class for handling {@link javax.naming.InitialContext InitialContext}.
  *
  * @author higa
  */
 public abstract class InitialContextUtil {
 
     /**
-     * 初期コンテキストを作成して返します。
+     * Creates and returns an initial context.
      *
-     * @return 初期コンテキスト
+     * @return the initial context
      */
     public static InitialContext create() {
         try {
@@ -46,11 +46,11 @@ public abstract class InitialContextUtil {
     }
 
     /**
-     * 指定した環境を使用して初期コンテキストを作成して返します。
+     * Creates and returns an initial context using the specified environment.
      *
      * @param env
-     *            初期コンテキストの作成に使用される環境。<code>mull</code>は空の環境を示す
-     * @return 初期コンテキスト
+     *            The environment used to create the initial context. <code>null</code> indicates an empty environment.
+     * @return The initial context
      */
     public static InitialContext create(final Hashtable<?, ?> env) {
         try {
@@ -61,15 +61,15 @@ public abstract class InitialContextUtil {
     }
 
     /**
-     * 指定した初期コンテキストから指定されたオブジェクトを取得して返します。
+     * Retrieves and returns the specified object from the given initial context.
      *
      * @param ctx
-     *            初期コンテキスト。{@literal null}であってはいけません
+     *            The initial context. Must not be {@literal null}.
      * @param jndiName
-     *            検索するオブジェクトの名前。{@literal null}や空文字列であってはいけません
-     * @return <code>jndiName</code>にバインドされているオブジェクト
+     *            The name of the object to look up. Must not be {@literal null} or an empty string.
+     * @return The object bound to <code>jndiName</code>.
      * @throws NamingRuntimeException
-     *             初期コンテキストを作成できなかった場合にスローされます
+     *             Thrown if the initial context cannot be created.
      */
     public static Object lookup(final InitialContext ctx, final String jndiName) throws NamingRuntimeException {
         assertArgumentNotNull("ctx", ctx);

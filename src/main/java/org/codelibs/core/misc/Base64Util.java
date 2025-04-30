@@ -19,7 +19,7 @@ import org.codelibs.core.collection.ArrayUtil;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * Base64を扱うためのユーティリティクラスです。
+ * Utility class for handling Base64 encoding and decoding.
  *
  * @author higa
  */
@@ -42,11 +42,11 @@ public abstract class Base64Util {
     }
 
     /**
-     * Base64でエンコードします。
+     * Encodes data in Base64.
      *
      * @param inData
-     *            エンコードするデータ
-     * @return エンコードされたデータ
+     *            The data to encode
+     * @return The encoded data
      */
     public static String encode(final byte[] inData) {
         if (ArrayUtil.isEmpty(inData)) {
@@ -72,11 +72,11 @@ public abstract class Base64Util {
     }
 
     /**
-     * Base64でエンコードされたデータをデコードします。
+     * Decodes data encoded in Base64.
      *
      * @param inData
-     *            デコードするデータ
-     * @return デコードされたデータ
+     *            The data to decode
+     * @return The decoded data
      */
     public static byte[] decode(final String inData) {
         if (StringUtil.isEmpty(inData)) {

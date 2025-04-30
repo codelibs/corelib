@@ -29,21 +29,21 @@ import org.codelibs.core.exception.NullArgumentException;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * 表明についてのユーティリティクラスです。
+ * Utility class for assertions.
  *
  * @author shot
  */
 public abstract class AssertionUtil {
 
     /**
-     * 引数が<code>null</code>でないことを表明します。
+     * Asserts that the argument is not <code>null</code>.
      *
      * @param argName
-     *            {@code null} であってはならない引数の名前
+     *            The name of the argument that must not be {@code null}.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws NullArgumentException
-     *             引数が<code>null</code>の場合。
+     *             If the argument is <code>null</code>.
      */
     public static void assertArgumentNotNull(final String argName, final Object argValue) {
         if (argValue == null) {
@@ -52,14 +52,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空文字列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty string.
      *
      * @param argName
-     *            {@code null} でも空文字列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty string.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空文字列の場合。
+     *             If the argument is <code>null</code> or an empty string.
      */
     public static void assertArgumentNotEmpty(final String argName, final String argValue) {
         if (StringUtil.isEmpty(argValue)) {
@@ -68,14 +68,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空文字列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty string.
      *
      * @param argName
-     *            {@code null} でも空文字列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty string.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空文字列の場合。
+     *             If the argument is <code>null</code> or an empty string.
      */
     public static void assertArgumentNotEmpty(final String argName, final CharSequence argValue) {
         if (argValue == null || argValue.length() == 0) {
@@ -84,14 +84,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final Object[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -100,14 +100,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final boolean[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -116,14 +116,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final byte[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -132,14 +132,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final short[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -148,14 +148,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final int[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -164,14 +164,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final long[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -180,14 +180,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final float[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -196,14 +196,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final double[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -212,14 +212,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の配列でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty array.
      *
      * @param argName
-     *            {@code null} でも空の配列でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty array.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の配列の場合。
+     *             If the argument is <code>null</code> or an empty array.
      */
     public static void assertArgumentNotEmpty(final String argName, final char[] argValue) {
         if (ArrayUtil.isEmpty(argValue)) {
@@ -228,14 +228,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の{@link Collection}でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty {@link Collection}.
      *
      * @param argName
-     *            {@code null} でも空の{@link Collection}でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty {@link Collection}.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の{@link Collection}の場合。
+     *             If the argument is <code>null</code> or an empty {@link Collection}.
      */
     public static void assertArgumentNotEmpty(final String argName, final Collection<?> argValue) {
         if (argValue == null || argValue.isEmpty()) {
@@ -244,14 +244,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が<code>null</code>でも空の{@link Map}でもないことを表明します。
+     * Asserts that the argument is neither <code>null</code> nor an empty {@link Map}.
      *
      * @param argName
-     *            {@code null} でも空の{@link Map}でもあってはならない引数の名前
+     *            The name of the argument that must not be {@code null} or an empty {@link Map}.
      * @param argValue
-     *            引数の値
+     *            The value of the argument.
      * @throws EmptyArgumentException
-     *             引数が<code>null</code>または空の{@link Map}の場合。
+     *             If the argument is <code>null</code> or an empty {@link Map}.
      */
     public static void assertArgumentNotEmpty(final String argName, final Map<?, ?> argValue) {
         if (argValue == null || argValue.isEmpty()) {
@@ -260,16 +260,16 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * インデックスが不正でないことを表明します。
+     * Asserts that the index is valid.
      *
      * @param argName
-     *            {@code null} であってはならない引数の名前
+     *            The name of the argument that must not be {@code null}.
      * @param argValue
-     *            インデックスの値
+     *            The value of the index.
      * @param arraySize
-     *            インデックスが参照する配列の長さ
+     *            The length of the array the index refers to.
      * @throws ClIllegalArgumentException
-     *             引数が配列のインデックスとして不正な場合場合。
+     *             If the argument is invalid as an array index.
      */
     public static void assertArgumentArrayIndex(final String argName, final int argValue, final int arraySize) {
         if (argValue < 0) {
@@ -281,16 +281,16 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 引数が不正でないことを表明します。
+     * Asserts that the argument is valid.
      *
      * @param argName
-     *            不正であってはならない引数の名前
+     *            The name of the argument that must not be invalid.
      * @param expression
-     *            事前条件
+     *            The precondition.
      * @param description
-     *            不正な引数であることの説明
+     *            The description of why the argument is invalid.
      * @throws ClIllegalArgumentException
-     *             {@code expression}がfalseの場合。
+     *             If {@code expression} is false.
      */
     public static void assertArgument(final String argName, final boolean expression, final String description) {
         if (!expression) {
@@ -299,14 +299,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * 状態が不正でないことを表明します。
+     * Asserts that the state is not invalid.
      *
      * @param expression
-     *            事前条件
+     *            The precondition.
      * @param description
-     *            不正な状態であることの説明
+     *            The description of why the state is invalid.
      * @throws ClIllegalStateException
-     *             {@code expression}がfalseの場合。
+     *             If {@code expression} is false.
      */
     public static void assertState(final boolean expression, final String description) {
         if (!expression) {
@@ -315,14 +315,14 @@ public abstract class AssertionUtil {
     }
 
     /**
-     * indexが不正でないことを表明します。
+     * Asserts that the index is not invalid.
      *
      * @param expression
-     *            事前条件
+     *            The precondition.
      * @param description
-     *            不正なindexであることの説明
+     *            The description of why the index is invalid.
      * @throws ClIndexOutOfBoundsException
-     *             {@code expression}がfalseの場合。
+     *             If {@code expression} is false.
      */
     public static void assertIndex(final boolean expression, final String description) {
         if (!expression) {

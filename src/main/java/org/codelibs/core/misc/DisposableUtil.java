@@ -22,24 +22,24 @@ import java.beans.Introspector;
 import java.util.Deque;
 
 /**
- * アプリケーションの終了時にリソースを破棄するためのユーティリティクラスです。
+ * Utility class for disposing of resources at the end of an application.
  * <p>
- * アプリケーションの終了時に破棄しなければならないリソースがある場合は、 {@link Disposable}を実装したクラスを作成し、
- * このクラスに登録します。
+ * If there are resources that must be disposed of at the end of the application,
+ * create a class that implements {@link Disposable} and register it with this class.
  * </p>
  *
  * @author koichik
  */
 public abstract class DisposableUtil {
 
-    /** 登録済みの{@link Disposable} */
+    /** Registered {@link Disposable} */
     protected static final Deque<Disposable> disposables = newLinkedList();
 
     /**
-     * 破棄可能なリソースを登録します。
+     * Registers a disposable resource.
      *
      * @param disposable
-     *            破棄可能なリソース。{@literal null}であってはいけません
+     *            A disposable resource. Must not be {@literal null}.
      */
     public static synchronized void add(final Disposable disposable) {
         assertArgumentNotNull("disposable", disposable);
@@ -47,13 +47,13 @@ public abstract class DisposableUtil {
     }
 
     /**
-     * 破棄可能なリソースを先頭に登録します。
+     * Registers a disposable resource at the beginning.
      * <p>
-     * リソースは登録された逆順に破棄されるため、先頭に登録されたリソースは最後に破棄されることになります。
+     * Resources are disposed of in the reverse order of their registration, so resources registered at the beginning will be disposed of last.
      * </p>
      *
      * @param disposable
-     *            破棄可能なリソース。{@literal null}であってはいけません
+     *            A disposable resource. Must not be {@literal null}.
      */
     public static synchronized void addFirst(final Disposable disposable) {
         assertArgumentNotNull("disposable", disposable);
@@ -61,10 +61,10 @@ public abstract class DisposableUtil {
     }
 
     /**
-     * 破棄可能なリソースを登録解除します。
+     * Unregisters a disposable resource.
      *
      * @param disposable
-     *            破棄可能なリソース。{@literal null}であってはいけません
+     *            A disposable resource. Must not be {@literal null}.
      */
     public static synchronized void remove(final Disposable disposable) {
         assertArgumentNotNull("disposable", disposable);
@@ -72,7 +72,7 @@ public abstract class DisposableUtil {
     }
 
     /**
-     * 登録済みのリソースを全て破棄します。
+     * Disposes of all registered resources.
      */
     public static synchronized void dispose() {
         while (!disposables.isEmpty()) {

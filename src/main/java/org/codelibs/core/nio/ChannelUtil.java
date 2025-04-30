@@ -26,20 +26,20 @@ import java.nio.channels.FileChannel.MapMode;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link Channel}用のユーティリティです。
+ * Utility for {@link Channel}.
  *
- * @author koichik
+ * Author: koichik
  */
 public abstract class ChannelUtil {
 
     /**
-     * ファイルチャネルをメモリにマップした{@link ByteBuffer}を返します。
+     * Returns a {@link ByteBuffer} that maps the file channel to memory.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
+     *            The file channel. Must not be {@literal null}.
      * @param mode
-     *            モード。{@literal null}であってはいけません
-     * @return ファイルチャネルをメモリにマップした{@link ByteBuffer}
+     *            The mode. Must not be {@literal null}.
+     * @return A {@link ByteBuffer} that maps the file channel to memory.
      */
     public static ByteBuffer map(final FileChannel channel, final MapMode mode) {
         assertArgumentNotNull("channel", channel);
@@ -53,11 +53,11 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * ファイルのサイズを返します。
+     * Returns the size of the file.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
-     * @return ファイルのサイズ
+     *            The file channel. Must not be {@literal null}.
+     * @return The size of the file.
      */
     public static long size(final FileChannel channel) {
         assertArgumentNotNull("channel", channel);
@@ -70,13 +70,13 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * ファイルチャネルの内容をバイトバッファに読み込みます。
+     * Reads the contents of the file channel into a byte buffer.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
+     *            The file channel. Must not be {@literal null}.
      * @param buffer
-     *            バイトバッファ。{@literal null}であってはいけません
-     * @return 読み込んだバイト数
+     *            The byte buffer. Must not be {@literal null}.
+     * @return The number of bytes read.
      */
     public static int read(final FileChannel channel, final ByteBuffer buffer) {
         assertArgumentNotNull("channel", channel);
@@ -90,15 +90,15 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * ファイルチャネルの内容をバイトバッファに読み込みます。
+     * Reads the contents of the file channel into a byte buffer.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
+     *            The file channel. Must not be {@literal null}.
      * @param buffer
-     *            バイトバッファ。{@literal null}であってはいけません
+     *            The byte buffer. Must not be {@literal null}.
      * @param position
-     *            読み込みを開始する位置
-     * @return 読み込んだバイト数
+     *            The position to start reading from.
+     * @return The number of bytes read.
      */
     public static int read(final FileChannel channel, final ByteBuffer buffer, final long position) {
         assertArgumentNotNull("channel", channel);
@@ -112,13 +112,13 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * バイトバッファの内容をファイルチャネルに書き込みます。
+     * Writes the contents of the byte buffer to the file channel.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
+     *            The file channel. Must not be {@literal null}.
      * @param buffer
-     *            バイトバッファ。{@literal null}であってはいけません
-     * @return 書き込んだバイト数
+     *            The byte buffer. Must not be {@literal null}.
+     * @return The number of bytes written.
      */
     public static int write(final FileChannel channel, final ByteBuffer buffer) {
         assertArgumentNotNull("channel", channel);
@@ -132,15 +132,15 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * バイトバッファの内容をファイルチャネルに書き込みます。
+     * Writes the contents of the byte buffer to the file channel.
      *
      * @param channel
-     *            ファイルチャネル。{@literal null}であってはいけません
+     *            The file channel. Must not be {@literal null}.
      * @param buffer
-     *            バイトバッファ。{@literal null}であってはいけません
+     *            The byte buffer. Must not be {@literal null}.
      * @param position
-     *            読み込みを開始する位置
-     * @return 書き込んだバイト数
+     *            The position to start writing from.
+     * @return The number of bytes written.
      */
     public static int write(final FileChannel channel, final ByteBuffer buffer, final long position) {
         assertArgumentNotNull("channel", channel);
@@ -154,13 +154,13 @@ public abstract class ChannelUtil {
     }
 
     /**
-     * ファイルチャネル{@literal from}を{@literal to}へ転送します。
+     * Transfers the contents of the file channel {@literal from} to {@literal to}.
      *
      * @param from
-     *            転送元のファイルチャネル。{@literal null}であってはいけません
+     *            The source file channel. Must not be {@literal null}.
      * @param to
-     *            転送先のファイルチャネル。{@literal null}であってはいけません
-     * @return 転送されたバイト数
+     *            The destination file channel. Must not be {@literal null}.
+     * @return The number of bytes transferred.
      */
     public static long transfer(final FileChannel from, final FileChannel to) {
         assertArgumentNotNull("from", from);

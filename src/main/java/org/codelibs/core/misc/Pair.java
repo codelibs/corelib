@@ -16,52 +16,52 @@
 package org.codelibs.core.misc;
 
 /**
- * 二つの値のペアです。
+ * A pair of two values.
  *
  * @author koichik
  * @param <T1>
- *            1番目の値の型
+ *            The type of the first value
  * @param <T2>
- *            2番目の値の型
+ *            The type of the second value
  */
 public class Pair<T1, T2> {
 
-    /** 1番目の値 */
+    /** The first value */
     protected T1 first;
 
-    /** 2番目の値 */
+    /** The second value */
     protected T2 second;
 
     /**
-     * 二つの値のペアを作成して返します。
+     * Creates and returns a pair of two values.
      *
      * @param <T1>
-     *            1番目の値の型
+     *            The type of the first value
      * @param <T2>
-     *            2番目の値の型
+     *            The type of the second value
      * @param first
-     *            1番目の値
+     *            The first value
      * @param second
-     *            2番目の値
-     * @return 二つの値のペア
+     *            The second value
+     * @return A pair of two values
      */
     public static <T1, T2> Pair<T1, T2> pair(final T1 first, final T2 second) {
         return new Pair<>(first, second);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      */
     public Pair() {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param first
-     *            1番目の値
+     *            The first value
      * @param second
-     *            2番目の値
+     *            The second value
      */
     public Pair(final T1 first, final T2 second) {
         this.first = first;
@@ -69,38 +69,38 @@ public class Pair<T1, T2> {
     }
 
     /**
-     * 1番目の値を返します。
+     * Returns the first value.
      *
-     * @return 1番目の値
+     * @return The first value
      */
     public T1 getFirst() {
         return first;
     }
 
     /**
-     * 1番目の値を設定します。
+     * Sets the first value.
      *
      * @param first
-     *            1番目の値
+     *            The first value
      */
     public void setFirst(final T1 first) {
         this.first = first;
     }
 
     /**
-     * 2番目の値を返します。
+     * Returns the second value.
      *
-     * @return 2番目の値
+     * @return The second value
      */
     public T2 getSecond() {
         return second;
     }
 
     /**
-     * 2番目の値を設定します。
+     * Sets the second value.
      *
      * @param second
-     *            2番目の値
+     *            The second value
      */
     public void setSecond(final T2 second) {
         this.second = second;

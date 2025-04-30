@@ -26,18 +26,18 @@ import org.codelibs.core.io.CloseableUtil;
 import org.codelibs.core.io.ResourceUtil;
 
 /**
- * Mimeタイプ用のユーティリティクラスです。
+ * Utility class for MIME types.
  *
  * @author shot
  */
 public abstract class MimeTypeUtil {
 
     /**
-     * コンテントタイプを予想します。
+     * Guesses the content type.
      *
      * @param path
-     *            パス。{@literal null}や空文字列であってはいけません
-     * @return コンテントタイプ
+     *            The path. Must not be {@literal null} or an empty string.
+     * @return The content type.
      */
     public static String guessContentType(final String path) {
         assertArgumentNotEmpty("path", path);

@@ -16,63 +16,63 @@
 package org.codelibs.core.misc;
 
 /**
- * 3つの値の組です。
+ * A tuple of three values.
  *
  * @author koichik
  * @param <T1>
- *            1番目の値の型
+ *            The type of the first value
  * @param <T2>
- *            2番目の値の型
+ *            The type of the second value
  * @param <T3>
- *            3番目の値の型
+ *            The type of the third value
  */
 public class Tuple3<T1, T2, T3> {
 
-    /** 1番目の値 */
+    /** The first value */
     protected T1 value1;
 
-    /** 2番目の値 */
+    /** The second value */
     protected T2 value2;
 
-    /** 3番目の値 */
+    /** The third value */
     protected T3 value3;
 
     /**
-     * 3つの値の組を作成して返します。
+     * Creates and returns a tuple of three values.
      *
      * @param <T1>
-     *            1番目の値の型
+     *            The type of the first value
      * @param <T2>
-     *            2番目の値の型
+     *            The type of the second value
      * @param <T3>
-     *            3番目の値の型
+     *            The type of the third value
      * @param value1
-     *            1番目の値
+     *            The first value
      * @param value2
-     *            2番目の値
+     *            The second value
      * @param value3
-     *            3番目の値
-     * @return 3つの値の組
+     *            The third value
+     * @return A tuple of three values
      */
     public static <T1, T2, T3> Tuple3<T1, T2, T3> tuple3(final T1 value1, final T2 value2, final T3 value3) {
         return new Tuple3<>(value1, value2, value3);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      */
     public Tuple3() {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param value1
-     *            1番目の値
+     *            The first value
      * @param value2
-     *            2番目の値
+     *            The second value
      * @param value3
-     *            3番目の値
+     *            The third value
      */
     public Tuple3(final T1 value1, final T2 value2, final T3 value3) {
         this.value1 = value1;
@@ -81,57 +81,57 @@ public class Tuple3<T1, T2, T3> {
     }
 
     /**
-     * 1番目の値を返します。
+     * Returns the first value.
      *
-     * @return 1番目の値
+     * @return The first value
      */
     public T1 getValue1() {
         return value1;
     }
 
     /**
-     * 1番目の値を設定します。
+     * Sets the first value.
      *
      * @param value1
-     *            1番目の値
+     *            The first value
      */
     public void setValue1(final T1 value1) {
         this.value1 = value1;
     }
 
     /**
-     * 2番目の値を返します。
+     * Returns the second value.
      *
-     * @return 2番目の値
+     * @return The second value
      */
     public T2 getValue2() {
         return value2;
     }
 
     /**
-     * 2番目の値を設定します。
+     * Sets the second value.
      *
      * @param value2
-     *            2番目の値
+     *            The second value
      */
     public void setValue2(final T2 value2) {
         this.value2 = value2;
     }
 
     /**
-     * 3番目の値を返します。
+     * Returns the third value.
      *
-     * @return 3番目の値
+     * @return The third value
      */
     public T3 getValue3() {
         return value3;
     }
 
     /**
-     * 3番目の値を設定します。
+     * Sets the third value.
      *
      * @param value3
-     *            3番目の値
+     *            The third value
      */
     public void setValue3(final T3 value3) {
         this.value3 = value3;

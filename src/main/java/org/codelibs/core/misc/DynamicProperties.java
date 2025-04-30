@@ -36,6 +36,39 @@ import java.util.Set;
 import org.codelibs.core.exception.FileAccessException;
 import org.codelibs.core.exception.IORuntimeException;
 
+/**
+ * The {@code DynamicProperties} class extends {@link Properties} to provide dynamic
+ * loading and storing of properties from a file. It monitors the file for changes
+ * and reloads the properties if the file is updated. This class is thread-safe and
+ * ensures that the properties are always up-to-date.
+ *
+ * <p>Key Features:
+ * <ul>
+ *   <li>Automatically reloads properties if the file is modified.</li>
+ *   <li>Supports custom check intervals for file modification checks.</li>
+ *   <li>Provides synchronized methods for loading and storing properties.</li>
+ *   <li>Extends {@link Properties} and overrides its methods to work with dynamic properties.</li>
+ * </ul>
+ *
+ * <p>Usage:
+ * <pre>
+ * DynamicProperties dynamicProperties = new DynamicProperties("path/to/properties/file");
+ * String value = dynamicProperties.getProperty("key");
+ * dynamicProperties.setProperty("key", "newValue");
+ * dynamicProperties.store();
+ * </pre>
+ *
+ * <p>Exceptions:
+ * <ul>
+ *   <li>{@link FileAccessException} - Thrown if there are issues accessing the file.</li>
+ *   <li>{@link IORuntimeException} - Thrown if there are I/O errors during file operations.</li>
+ * </ul>
+ *
+ * <p>Thread Safety:
+ * This class uses synchronization to ensure thread-safe access to the properties.
+ *
+ * @see Properties
+ */
 public class DynamicProperties extends Properties {
 
     private static final long serialVersionUID = 1L;
