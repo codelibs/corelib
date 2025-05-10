@@ -20,6 +20,15 @@
 		<name>CodeLibs Project</name>
 		<url>https://www.codelibs.org/</url>
 	</organization>
+	<developers>
+		<developer>
+			<id>shinsuke</id>
+			<name>Shinsuke Sugaya</name>
+			<email>shinsuke.sugaya@codelibs.co</email>
+			<organization>CodeLibs Inc.</organization>
+			<organizationUrl>https://codelibs.co</organizationUrl>
+		</developer>
+	</developers>
 	<scm>
 		<connection>scm:git:git@github.com:codelibs/corelib.git</connection>
 		<url>scm:git:git@github.com:codelibs/corelib.git</url>
@@ -32,7 +41,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
+				<version>3.13.0</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<release>17</release>
@@ -62,7 +71,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.2</version>
 				<configuration>
 					<archive>
 						<manifestEntries>
@@ -73,12 +82,12 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.5</version>
+				<version>3.3.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.11</version>
+				<version>0.8.12</version>
 				<executions>
 					<execution>
 						<goals>
@@ -97,11 +106,11 @@
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>4.3</version>
+				<version>4.5</version>
 				<configuration>
 					<header>https://www.codelibs.org/assets/license/header.txt</header>
 					<properties>
-						<year>2024</year>
+						<year>2025</year>
 					</properties>
 					<includes>
 						<include>src/**/*.java</include>
@@ -115,7 +124,7 @@
 			<plugin>
 				<groupId>net.revelc.code.formatter</groupId>
 				<artifactId>formatter-maven-plugin</artifactId>
-				<version>2.23.0</version>
+				<version>2.24.1</version>
 				<executions>
 					<execution>
 						<goals>
@@ -162,7 +171,7 @@
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
+			<version>1.3.4</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
