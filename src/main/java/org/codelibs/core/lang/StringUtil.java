@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * {@link String}用のユーティリティクラスです。
+ * Utility class for string operations.
  *
  * @author higa
  * @author shinsuke
@@ -35,12 +35,12 @@ public abstract class StringUtil {
     public static final String RETURN_STRING = System.getProperty("line.separator");
 
     /**
-     * 空文字<code>""</code>です。
+     * An empty string <code>""</code>.
      */
     public static final String EMPTY = "";
 
     /**
-     * 文字列型の空の配列です。
+     * An empty array of strings.
      */
     public static final String[] EMPTY_STRINGS = new String[0];
 
@@ -61,37 +61,35 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列が<code>null</code>または空文字列なら<code>true</code>を返します。
+     * Checks if the string is empty or null.
      *
-     * @param text
-     *            文字列
-     * @return 文字列が<code>null</code>または空文字列なら<code>true</code>
+     * @param text the string to check
+     * @return true if empty or null, false otherwise
      */
     public static final boolean isEmpty(final String text) {
         return text == null || text.length() == 0;
     }
 
     /**
-     * 文字列が<code>null</code>でも空文字列でもなければ<code>true</code>を返します。
+     * Checks if the string is not empty.
      *
-     * @param text
-     *            文字列
-     * @return 文字列が<code>null</code>でも空文字列でもなければ<code>true</code>
+     * @param text the string to check
+     * @return true if not empty, false otherwise
      */
     public static final boolean isNotEmpty(final String text) {
         return !isEmpty(text);
     }
 
     /**
-     * 文字列を置き換えます。
+     * Replaces all occurrences of a substring within a string with another string.
      *
      * @param text
-     *            テキスト
+     *            The original string.
      * @param fromText
-     *            置き換え対象のテキスト
+     *            The substring to be replaced.
      * @param toText
-     *            置き換えるテキスト
-     * @return 結果
+     *            The replacement substring.
+     * @return The resulting string after replacements.
      */
     public static final String replace(final String text, final String fromText, final String toText) {
         if (text == null || fromText == null || toText == null) {
@@ -118,13 +116,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列を分割します。
+     * Splits the string by the specified delimiter.
      *
      * @param str
-     *            文字列
+     *            the string to split
      * @param delim
-     *            分割するためのデリミタ
-     * @return 分割された文字列の配列
+     *            the delimiter to use for splitting
+     * @return an array of split strings
      */
     public static String[] split(final String str, final String delim) {
         if (isEmpty(str)) {
@@ -139,24 +137,24 @@ public abstract class StringUtil {
     }
 
     /**
-     * 左側の空白を削ります。
+     * Removes whitespace from the left side of the string.
      *
      * @param text
-     *            テキスト
-     * @return 結果の文字列
+     *            The text to trim
+     * @return The resulting string
      */
     public static final String ltrim(final String text) {
         return ltrim(text, null);
     }
 
     /**
-     * 左側の指定した文字列を削ります。
+     * Removes the specified characters from the left side of the string.
      *
      * @param text
-     *            テキスト
+     *            The text to trim
      * @param trimText
-     *            削るテキスト
-     * @return 結果の文字列
+     *            The characters to remove
+     * @return The resulting string
      */
     public static final String ltrim(final String text, String trimText) {
         if (text == null) {
@@ -175,24 +173,24 @@ public abstract class StringUtil {
     }
 
     /**
-     * 右側の空白を削ります。
+     * Removes whitespace from the right side of the string.
      *
      * @param text
-     *            テキスト
-     * @return 結果の文字列
+     *            The text to trim
+     * @return The resulting string
      */
     public static final String rtrim(final String text) {
         return rtrim(text, null);
     }
 
     /**
-     * 右側の指定した文字列を削ります。
+     * Removes the specified characters from the right side of the string.
      *
      * @param text
-     *            テキスト
+     *            The text to trim
      * @param trimText
-     *            削る文字列
-     * @return 結果の文字列
+     *            The characters to remove
+     * @return The resulting string
      */
     public static final String rtrim(final String text, String trimText) {
         if (text == null) {
@@ -211,13 +209,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * サフィックスを削ります。
+     * Removes the suffix from the string if it is present.
      *
      * @param text
-     *            テキスト
+     *            The text
      * @param suffix
-     *            サフィックス
-     * @return 結果の文字列
+     *            The suffix to remove
+     * @return The resulting string
      */
     public static final String trimSuffix(final String text, final String suffix) {
         if (text == null) {
@@ -233,13 +231,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * プレフィックスを削ります。
+     * Removes the prefix from the string if it is present.
      *
      * @param text
-     *            テキスト
+     *            The text
      * @param prefix
-     *            プレフィックス
-     * @return 結果の文字列
+     *            The prefix to remove
+     * @return The resulting string
      */
     public static final String trimPrefix(final String text, final String prefix) {
         if (text == null) {
@@ -255,19 +253,20 @@ public abstract class StringUtil {
     }
 
     /**
-     * JavaBeansの仕様にしたがってデキャピタライズを行ないます。大文字が2つ以上続く場合は、小文字にならないので注意してください。
+     * Decapitalizes a string according to JavaBeans conventions.
+     * Note: If the first two characters are uppercase, the string will not be decapitalized.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
-     * StringUtil.capitalize("UserId")  = "userId"
-     * StringUtil.capitalize("ABC")  = "ABC"
+     * StringUtil.decapitalize("UserId")  = "userId"
+     * StringUtil.decapitalize("ABC")     = "ABC"
      * </pre>
      *
      * @param name
-     *            名前
-     * @return 結果の文字列
+     *            the string to decapitalize
+     * @return the decapitalized string
      */
     public static String decapitalize(final String name) {
         if (isEmpty(name)) {
@@ -282,19 +281,20 @@ public abstract class StringUtil {
     }
 
     /**
-     * JavaBeansの仕様にしたがってキャピタライズを行ないます。大文字が2つ以上続く場合は、小文字にならないので注意してください。
+     * Capitalizes a string according to JavaBeans conventions.
+     * Note: If the first two characters are uppercase, the string will not be capitalized.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
      * StringUtil.capitalize("userId")  = "UserId"
-     * StringUtil.capitalize("ABC")  = "ABC"
+     * StringUtil.capitalize("ABC")     = "ABC"
      * </pre>
      *
      * @param name
-     *            名前
-     * @return 結果の文字列
+     *            the string to capitalize
+     * @return the capitalized string
      */
     public static String capitalize(final String name) {
         if (isEmpty(name)) {
@@ -306,11 +306,11 @@ public abstract class StringUtil {
     }
 
     /**
-     * ブランクかどうか返します。
+     * Returns true if the string is blank.
      *
      * @param str
-     *            文字列
-     * @return ブランクなら{@literal true}
+     *            the string to check
+     * @return {@literal true} if the string is blank
      */
     public static boolean isBlank(final String str) {
         if (str == null || str.length() == 0) {
@@ -325,11 +325,11 @@ public abstract class StringUtil {
     }
 
     /**
-     * ブランクではないかどうか返します。
+     * Returns true if the string is not blank.
      *
      * @param str
-     *            文字列
-     * @return ブランクではなければ{@literal true}
+     *            the string to check
+     * @return {@literal true} if the string is not blank
      * @see #isBlank(String)
      */
     public static boolean isNotBlank(final String str) {
@@ -337,13 +337,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * charを含んでいるかどうか返します。
+     * Returns true if the string contains the specified character.
      *
      * @param str
-     *            文字列
+     *            the string to check
      * @param ch
-     *            char
-     * @return charを含んでいるかどうか
+     *            the character to find
+     * @return true if the character is contained in the string, false otherwise
      */
     public static boolean contains(final String str, final char ch) {
         if (isEmpty(str)) {
@@ -353,13 +353,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列を含んでいるかどうか返します。
+     * Returns true if the string contains the specified substring.
      *
      * @param s1
-     *            文字列
+     *            the string to check
      * @param s2
-     *            比較する対象となる文字列
-     * @return 文字列を含んでいるかどうか
+     *            the substring to find
+     * @return true if the string contains the substring, false otherwise
      */
     public static boolean contains(final String s1, final String s2) {
         if (isEmpty(s1)) {
@@ -369,39 +369,39 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列同士が等しいかどうか返します。どちらもnullの場合は、<code>true</code>を返します。
+     * Returns whether two strings are equal. If both are null, returns <code>true</code>.
      *
      * @param target1
-     *            文字列1
+     *            the first string
      * @param target2
-     *            文字列2
-     * @return 文字列同士が等しいかどうか
+     *            the second string
+     * @return true if the strings are equal, false otherwise
      */
     public static boolean equals(final String target1, final String target2) {
         return target1 == null ? target2 == null : target1.equals(target2);
     }
 
     /**
-     * 大文字小文字を無視して文字列同士が等しいかどうか返します。どちらもnullの場合は、<code>true</code>を返します。
+     * Returns whether two strings are equal ignoring case. If both are null, returns <code>true</code>.
      *
      * @param target1
-     *            文字列1
+     *            the first string
      * @param target2
-     *            文字列2
-     * @return 大文字小文字を無視して文字列同士が等しければ{@literal true}
+     *            the second string
+     * @return {@literal true} if the strings are equal ignoring case
      */
     public static boolean equalsIgnoreCase(final String target1, final String target2) {
         return target1 == null ? target2 == null : target1.equalsIgnoreCase(target2);
     }
 
     /**
-     * 大文字小文字を無視して特定の文字で終わっているのかどうかを返します。
+     * Returns true if the string ends with the specified substring, ignoring case.
      *
      * @param target1
-     *            テキスト
+     *            the text to check
      * @param target2
-     *            比較する文字列
-     * @return 大文字小文字を無視して特定の文字で終わっていれば{@literal true}
+     *            the substring to compare
+     * @return {@literal true} if the string ends with the specified substring, ignoring case
      */
     public static boolean endsWithIgnoreCase(final String target1, final String target2) {
         if (target1 == null || target2 == null) {
@@ -417,13 +417,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * 大文字小文字を無視して特定の文字で始まっているのかどうかを返します。
+     * Returns true if the string starts with the specified substring, ignoring case.
      *
      * @param target1
-     *            テキスト
+     *            the text to check
      * @param target2
-     *            比較する文字列
-     * @return 大文字小文字を無視して特定の文字で始まっていれば{@literal true}
+     *            the substring to compare
+     * @return {@literal true} if the string starts with the specified substring, ignoring case
      */
     public static boolean startsWithIgnoreCase(final String target1, final String target2) {
         if (target1 == null || target2 == null) {
@@ -439,13 +439,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列の最後から指定した文字列で始まっている部分より手前を返します。
+     * Returns the part of the string before the last occurrence of the specified separator.
      *
      * @param str
-     *            文字列
+     *            the string
      * @param separator
-     *            セパレータ
-     * @return 結果の文字列
+     *            the separator
+     * @return the resulting string
      */
     public static String substringFromLast(final String str, final String separator) {
         if (isEmpty(str) || isEmpty(separator)) {
@@ -459,13 +459,13 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列の最後から指定した文字列で始まっている部分より後ろを返します。
+     * Returns the part of the string after the last occurrence of the specified separator.
      *
      * @param str
-     *            文字列
+     *            the string
      * @param separator
-     *            セパレータ
-     * @return 結果の文字列
+     *            the separator
+     * @return the resulting string
      */
     public static String substringToLast(final String str, final String separator) {
         if (isEmpty(str) || isEmpty(separator)) {
@@ -479,11 +479,11 @@ public abstract class StringUtil {
     }
 
     /**
-     * 16進数の文字列に変換します。
+     * Converts a byte array to a hexadecimal string.
      *
      * @param bytes
-     *            バイトの配列
-     * @return 16進数の文字列
+     *            the byte array
+     * @return the hexadecimal string
      */
     public static String toHex(final byte[] bytes) {
         if (bytes == null) {
@@ -497,11 +497,11 @@ public abstract class StringUtil {
     }
 
     /**
-     * {@literal int}の値を16進数の文字列に変換します。
+     * Converts an {@literal int} value to a hexadecimal string.
      *
      * @param i
-     *            {@literal int}の値
-     * @return 16進数の文字列
+     *            the {@literal int} value
+     * @return the hexadecimal string
      */
     public static String toHex(final int i) {
         final StringBuilder buf = new StringBuilder();
@@ -510,12 +510,12 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列に、数値を16進数に変換した文字列を追加します。
+     * Appends the hexadecimal string representation of a number to the given StringBuilder.
      *
      * @param buf
-     *            追加先の文字列
+     *            the StringBuilder to append to
      * @param i
-     *            数値
+     *            the number to convert
      */
     public static void appendHex(final StringBuilder buf, final byte i) {
         buf.append(Character.forDigit((i & 0xf0) >> 4, 16));
@@ -523,12 +523,12 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列に、数値を16進数に変換した文字列を追加します。
+     * Appends the hexadecimal string representation of a number to the given StringBuilder.
      *
      * @param buf
-     *            追加先の文字列
+     *            the StringBuilder to append to
      * @param i
-     *            数値
+     *            the number to convert
      */
     public static void appendHex(final StringBuilder buf, final int i) {
         buf.append(Integer.toHexString(i >> 24 & 0xff));
@@ -538,9 +538,9 @@ public abstract class StringUtil {
     }
 
     /**
-     * _記法をキャメル記法に変換します。
+     * Converts an underscore-separated string to camel case.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
@@ -548,8 +548,8 @@ public abstract class StringUtil {
      * </pre>
      *
      * @param s
-     *            テキスト
-     * @return 結果の文字列
+     *            the text
+     * @return the resulting string
      */
     public static String camelize(String s) {
         if (s == null) {
@@ -568,9 +568,9 @@ public abstract class StringUtil {
     }
 
     /**
-     * キャメル記法を_記法に変換します。
+     * Converts a camel case string to an underscore-separated string.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
@@ -578,8 +578,8 @@ public abstract class StringUtil {
      * </pre>
      *
      * @param s
-     *            テキスト
-     * @return 結果の文字列
+     *            the text
+     * @return the resulting string
      */
     public static String decamelize(final String s) {
         if (s == null) {
@@ -607,11 +607,11 @@ public abstract class StringUtil {
     }
 
     /**
-     * 文字列が数値のみで構成されているかどうかを返します。
+     * Returns true if the string consists only of numeric characters.
      *
      * @param s
-     *            文字列
-     * @return 数値のみで構成されている場合、<code>true</code>
+     *            the string to check
+     * @return <code>true</code> if the string consists only of numeric characters
      */
     public static boolean isNumber(final String s) {
         if (isEmpty(s)) {
@@ -630,9 +630,9 @@ public abstract class StringUtil {
     }
 
     /**
-     * 引数の文字列を返します。引数の文字列が<code>null</code>だったら空文字を返します。
+     * Returns the given string, or an empty string if the argument is <code>null</code>.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
@@ -642,33 +642,32 @@ public abstract class StringUtil {
      * </pre>
      *
      * @param str
-     *            文字列(<code>null</code>可)
-     * @return 引数の文字列を返します。引数の文字列が<code>null</code>だったら空文字を返します。
+     *            the string (can be <code>null</code>)
+     * @return the given string, or an empty string if the argument is <code>null</code>
      */
     public static String defaultString(final String str) {
         return str == null ? EMPTY : str;
     }
 
     /**
-     * 引数の文字列を返します。引数の文字列が<code>null</code>だったら<code>defaultStr</code>を返します。
+     * Returns the given string, or the specified default string if the argument is <code>null</code>.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
      * StringUtil.defaultString(null, "NULL")  = "NULL"
      * StringUtil.defaultString("", "NULL")    = ""
      * StringUtil.defaultString("aaa", "NULL") = "aaa"
-     * StringUtil.defaultString("aaa", null) = "aaa"
-     * StringUtil.defaultString(null, null) = null
+     * StringUtil.defaultString("aaa", null)   = "aaa"
+     * StringUtil.defaultString(null, null)    = null
      * </pre>
      *
      * @param str
-     *            文字列(<code>null</code>可)
+     *            the string (can be <code>null</code>)
      * @param defaultStr
-     *            引数の文字列が<code>null</code>だったら返す文字列(<code>null</code>可)
-     * @return 引数の文字列を返します。引数の文字列が<code>null</code>だったら<code>defaultStr</code>
-     *         を返します。
+     *            the string to return if the argument is <code>null</code> (can be <code>null</code>)
+     * @return the given string, or the specified default string if the argument is <code>null</code>
      */
     public static String defaultString(final String str, final String defaultStr) {
         return str == null ? defaultStr : str;

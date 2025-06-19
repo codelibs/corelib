@@ -22,31 +22,31 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * {@link Calendar}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Calendar}.
  *
  * @author higa
  */
 public abstract class CalendarConversionUtil {
 
     /**
-     * {@link Calendar}に変換します。
+     * Converts to {@link Calendar}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Calendar}
+     *            The object to convert
+     * @return The converted {@link Calendar}
      */
     public static Calendar toCalendar(final Object o) {
         return toCalendar(o, null);
     }
 
     /**
-     * {@link Calendar}に変換します。
+     * Converts to {@link Calendar}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Calendar}
+     *            The pattern string
+     * @return The converted {@link Calendar}
      */
     public static Calendar toCalendar(final Object o, final String pattern) {
         if (o instanceof Calendar) {
@@ -62,11 +62,11 @@ public abstract class CalendarConversionUtil {
     }
 
     /**
-     * ローカルの{@link TimeZone}と{@link Locale}をもつ{@link Calendar}に変換します。
+     * Converts to a {@link Calendar} with the local {@link TimeZone} and {@link Locale}.
      *
      * @param calendar
      *            {@link Calendar}
-     * @return 変換された{@link Calendar}
+     * @return The converted {@link Calendar}
      */
     public static Calendar localize(final Calendar calendar) {
         assertArgumentNotNull("calendar", calendar);

@@ -18,7 +18,7 @@ package org.codelibs.core.log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * (Jakarta) Commons Loggingのロガーを利用するアダプタを生成するファクトリです。
+ * Factory for creating adapters that use (Jakarta) Commons Logging loggers.
  *
  * @author koichik
  */

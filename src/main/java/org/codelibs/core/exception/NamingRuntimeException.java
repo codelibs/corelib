@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import javax.naming.NamingException;
 
 /**
- * {@link NamingException}をラップする例外です。
+ * Exception that wraps {@link NamingException}.
  *
  * @author higa
  */
@@ -29,10 +29,10 @@ public class NamingRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -3176447530746274091L;
 
     /**
-     * {@link NamingRuntimeException}を作成します。
+     * Creates a {@link NamingRuntimeException}.
      *
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public NamingRuntimeException(final NamingException cause) {
         super("ECL0066", asArray(cause), cause);

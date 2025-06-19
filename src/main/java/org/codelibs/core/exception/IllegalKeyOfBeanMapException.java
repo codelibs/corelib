@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.util.Map;
 
 /**
- * {@literal BeanMap}に含まれていないキーを使用した場合にスローされる例外です。
+ * Exception thrown when using a key not contained in a {@literal BeanMap}.
  *
  * @author koichik
  */
@@ -29,12 +29,12 @@ public class IllegalKeyOfBeanMapException extends ClIllegalArgumentException {
     private static final long serialVersionUID = 3456740832476626338L;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param key
-     *            マップのキー
+     *            Key of the map
      * @param map
-     *            マップ
+     *            Map
      */
     public IllegalKeyOfBeanMapException(final Object key, final Map<?, ?> map) {
         super("key", "ECL0016", asArray(key, map));

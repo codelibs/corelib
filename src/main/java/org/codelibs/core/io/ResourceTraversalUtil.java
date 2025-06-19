@@ -31,7 +31,7 @@ import org.codelibs.core.jar.JarFileUtil;
 import org.codelibs.core.zip.ZipInputStreamUtil;
 
 /**
- * リソースをトラバースするためのクラスです。
+ * Class for traversing resources.
  *
  * @author taedium
  * @see ResourceHandler
@@ -40,12 +40,10 @@ import org.codelibs.core.zip.ZipInputStreamUtil;
 public abstract class ResourceTraversalUtil {
 
     /**
-     * ファイルシステムに含まれるリソースをトラバースします。
+     * Traverses resources contained in the file system.
      *
-     * @param rootDir
-     *            ルートディレクトリ。{@literal null}であってはいけません
-     * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     * @param rootDir the root directory (must not be {@literal null})
+     * @param handler the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final File rootDir, final ResourceHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
@@ -55,21 +53,14 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * ファイルシステムに含まれるリソースをトラバースします。
+     * Traverses resources contained in the file system.
      * <p>
-     * ルートディレクトリ以下のリソースのうち、ベースディレクトリで始まるパスを持つリソースがトラバースの対象となります。
-     * リソースを処理するハンドラには、ルートディレクトリからの相対パスが渡されます。 例えばルートディレクトリが
-     * <code>/aaa/bbb</code>で、ベースディレクトリが<code>ccc/ddd</code>の場合、
-     * <code>/aaa/bbb/ccc/ddd/eee.txt</code>というリソースが存在すると、 ハンドラには
-     * <code>ccc/ddd/eee.txt</code>というパスが渡されます。
+     * Of the resources under the root directory, only those with paths starting with the base directory are traversed. The handler receives the relative path from the root directory. For example, if the root directory is <code>/aaa/bbb</code> and the base directory is <code>ccc/ddd</code>, and the resource <code>/aaa/bbb/ccc/ddd/eee.txt</code> exists, the handler receives the path <code>ccc/ddd/eee.txt</code>.
      * </p>
      *
-     * @param rootDir
-     *            ルートディレクトリ。{@literal null}であってはいけません
-     * @param baseDirectory
-     *            ベースディレクトリ
-     * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     * @param rootDir the root directory (must not be {@literal null})
+     * @param baseDirectory the base directory
+     * @param handler the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final File rootDir, final String baseDirectory, final ResourceHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
@@ -82,12 +73,12 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * Jarファイル形式のファイルに含まれるリソースをトラバースします。
+     * Traverses resources contained in a Jar file.
      *
      * @param jarFile
-     *            jarファイル形式のファイル。{@literal null}であってはいけません
+     *            the Jar file (must not be {@literal null})
      * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     *            the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final JarFile jarFile, final ResourceHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
@@ -97,21 +88,21 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * Jarファイル形式のファイルに含まれるリソースをトラバースします。
+     * Traverses resources contained in a Jar file.
      * <p>
-     * Jarファイル内のリソースのうち、接頭辞で始まるパスを持つリソースがトラバースの対象となります。
-     * リソースを処理するハンドラには、接頭辞を除くエントリ名が渡されます。 例えば接頭辞が <code>/aaa/bbb/</code>
-     * で、Jarファイル内に <code>/aaa/bbb/ccc/ddd/eee.txt</code>というリソースが存在すると、 ハンドラには
-     * <code>ccc/ddd/eee.txt</code>というパスが渡されます。
+     * Of the resources in the Jar file, only those with paths starting with the specified prefix are traversed.
+     * The handler receives the entry name with the prefix removed. For example, if the prefix is <code>/aaa/bbb/</code>
+     * and the Jar file contains a resource <code>/aaa/bbb/ccc/ddd/eee.txt</code>, the handler receives
+     * the path <code>ccc/ddd/eee.txt</code>.
      * </p>
      *
      * @param jarFile
-     *            jarファイル形式のファイル。{@literal null}であってはいけません
+     *            the Jar file (must not be {@literal null})
      * @param prefix
-     *            トラバースするリソースの名前が含む接頭辞。{@literal null}であってはいけません。
-     *            空文字列でない場合はスラッシュ('/')で終了していなければなりません
+     *            the prefix that resource names must start with (must not be {@literal null}).
+     *            If not empty, must end with a slash ('/').
      * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     *            the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final JarFile jarFile, final String prefix, final ResourceHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
@@ -136,12 +127,12 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * ZIPファイル形式の入力ストリームに含まれるリソースをトラバースします。
+     * Traverses resources contained in a ZIP file input stream.
      *
      * @param zipInputStream
-     *            ZIPファイル形式の入力ストリーム。{@literal null}であってはいけません
+     *            the ZIP file input stream (must not be {@literal null})
      * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     *            the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final ZipInputStream zipInputStream, final ResourceHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
@@ -151,21 +142,21 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * ZIPファイル形式の入力ストリームに含まれるリソースをトラバースします。
+     * Traverses resources contained in a ZIP file input stream.
      * <p>
-     * 入力ストリーム内のリソースのうち、接頭辞で始まるパスを持つリソースがトラバースの対象となります。
-     * リソースを処理するハンドラには、接頭辞を除くエントリ名が渡されます。 例えば接頭辞が <code>/aaa/bbb/</code>
-     * で、入力ストリーム内に <code>/aaa/bbb/ccc/ddd/eee.txt</code>というリソースが存在すると、 ハンドラには
-     * <code>ccc/ddd/eee.txt</code>というパスが渡されます。
+     * Of the resources in the input stream, only those with paths starting with the specified prefix are traversed.
+     * The handler receives the entry name with the prefix removed. For example, if the prefix is <code>/aaa/bbb/</code>
+     * and the input stream contains a resource <code>/aaa/bbb/ccc/ddd/eee.txt</code>, the handler receives
+     * the path <code>ccc/ddd/eee.txt</code>.
      * </p>
      *
      * @param zipInputStream
-     *            ZIPファイル形式の入力ストリーム。{@literal null}であってはいけません
+     *            the ZIP file input stream (must not be {@literal null})
      * @param prefix
-     *            トラバースするリソースの名前が含む接頭辞。{@literal null}であってはいけません。
-     *            空文字列でない場合はスラッシュ('/')で終了していなければなりません
+     *            the prefix that resource names must start with (must not be {@literal null}).
+     *            If not empty, must end with a slash ('/').
      * @param handler
-     *            リソースを処理するハンドラ。{@literal null}であってはいけません
+     *            the handler to process resources (must not be {@literal null})
      */
     public static void forEach(final ZipInputStream zipInputStream, final String prefix, final ResourceHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
@@ -191,14 +182,14 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * ファイルシステムに含まれるリソースをトラバースします。
+     * Traverses resources contained in the file system.
      *
      * @param rootDir
-     *            ルートディレクトリ
+     *            the root directory
      * @param baseDir
-     *            ベースディレクトリ
+     *            the base directory
      * @param handler
-     *            リソースを処理するハンドラ
+     *            the handler to process resources
      */
     protected static void traverseFileSystem(final File rootDir, final File baseDir, final ResourceHandler handler) {
         for (final File file : baseDir.listFiles()) {
@@ -219,13 +210,13 @@ public abstract class ResourceTraversalUtil {
     }
 
     /**
-     * ベースディレクトリを表す{@link File}を返します。
+     * Returns a {@link File} representing the base directory.
      *
      * @param rootDir
-     *            ルートディレクトリ
+     *            the root directory
      * @param baseDirectory
-     *            ベースディレクトリ
-     * @return ベースディレクトリを表す{@link File}
+     *            the base directory
+     * @return a {@link File} representing the base directory
      */
     protected static File getBaseDir(final File rootDir, final String baseDirectory) {
         assertArgumentNotNull("rootDir", rootDir);

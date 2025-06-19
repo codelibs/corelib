@@ -28,7 +28,7 @@ import org.codelibs.core.exception.ClassNotFoundRuntimeException;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * オブジェクトをシリアライズするためのユーティリティです。
+ * Utility for serializing objects.
  *
  * @author higa
  */
@@ -37,11 +37,10 @@ public abstract class SerializeUtil {
     private static final int BYTE_ARRAY_SIZE = 8 * 1024;
 
     /**
-     * オブジェクトをシリアライズできるかテストします。
+     * Tests if the object can be serialized.
      *
-     * @param obj
-     *            シリアライズ対象のオブジェクト。{@literal null}であってはいけません
-     * @return シリアライズして復元したオブジェクト
+     * @param obj the object to be serialized (must not be {@literal null})
+     * @return the deserialized object
      */
     public static Object serialize(final Object obj) {
         assertArgumentNotNull("obj", obj);
@@ -51,11 +50,10 @@ public abstract class SerializeUtil {
     }
 
     /**
-     * オブジェクトをbyteの配列に変換します。
+     * Converts an object to a byte array.
      *
-     * @param obj
-     *            シリアライズするオブジェクト。{@literal null}であってはいけません
-     * @return オブジェクトのbyte配列
+     * @param obj the object to serialize (must not be {@literal null})
+     * @return the byte array of the object
      */
     public static byte[] fromObjectToBinary(final Object obj) {
         assertArgumentNotNull("obj", obj);
@@ -75,11 +73,10 @@ public abstract class SerializeUtil {
     }
 
     /**
-     * {@literal byte}の配列をオブジェクトに変換します。
+     * Converts a byte array to an object.
      *
-     * @param bytes
-     *            デシリアライズする配列。{@literal null}や空配列であってはいけません
-     * @return 復元したオブジェクト
+     * @param bytes the byte array (must not be {@literal null})
+     * @return the deserialized object
      */
     public static Object fromBinaryToObject(final byte[] bytes) {
         assertArgumentNotEmpty("bytes", bytes);

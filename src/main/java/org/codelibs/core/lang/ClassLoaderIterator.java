@@ -23,9 +23,9 @@ import java.util.NoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * クラスローダの階層を親クラスローダに向かって反復する{@link Iterator}です。
+ * An {@link Iterator} that iterates through the hierarchy of class loaders towards their parent class loaders.
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
@@ -45,21 +45,19 @@ public class ClassLoaderIterator implements Iterator<ClassLoader> {
     protected ClassLoader classLoader;
 
     /**
-     * for each構文で使用するために{@link ClassLoaderIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link ClassLoaderIterator} for use in a for-each statement.
      *
-     * @param classLoader
-     *            クラスローダ。{@literal null}であってはいけません
-     * @return {@link ClassLoaderIterator}をラップした{@link Iterable}
+     * @param classLoader the class loader (must not be {@literal null})
+     * @return an {@link Iterable} wrapping a {@link ClassLoaderIterator}
      */
     public static Iterable<ClassLoader> iterable(final ClassLoader classLoader) {
         return () -> new ClassLoaderIterator(classLoader);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
-     * @param classLoader
-     *            クラスローダ。{@literal null}であってはいけません
+     * @param classLoader the class loader (must not be {@literal null})
      */
     public ClassLoaderIterator(final ClassLoader classLoader) {
         assertArgumentNotNull("classLoader", classLoader);

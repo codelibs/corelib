@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import javax.crypto.NoSuchPaddingException;
 
 /**
- * {@link NoSuchPaddingException}をラップする例外です。
+ * Exception that wraps {@link NoSuchPaddingException}.
  *
  * @author shinsuke
  */
@@ -29,10 +29,9 @@ public class NoSuchPaddingRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -3176447530746274091L;
 
     /**
-     * {@link NoSuchPaddingException}を作成します。
+     * Creates a {@link NoSuchPaddingRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public NoSuchPaddingRuntimeException(final NoSuchPaddingException cause) {
         super("ECL0069", asArray(cause), cause);

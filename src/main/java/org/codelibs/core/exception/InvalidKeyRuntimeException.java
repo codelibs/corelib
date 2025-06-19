@@ -21,7 +21,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * {@link NoSuchAlgorithmException}をラップする例外です。
+ * Exception that wraps {@link NoSuchAlgorithmException}.
  *
  * @author shinsuke
  */
@@ -30,10 +30,10 @@ public class InvalidKeyRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -3176447530746274091L;
 
     /**
-     * {@link InvalidKeyRuntimeException}を作成します。
+     * Creates a {@link InvalidKeyRuntimeException}.
      *
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public InvalidKeyRuntimeException(final InvalidKeyException cause) {
         super("ECL0068", asArray(cause), cause);

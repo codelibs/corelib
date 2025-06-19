@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * クラスが見つからないときにスローされる例外です。
+ * Exception thrown when a class cannot be found.
  *
  * @author higa
  */
@@ -29,22 +29,19 @@ public class ClassNotFoundRuntimeException extends ClRuntimeException {
     private final String className;
 
     /**
-     * {@link ClassNotFoundRuntimeException}を作成します。
+     * Creates a {@link ClassNotFoundRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public ClassNotFoundRuntimeException(final ClassNotFoundException cause) {
         this(null, cause);
     }
 
     /**
-     * {@link ClassNotFoundRuntimeException}を作成します。
+     * Creates a {@link ClassNotFoundRuntimeException}.
      *
-     * @param className
-     *            クラス名
-     * @param cause
-     *            原因となった例外
+     * @param className the class name
+     * @param cause the underlying exception
      */
     public ClassNotFoundRuntimeException(final String className, final ClassNotFoundException cause) {
         super("ECL0044", asArray(cause), cause);
@@ -52,9 +49,9 @@ public class ClassNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * クラス名を返します。
+     * Returns the class name.
      *
-     * @return クラス名
+     * @return the class name
      */
     public String getClassName() {
         return className;

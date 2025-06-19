@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Integer}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Integer}.
  *
  * @author higa
  */
 public abstract class IntegerConversionUtil {
 
     /**
-     * {@link Integer}に変換します。
+     * Converts to {@link Integer}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Integer}
+     *            The object to convert
+     * @return The converted {@link Integer}
      */
     public static Integer toInteger(final Object o) {
         return toInteger(o, null);
     }
 
     /**
-     * {@link Integer}に変換します。
+     * Converts to {@link Integer}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Integer}
+     *            The pattern string
+     * @return The converted {@link Integer}
      */
     public static Integer toInteger(final Object o, final String pattern) {
         if (o == null) {
@@ -76,24 +76,24 @@ public abstract class IntegerConversionUtil {
     }
 
     /**
-     * {@literal int}に変換します。
+     * Converts to {@literal int}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal int}
+     *            The object to convert
+     * @return The converted {@literal int}
      */
     public static int toPrimitiveInt(final Object o) {
         return toPrimitiveInt(o, null);
     }
 
     /**
-     * {@literal int}に変換します。
+     * Converts to {@literal int}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal int}
+     *            The pattern string
+     * @return The converted {@literal int}
      */
     public static int toPrimitiveInt(final Object o, final String pattern) {
         if (o == null) {

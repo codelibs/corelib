@@ -66,38 +66,38 @@ import org.codelibs.core.lang.StringUtil;
  */
 public class BeanDescImpl implements BeanDesc {
 
-    /** 空のオブジェクト配列 */
+    /** Empty object array */
     protected static final Object[] EMPTY_ARGS = new Object[0];
 
-    /** 空のクラス配列 */
+    /** Empty class array */
     protected static final Class<?>[] EMPTY_PARAM_TYPES = new Class<?>[0];
 
-    /** Beanのクラス */
+    /** The class of the bean */
     protected final Class<?> beanClass;
 
-    /** 型引数と型変数のマップ */
+    /** Map of type arguments and type variables */
     protected final Map<TypeVariable<?>, Type> typeVariables;
 
-    /** プロパティ名から{@link PropertyDesc}へのマップ */
+    /** Map from property name to {@link PropertyDesc} */
     protected final CaseInsensitiveMap<PropertyDesc> propertyDescCache = new CaseInsensitiveMap<>();
 
-    /** フィールド名から{@link FieldDescImpl}へのマップ */
+    /** Map from field name to {@link FieldDescImpl} */
     protected final ArrayMap<String, FieldDesc> fieldDescCache = new ArrayMap<>();
 
-    /** {@link ConstructorDesc}の配列 */
+    /** Array of {@link ConstructorDesc} */
     protected final List<ConstructorDesc> constructorDescs = newArrayList();
 
-    /** メソッド名から{@link MethodDesc}配列へのマップ */
+    /** Map from method name to array of {@link MethodDesc} */
     protected final Map<String, MethodDesc[]> methodDescsCache = newHashMap();
 
-    /** 不正なプロパティ名のセット */
+    /** Set of invalid property names */
     protected final Set<String> invalidPropertyNames = newHashSet();
 
     /**
-     * {@link BeanDescImpl}を作成します。
+     * Creates a {@link BeanDescImpl}.
      *
      * @param beanClass
-     *            ビーンのクラス。{@literal null}であってはいけません
+     *            the class of the bean. Must not be {@literal null}
      */
     public BeanDescImpl(final Class<?> beanClass) {
         assertArgumentNotNull("beanClass", beanClass);
@@ -302,22 +302,22 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * {@link PropertyDesc}を返します。
+     * Returns the {@link PropertyDesc} for the specified property name.
      *
      * @param propertyName
-     *            プロパティ名
-     * @return {@link PropertyDesc}。プロパティが存在しない場合は{@literal null}
+     *            the property name
+     * @return the {@link PropertyDesc}, or {@literal null} if the property does not exist
      */
     protected PropertyDesc getPropertyDescNoException(final String propertyName) {
         return propertyDescCache.get(propertyName);
     }
 
     /**
-     * 引数に適合する{@link ConstructorDesc}を返します。
+     * Returns a {@link ConstructorDesc} that matches the given arguments.
      *
      * @param args
-     *            コンストラクタ引数の並び
-     * @return 引数に適合する{@link ConstructorDesc}。存在しない場合は{@literal null}
+     *            the constructor arguments
+     * @return a {@link ConstructorDesc} that matches the arguments, or {@literal null} if none exists
      */
     protected ConstructorDesc findSuitableConstructorDesc(final Object... args) {
         for (final ConstructorDesc constructorDesc : constructorDescs) {
@@ -329,14 +329,14 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * 引数に適合する{@link ConstructorDesc}を返します。
+     * Returns a {@link ConstructorDesc} that matches the given arguments.
      * <p>
-     * 引数の型が数値の場合、引数を数値に変換することが出来れば適合するとみなします。
+     * If the parameter type is a number, it is considered a match if the argument can be converted to the number type.
      * </p>
      *
      * @param args
-     *            コンストラクタ引数の並び
-     * @return 引数に適合する{@link ConstructorDesc}。存在しない場合は{@literal null}
+     *            the constructor arguments
+     * @return a {@link ConstructorDesc} that matches the arguments, or {@literal null} if none exists
      */
     protected ConstructorDesc findSuitableConstructorDescAdjustNumber(final Object... args) {
         for (final ConstructorDesc constructorDesc : constructorDescs) {
@@ -348,13 +348,13 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * 引数に適合する{@link MethodDesc}を返します。
+     * Returns a {@link MethodDesc} that matches the given arguments.
      *
      * @param methodDescs
-     *            メソッドの配列
+     *            array of methods
      * @param args
-     *            メソッド引数の並び
-     * @return 引数に適合する{@link MethodDesc}。存在しない場合は{@literal null}
+     *            array of method arguments
+     * @return a {@link MethodDesc} that matches the arguments, or {@literal null} if none exists
      */
     protected MethodDesc findSuitableMethod(final MethodDesc[] methodDescs, final Object[] args) {
         for (final MethodDesc methodDesc : methodDescs) {
@@ -366,16 +366,16 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * 引数に適合する{@link MethodDesc}を返します。
+     * Returns a {@link MethodDesc} that matches the given arguments.
      * <p>
-     * 引数の型が数値の場合、引数を数値に変換することが出来れば適合するとみなします。
+     * If the parameter type is a number, it is considered a match if the argument can be converted to the number type.
      * </p>
      *
      * @param methodDescs
-     *            メソッドの配列
+     *            array of methods
      * @param args
-     *            メソッド引数の並び
-     * @return 引数に適合する{@link MethodDesc}。存在しない場合は{@literal null}
+     *            array of method arguments
+     * @return a {@link MethodDesc} that matches the arguments, or {@literal null} if none exists
      */
     protected MethodDesc findSuitableMethodDescAdjustNumber(final MethodDesc[] methodDescs, final Object[] args) {
         for (final MethodDesc methodDesc : methodDescs) {
@@ -387,15 +387,15 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * 引数が引数型に適合するかチェックします。
+     * Checks whether the arguments are suitable for the parameter types.
      *
      * @param paramTypes
-     *            引数型の並び
+     *            array of parameter types
      * @param args
-     *            引数の並び
+     *            array of arguments
      * @param adjustNumber
-     *            引数型が数値型の場合に引数を適合するように変換する場合は{@literal true}
-     * @return 引数が引数型に適合する場合は{@literal true}
+     *            if {@literal true}, converts arguments to match number types if necessary
+     * @return {@literal true} if the arguments are suitable for the parameter types
      */
     protected boolean isSuitable(final Class<?>[] paramTypes, final Object[] args, final boolean adjustNumber) {
         if (args == null) {
@@ -420,15 +420,15 @@ public class BeanDescImpl implements BeanDesc {
     }
 
     /**
-     * 指定された位置の引数型が数値の場合、引数を適合するように変換します。
+     * If the argument type at the specified position is a number, converts the argument to match the type.
      *
      * @param paramTypes
-     *            引数型の並び
+     *            array of parameter types
      * @param args
-     *            引数の並び
+     *            array of arguments
      * @param index
-     *            操作対象となる引数のインデックス
-     * @return 引数を適合するように変換した場合は{@literal true}
+     *            index of the argument to operate on
+     * @return {@literal true} if the argument was converted to match the type
      */
     protected static boolean adjustNumber(final Class<?>[] paramTypes, final Object[] args, final int index) {
         if (paramTypes[index].isPrimitive()) {

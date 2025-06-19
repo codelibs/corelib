@@ -16,35 +16,18 @@
 package org.codelibs.core.lang;
 
 /**
- *
- * {@link Object}用のユーティリティクラスです。
+ * Utility class for object operations.
  *
  * @author wyukawa
  */
 public abstract class ObjectUtil {
 
     /**
-     * オブジェクトが等しいかどうか返します。どちらも<code>null</code>の場合は、<code>true</code>を返します。
-     * <p>
-     * 次のように使います．
-     * </p>
+     * Returns true if the two objects are equal, or both are null.
      *
-     * <pre>
-     * ObjectUtil.equals(null, null)                  = true
-     * ObjectUtil.equals(null, "")                    = false
-     * ObjectUtil.equals("", null)                    = false
-     * ObjectUtil.equals("", "")                      = true
-     * ObjectUtil.equals(Boolean.TRUE, null)          = false
-     * ObjectUtil.equals(Boolean.TRUE, "true")        = false
-     * ObjectUtil.equals(Boolean.TRUE, Boolean.TRUE)  = true
-     * ObjectUtil.equals(Boolean.TRUE, Boolean.FALSE) = false
-     * </pre>
-     *
-     * @param object1
-     *            オブジェクト(<code>null</code>可)
-     * @param object2
-     *            オブジェクト(<code>null</code>可)
-     * @return 引数の2つのオブジェクトが等しい場合は<code>true</code>を返します。
+     * @param object1 the first object
+     * @param object2 the second object
+     * @return true if equal or both null, false otherwise
      */
     public static boolean equals(final Object object1, final Object object2) {
         if (object1 == object2) {
@@ -57,9 +40,29 @@ public abstract class ObjectUtil {
     }
 
     /**
-     * オブジェクトを返します。オブジェクトが<code>null</code>だったら<code>defaultValue</code>を返します。
+     * Returns the hash code of the specified object, or 0 if the object is null.
+     *
+     * @param obj the object
+     * @return the hash code or 0
+     */
+    public static int hashCode(final Object obj) {
+        return obj == null ? 0 : obj.hashCode();
+    }
+
+    /**
+     * Returns the string representation of the specified object, or null if the object is null.
+     *
+     * @param obj the object
+     * @return the string representation or null
+     */
+    public static String toString(final Object obj) {
+        return obj == null ? null : obj.toString();
+    }
+
+    /**
+     * Returns the object, or the defaultValue if the object is <code>null</code>.
      * <p>
-     * 次のように使います．
+     * Usage example:
      * </p>
      *
      * <pre>
@@ -69,17 +72,24 @@ public abstract class ObjectUtil {
      * ObjectUtil.defaultValue(null, null) = null
      * </pre>
      *
-     * @param <T>
-     *            オブジェクトの型
-     * @param t
-     *            オブジェクト(<code>null</code>可)
-     * @param defaultValue
-     *            引数のオブジェクトが<code>null</code>だったら返すオブジェクト(<code>null</code>可)
-     * @return オブジェクトを返します。オブジェクトが<code>null</code>だったら<code>defaultValue</code>
-     *         を返します。
+     * @param <T> the type of the object
+     * @param t the object (can be <code>null</code>)
+     * @param defaultValue the object to return if t is <code>null</code> (can be <code>null</code>)
+     * @return t if not <code>null</code>, otherwise defaultValue
      */
     public static <T> T defaultValue(final T t, final T defaultValue) {
         return t == null ? defaultValue : t;
+    }
+
+    /**
+     * Returns true if the two objects are not equal.
+     *
+     * @param o1 the first object
+     * @param o2 the second object
+     * @return true if not equal, false otherwise
+     */
+    public static boolean notEquals(final Object o1, final Object o2) {
+        return !equals(o1, o2);
     }
 
 }

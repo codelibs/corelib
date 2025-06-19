@@ -34,7 +34,7 @@ import org.codelibs.core.net.JarURLConnectionUtil;
 import org.codelibs.core.net.URLUtil;
 
 /**
- * {@link java.util.jar.JarFile}を扱うユーティリティクラスです。
+ * Utility class for handling {@link java.util.jar.JarFile}.
  *
  * @author higa
  */
@@ -43,11 +43,10 @@ public abstract class JarFileUtil {
     private static final Logger logger = Logger.getLogger(JarFileUtil.class);
 
     /**
-     * 指定されたJarファイルを読み取るための<code>JarFile</code>を作成して返します。
+     * Creates and returns a <code>JarFile</code> to read the specified JAR file.
      *
-     * @param file
-     *            ファイルパス。{@literal null}であってはいけません
-     * @return 指定されたJarファイルを読み取るための<code>JarFile</code>
+     * @param file the file path (must not be {@literal null})
+     * @return a <code>JarFile</code> to read the specified JAR file
      */
     public static JarFile create(final String file) {
         assertArgumentNotNull("file", file);
@@ -60,11 +59,10 @@ public abstract class JarFileUtil {
     }
 
     /**
-     * 指定されたJarファイルを読み取るための<code>JarFile</code>を作成して返します。
+     * Creates and returns a <code>JarFile</code> to read the specified JAR file.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return 指定されたJarファイルを読み取るための<code>JarFile</code>
+     * @param file the file (must not be {@literal null})
+     * @return a <code>JarFile</code> to read the specified JAR file
      */
     public static JarFile create(final File file) {
         assertArgumentNotNull("file", file);
@@ -77,13 +75,11 @@ public abstract class JarFileUtil {
     }
 
     /**
-     * 指定されたJarファイルエントリの内容を読み込むための入力ストリームを返します。
+     * Returns an input stream to read the contents of the specified JAR file entry.
      *
-     * @param file
-     *            Jarファイル。{@literal null}であってはいけません
-     * @param entry
-     *            Jarファイルエントリ。{@literal null}であってはいけません
-     * @return 指定されたJarファイルエントリの内容を読み込むための入力ストリーム
+     * @param file the JAR file (must not be {@literal null})
+     * @param entry the JAR file entry (must not be {@literal null})
+     * @return the input stream to read the entry
      */
     public static InputStream getInputStream(final JarFile file, final ZipEntry entry) {
         assertArgumentNotNull("file", file);
@@ -97,11 +93,10 @@ public abstract class JarFileUtil {
     }
 
     /**
-     * URLで指定されたJarファイルを読み取るための<code>JarFile</code>を作成して返します。
+     * Creates and returns a <code>JarFile</code> to read the JAR file specified by the URL.
      *
-     * @param jarUrl
-     *            Jarファイルを示すURL。{@literal null}であってはいけません
-     * @return 指定されたJarファイルを読み取るための<code>JarFile</code>
+     * @param jarUrl the URL of the JAR file (must not be {@literal null})
+     * @return a <code>JarFile</code> to read the JAR file specified by the URL
      */
     public static JarFile toJarFile(final URL jarUrl) {
         assertArgumentNotNull("jarUrl", jarUrl);
@@ -114,11 +109,10 @@ public abstract class JarFileUtil {
     }
 
     /**
-     * URLで指定されたJarファイルのパスを返します。
+     * Returns the path of the JAR file specified by the URL.
      *
-     * @param jarUrl
-     *            Jarファイルを示すURL。{@literal null}であってはいけません
-     * @return URLで指定されたJarファイルのパス
+     * @param jarUrl the URL of the JAR file (must not be {@literal null})
+     * @return the path of the JAR file specified by the URL
      */
     public static String toJarFilePath(final URL jarUrl) {
         assertArgumentNotNull("jarUrl", jarUrl);
@@ -132,13 +126,12 @@ public abstract class JarFileUtil {
     }
 
     /**
-     * Jarファイルをクローズします。
+     * Closes the JAR file.
      * <p>
-     * {@link JarFile#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
+     * If {@link JarFile#close()} throws an exception, an error message is logged. The exception is not re-thrown.
      * </p>
      *
-     * @param jarFile
-     *            Jarファイル。{@literal null}であってはいけません
+     * @param jarFile the JAR file (must not be {@literal null})
      */
     public static void close(final JarFile jarFile) {
         assertArgumentNotNull("jarFile", jarFile);

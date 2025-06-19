@@ -25,9 +25,9 @@ import java.util.NoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * {@link BufferedReader}から読み込んだ行単位の文字列を反復する{@link Iterator}です。
+ * An {@link Iterator} that iterates over lines read from a {@link BufferedReader}.
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
@@ -43,21 +43,21 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  */
 public class LineIterator implements Iterator<String> {
 
-    /** {@link #line}が空であることを示す{@literal String}オブジェクト */
+    /** String object indicating that {@link #line} is empty */
     protected static final String EMPTY = new String();
 
     /** {@link BufferedReader} */
     protected final BufferedReader reader;
 
-    /** 読み込み済みの文字列 */
+    /** The line that has been read */
     protected String line = EMPTY;
 
     /**
-     * for each構文で使用するために{@link LineIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link LineIterator} for use in enhanced for-loops.
      *
      * @param reader
-     *            文字列を読み込む{@link Reader}。{@literal null}であってはいけません
-     * @return {@link LineIterator}をラップした{@link Iterable}
+     *            The {@link Reader} to read strings from. Must not be {@literal null}.
+     * @return An {@link Iterable} that wraps a {@link LineIterator}.
      */
     public static Iterable<String> iterable(final Reader reader) {
         assertArgumentNotNull("reader", reader);
@@ -65,11 +65,11 @@ public class LineIterator implements Iterator<String> {
     }
 
     /**
-     * for each構文で使用するために{@link LineIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link LineIterator} for use in enhanced for-loops.
      *
      * @param reader
-     *            文字列を読み込む{@link BufferedReader}。{@literal null}であってはいけません
-     * @return {@link LineIterator}をラップした{@link Iterable}
+     *            The {@link BufferedReader} to read strings from. Must not be {@literal null}.
+     * @return An {@link Iterable} that wraps a {@link LineIterator}.
      */
     public static Iterable<String> iterable(final BufferedReader reader) {
         assertArgumentNotNull("reader", reader);
@@ -78,10 +78,10 @@ public class LineIterator implements Iterator<String> {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param reader
-     *            文字列を読み込む{@link Reader}。{@literal null}であってはいけません
+     *            The {@link Reader} to read strings from. Must not be {@literal null}.
      */
     public LineIterator(final Reader reader) {
         assertArgumentNotNull("reader", reader);
@@ -89,10 +89,10 @@ public class LineIterator implements Iterator<String> {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param reader
-     *            文字列を読み込む{@link BufferedReader}。{@literal null}であってはいけません
+     *            The {@link BufferedReader} to read strings from. Must not be {@literal null}.
      */
     public LineIterator(final BufferedReader reader) {
         assertArgumentNotNull("reader", reader);

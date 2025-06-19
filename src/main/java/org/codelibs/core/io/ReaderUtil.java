@@ -30,23 +30,23 @@ import java.io.Reader;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link Reader}用のユーティリティクラスです。
+ * Utility class for {@link Reader} operations.
  *
  * @author higa
  */
 public abstract class ReaderUtil {
 
-    /** デフォルトのバッファサイズ */
+    /** Default buffer size */
     private static final int BUF_SIZE = 4096;
 
     /**
-     * 指定のエンコーディングでファイルから入力する{@link Reader}を作成します。
+     * Creates a {@link Reader} to read from a file with the specified encoding.
      *
      * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
+     *            the input stream (must not be {@literal null})
      * @param encoding
-     *            入力ストリームのエンコーディング。{@literal null}や空文字列であってはいけません
-     * @return ファイルかへ出力する{@link Reader}
+     *            the encoding of the input stream (must not be {@literal null} or empty)
+     * @return a {@link Reader} to read from the file
      */
     public static InputStreamReader create(final InputStream is, final String encoding) {
         assertArgumentNotNull("is", is);
@@ -60,11 +60,11 @@ public abstract class ReaderUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングでファイルから入力する{@link Reader}を作成します。
+     * Creates a {@link Reader} to read from a file with the default encoding.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルから入力する{@link Reader}
+     *            the file (must not be {@literal null})
+     * @return a {@link Reader} to read from the file
      */
     public static Reader create(final File file) {
         assertArgumentNotNull("file", file);
@@ -77,13 +77,13 @@ public abstract class ReaderUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルから入力する{@link Reader}を作成します。
+     * Creates a {@link Reader} to read from a file with the specified encoding.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            the file (must not be {@literal null})
      * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return ファイルから入力する{@link Reader}
+     *            the encoding (must not be {@literal null} or empty)
+     * @return a {@link Reader} to read from the file
      */
     public static Reader create(final File file, final String encoding) {
         assertArgumentNotNull("file", file);
@@ -97,11 +97,11 @@ public abstract class ReaderUtil {
     }
 
     /**
-     * {@link BufferedReader}から一行読み込んで返します。
+     * Reads a single line from the given {@link BufferedReader}.
      *
      * @param reader
-     *            {@link BufferedReader}。{@literal null}であってはいけません
-     * @return 一行の文字列。終端に達した場合は{@literal null}
+     *            the {@link BufferedReader} (must not be {@literal null})
+     * @return a line of text, or {@literal null} if the end of the stream has been reached
      * @see BufferedReader#readLine()
      */
     public static String readLine(final BufferedReader reader) {
@@ -115,14 +115,14 @@ public abstract class ReaderUtil {
     }
 
     /**
-     * {@link Reader}からテキストを読み込みます。
+     * Reads text from the given {@link Reader}.
      * <p>
-     * {@link Reader}はクローズされません。
+     * The {@link Reader} is not closed by this method.
      * </p>
      *
      * @param reader
-     *            読み込み文字ストリーム。{@literal null}であってはいけません
-     * @return テキスト
+     *            the character input stream to read from (must not be {@literal null})
+     * @return the text read from the reader
      */
     public static String readText(final Reader reader) {
         assertArgumentNotNull("reader", reader);

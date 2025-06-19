@@ -24,20 +24,20 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatSymbolsUtil;
 
 /**
- * {@link Number}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Number}.
  *
  * @author higa
  */
 public abstract class NumberConversionUtil {
 
     /**
-     * 適切な {@link Number}に変換します。
+     * Converts to the appropriate {@link Number}.
      *
      * @param type
-     *            変換先の型
+     *            Target type
      * @param o
-     *            変換元のオブジェクト
-     * @return {@literal type}に変換された{@link Number}
+     *            Source object
+     * @return {@link Number} converted to {@literal type}
      */
     public static Object convertNumber(final Class<?> type, final Object o) {
         if (type == Integer.class) {
@@ -61,13 +61,13 @@ public abstract class NumberConversionUtil {
     }
 
     /**
-     * 指定されたプリミティブ型に対応するラッパー型に変換して返します。
+     * Converts to the wrapper type corresponding to the specified primitive type.
      *
      * @param type
-     *            プリミティブ型
+     *            Primitive type
      * @param o
-     *            変換元のオブジェクト
-     * @return 指定されたプリミティブ型に対応するラッパー型に変換されたオブジェクト
+     *            Source object
+     * @return Object converted to the wrapper type corresponding to the specified primitive type
      */
     public static Object convertPrimitiveWrapper(final Class<?> type, final Object o) {
         if (type == int.class) {
@@ -117,13 +117,13 @@ public abstract class NumberConversionUtil {
     }
 
     /**
-     * デリミタを削除します。
+     * Removes delimiters.
      *
      * @param value
-     *            文字列の値
+     *            String value
      * @param locale
-     *            ロケール
-     * @return デリミタを削除した結果の文字列
+     *            Locale
+     * @return String result with delimiters removed
      */
     public static String removeDelimeter(String value, final Locale locale) {
         final String groupingSeparator = findGroupingSeparator(locale);
@@ -134,11 +134,11 @@ public abstract class NumberConversionUtil {
     }
 
     /**
-     * グルーピング用のセパレータを探します。
+     * Finds the separator for grouping.
      *
      * @param locale
-     *            ロケール
-     * @return グルーピング用のセパレータ
+     *            Locale
+     * @return Separator for grouping
      */
     public static String findGroupingSeparator(final Locale locale) {
         final DecimalFormatSymbols symbol = getDecimalFormatSymbols(locale);
@@ -146,11 +146,11 @@ public abstract class NumberConversionUtil {
     }
 
     /**
-     * 数値のセパレータを返します。
+     * Returns the separator for decimal numbers.
      *
      * @param locale
-     *            ロケール
-     * @return 数値のセパレータ
+     *            Locale
+     * @return Separator for decimal numbers
      */
     public static String findDecimalSeparator(final Locale locale) {
         final DecimalFormatSymbols symbol = getDecimalFormatSymbols(locale);

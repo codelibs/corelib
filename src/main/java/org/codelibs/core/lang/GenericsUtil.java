@@ -33,21 +33,21 @@ import java.util.Set;
 import org.codelibs.core.collection.CollectionsUtil;
 
 /**
- * genericsを扱うためのユーティリティ・クラスです。
+ * Utility class for handling generics in Java.
  *
  * @author koichik
  */
 public abstract class GenericsUtil {
 
     /**
-     * <code>type</code>の原型が<code>clazz</code>に代入可能であれば<code>true</code>を、
-     * それ以外の場合は<code>false</code>を返します。
+     * Returns <code>true</code> if the raw type of <code>type</code> can be assigned to <code>clazz</code>,
+     * <code>false</code> otherwise.
      *
      * @param type
-     *            タイプ。{@literal null}であってはいけません
+     *            the type to check. Cannot be null.
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return <code>type</code>の原型が<code>clazz</code>に代入可能であれば<code>true</code>
+     *            the class to check against. Cannot be null.
+     * @return <code>true</code> if the raw type of <code>type</code> can be assigned to <code>clazz</code>
      */
     public static boolean isTypeOf(final Type type, final Class<?> clazz) {
         assertArgumentNotNull("type", type);
@@ -64,18 +64,18 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * <code>type</code>の原型を返します。
+     * Returns the raw class of the specified type.
      * <ul>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is an array, the raw class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            タイプ
-     * @return <code>type</code>の原型
+     *            the type to analyze
+     * @return the raw class of the specified type
      */
     public static Class<?> getRawClass(final Type type) {
         if (type instanceof Class) {
@@ -99,21 +99,21 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * <code>type</code>の型引数の配列を返します。
+     * Returns the array of type arguments for the specified type.
      * <p>
-     * <code>type</code>が配列型の場合はその要素型(それが配列の場合はさらにその要素型)を対象とします。
+     * If <code>type</code> is an array type, the element type(s) of the array are analyzed recursively.
      * </p>
      * <p>
-     * <code>type</code>がパラメータ化された型であっても、直接型引数を持たない場合は空の配列を返します。
-     * パラメータ化された型の中にネストされた、型引数を持たない型などがその例です。
+     * If <code>type</code> is a parameterized type but has no direct type arguments, an empty array is returned.
+     * This includes cases where the parameterized type contains nested types without type arguments.
      * </p>
      * <p>
-     * <code>type</code>がパラメータ化された型でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized type, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            タイプ
-     * @return <code>type</code>の型引数の配列
+     *            the type to analyze
+     * @return the array of type arguments for the specified type
      * @see ParameterizedType#getActualTypeArguments()
      */
     public static Type[] getGenericParameters(final Type type) {
@@ -127,16 +127,11 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * 指定された位置の<code>type</code>の型引数を返します。
-     * <p>
-     * <code>type</code>がパラメータ化された型でない場合は<code>null</code>を返します。
-     * </p>
+     * Returns the generic type of the specified type for the given index.
      *
-     * @param type
-     *            タイプ
-     * @param index
-     *            位置
-     * @return 指定された位置の<code>type</code>の型引数
+     * @param type the type to analyze
+     * @param index the index of the generic type
+     * @return the generic type class, or null if not found
      */
     public static Type getGenericParameter(final Type type, final int index) {
         if (!(type instanceof ParameterizedType)) {
@@ -151,14 +146,73 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された型を要素とする配列の要素型を返します。
+     * Returns the generic type of the specified type for the given index, or the default class if not found.
+     *
+     * @param type the type to analyze
+     * @param index the index of the generic type
+     * @param defaultClass the default class to return if not found
+     * @return the generic type class, or the default class
+     */
+    public static Type getGenericParameter(final Type type, final int index, final Class<?> defaultClass) {
+        final Type genericParameter = getGenericParameter(type, index);
+        return genericParameter != null ? genericParameter : defaultClass;
+    }
+
+    /**
+     * Returns the generic type of the specified field for the given index.
+     *
+     * @param field the field to analyze
+     * @param index the index of the generic type
+     * @return the generic type class, or null if not found
+     */
+    public static Type getGenericParameter(final java.lang.reflect.Field field, final int index) {
+        return getGenericParameter(field.getGenericType(), index);
+    }
+
+    /**
+     * Returns the generic type of the specified field for the given index, or the default class if not found.
+     *
+     * @param field the field to analyze
+     * @param index the index of the generic type
+     * @param defaultClass the default class to return if not found
+     * @return the generic type class, or the default class
+     */
+    public static Type getGenericParameter(final java.lang.reflect.Field field, final int index, final Class<?> defaultClass) {
+        return getGenericParameter(field.getGenericType(), index, defaultClass);
+    }
+
+    /**
+     * Returns the generic type of the specified method for the given index.
+     *
+     * @param method the method to analyze
+     * @param index the index of the generic type
+     * @return the generic type class, or null if not found
+     */
+    public static Type getGenericParameter(final java.lang.reflect.Method method, final int index) {
+        return getGenericParameter(method.getGenericReturnType(), index);
+    }
+
+    /**
+     * Returns the generic type of the specified method for the given index, or the default class if not found.
+     *
+     * @param method the method to analyze
+     * @param index the index of the generic type
+     * @param defaultClass the default class to return if not found
+     * @return the generic type class, or the default class
+     */
+    public static Type getGenericParameter(final java.lang.reflect.Method method, final int index, final Class<?> defaultClass) {
+        return getGenericParameter(method.getGenericReturnType(), index, defaultClass);
+    }
+
+    /**
+     * Returns the element type of an array with parameterized types.
      * <p>
-     * <code>type</code>がパラメータ化された型の配列でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not an array of parameterized types, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された型を要素とする配列
-     * @return パラメータ化された型を要素とする配列の要素型
+     *            the type to analyze
+     * @return the element type of the array, or null if not an array of parameterized types
      */
     public static Type getElementTypeOfArray(final Type type) {
         if (!(type instanceof GenericArrayType)) {
@@ -168,14 +222,14 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Collection}の要素型を返します。
+     * Returns the element type of a parameterized {@link Collection}.
      * <p>
-     * <code>type</code>がパラメータ化された{@link List}でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized {@link Collection}, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された{@link List}
-     * @return パラメータ化された{@link List}の要素型
+     *            the type to analyze
+     * @return the element type of the collection, or null if not a parameterized collection
      */
     public static Type getElementTypeOfCollection(final Type type) {
         if (!isTypeOf(type, Collection.class)) {
@@ -185,14 +239,14 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link List}の要素型を返します。
+     * Returns the element type of a parameterized {@link List}.
      * <p>
-     * <code>type</code>がパラメータ化された{@link List}でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized {@link List}, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された{@link List}
-     * @return パラメータ化された{@link List}の要素型
+     *            the type to analyze
+     * @return the element type of the list, or null if not a parameterized list
      */
     public static Type getElementTypeOfList(final Type type) {
         if (!isTypeOf(type, List.class)) {
@@ -202,14 +256,14 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Set}の要素型を返します。
+     * Returns the element type of a parameterized {@link Set}.
      * <p>
-     * <code>type</code>がパラメータ化された{@link Set}でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized {@link Set}, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された{@link Set}
-     * @return パラメータ化された{@link Set}の要素型
+     *            the type to analyze
+     * @return the element type of the set, or null if not a parameterized set
      */
     public static Type getElementTypeOfSet(final Type type) {
         if (!isTypeOf(type, Set.class)) {
@@ -219,14 +273,14 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Map}のキーの型を返します。
+     * Returns the key type of a parameterized {@link Map}.
      * <p>
-     * <code>type</code>がパラメータ化された{@link Map}でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized {@link Map}, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された{@link Map}
-     * @return パラメータ化された{@link Map}のキーの型
+     *            the type to analyze
+     * @return the key type of the map, or null if not a parameterized map
      */
     public static Type getKeyTypeOfMap(final Type type) {
         if (!isTypeOf(type, Map.class)) {
@@ -236,14 +290,14 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Map}の値の型を返します。
+     * Returns the value type of a parameterized {@link Map}.
      * <p>
-     * <code>type</code>がパラメータ化された{@link Map}でない場合は<code>null</code>を返します。
+     * If <code>type</code> is not a parameterized {@link Map}, <code>null</code> is returned.
      * </p>
      *
      * @param type
-     *            パラメータ化された{@link Map}
-     * @return パラメータ化された{@link Map}の値の型
+     *            the type to analyze
+     * @return the value type of the map, or null if not a parameterized map
      */
     public static Type getValueTypeOfMap(final Type type) {
         if (!isTypeOf(type, Map.class)) {
@@ -253,11 +307,12 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された型(クラスまたはインタフェース)が持つ型変数をキー、型引数を値とする{@link Map}を返します。
+     * Returns a {@link Map} where the keys are the type variables and the values are the type arguments
+     * of the specified parameterized type (class or interface).
      *
      * @param clazz
-     *            パラメータ化された型(クラスまたはインタフェース)。{@literal null}であってはいけません
-     * @return パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
+     *            the parameterized type (class or interface) to analyze. Cannot be null.
+     * @return a {@link Map} where the keys are the type variables and the values are the type arguments
      */
     public static Map<TypeVariable<?>, Type> getTypeVariableMap(final Class<?> clazz) {
         assertArgumentNotNull("clazz", clazz);
@@ -285,14 +340,15 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された型(クラスまたはインタフェース)が持つ型変数および型引数を集めて<code>map</code>に追加します。
+     * Gathers the type variables and type arguments of the specified parameterized type (class or interface)
+     * and adds them to the given map.
      *
      * @param clazz
-     *            クラス
+     *            the class to analyze
      * @param type
-     *            型
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
+     *            the map to which the type variables and type arguments are added
      */
     protected static void gatherTypeVariables(final Class<?> clazz, final Type type, final Map<TypeVariable<?>, Type> map) {
         if (clazz == null) {
@@ -314,12 +370,12 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された型(クラスまたはインタフェース)が持つ型変数および型引数を集めて<code>map</code>に追加します。
+     * Gathers the type variables and type arguments of the specified type and adds them to the given map.
      *
      * @param type
-     *            型
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
+     *            the map to which the type variables and type arguments are added
      */
     protected static void gatherTypeVariables(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (type instanceof ParameterizedType) {
@@ -333,22 +389,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * <code>type</code>の実際の型を返します。
+     * Returns the actual class of the specified type.
      * <ul>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数で引数{@code map}のキーとして含まれている場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が型変数で引数{@code map}のキーとして含まれていない場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable and is a key in the given map, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is a type variable and is not a key in the given map, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            タイプ
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return <code>type</code>の実際の型
+     *            the map that contains the type variables and type arguments
+     * @return the actual class of the specified type
      */
     public static Class<?> getActualClass(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (type instanceof Class) {
@@ -376,22 +432,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された型を要素とする配列の実際の要素型を返します。
+     * Returns the actual element type of an array with parameterized types.
      * <ul>
-     * <li><code>type</code>がパラメータ化された型の配列でない場合は<code>null</code>を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is not an array of parameterized types, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された型を要素とする配列
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された型を要素とする配列の実際の要素型
+     *            the map that contains the type variables and type arguments
+     * @return the actual element type of the array, or null if not an array of parameterized types
      */
     public static Class<?> getActualElementClassOfArray(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!(type instanceof GenericArrayType)) {
@@ -401,23 +457,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Collection}の実際の要素型を返します。
+     * Returns the actual element type of a parameterized {@link Collection}.
      * <ul>
-     * <li><code>type</code>がパラメータ化された{@link Collection}でない場合は<code>null</code>
-     * を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is not a parameterized {@link Collection}, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された{@link Collection}
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された{@link Collection}の実際の要素型
+     *            the map that contains the type variables and type arguments
+     * @return the actual element type of the collection, or null if not a parameterized collection
      */
     public static Class<?> getActualElementClassOfCollection(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!isTypeOf(type, Collection.class)) {
@@ -427,22 +482,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link List}の実際の要素型を返します。
+     * Returns the actual element type of a parameterized {@link List}.
      * <ul>
-     * <li><code>type</code>がパラメータ化された{@link List}でない場合は<code>null</code>を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is not a parameterized {@link List}, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された{@link List}
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された{@link List}の実際の要素型
+     *            the map that contains the type variables and type arguments
+     * @return the actual element type of the list, or null if not a parameterized list
      */
     public static Class<?> getActualElementClassOfList(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!isTypeOf(type, List.class)) {
@@ -452,22 +507,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Set}の実際の要素型を返します。
+     * Returns the actual element type of a parameterized {@link Set}.
      * <ul>
-     * <li><code>type</code>がパラメータ化された{@link Set}でない場合は<code>null</code>を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is not a parameterized {@link Set}, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された{@link Set}
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された{@link Set}の実際の要素型
+     *            the map that contains the type variables and type arguments
+     * @return the actual element type of the set, or null if not a parameterized set
      */
     public static Class<?> getActualElementClassOfSet(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!isTypeOf(type, Set.class)) {
@@ -477,22 +532,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Map}のキーの実際の型を返します。
+     * Returns the actual key type of a parameterized {@link Map}.
      * <ul>
-     * <li>キー型がパラメータ化された{@link Map}でない場合は<code>null</code>を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If the key type is not a parameterized {@link Map}, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された{@link Map}
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された{@link Map}のキーの実際の型
+     *            the map that contains the type variables and type arguments
+     * @return the actual key type of the map, or null if not a parameterized map
      */
     public static Class<?> getActualKeyClassOfMap(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!isTypeOf(type, Map.class)) {
@@ -502,22 +557,22 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * パラメータ化された{@link Map}の値の実際の型を返します。
+     * Returns the actual value type of a parameterized {@link Map}.
      * <ul>
-     * <li><code>type</code>がパラメータ化された{@link Map}でない場合は<code>null</code>を返します。</li>
-     * <li><code>type</code>が<code>Class</code>の場合はそのまま返します。</li>
-     * <li><code>type</code>がパラメータ化された型の場合はその原型を返します。</li>
-     * <li><code>type</code>がワイルドカード型の場合は(最初の)上限境界を返します。</li>
-     * <li><code>type</code>が型変数の場合はその変数の実際の型引数を返します。</li>
-     * <li><code>type</code>が配列の場合はその要素の実際の型の配列を返します。</li>
-     * <li>その他の場合は<code>null</code>を返します。</li>
+     * <li>If <code>type</code> is not a parameterized {@link Map}, <code>null</code> is returned.</li>
+     * <li>If <code>type</code> is a <code>Class</code>, it is returned as-is.</li>
+     * <li>If <code>type</code> is a parameterized type, its raw type is returned.</li>
+     * <li>If <code>type</code> is a wildcard type, its (first) upper bound is returned.</li>
+     * <li>If <code>type</code> is a type variable, its actual type argument is returned.</li>
+     * <li>If <code>type</code> is an array, the actual class of its elements is returned.</li>
+     * <li>Otherwise, <code>null</code> is returned.</li>
      * </ul>
      *
      * @param type
-     *            パラメータ化された{@link Map}
+     *            the type to analyze
      * @param map
-     *            パラメータ化された型が持つ型変数をキー、型引数を値とする{@link Map}
-     * @return パラメータ化された{@link Map}の値の実際の型
+     *            the map that contains the type variables and type arguments
+     * @return the actual value type of the map, or null if not a parameterized map
      */
     public static Class<?> getActualValueClassOfMap(final Type type, final Map<TypeVariable<?>, Type> map) {
         if (!isTypeOf(type, Map.class)) {

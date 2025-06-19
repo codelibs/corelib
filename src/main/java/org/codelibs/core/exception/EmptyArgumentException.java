@@ -16,7 +16,7 @@
 package org.codelibs.core.exception;
 
 /**
- * 空の場合にスローされる例外です。
+ * Exception thrown when an argument is empty.
  *
  * @author higa
  */
@@ -25,30 +25,30 @@ public class EmptyArgumentException extends ClIllegalArgumentException {
     private static final long serialVersionUID = 4625805280526951642L;
 
     /**
-     * {@link EmptyArgumentException}を作成します。
+     * Creates an {@link EmptyArgumentException}.
      *
      * @param argName
-     *            引数の名前
+     *            Name of the argument
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の配列
+     *            Array of arguments
      */
     public EmptyArgumentException(final String argName, final String messageCode, final Object[] args) {
         this(argName, messageCode, args, null);
     }
 
     /**
-     * {@link EmptyArgumentException}を作成します。
+     * Creates an {@link EmptyArgumentException}.
      *
      * @param argName
-     *            引数の名前
+     *            Name of the argument
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の配列
+     *            Array of arguments
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public EmptyArgumentException(final String argName, final String messageCode, final Object[] args, final Throwable cause) {
         super(argName, messageCode, args, cause);

@@ -22,17 +22,17 @@ import java.util.Iterator;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * インデックス付きの{@link Iterator}です。インデックスは{@literal 0}から始まります。
+ * {@link Iterator} with index. The index starts from {@literal 0}.
  *
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
  * import static org.codelibs.core.collection.IndexedIterator.*;
  *
  * List&lt;String&gt; list = ...;
- * for (Indexed&lt;String%gt; indexed : indexed(list)) {
+ * for (Indexed&lt;String&gt; indexed : indexed(list)) {
  *     System.out.println(indexed.getIndex());
  *     System.out.println(indexed.getElement());
  * }
@@ -43,15 +43,14 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * import static org.codelibs.core.io.LineIterator.*;
  *
  * BufferedReader reader = ...;
- * for (Indexed&lt;String%gt; indexed : indexed(iterable(reader))) {
+ * for (Indexed&lt;String&gt; indexed : indexed(iterable(reader))) {
  *     System.out.println(indexed.getIndex());
  *     System.out.println(indexed.getElement());
  * }
  * </pre>
  *
  * @author wyukawa
- * @param <T>
- *            イテレートする要素の型
+ * @param <T> the element type
  * @see Indexed
  */
 public class IndexedIterator<T> implements Iterator<Indexed<T>> {
@@ -59,17 +58,15 @@ public class IndexedIterator<T> implements Iterator<Indexed<T>> {
     /** {@link Iterator} */
     protected final Iterator<T> iterator;
 
-    /** イテレータのインデックス */
+    /** The index of the iterator. */
     protected int index;
 
     /**
-     * for each構文で使用するために{@link IndexedIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps an {@link IndexedIterator} for use in a for-each statement.
      *
-     * @param <T>
-     *            {@link Iterable}の要素型
-     * @param iterable
-     *            {@link Iterable}。{@literal null}であってはいけません
-     * @return {@link IndexedIterator}をラップした{@link Iterable}
+     * @param <T> the element type
+     * @param iterable the iterable (must not be {@literal null})
+     * @return an {@link Iterable} wrapping an {@link IndexedIterator}
      */
     public static <T> Iterable<Indexed<T>> indexed(final Iterable<T> iterable) {
         assertArgumentNotNull("iterable", iterable);
@@ -77,13 +74,11 @@ public class IndexedIterator<T> implements Iterator<Indexed<T>> {
     }
 
     /**
-     * for each構文で使用するために{@link IndexedIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps an {@link IndexedIterator} for use in a for-each statement.
      *
-     * @param <T>
-     *            {@link Iterable}の要素型
-     * @param iterator
-     *            {@link Iterator}。{@literal null}であってはいけません
-     * @return {@link IndexedIterator}をラップした{@link Iterable}
+     * @param <T> the element type
+     * @param iterator the iterator (must not be {@literal null})
+     * @return an {@link Iterable} wrapping an {@link IndexedIterator}
      */
     public static <T> Iterable<Indexed<T>> indexed(final Iterator<T> iterator) {
         assertArgumentNotNull("iterator", iterator);
@@ -92,11 +87,9 @@ public class IndexedIterator<T> implements Iterator<Indexed<T>> {
     }
 
     /**
+     * Constructs an instance.
      *
-     * インスタンスを構築します。
-     *
-     * @param iterator
-     *            イテレータ。{@literal null}であってはいけません
+     * @param iterator the iterator (must not be {@literal null})
      */
     public IndexedIterator(final Iterator<T> iterator) {
         assertArgumentNotNull("iterator", iterator);

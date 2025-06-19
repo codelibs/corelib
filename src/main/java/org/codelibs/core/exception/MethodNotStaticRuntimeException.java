@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.lang.reflect.Method;
 
 /**
- * オブジェクトを指定せずに非{@literal static}な{@link Method}にアクセスした場合にスローされる例外です。
+ * Exception thrown when accessing a non-{@literal static} {@link Method} without specifying an object.
  *
  * @author koichik
  */
@@ -33,12 +33,12 @@ public class MethodNotStaticRuntimeException extends ClRuntimeException {
     private final String methodName;
 
     /**
-     * {@link MethodNotStaticRuntimeException}を作成します。
+     * Creates a {@link MethodNotStaticRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param methodName
-     *            メソッド名
+     *            Method name
      */
     public MethodNotStaticRuntimeException(final Class<?> targetClass, final String methodName) {
         super("ECL0100", asArray(targetClass.getName(), methodName));
@@ -47,18 +47,18 @@ public class MethodNotStaticRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * メソッド名を返します。
+     * Returns the method name.
      *
-     * @return メソッド名
+     * @return Method name
      */
     public String getMethodName() {
         return methodName;

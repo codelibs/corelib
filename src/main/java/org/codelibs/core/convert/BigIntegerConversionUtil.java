@@ -18,31 +18,31 @@ package org.codelibs.core.convert;
 import java.math.BigInteger;
 
 /**
- * {@link BigInteger}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link BigInteger}.
  *
  * @author higa
  */
 public abstract class BigIntegerConversionUtil {
 
     /**
-     * {@link BigInteger}に変換します。
+     * Converts to {@link BigInteger}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link BigInteger}
+     *            The object to convert
+     * @return The converted {@link BigInteger}
      */
     public static BigInteger toBigInteger(final Object o) {
         return toBigInteger(o, null);
     }
 
     /**
-     * {@link BigInteger}に変換します。
+     * Converts to {@link BigInteger}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link BigInteger}
+     *            The pattern string
+     * @return The converted {@link BigInteger}
      */
     public static BigInteger toBigInteger(final Object o, final String pattern) {
         if (o == null) {

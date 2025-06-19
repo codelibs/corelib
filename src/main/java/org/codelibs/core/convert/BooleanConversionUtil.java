@@ -16,18 +16,18 @@
 package org.codelibs.core.convert;
 
 /**
- * {@link Boolean}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Boolean}.
  *
  * @author higa
  */
 public abstract class BooleanConversionUtil {
 
     /**
-     * {@link Boolean}に変換します。
+     * Converts to {@link Boolean}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Boolean}
+     *            The object to convert
+     * @return The converted {@link Boolean}
      */
     public static Boolean toBoolean(final Object o) {
         if (o == null) {
@@ -54,11 +54,11 @@ public abstract class BooleanConversionUtil {
     }
 
     /**
-     * {@literal boolean}に変換します。
+     * Converts to {@literal boolean}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal boolean}
+     *            The object to convert
+     * @return The converted {@literal boolean}
      */
     public static boolean toPrimitiveBoolean(final Object o) {
         final Boolean b = toBoolean(o);

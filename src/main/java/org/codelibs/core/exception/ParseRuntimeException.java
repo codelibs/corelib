@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.text.ParseException;
 
 /**
- * 解析できなかった場合にスローされる例外です。
+ * Exception thrown when parsing fails.
  *
  * @author higa
  */
@@ -29,20 +29,18 @@ public class ParseRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -5237329676597387063L;
 
     /**
-     * {@link ParseRuntimeException}を作成します。
+     * Creates a {@link ParseRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public ParseRuntimeException(final ParseException cause) {
         super("ECL0050", asArray(cause), cause);
     }
 
     /**
-     * {@link ParseRuntimeException}を作成します。
+     * Creates a {@link ParseRuntimeException}.
      *
-     * @param s
-     *            解析できなかった文字列
+     * @param s the string that could not be parsed
      */
     public ParseRuntimeException(final String s) {
         super("ECL0051", asArray(s));

@@ -18,7 +18,7 @@ package org.codelibs.core.log;
 import java.util.logging.Level;
 
 /**
- * java.util.logのロガーを利用するアダプタです。
+ * Adapter that uses java.util.logging loggers.
  *
  * @author koichik
  */

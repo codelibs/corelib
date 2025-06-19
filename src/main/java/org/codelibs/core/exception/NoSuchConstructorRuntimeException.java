@@ -22,7 +22,7 @@ import java.lang.reflect.Constructor;
 import org.codelibs.core.lang.MethodUtil;
 
 /**
- * {@link Constructor}が見つからない場合にスローされる{@link NoSuchMethodException}をラップする例外です。
+ * Exception that wraps a {@link NoSuchMethodException} thrown when a {@link Constructor} cannot be found.
  *
  * @author higa
  */
@@ -35,14 +35,14 @@ public class NoSuchConstructorRuntimeException extends ClRuntimeException {
     private final Class<?>[] argTypes;
 
     /**
-     * {@link NoSuchConstructorRuntimeException}を作成します。
+     * Creates a {@link NoSuchConstructorRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param argTypes
-     *            引数型の並び
+     *            Array of parameter types
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public NoSuchConstructorRuntimeException(final Class<?> targetClass, final Class<?>[] argTypes, final Throwable cause) {
         super("ECL0064", asArray(targetClass.getName(), MethodUtil.getSignature(targetClass.getSimpleName(), argTypes)), cause);
@@ -51,18 +51,18 @@ public class NoSuchConstructorRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * 引数型の並びを返します。
+     * Returns the array of parameter types.
      *
-     * @return 引数型の並び
+     * @return Array of parameter types
      */
     public Class<?>[] getArgTypes() {
         return argTypes;

@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * {@link NoSuchFieldException}をラップする例外です。
+ * Exception that wraps {@link NoSuchFieldException}.
  *
  * @author higa
  */
@@ -31,14 +31,14 @@ public class NoSuchFieldRuntimeException extends ClRuntimeException {
     private final String fieldName;
 
     /**
-     * {@link NoSuchFieldRuntimeException}を作成します。
+     * Creates a {@link NoSuchFieldRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param fieldName
-     *            フィールド名
+     *            Field name
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public NoSuchFieldRuntimeException(final Class<?> targetClass, final String fieldName, final Throwable cause) {
         super("ECL0070", asArray(targetClass.getName(), fieldName), cause);
@@ -47,18 +47,18 @@ public class NoSuchFieldRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * フィールド名を返します。
+     * Returns the field name.
      *
-     * @return フィールド名
+     * @return Field name
      */
     public String getFieldName() {
         return fieldName;

@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import org.codelibs.core.lang.MethodUtil;
 
 /**
- * {@link NoSuchMethodException}をラップする例外です。
+ * Exception that wraps {@link NoSuchMethodException}.
  *
  * @author higa
  */
@@ -35,16 +35,12 @@ public class NoSuchMethodRuntimeException extends ClRuntimeException {
     private final Class<?>[] argTypes;
 
     /**
-     * {@link NoSuchMethodRuntimeException}を作成します。
+     * Creates a {@link NoSuchMethodRuntimeException}.
      *
-     * @param targetClass
-     *            ターゲットクラス
-     * @param methodName
-     *            メソッド名
-     * @param argTypes
-     *            引数型の並び
-     * @param cause
-     *            原因となった例外
+     * @param targetClass the target class
+     * @param methodName the method name
+     * @param argTypes the argument types
+     * @param cause the underlying exception
      */
     public NoSuchMethodRuntimeException(final Class<?> targetClass, final String methodName, final Class<?>[] argTypes,
             final Throwable cause) {
@@ -55,27 +51,27 @@ public class NoSuchMethodRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return the target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * メソッド名を返します。
+     * Returns the method name.
      *
-     * @return メソッド名
+     * @return the method name
      */
     public String getMethodName() {
         return methodName;
     }
 
     /**
-     * 引数型の並びを返します。
+     * Returns the argument types.
      *
-     * @return 引数型の並び
+     * @return the argument types
      */
     public Class<?>[] getArgTypes() {
         return argTypes;

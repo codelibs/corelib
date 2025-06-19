@@ -23,7 +23,7 @@ import java.io.IOException;
 import org.codelibs.core.log.Logger;
 
 /**
- * {@link Closeable}用のユーティリティクラスです。
+ * Utility class for {@link Closeable} operations.
  *
  * @author koichik
  */
@@ -32,28 +32,23 @@ public abstract class CloseableUtil {
     private static final Logger logger = Logger.getLogger(CloseableUtil.class);
 
     /**
-     * {@link Closeable}をクローズします。
+     * Closes a {@link Closeable}.
      * <p>
-     * {@link Closeable#close()}が例外をスローした場合はログにエラーメッセージを出力します。
-     * 例外は再スローされません。これは、次のような状況で元の例外が失われるのを防ぐためです。
+     * If an exception is thrown by {@link Closeable#close()}, an error message is logged. The exception is not rethrown. This prevents the original exception from being lost in situations like the following:
      * </p>
-     *
      * <pre>
      * InputStream is = ...;
      * try {
      *   is.read(...);
-     * } finaly {
+     * } finally {
      *   close(is);
      * }
      * </pre>
      * <p>
-     * {@literal try}ブロックで例外が発生した場合、{@literal finally}ブロックの
-     * {@link #close(Closeable)}でも 例外が発生する可能性があります。その場合に{@literal finally}
-     * ブロックから例外をスローすると、 {@literal try}ブロックで発生した元の例外が失われてしまいます。
+     * If an exception occurs in the try block, there is a possibility that an exception will also occur in the finally block's {@link #close(Closeable)}. If the exception is thrown from the finally block, the original exception from the try block will be lost.
      * </p>
      *
-     * @param closeable
-     *            クローズ可能なオブジェクト
+     * @param closeable the closeable object
      * @see Closeable#close()
      */
     public static void close(final Closeable closeable) {

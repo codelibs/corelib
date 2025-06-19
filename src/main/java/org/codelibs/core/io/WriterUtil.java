@@ -29,20 +29,18 @@ import java.io.Writer;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link Writer}用のユーティリティクラスです。
+ * Utility class for {@link Writer} operations.
  *
  * @author koichik
  */
 public abstract class WriterUtil {
 
     /**
-     * 指定のエンコーディングでストリームへ出力する{@link Writer}を作成します。
+     * Creates a {@link Writer} to output to a stream with the specified encoding.
      *
-     * @param os
-     *            ストリーム。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return ストリームへ出力する{@link Writer}
+     * @param os the stream (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return a {@link Writer} to output to the stream
      */
     public static Writer create(final OutputStream os, final String encoding) {
         assertArgumentNotNull("os", os);
@@ -56,11 +54,10 @@ public abstract class WriterUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングでファイルへ出力する{@link Writer}を作成します。
+     * Creates a {@link Writer} to output to a file with the default encoding.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルへ出力する{@link Writer}
+     * @param file the file (must not be {@literal null})
+     * @return a {@link Writer} to output to the file
      */
     public static Writer create(final File file) {
         assertArgumentNotNull("file", file);
@@ -73,13 +70,11 @@ public abstract class WriterUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルへ出力する{@link Writer}を作成します。
+     * Creates a {@link Writer} to output to a file with the specified encoding.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return ファイルへ出力する{@link Writer}
+     * @param file the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return a {@link Writer} to output to the file
      */
     public static Writer create(final File file, final String encoding) {
         assertArgumentNotNull("file", file);

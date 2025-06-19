@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * {@link IllegalAccessException}をラップする例外です。
+ * Exception that wraps {@link IllegalAccessException}.
  *
  * @author higa
  */
@@ -29,12 +29,12 @@ public class IllegalAccessRuntimeException extends ClRuntimeException {
     private final Class<?> targetClass;
 
     /**
-     * {@link IllegalAccessRuntimeException}を作成します。
+     * Creates a {@link IllegalAccessRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public IllegalAccessRuntimeException(final Class<?> targetClass, final IllegalAccessException cause) {
         super("ECL0042", asArray(targetClass.getName(), cause), cause);
@@ -42,9 +42,9 @@ public class IllegalAccessRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;

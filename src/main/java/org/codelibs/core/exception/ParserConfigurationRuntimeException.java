@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
- * {@link ParserConfigurationException}をラップする例外です。
+ * Exception that wraps {@link ParserConfigurationException}.
  *
  * @author higa
  */
@@ -29,10 +29,9 @@ public class ParserConfigurationRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -4610465906028959083L;
 
     /**
-     * {@link ParserConfigurationRuntimeException}を作成します。
+     * Creates a {@link ParserConfigurationRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public ParserConfigurationRuntimeException(final ParserConfigurationException cause) {
         super("ECL0053", asArray(cause), cause);

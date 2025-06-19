@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.lang.reflect.Field;
 
 /**
- * {@link Field}が見つからない場合にスローされる例外です。
+ * Exception thrown when a {@link Field} cannot be found.
  *
  * @author higa
  *
@@ -34,12 +34,12 @@ public class FieldNotFoundRuntimeException extends ClRuntimeException {
     private final String fieldName;
 
     /**
-     * {@link FieldNotFoundRuntimeException}を作成します。
+     * Creates a {@link FieldNotFoundRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param fieldName
-     *            フィールド名
+     *            Field name
      */
     public FieldNotFoundRuntimeException(final Class<?> targetClass, final String fieldName) {
         super("ECL0070", asArray(targetClass.getName(), fieldName));
@@ -48,18 +48,18 @@ public class FieldNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * フィールド名を返します。
+     * Returns the field name.
      *
-     * @return フィールド名
+     * @return Field name
      */
     public String getFieldName() {
         return fieldName;

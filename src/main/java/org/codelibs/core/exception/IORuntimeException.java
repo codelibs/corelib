@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.io.IOException;
 
 /**
- * {@link IOException}をラップする例外です。
+ * Exception that wraps {@link IOException}.
  *
  * @author higa
  */
@@ -29,10 +29,10 @@ public class IORuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = 1533554330702215389L;
 
     /**
-     * {@link IORuntimeException}を作成します。
+     * Creates a {@link IORuntimeException}.
      *
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public IORuntimeException(final IOException cause) {
         super("ECL0040", asArray(cause), cause);

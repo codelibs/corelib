@@ -16,7 +16,7 @@
 package org.codelibs.core.lang;
 
 /**
- * システムプロパティ用のユーティリティクラスです。
+ * Utility class for system operations.
  *
  * @author wyukawa
  * @author shinsuke
@@ -25,41 +25,81 @@ package org.codelibs.core.lang;
 public abstract class SystemUtil {
 
     /**
-     * <code>file.encoding</code>システムプロパティ。例:UTF-8
+     * <code>file.encoding</code> system property. Example: UTF-8
      */
     public static final String FILE_ENCODING = System.getProperty("file.encoding");
 
     /**
-     * <code>line.separator</code> システムプロパティ。例えばMac OS Xなら
-     * <code>&quot;\n&quot;</code>
+     * <code>line.separator</code> system property. For example, on Mac OS X: <code>"\n"</code>
      */
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     /**
-     * <code>path.separator</code> システムプロパティ。例えばMac OS Xなら
-     * <code>&quot;:&quot;</code>
+     * <code>path.separator</code> system property. For example, on Mac OS X: <code>":"</code>
      */
     public static final String PATH_SEPARATOR = System.getProperty("path.separator");
 
     /**
-     * <code>os.name</code> システムプロパティ。例:<code>Mac OS X</code>
+     * <code>os.name</code> system property. Example: <code>Mac OS X</code>
      */
     public static final String OS_NAME = System.getProperty("os.name");
 
     /**
-     * <code>java.io.tmpdir</code> システムプロパティ。例：/tmp
+     * <code>java.io.tmpdir</code> system property. Example: /tmp
      */
     public static final String JAVA_IO_TMPDIR = System.getProperty("java.io.tmpdir");
 
     /**
-     * <code>user.dir</code> システムプロパティ。
+     * <code>user.dir</code> system property.
      */
     public static final String USER_DIR = System.getProperty("user.dir");
 
     /**
-     * <code>user.home</code> システムプロパティ。
+     * <code>user.home</code> system property.
      */
     public static final String USER_HOME = System.getProperty("user.home");
+
+    /**
+     * Returns the system property value for the specified key.
+     *
+     * @param key the property key
+     * @return the property value, or null if not found
+     */
+    public static String getProperty(String key) {
+        return System.getProperty(key);
+    }
+
+    /**
+     * Returns the system property value for the specified key, or the default value if not found.
+     *
+     * @param key the property key
+     * @param defaultValue the default value
+     * @return the property value, or the default value if not found
+     */
+    public static String getProperty(String key, String defaultValue) {
+        return System.getProperty(key, defaultValue);
+    }
+
+    /**
+     * Returns the system environment variable value for the specified key.
+     *
+     * @param key the environment variable key
+     * @return the environment variable value, or null if not found
+     */
+    public static String getEnv(String key) {
+        return System.getenv(key);
+    }
+
+    /**
+     * Returns the system environment variable value for the specified key, or the default value if not found.
+     *
+     * @param key the environment variable key
+     * @param defaultValue the default value
+     * @return the environment variable value, or the default value if not found
+     */
+    public static String getEnv(String key, String defaultValue) {
+        return System.getenv().getOrDefault(key, defaultValue);
+    }
 
     public static long currentTimeMillis() {
         // TODO provider

@@ -23,24 +23,21 @@ import java.util.Iterator;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * {@link Enumeration}を {@link Iterator}にするためのアダブタです。
+ * Adapter to convert an {@link Enumeration} to an {@link Iterator}.
  *
  * @author shot
- * @param <T>
- *            列挙する要素の型
+ * @param <T> the element type
  */
 public class EnumerationIterator<T> implements Iterator<T> {
 
     private Enumeration<T> enumeration = null;
 
     /**
-     * for each構文で使用するために{@link Enumeration}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps an {@link Enumeration} for use in a for-each statement.
      *
-     * @param <T>
-     *            列挙する要素の型
-     * @param enumeration
-     *            {@link Enumeration}。{@literal null}であってはいけません
-     * @return {@link Enumeration}をラップした{@link Iterable}
+     * @param <T> the element type
+     * @param enumeration the enumeration (must not be {@literal null})
+     * @return an {@link Iterable} wrapping the enumeration
      */
     public static <T> Iterable<T> iterable(final Enumeration<T> enumeration) {
         assertArgumentNotNull("enumeration", enumeration);
@@ -49,10 +46,9 @@ public class EnumerationIterator<T> implements Iterator<T> {
     }
 
     /**
-     * {@link Enumeration}をラップした{@link Iterator}のインスタンスを構築します。
+     * Constructs an instance of an {@link Iterator} wrapping an {@link Enumeration}.
      *
-     * @param enumeration
-     *            {@link Enumeration}。{@literal null}であってはいけません
+     * @param enumeration the enumeration (must not be {@literal null})
      */
     public EnumerationIterator(final Enumeration<T> enumeration) {
         assertArgumentNotNull("enumeration", enumeration);

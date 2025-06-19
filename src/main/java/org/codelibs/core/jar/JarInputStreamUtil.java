@@ -25,20 +25,18 @@ import java.util.jar.JarInputStream;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link JarInputStream}用のユーティリティクラスです。
+ * Utility class for {@link JarInputStream} operations.
  *
  * @author koichik
  */
 public abstract class JarInputStreamUtil {
 
     /**
-     * {@link JarInputStream}を作成します。
+     * Creates a {@link JarInputStream}.
      *
-     * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
+     * @param is the input stream (must not be {@literal null})
      * @return {@link JarInputStream}
-     * @throws IORuntimeException
-     *             {@link IOException}が発生した場合
+     * @throws IORuntimeException if an {@link IOException} occurs
      * @see JarInputStream#JarInputStream(InputStream)
      */
     public static JarInputStream create(final InputStream is) throws IORuntimeException {
@@ -52,13 +50,11 @@ public abstract class JarInputStreamUtil {
     }
 
     /**
-     * {@link JarInputStream#getNextJarEntry()}の例外処理をラップするメソッドです。
+     * Method that wraps exception handling for {@link JarInputStream#getNextJarEntry()}.
      *
-     * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
+     * @param is the input stream (must not be {@literal null})
      * @return {@link JarEntry}
-     * @throws IORuntimeException
-     *             {@link IOException}が発生した場合
+     * @throws IORuntimeException if an {@link IOException} occurs
      * @see JarInputStream#getNextJarEntry()
      */
     public static JarEntry getNextJarEntry(final JarInputStream is) throws IORuntimeException {

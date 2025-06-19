@@ -43,8 +43,8 @@ public abstract class URLUtil {
     /** Map for normalizing protocols */
     protected static final Map<String, String> CANONICAL_PROTOCOLS = newHashMap();
     static {
-        CANONICAL_PROTOCOLS.put("wsjar", "jar"); // WebSphereがJarファイルのために使用する固有のプロトコル
-        CANONICAL_PROTOCOLS.put("vfsfile", "file"); // JBossAS5がファイルシステムのために使用する固有のプロトコル
+        CANONICAL_PROTOCOLS.put("wsjar", "jar"); // Proprietary protocol used by WebSphere for jar files
+        CANONICAL_PROTOCOLS.put("vfsfile", "file"); // Proprietary protocol used by JBossAS5 for file system
     }
 
     /**

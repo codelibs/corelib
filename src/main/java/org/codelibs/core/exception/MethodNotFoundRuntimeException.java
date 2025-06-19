@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 import org.codelibs.core.lang.MethodUtil;
 
 /**
- * {@link Method}が見つからなかったときにスローされる例外です。
+ * Exception thrown when a {@link Method} cannot be found.
  *
  * @author higa
  *
@@ -38,28 +38,28 @@ public class MethodNotFoundRuntimeException extends ClRuntimeException {
     private final Class<?>[] methodArgClasses;
 
     /**
-     * {@link MethodNotFoundRuntimeException}を作成します。
+     * Creates a {@link MethodNotFoundRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param methodName
-     *            メソッド名
+     *            Method name
      * @param methodArgs
-     *            引数の並び
+     *            Array of arguments
      */
     public MethodNotFoundRuntimeException(final Class<?> targetClass, final String methodName, final Object[] methodArgs) {
         this(targetClass, methodName, toClassArray(methodArgs));
     }
 
     /**
-     * {@link MethodNotFoundRuntimeException}を作成します。
+     * Creates a {@link MethodNotFoundRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param methodName
-     *            メソッド名
+     *            Method name
      * @param methodArgClasses
-     *            引数型の並び
+     *            Array of parameter types
      */
     public MethodNotFoundRuntimeException(final Class<?> targetClass, final String methodName, final Class<?>[] methodArgClasses) {
         super("ECL0049", asArray(targetClass.getName(), MethodUtil.getSignature(methodName, methodArgClasses)));
@@ -69,27 +69,27 @@ public class MethodNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットの{@link Class}を返します。
+     * Returns the {@link Class} of the target.
      *
-     * @return ターゲットの{@link Class}
+     * @return {@link Class} of the target
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * メソッド名を返します。
+     * Returns the method name.
      *
-     * @return メソッド名
+     * @return Method name
      */
     public String getMethodName() {
         return methodName;
     }
 
     /**
-     * メソッドの引数の{@link Class}の配列を返します。
+     * Returns the array of {@link Class} for the method arguments.
      *
-     * @return メソッドの引数の{@link Class}の配列
+     * @return Array of {@link Class} for the method arguments
      */
     public Class<?>[] getMethodArgClasses() {
         return methodArgClasses;

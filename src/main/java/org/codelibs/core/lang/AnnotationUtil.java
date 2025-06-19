@@ -26,18 +26,17 @@ import org.codelibs.core.beans.MethodDesc;
 import org.codelibs.core.beans.factory.BeanDescFactory;
 
 /**
- * アノテーションのためのユーティリティクラスです。
+ * Utility class for annotations.
  *
  * @author higa
  */
 public abstract class AnnotationUtil {
 
     /**
-     * アノテーションの要素を名前と値の{@link Map}として返します。
+     * Returns the elements of the annotation as a {@link Map} of names and values.
      *
-     * @param annotation
-     *            アノテーション。{@literal null}であってはいけません
-     * @return アノテーションの要素の名前と値からなる{@link Map}
+     * @param annotation the annotation (must not be {@literal null})
+     * @return a {@link Map} of annotation element names and values
      */
     public static Map<String, Object> getProperties(final Annotation annotation) {
         assertArgumentNotNull("annotation", annotation);
@@ -54,15 +53,12 @@ public abstract class AnnotationUtil {
     }
 
     /**
-     * アノテーションの要素の値を返します。
+     * Returns the value of an annotation element.
      *
-     * @param beanDesc
-     *            アノテーションを表す{@link BeanDesc}
-     * @param annotation
-     *            アノテーション
-     * @param name
-     *            要素の名前
-     * @return アノテーションの要素の値
+     * @param beanDesc the {@link BeanDesc} representing the annotation
+     * @param annotation the annotation
+     * @param name the name of the element
+     * @return the value of the annotation element
      */
     protected static Object getProperty(final BeanDesc beanDesc, final Annotation annotation, final String name) {
         final MethodDesc methodDesc = beanDesc.getMethodDescNoException(name);

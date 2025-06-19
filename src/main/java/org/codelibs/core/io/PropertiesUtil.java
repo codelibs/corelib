@@ -32,22 +32,20 @@ import org.codelibs.core.exception.IORuntimeException;
 import org.codelibs.core.net.URLUtil;
 
 /**
- * {@link Properties}用のユーティリティクラスです。
+ * Utility class for {@link Properties} operations.
  *
  * @author higa
  */
 public abstract class PropertiesUtil {
 
     /**
-     * {@link Properties#load(InputStream)}の例外処理をラップします。
+     * Wraps exception handling for {@link Properties#load(InputStream)}.
      * <p>
-     * 入力ストリームはクローズされません。
+     * The input stream is not closed.
      * </p>
      *
-     * @param props
-     *            プロパティセット。{@literal null}であってはいけません
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
+     * @param props the property set (must not be {@literal null})
+     * @param in the input stream (must not be {@literal null})
      */
     public static void load(final Properties props, final InputStream in) {
         assertArgumentNotNull("props", props);
@@ -61,15 +59,13 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * {@link Properties#load(Reader)}の例外処理をラップします。
+     * Wraps exception handling for {@link Properties#load(Reader)}.
      * <p>
-     * 入力リーダはクローズされません。
+     * The input reader is not closed.
      * </p>
      *
-     * @param props
-     *            プロパティセット。{@literal null}であってはいけません
-     * @param reader
-     *            入力リーダ。{@literal null}であってはいけません
+     * @param props the property set (must not be {@literal null})
+     * @param reader the input reader (must not be {@literal null})
      */
     public static void load(final Properties props, final Reader reader) {
         assertArgumentNotNull("props", props);
@@ -83,14 +79,14 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルを読み込んで{@link Properties}にロードします（例外処理はラップします）。
+     * Loads the specified file into the {@link Properties} using the given encoding (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            File. Must not be {@literal null}.
      * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
+     *            Encoding. Must not be {@literal null} or empty.
      */
     public static void load(final Properties props, final File file, final String encoding) {
         assertArgumentNotNull("props", props);
@@ -109,24 +105,24 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングでファイルを読み込んで{@link Properties}にロードします（例外処理はラップします）。
+     * Loads the specified file into the {@link Properties} using the platform default encoding (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            File. Must not be {@literal null}.
      */
     public static void load(final Properties props, final File file) {
         load(props, file, Charset.defaultCharset().name());
     }
 
     /**
-     * {@link URL}を読み込んで{@link Properties}にロードします（例外処理はラップします）。
+     * Loads the specified {@link URL} into the {@link Properties} (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param url
-     *            URL。{@literal null}であってはいけません
+     *            URL. Must not be {@literal null}.
      */
     public static void load(final Properties props, final URL url) {
         assertArgumentNotNull("props", props);
@@ -144,12 +140,12 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを読み込んで{@link Properties}にロードします（例外処理はラップします）。
+     * Loads a resource from the context class loader into the {@link Properties} (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            Resource path. Must not be {@literal null} or empty.
      */
     public static void load(final Properties props, final String path) {
         assertArgumentNotNull("props", props);
@@ -159,18 +155,18 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * {@link Properties#store(OutputStream, String)}の例外処理をラップします。
+     * Wraps exception handling for {@link Properties#store(OutputStream, String)}.
      *
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
+     *            Output stream. Must not be {@literal null}.
      * @param comments
-     *            コメント
+     *            Comments.
      */
     public static void store(final Properties props, final OutputStream out, final String comments) {
         assertArgumentNotNull("props", props);
@@ -184,18 +180,18 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * {@link Properties#store(Writer, String)}の例外処理をラップします。
+     * Wraps exception handling for {@link Properties#store(Writer, String)}.
      *
      * <p>
-     * 出力ライタはクローズされません。
+     * The output writer is not closed.
      * </p>
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param writer
-     *            出力ライタ。{@literal null}であってはいけません
+     *            Output writer. Must not be {@literal null}.
      * @param comments
-     *            コメント
+     *            Comments.
      */
     public static void store(final Properties props, final Writer writer, final String comments) {
         assertArgumentNotNull("props", props);
@@ -209,16 +205,16 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルを書き出して{@link Properties}をストアします（例外処理はラップします）。
+     * Stores the {@link Properties} to a file with the specified encoding (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            File. Must not be {@literal null}.
      * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
+     *            Encoding. Must not be {@literal null} or empty.
      * @param comments
-     *            コメント
+     *            Comments.
      */
     public static void store(final Properties props, final File file, final String encoding, final String comments) {
         assertArgumentNotNull("props", props);
@@ -236,14 +232,14 @@ public abstract class PropertiesUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングでファイルを書き出して{@link Properties}をストアします（例外処理はラップします）。
+     * Stores the {@link Properties} to a file using the platform default encoding (wraps exception handling).
      *
      * @param props
-     *            プロパティセット。{@literal null}であってはいけません
+     *            Property set. Must not be {@literal null}.
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            File. Must not be {@literal null}.
      * @param comments
-     *            コメント
+     *            Comments.
      */
     public static void store(final Properties props, final File file, final String comments) {
         store(props, file, Charset.defaultCharset().name(), comments);

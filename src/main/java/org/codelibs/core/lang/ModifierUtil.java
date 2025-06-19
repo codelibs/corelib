@@ -22,18 +22,18 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
- * {@link Modifier}用のユーティリティクラスです。
+ * Utility class for modifier operations.
  *
  * @author shot
  */
 public abstract class ModifierUtil {
 
     /**
-     * <code>public</code>かどうか返します。
+     * Checks if the specified method is public.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return パブリックかどうか
+     *            the method to check. Must not be null.
+     * @return true if public, false otherwise
      */
     public static boolean isPublic(final Method method) {
         assertArgumentNotNull("method", method);
@@ -42,11 +42,11 @@ public abstract class ModifierUtil {
     }
 
     /**
-     * <code>public</code>かどうか返します。
+     * Checks if the specified field is public.
      *
      * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return パブリックかどうか
+     *            the field to check. Must not be null.
+     * @return true if public, false otherwise
      */
     public static boolean isPublic(final Field field) {
         assertArgumentNotNull("field", field);
@@ -55,11 +55,11 @@ public abstract class ModifierUtil {
     }
 
     /**
-     * <code>public</code>,<code>static</code>,<code>final</code>かどうか返します。
+     * Checks if the specified field is public, static, and final.
      *
      * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return <code>public</code>,<code>static</code>,<code>final</code>かどうか
+     *            the field to check. Must not be null.
+     * @return true if public, static, and final, false otherwise
      */
     public static boolean isPublicStaticFinalField(final Field field) {
         assertArgumentNotNull("field", field);
@@ -68,33 +68,33 @@ public abstract class ModifierUtil {
     }
 
     /**
-     * <code>public</code>,<code>static</code>,<code>final</code>かどうか返します。
+     * Checks if the specified modifier is public, static, and final.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>public</code>,<code>static</code>,<code>final</code>かどうか
+     *            the modifier to check
+     * @return true if public, static, and final, false otherwise
      */
     public static boolean isPublicStaticFinal(final int modifier) {
         return isPublic(modifier) && isStatic(modifier) && isFinal(modifier);
     }
 
     /**
-     * <code>public</code>かどうか返します。
+     * Checks if the specified modifier is public.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>public</code>かどうか
+     *            the modifier to check
+     * @return true if public, false otherwise
      */
     public static boolean isPublic(final int modifier) {
         return Modifier.isPublic(modifier);
     }
 
     /**
-     * <code>abstract</code>かどうか返します。
+     * Checks if the specified class is abstract.
      *
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return <code>abstract</code>なら{@literal true}
+     *            the class to check. Must not be null.
+     * @return true if abstract, false otherwise
      */
     public static boolean isAbstract(final Class<?> clazz) {
         assertArgumentNotNull("clazz", clazz);
@@ -103,55 +103,55 @@ public abstract class ModifierUtil {
     }
 
     /**
-     * <code>abstract</code>かどうか返します。
+     * Checks if the specified modifier is abstract.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>abstract</code>なら{@literal true}
+     *            the modifier to check
+     * @return true if abstract, false otherwise
      */
     public static boolean isAbstract(final int modifier) {
         return Modifier.isAbstract(modifier);
     }
 
     /**
-     * <code>static</code>かどうか返します。
+     * Checks if the specified modifier is static.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>static</code>なら{@literal true}
+     *            the modifier to check
+     * @return true if static, false otherwise
      */
     public static boolean isStatic(final int modifier) {
         return Modifier.isStatic(modifier);
     }
 
     /**
-     * <code>final</code>かどうか返します。
+     * Checks if the specified modifier is final.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>final</code>なら{@literal true}
+     *            the modifier to check
+     * @return true if final, false otherwise
      */
     public static boolean isFinal(final int modifier) {
         return Modifier.isFinal(modifier);
     }
 
     /**
-     * <code>final</code>かどうか返します。
+     * Checks if the specified method is final.
      *
      * @param method
-     *            メソッド
-     * @return <code>final</code>なら{@literal true}
+     *            the method to check
+     * @return true if final, false otherwise
      */
     public static boolean isFinal(final Method method) {
         return isFinal(method.getModifiers());
     }
 
     /**
-     * <code>transient</code>かどうか返します。
+     * Checks if the specified field is transient.
      *
      * @param field
-     *            フィールド
-     * @return <code>transient</code>なら{@literal true}
+     *            the field to check
+     * @return true if transient, false otherwise
      * @see #isTransient(int)
      */
     public static boolean isTransient(final Field field) {
@@ -159,22 +159,22 @@ public abstract class ModifierUtil {
     }
 
     /**
-     * <code>transient</code>かどうか返します。
+     * Checks if the specified modifier is transient.
      *
      * @param modifier
-     *            モディファイヤ
-     * @return <code>transient</code>なら{@literal true}
+     *            the modifier to check
+     * @return true if transient, false otherwise
      */
     public static boolean isTransient(final int modifier) {
         return Modifier.isTransient(modifier);
     }
 
     /**
-     * インスタンスフィールドかどうかを返します。
+     * Checks if the specified field is an instance field.
      *
      * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return インスタンスフィールドなら{@literal true}
+     *            the field to check. Must not be null.
+     * @return true if instance field, false otherwise
      */
     public static boolean isInstanceField(final Field field) {
         assertArgumentNotNull("field", field);

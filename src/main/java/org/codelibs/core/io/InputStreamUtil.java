@@ -26,21 +26,20 @@ import java.io.InputStream;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link InputStream}用のユーティリティクラスです。
+ * Utility class for {@link InputStream}.
  *
  * @author higa
  */
 public abstract class InputStreamUtil {
 
-    /** デフォルトのバッファサイズ */
+    /** Default buffer size. */
     private static final int BUF_SIZE = 4096;
 
     /**
-     * {@link FileInputStream}を作成します。
+     * Creates a {@link FileInputStream}.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルから入力する{@link FileInputStream}
+     * @param file the file (must not be {@literal null})
+     * @return a {@link FileInputStream} to read from the file
      * @see FileInputStream#FileInputStream(File)
      */
     public static FileInputStream create(final File file) {
@@ -54,14 +53,13 @@ public abstract class InputStreamUtil {
     }
 
     /**
-     * {@link InputStream}からbyteの配列を取得します。
+     * Gets a byte array from an {@link InputStream}.
      * <p>
-     * 入力ストリームはクローズされません。
+     * The input stream is not closed.
      * </p>
      *
-     * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @return byteの配列
+     * @param is the input stream (must not be {@literal null})
+     * @return the byte array
      */
     public static final byte[] getBytes(final InputStream is) {
         assertArgumentNotNull("is", is);
@@ -72,11 +70,10 @@ public abstract class InputStreamUtil {
     }
 
     /**
-     * {@link InputStream#available()}の例外処理をラップしたメソッドです。
+     * A method that wraps exception handling for {@link InputStream#available()}.
      *
-     * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @return 可能なサイズ
+     * @param is the input stream (must not be {@literal null})
+     * @return the available size
      */
     public static int available(final InputStream is) {
         assertArgumentNotNull("is", is);
@@ -89,10 +86,9 @@ public abstract class InputStreamUtil {
     }
 
     /**
-     * {@link InputStream}をリセットします。
+     * Resets the {@link InputStream}.
      *
-     * @param is
-     *            入力ストリーム。{@literal null}であってはいけません
+     * @param is the input stream (must not be {@literal null})
      * @see InputStream#reset()
      */
     public static void reset(final InputStream is) {

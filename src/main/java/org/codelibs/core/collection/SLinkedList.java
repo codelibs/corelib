@@ -25,12 +25,10 @@ import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 /**
- * Seasar2用の連結リストです。
+ * Linked list for Seasar2.
  *
  * @author higa
- * @param <E>
- *            要素の型
- *
+ * @param <E> the element type
  */
 public class SLinkedList<E> implements Cloneable, Externalizable {
 
@@ -41,7 +39,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     private transient int size = 0;
 
     /**
-     * {@link SLinkedList}を作成します。
+     * Creates an {@link SLinkedList}.
      */
     public SLinkedList() {
         header.next = header;
@@ -49,9 +47,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最初の要素を返します。
+     * Returns the first element.
      *
-     * @return 最初の要素
+     * @return the first element
      */
     public E getFirst() {
         if (isEmpty()) {
@@ -61,9 +59,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最後の要素を返します。
+     * Returns the last element.
      *
-     * @return 最後の要素
+     * @return the last element
      */
     public E getLast() {
         if (isEmpty()) {
@@ -73,9 +71,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最初のエントリを返します。
+     * Returns the first entry.
      *
-     * @return 最初のエントリ
+     * @return the first entry
      */
     public Entry getFirstEntry() {
         if (isEmpty()) {
@@ -85,9 +83,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最後のエントリを返します。
+     * Returns the last entry.
      *
-     * @return 最後のエントリ
+     * @return the last entry
      */
     public Entry getLastEntry() {
         if (isEmpty()) {
@@ -97,9 +95,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最初の要素を削除します。
+     * Removes the first element.
      *
-     * @return 最初の要素
+     * @return the first element
      */
     public E removeFirst() {
         if (isEmpty()) {
@@ -111,9 +109,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 最後の要素を削除します。
+     * Removes the last element.
      *
-     * @return 最後の要素
+     * @return the last element
      */
     public E removeLast() {
         if (isEmpty()) {
@@ -125,72 +123,66 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 先頭に追加します。
+     * Adds an element at the beginning.
      *
-     * @param element
-     *            追加するオブジェクト
+     * @param element the object to be added
      */
     public void addFirst(final E element) {
         header.next.addBefore(element);
     }
 
     /**
-     * 最後に追加します。
+     * Adds an element at the end.
      *
-     * @param element
-     *            追加するオブジェクト
+     * @param element the object to be added
      */
     public void addLast(final E element) {
         header.addBefore(element);
     }
 
     /**
-     * 指定した位置にオブジェクトを追加します。
+     * Inserts an object at the specified position.
      *
-     * @param index
-     *            位置
-     * @param element
-     *            要素
+     * @param index the position
+     * @param element the element
      */
     public void add(final int index, final E element) {
         getEntry(index).addBefore(element);
     }
 
     /**
-     * 要素の数を返します。
+     * Returns the number of elements.
      *
-     * @return 要素の数
+     * @return the number of elements
      */
     public int size() {
         return size;
     }
 
     /**
-     * 空かどうかを返します。
+     * Checks if the list is empty.
      *
-     * @return 空かどうか
+     * @return true if the list is empty, false otherwise
      */
     public boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * 要素が含まれているかどうかを返します。
+     * Checks if an element is contained in the list.
      *
-     * @param element
-     *            要素
-     * @return 要素が含まれているかどうか
+     * @param element the element
+     * @return true if the element is contained in the list, false otherwise
      */
     public boolean contains(final E element) {
         return indexOf(element) != -1;
     }
 
     /**
-     * 要素を削除します。
+     * Removes an element from the list.
      *
-     * @param element
-     *            要素
-     * @return 削除されたかどうか
+     * @param element the element
+     * @return true if the element was removed, false otherwise
      */
     public boolean remove(final E element) {
         if (element == null) {
@@ -212,11 +204,10 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 指定した位置の要素を削除します。
+     * Removes the element at the specified position.
      *
-     * @param index
-     *            位置
-     * @return 削除された要素
+     * @param index the position
+     * @return the removed element
      */
     public Object remove(final int index) {
         final Entry e = getEntry(index);
@@ -225,7 +216,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 要素を空にします。
+     * Empties the list.
      */
     public void clear() {
         header.next = header;
@@ -234,11 +225,10 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * インデックスで指定された位置のエントリを返します。
+     * Returns the entry at the specified position.
      *
-     * @param index
-     *            インデックス
-     * @return エントリ
+     * @param index the index
+     * @return the entry
      */
     public Entry getEntry(final int index) {
         assertIndex(0 <= index && index < size, "Index: " + index + ", Size: " + size);
@@ -256,24 +246,21 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * インデックスで指定された位置の要素を返します。
+     * Returns the element at the specified position.
      *
-     * @param index
-     *            インデックス
-     * @return 要素
+     * @param index the index
+     * @return the element
      */
     public E get(final int index) {
         return getEntry(index).element;
     }
 
     /**
-     * インデックスで指定された位置に要素を設定します。
+     * Sets the element at the specified position.
      *
-     * @param index
-     *            インデックス
-     * @param element
-     *            要素
-     * @return 元の要素
+     * @param index the index
+     * @param element the element
+     * @return the original element
      */
     public E set(final int index, final E element) {
         final Entry entry = getEntry(index);
@@ -283,11 +270,10 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 位置を返します。
+     * Returns the position of the element.
      *
-     * @param element
-     *            要素
-     * @return 位置
+     * @param element the element
+     * @return the position
      */
     public int indexOf(final E element) {
         int index = 0;
@@ -339,9 +325,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 配列に変換します。
+     * Converts the list to an array.
      *
-     * @return 配列
+     * @return the array
      */
     public Object[] toArray() {
         final Object[] result = new Object[size];
@@ -353,11 +339,10 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 配列に変換します。
+     * Converts the list to an array.
      *
-     * @param array
-     *            要素の格納先の配列。配列のサイズが十分でない場合は、同じ実行時の型で新しい配列が格納用として割り当てられる
-     * @return 配列
+     * @param array the array to store the elements. A new array of the same runtime type is allocated if the array is not large enough.
+     * @return the array
      */
     @SuppressWarnings("unchecked")
     public E[] toArray(E[] array) {
@@ -375,17 +360,17 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
     }
 
     /**
-     * 要素を格納するエントリです。
+     * An entry that stores an element.
      */
     public class Entry {
 
-        /** 要素 */
+        /** The element */
         protected E element;
 
-        /** 次のエントリ */
+        /** The next entry */
         protected Entry next;
 
-        /** 前のエントリ */
+        /** The previous entry */
         protected Entry previous;
 
         Entry(final E element, final Entry next, final Entry previous) {
@@ -395,18 +380,18 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
         }
 
         /**
-         * 要素を返します。
+         * Returns the element.
          *
-         * @return 要素
+         * @return the element
          */
         public E getElement() {
             return element;
         }
 
         /**
-         * 次のエントリを返します。
+         * Returns the next entry.
          *
-         * @return 次のエントリ
+         * @return the next entry
          */
         public Entry getNext() {
             if (next != SLinkedList.this.header) {
@@ -416,9 +401,9 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
         }
 
         /**
-         * 前のエントリを返します。
+         * Returns the previous entry.
          *
-         * @return 前のエントリ
+         * @return the previous entry
          */
         public Entry getPrevious() {
             if (previous != SLinkedList.this.header) {
@@ -428,7 +413,7 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
         }
 
         /**
-         * 要素を削除します。
+         * Removes the element.
          */
         public void remove() {
             previous.next = next;
@@ -437,11 +422,10 @@ public class SLinkedList<E> implements Cloneable, Externalizable {
         }
 
         /**
-         * 前に追加します。
+         * Adds an element before this entry.
          *
-         * @param o
-         *            要素
-         * @return 追加されたエントリ
+         * @param o the element
+         * @return the added entry
          */
         public Entry addBefore(final E o) {
             final Entry newEntry = new Entry(o, this, previous);

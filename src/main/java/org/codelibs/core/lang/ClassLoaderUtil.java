@@ -32,34 +32,32 @@ import org.codelibs.core.exception.IORuntimeException;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * {@link ClassLoader}を扱うためのユーティリティ・クラスです。
+ * Utility class for handling {@link ClassLoader}.
  *
  * @author koichik
  */
 public abstract class ClassLoaderUtil {
 
     /**
-     * クラスローダを返します。
+     * Returns the class loader.
      * <p>
-     * クラスローダは以下の順で検索します。
+     * The class loader is searched in the following order:
      * </p>
      * <ol>
-     * <li>呼び出されたスレッドにコンテキスト・クラスローダが設定されている場合はそのコンテキスト・クラスローダ</li>
-     * <li>ターゲット・クラスをロードしたクラスローダを取得できればそのクラスローダ</li>
-     * <li>このクラスをロードしたクラスローダを取得できればそのクラスローダ</li>
-     * <li>システムクラスローダを取得できればそのクラスローダ</li>
+     * <li>If the context class loader is set for the calling thread, that context class loader</li>
+     * <li>If the class loader that loaded the target class can be obtained, that class loader</li>
+     * <li>If the class loader that loaded this class can be obtained, that class loader</li>
+     * <li>If the system class loader can be obtained, that class loader</li>
      * </ol>
      * <p>
-     * ただし、ターゲット・クラスをロードしたクラスローダとこのクラスをロードしたクラスローダの両方が取得できた場合で、
-     * ターゲット・クラスをロードしたクラスローダがこのクラスをロードしたクラスローダの祖先であった場合は、
-     * このクラスをロードしたクラスローダを返します。
+     * However, if both the class loader that loaded the target class and the class loader that loaded this class can be obtained,
+     * and the class loader that loaded the target class is an ancestor of the class loader that loaded this class,
+     * the class loader that loaded this class is returned.
      * </p>
      *
-     * @param targetClass
-     *            ターゲット・クラス。{@literal null}であってはいけません
-     * @return クラスローダ
-     * @throws IllegalStateException
-     *             クラスローダを取得できなかった場合
+     * @param targetClass the target class (must not be {@literal null})
+     * @return the class loader
+     * @throws IllegalStateException if the class loader could not be obtained
      */
     public static ClassLoader getClassLoader(final Class<?> targetClass) {
         assertArgumentNotNull("targetClass", targetClass);
@@ -93,15 +91,13 @@ public abstract class ClassLoaderUtil {
     }
 
     /**
-     * クラスローダ<code>other</code>がクラスローダ<code>cl</code>の祖先なら<code>true</code>
-     * を返します。
+     * Returns <code>true</code> if the class loader <code>other</code> is an ancestor of the class loader <code>cl</code>.
      *
      * @param cl
-     *            クラスローダ
+     *            the class loader
      * @param other
-     *            クラスローダ
-     * @return クラスローダ<code>other</code>がクラスローダ<code>cl</code>の祖先なら
-     *         <code>true</code>
+     *            the class loader to check as ancestor
+     * @return <code>true</code> if <code>other</code> is an ancestor of <code>cl</code>
      */
     protected static boolean isAncestor(final ClassLoader cl, final ClassLoader other) {
         for (final ClassLoader loader : iterable(cl)) {
@@ -113,12 +109,12 @@ public abstract class ClassLoaderUtil {
     }
 
     /**
-     * コンテキストクラスローダから指定された名前を持つすべてのリソースを探します。
+     * Searches for all resources with the specified name from the context class loader.
      *
      * @param name
-     *            リソース名。{@literal null}や空文字列であってはいけません
-     * @return リソースに対する URL
-     *         オブジェクトの列挙。リソースが見つからなかった場合、列挙は空になる。クラスローダがアクセスを持たないリソースは列挙に入らない
+     *            The resource name. Must not be {@literal null} or an empty string.
+     * @return An iterator of URL objects for the resources. If no resources are found, the iterator will be empty.
+     *         Resources that the class loader does not have access to will not be included.
      * @see java.lang.ClassLoader#getResources(String)
      */
     public static Iterator<URL> getResources(final String name) {
@@ -128,14 +124,14 @@ public abstract class ClassLoaderUtil {
     }
 
     /**
-     * {@link #getClassLoader(Class)}が返すクラスローダから指定された名前を持つすべてのリソースを探します。
+     * Searches for all resources with the specified name from the class loader returned by {@link #getClassLoader(Class)}.
      *
      * @param targetClass
-     *            ターゲット・クラス。{@literal null}であってはいけません
+     *            The target class. Must not be {@literal null}.
      * @param name
-     *            リソース名。{@literal null}や空文字列であってはいけません
-     * @return リソースに対する URL
-     *         オブジェクトの列挙。リソースが見つからなかった場合、列挙は空になる。クラスローダがアクセスを持たないリソースは列挙に入らない
+     *            The resource name. Must not be {@literal null} or an empty string.
+     * @return An iterator of URL objects for the resources. If no resources are found, the iterator will be empty.
+     *         Resources that the class loader does not have access to will not be included.
      * @see java.lang.ClassLoader#getResources(String)
      */
     public static Iterator<URL> getResources(final Class<?> targetClass, final String name) {
@@ -146,14 +142,14 @@ public abstract class ClassLoaderUtil {
     }
 
     /**
-     * 指定のクラスローダから指定された名前を持つすべてのリソースを探します。
+     * Searches for all resources with the specified name from the specified class loader.
      *
      * @param loader
-     *            クラスローダ。{@literal null}であってはいけません
+     *            The class loader. Must not be {@literal null}.
      * @param name
-     *            リソース名。{@literal null}や空文字列であってはいけません
-     * @return リソースに対する URL
-     *         オブジェクトの列挙。リソースが見つからなかった場合、列挙は空になる。クラスローダがアクセスを持たないリソースは列挙に入らない
+     *            The resource name. Must not be {@literal null} or an empty string.
+     * @return An enumeration of URL objects for the resources. If no resources are found, the enumeration will be empty.
+     *         Resources that the class loader does not have access to will not be included.
      * @see java.lang.ClassLoader#getResources(String)
      */
     public static Iterator<URL> getResources(final ClassLoader loader, final String name) {
@@ -169,15 +165,15 @@ public abstract class ClassLoaderUtil {
     }
 
     /**
-     * 指定されたバイナリ名を持つクラスをロードします。
+     * Loads the class with the specified binary name.
      *
      * @param loader
-     *            クラスローダ。{@literal null}であってはいけません
+     *            The class loader. Must not be {@literal null}.
      * @param className
-     *            クラスのバイナリ名。{@literal null}や空文字列であってはいけません
-     * @return 結果の<code>Class</code>オブジェクト
+     *            The binary name of the class. Must not be {@literal null} or an empty string.
+     * @return The resulting <code>Class</code> object.
      * @throws ClassNotFoundRuntimeException
-     *             クラスが見つからなかった場合
+     *             If the class could not be found.
      * @see java.lang.ClassLoader#loadClass(String)
      */
     public static Class<?> loadClass(final ClassLoader loader, final String className) {

@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * {@link SQLException}をラップする例外です。
+ * Exception that wraps {@link SQLException}.
  *
  * @author higa
  * @author manhole
@@ -32,21 +32,19 @@ public class SQLRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = 2533513110369526191L;
 
     /**
-     * {@link SQLRuntimeException}を作成します。
+     * Creates a {@link SQLRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public SQLRuntimeException(final SQLException cause) {
         super("ECL0072", asArray(getSql(cause), getRealMessage(cause), Integer.toString(cause.getErrorCode()), cause.getSQLState()), cause);
     }
 
     /**
-     * <code>SQL</code>を返します。
+     * Returns the <code>SQL</code>.
      *
-     * @param cause
-     *            原因となった例外
-     * @return <code>SQL</code>
+     * @param cause the underlying exception
+     * @return the <code>SQL</code>
      */
     protected static String getSql(final SQLException cause) {
         if (cause instanceof ClSQLException) {
@@ -56,11 +54,10 @@ public class SQLRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * 本当のメッセージを返します。
+     * Returns the real message.
      *
-     * @param cause
-     *            原因となった例外
-     * @return 本当のメッセージ
+     * @param cause the underlying exception
+     * @return the real message
      */
     protected static String getRealMessage(final SQLException cause) {
         final StringBuilder buf = new StringBuilder(256);

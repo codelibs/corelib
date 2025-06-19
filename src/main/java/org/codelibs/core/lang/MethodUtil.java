@@ -27,28 +27,28 @@ import org.codelibs.core.exception.IllegalAccessRuntimeException;
 import org.codelibs.core.exception.InvocationTargetRuntimeException;
 
 /**
- * {@link Method}用のユーティリティクラスです。
+ * Utility class for method operations.
  *
  * @author higa
  */
 public abstract class MethodUtil {
 
     /**
-     * {@link Method}オブジェクトによって表される基本となるメソッドを、指定したオブジェクトに対して指定したパラメータで呼び出します。
+     * Invokes the underlying method represented by the {@link Method} object, with the specified object and parameters.
      *
      * @param <T>
-     *            メソッドの戻り値の型
+     *            The return type of the method
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Cannot be {@literal null}
      * @param target
-     *            基本となるメソッドの呼び出し元のオブジェクト。{@literal static}メソッドの場合は{@literal null}
+     *            The object on which the underlying method is to be called. {@literal null} for {@literal static} methods
      * @param args
-     *            メソッド呼び出しに使用される引数
-     * @return このオブジェクトが表すメソッドを、パラメータ{@code args}を使用して{@code obj}にディスパッチした結果
+     *            The arguments used for the method call
+     * @return The result of dispatching the method to the object using the parameters {@code args}
      * @throws IllegalAccessRuntimeException
-     *             この{@link Method}オブジェクトがJava言語アクセス制御を実施し、 基本となるメソッドにアクセスできない場合
+     *             If this {@link Method} object enforces Java language access control and the underlying method is not accessible
      * @throws InvocationTargetRuntimeException
-     *             基本となるメソッドが例外をスローする場合
+     *             If the underlying method throws an exception
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
@@ -73,19 +73,19 @@ public abstract class MethodUtil {
     }
 
     /**
-     * {@link Method}オブジェクトによって表される基本となる{@code static}メソッドを、指定したパラメータで呼び出します。
+     * Invokes the underlying {@code static} method represented by the {@link Method} object, with the specified parameters.
      *
      * @param <T>
-     *            メソッドの戻り値の型
+     *            The return type of the method
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Cannot be {@literal null}
      * @param args
-     *            メソッド呼び出しに使用される引数
-     * @return このオブジェクトが表す{@code static}メソッドを、パラメータ{@code args}を使用してディスパッチした結果
+     *            The arguments used for the method call
+     * @return The result of dispatching the {@code static} method using the parameters {@code args}
      * @throws IllegalAccessRuntimeException
-     *             この{@link Method}オブジェクトがJava言語アクセス制御を実施し、 基本となるメソッドにアクセスできない場合
+     *             If this {@link Method} object enforces Java language access control and the underlying method is not accessible
      * @throws InvocationTargetRuntimeException
-     *             基本となるメソッドが例外をスローする場合
+     *             If the underlying method throws an exception
      * @see Method#invoke(Object, Object[])
      */
     @SuppressWarnings("unchecked")
@@ -97,22 +97,22 @@ public abstract class MethodUtil {
     }
 
     /**
-     * <code>abstract</code>かどうかを返します。
+     * Returns whether the method is <code>abstract</code>.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return <code>abstract</code>かどうか
+     *            The method. Cannot be {@literal null}
+     * @return <code>abstract</code> if the method is abstract
      */
     public static boolean isAbstract(final Method method) {
         return Modifier.isAbstract(method.getModifiers());
     }
 
     /**
-     * <code>public</code>かどうかを返します。
+     * Returns whether the method is <code>public</code>.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return <code>public</code>なら{@literal true}
+     *            The method. Cannot be {@literal null}
+     * @return <code>public</code> if the method is public
      */
     public static boolean isPublic(final Method method) {
         assertArgumentNotNull("method", method);
@@ -121,11 +121,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * <code>static</code>かどうかを返します。
+     * Returns whether the method is <code>static</code>.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return <code>static</code>かどうか
+     *            The method. Cannot be {@literal null}
+     * @return <code>static</code> if the method is static
      */
     public static boolean isStatic(final Method method) {
         assertArgumentNotNull("method", method);
@@ -134,11 +134,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * <code>final</code>かどうかを返します。
+     * Returns whether the method is <code>final</code>.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return <code>final </code>かどうか
+     *            The method. Cannot be {@literal null}
+     * @return <code>final </code> if the method is final
      */
     public static boolean isFinal(final Method method) {
         assertArgumentNotNull("method", method);
@@ -147,13 +147,13 @@ public abstract class MethodUtil {
     }
 
     /**
-     * シグニチャの文字列表現を返します。
+     * Returns the string representation of the method signature.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
+     *            The method name. Cannot be {@literal null} or empty
      * @param argTypes
-     *            引数型のな並び
-     * @return シグニチャの文字列表現
+     *            The argument types
+     * @return The string representation of the method signature
      */
     public static String getSignature(final String methodName, final Class<?>... argTypes) {
         assertArgumentNotEmpty("methodName", methodName);
@@ -171,13 +171,13 @@ public abstract class MethodUtil {
     }
 
     /**
-     * シグニチャの文字列表現を返します。
+     * Returns the string representation of the method signature.
      *
      * @param methodName
-     *            メソッド名。{@literal null}や空文字列であってはいけません
+     *            The method name. Cannot be {@literal null} or empty
      * @param methodArgs
-     *            引数の並び
-     * @return シグニチャの文字列表現
+     *            The method arguments
+     * @return The string representation of the method signature
      */
     public static String getSignature(final String methodName, final Object... methodArgs) {
         assertArgumentNotEmpty("methodName", methodName);
@@ -195,11 +195,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * {@literal equals(Object)}メソッドかどうかを返します。
+     * Returns whether the method is the {@literal equals(Object)} method.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return {@literal equals(Object)}メソッドなら{@literal true}
+     *            The method. Cannot be {@literal null}
+     * @return {@literal true} if the method is {@literal equals(Object)}
      */
     public static boolean isEqualsMethod(final Method method) {
         assertArgumentNotNull("method", method);
@@ -209,11 +209,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * {@literal hashCode()}メソッドかどうか返します。
+     * Returns whether the method is the {@literal hashCode()} method.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return {@literal hashCode()}メソッドなら{@literal true}
+     *            The method. Cannot be {@literal null}
+     * @return {@literal true} if the method is {@literal hashCode()}
      */
     public static boolean isHashCodeMethod(final Method method) {
         assertArgumentNotNull("method", method);
@@ -223,11 +223,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * {@literal toString()}メソッドかどうか返します。
+     * Returns whether the method is the {@literal toString()} method.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return {@literal toString()}メソッドなら{@literal true}
+     *            The method. Cannot be {@literal null}
+     * @return {@literal true} if the method is {@literal toString()}
      */
     public static boolean isToStringMethod(final Method method) {
         assertArgumentNotNull("method", method);
@@ -237,13 +237,13 @@ public abstract class MethodUtil {
     }
 
     /**
-     * メソッドの引数型 (パラメタ化されたコレクション) の要素型を返します。
+     * Returns the element type of the parameterized collection declared as the method's argument type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Cannot be {@literal null}
      * @param position
-     *            パラメタ化されたコレクションが宣言されているメソッド引数の位置
-     * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたコレクションの要素型
+     *            The position of the parameterized collection in the method's argument list
+     * @return The element type of the parameterized collection
      */
     public static Class<?> getElementTypeOfCollectionFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
@@ -253,11 +253,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * 指定されたメソッドの戻り値型として宣言されているパラメタ化されたコレクションの要素型を返します。
+     * Returns the element type of the parameterized collection declared as the method's return type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return 指定されたメソッドの戻り値型として宣言されているパラメタ化されたコレクションの要素型
+     *            The method. Cannot be {@literal null}
+     * @return The element type of the parameterized collection
      */
     public static Class<?> getElementTypeOfCollectionFromReturnType(final Method method) {
         assertArgumentNotNull("method", method);
@@ -267,13 +267,13 @@ public abstract class MethodUtil {
     }
 
     /**
-     * メソッドの引数型 (パラメタ化されたマップ) のキー型を返します。
+     * Returns the key type of the parameterized map declared as the method's argument type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Cannot be {@literal null}
      * @param position
-     *            パラメタ化されたマップが宣言されているメソッド引数の位置
-     * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたマップのキー型
+     *            The position of the parameterized map in the method's argument list
+     * @return The key type of the parameterized map
      */
     public static Class<?> getKeyTypeOfMapFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
@@ -283,11 +283,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * 指定されたメソッドの戻り値型として宣言されているパラメタ化されたマップのキー型を返します。
+     * Returns the key type of the parameterized map declared as the method's return type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return 指定されたメソッドの戻り値型として宣言されているパラメタ化されたマップのキー型
+     *            The method. Cannot be {@literal null}
+     * @return The key type of the parameterized map
      */
     public static Class<?> getKeyTypeOfMapFromReturnType(final Method method) {
         assertArgumentNotNull("method", method);
@@ -297,13 +297,13 @@ public abstract class MethodUtil {
     }
 
     /**
-     * メソッドの引数型 (パラメタ化されたマップ) の値型を返します。
+     * Returns the value type of the parameterized map declared as the method's argument type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
+     *            The method. Cannot be {@literal null}
      * @param position
-     *            パラメタ化されたマップが宣言されているメソッド引数の位置
-     * @return 指定されたメソッドの引数型として宣言されているパラメタ化されたマップの値型
+     *            The position of the parameterized map in the method's argument list
+     * @return The value type of the parameterized map
      */
     public static Class<?> getValueTypeOfMapFromParameterType(final Method method, final int position) {
         assertArgumentNotNull("method", method);
@@ -313,11 +313,11 @@ public abstract class MethodUtil {
     }
 
     /**
-     * 指定されたメソッドの戻り値型として宣言されているパラメタ化されたマップの値型を返します。
+     * Returns the value type of the parameterized map declared as the method's return type.
      *
      * @param method
-     *            メソッド。{@literal null}であってはいけません
-     * @return 指定されたメソッドの戻り値型として宣言されているパラメタ化されたマップの値型
+     *            The method. Cannot be {@literal null}
+     * @return The value type of the parameterized map
      */
     public static Class<?> getValueTypeOfMapFromReturnType(final Method method) {
         assertArgumentNotNull("method", method);

@@ -16,7 +16,7 @@
 package org.codelibs.core.log;
 
 /**
- * 任意のロギングフレームワークを利用するためのアダプタです。
+ * Adapter for using any logging framework.
  *
  * @author koichik
  */

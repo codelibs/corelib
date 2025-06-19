@@ -23,9 +23,9 @@ import java.util.NoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * 複数の{@link Iterator}を一つの{@link Iterator}のように反復するための{@link Iterator}です。
+ * An {@link Iterator} that iterates over multiple {@link Iterator}s as if they were a single {@link Iterator}.
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
@@ -40,25 +40,22 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * </pre>
  *
  * @author koichik
- * @param <E>
- *            要素の型
+ * @param <E> the element type
  */
 public class MultiIterator<E> implements Iterator<E> {
 
-    /** {@link Iterator}の配列 */
+    /** Array of {@link Iterator}s. */
     protected final Iterator<E>[] iterators;
 
-    /** 現在反復中の{@link Iterator}のインデックス */
+    /** Index of the currently iterated {@link Iterator}. */
     protected int index;
 
     /**
-     * for each構文で使用するために{@link MultiIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link MultiIterator} for use in a for-each statement.
      *
-     * @param <E>
-     *            要素の型
-     * @param iterables
-     *            {@link Iterable}の並び。{@literal null}であってはいけません
-     * @return {@link MultiIterator}をラップした{@link Iterable}
+     * @param <E> the element type
+     * @param iterables the array of {@link Iterable} (must not be {@literal null})
+     * @return an {@link Iterable} wrapping a {@link MultiIterator}
      */
     public static <E> Iterable<E> iterable(final Iterable<E>... iterables) {
         assertArgumentNotNull("iterables", iterables);
@@ -72,13 +69,11 @@ public class MultiIterator<E> implements Iterator<E> {
     }
 
     /**
-     * for each構文で使用するために{@link MultiIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link MultiIterator} for use in a for-each statement.
      *
-     * @param <E>
-     *            要素の型
-     * @param iterators
-     *            {@link Iterator}の並び。{@literal null}であってはいけません
-     * @return {@link MultiIterator}をラップした{@link Iterable}
+     * @param <E> the element type
+     * @param iterators the array of {@link Iterator} (must not be {@literal null})
+     * @return an {@link Iterable} wrapping a {@link MultiIterator}
      */
     public static <E> Iterable<E> iterable(final Iterator<E>... iterators) {
         assertArgumentNotNull("iterators", iterators);
@@ -87,10 +82,9 @@ public class MultiIterator<E> implements Iterator<E> {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
-     * @param iterators
-     *            {@link Iterator}の並び。{@literal null}であってはいけません
+     * @param iterators the array of {@link Iterator}s (must not be {@literal null})
      */
     public MultiIterator(final Iterator<E>... iterators) {
         assertArgumentNotNull("iterators", iterators);
