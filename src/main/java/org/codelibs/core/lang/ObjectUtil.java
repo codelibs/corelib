@@ -25,8 +25,8 @@ public abstract class ObjectUtil {
     /**
      * Returns true if the two objects are equal, or both are null.
      *
-     * @param o1 the first object
-     * @param o2 the second object
+     * @param object1 the first object
+     * @param object2 the second object
      * @return true if equal or both null, false otherwise
      */
     public static boolean equals(final Object object1, final Object object2) {

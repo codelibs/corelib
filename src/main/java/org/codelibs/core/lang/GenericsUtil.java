@@ -127,9 +127,9 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * Returns the generic type of the specified class for the given index.
+     * Returns the generic type of the specified type for the given index.
      *
-     * @param clazz the class to analyze
+     * @param type the type to analyze
      * @param index the index of the generic type
      * @return the generic type class, or null if not found
      */
@@ -146,9 +146,9 @@ public abstract class GenericsUtil {
     }
 
     /**
-     * Returns the generic type of the specified class for the given index, or the default class if not found.
+     * Returns the generic type of the specified type for the given index, or the default class if not found.
      *
-     * @param clazz the class to analyze
+     * @param type the type to analyze
      * @param index the index of the generic type
      * @param defaultClass the default class to return if not found
      * @return the generic type class, or the default class

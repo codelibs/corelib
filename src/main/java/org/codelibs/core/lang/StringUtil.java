@@ -63,7 +63,7 @@ public abstract class StringUtil {
     /**
      * Checks if the string is empty or null.
      *
-     * @param str the string to check
+     * @param text the string to check
      * @return true if empty or null, false otherwise
      */
     public static final boolean isEmpty(final String text) {
@@ -73,7 +73,7 @@ public abstract class StringUtil {
     /**
      * Checks if the string is not empty.
      *
-     * @param str the string to check
+     * @param text the string to check
      * @return true if not empty, false otherwise
      */
     public static final boolean isNotEmpty(final String text) {

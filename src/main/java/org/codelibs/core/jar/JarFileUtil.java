@@ -77,7 +77,7 @@ public abstract class JarFileUtil {
     /**
      * Returns an input stream to read the contents of the specified JAR file entry.
      *
-     * @param jarFile the JAR file (must not be {@literal null})
+     * @param file the JAR file (must not be {@literal null})
      * @param entry the JAR file entry (must not be {@literal null})
      * @return the input stream to read the entry
      */
