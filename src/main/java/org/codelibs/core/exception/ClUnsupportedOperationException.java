@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,7 +16,7 @@
 package org.codelibs.core.exception;
 
 /**
- * {@link UnsupportedOperationException}をラップする例外です。
+ * Exception that wraps {@link UnsupportedOperationException}.
  *
  * @author wyukawa
  */
@@ -25,38 +25,34 @@ public class ClUnsupportedOperationException extends UnsupportedOperationExcepti
     private static final long serialVersionUID = -6732367317955522602L;
 
     /**
-     * {@link ClUnsupportedOperationException}を作成します。
+     * Creates a {@link ClUnsupportedOperationException}.
      */
     public ClUnsupportedOperationException() {
     }
 
     /**
-     * {@link ClUnsupportedOperationException}を作成します。
+     * Creates a {@link ClUnsupportedOperationException}.
      *
-     * @param message
-     *            メッセージ
+     * @param message the message
      */
     public ClUnsupportedOperationException(final String message) {
         super(message);
     }
 
     /**
-     * {@link ClUnsupportedOperationException}を作成します。
+     * Creates a {@link ClUnsupportedOperationException}.
      *
-     * @param message
-     *            メッセージ
-     * @param cause
-     *            元の例外
+     * @param message the message
+     * @param cause the underlying exception
      */
     public ClUnsupportedOperationException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * {@link ClUnsupportedOperationException}を作成します。
+     * Creates a {@link ClUnsupportedOperationException}.
      *
-     * @param cause
-     *            元の例外
+     * @param cause the underlying exception
      */
     public ClUnsupportedOperationException(final Throwable cause) {
         super(cause);

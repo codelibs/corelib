@@ -27,45 +27,45 @@ import org.codelibs.core.message.MessageFormatter;
 import org.codelibs.core.misc.DisposableUtil;
 
 /**
- * ログ出力を提供するクラスです。
+ * Logger interface.
  *
  * @author higa
  */
 public class Logger {
 
     /**
-     * ログの出力レベルです。
+     * Log output levels.
      */
     public enum LogLevel {
-        /** デバッグ */
+        /** Debug */
         DEBUG,
-        /** 情報 */
+        /** Info */
         INFO,
-        /** 警告 */
+        /** Warning */
         WARN,
-        /** エラー */
+        /** Error */
         ERROR,
-        /** 致命的 */
+        /** Fatal */
         FATAL,
     }
 
-    /** ロガーアダプタのファクトリ */
+    /** Factory for LoggerAdapter */
     protected static final LoggerAdapterFactory factory = getLoggerAdapterFactory();
 
-    /** クラスをキーとするロガー のマップ */
+    /** Map of loggers keyed by class */
     protected static final Map<Class<?>, Logger> loggers = newHashMap();
 
-    /** 初期化済みを示すフラグ */
+    /** Flag indicating initialization is complete. */
     private static boolean initialized;
 
-    /** ロガーアダプタ */
+    /** Logger adapter. */
     private final LoggerAdapter log;
 
     /**
-     * {@link Logger}を返します。
+     * Returns a {@link Logger}.
      *
      * @param clazz
-     *            ロガーのカテゴリとなるクラス。{@literal null}であってはいけません
+     *            Class to be used as the logger category. Must not be {@literal null}.
      * @return {@link Logger}
      */
     public static synchronized Logger getLogger(final Class<?> clazz) {
@@ -83,13 +83,13 @@ public class Logger {
     }
 
     /**
-     * フォーマットされたメッセージ文字列を返します。
+     * Returns a formatted message string.
      *
      * @param messageCode
-     *            メッセージコード。{@literal null}や空文字列であってはいけません
+     *            Message code. Must not be {@literal null} or empty string.
      * @param args
-     *            引数
-     * @return フォーマットされたメッセージ文字列
+     *            Arguments
+     * @return Formatted message string
      */
     public static LogMessage format(final String messageCode, final Object... args) {
         assertArgumentNotEmpty("messageCode", messageCode);
@@ -113,7 +113,7 @@ public class Logger {
     }
 
     /**
-     * {@link Logger}を初期化します。
+     * Initializes the {@link Logger}.
      */
     protected static synchronized void initialize() {
         DisposableUtil.addFirst(() -> {
@@ -125,13 +125,13 @@ public class Logger {
     }
 
     /**
-     * ログアダプタのファクトリを返します。
+     * Returns the logger adapter factory.
      * <p>
-     * Commons Loggingが使える場合はCommons Loggingを利用するためのファクトリを返します。
-     * 使えない場合はjava.util.loggingロガーを利用するためのファクトリを返します。
+     * If Commons Logging is available, returns a factory for using Commons Logging.
+     * If not available, returns a factory for using java.util.logging logger.
      * </p>
      *
-     * @return ログアダプタのファクトリ
+     * @return the logger adapter factory
      */
     protected static LoggerAdapterFactory getLoggerAdapterFactory() {
         // TODO
@@ -144,31 +144,31 @@ public class Logger {
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param clazz
-     *            ログ出力のカテゴリとなるクラス
+     *            The class to be used as the logging category.
      */
     protected Logger(final Class<?> clazz) {
         log = factory.getLoggerAdapter(clazz);
     }
 
     /**
-     * DEBUG情報が出力されるかどうかを返します。
+     * Checks if debug level is enabled.
      *
-     * @return DEBUG情報が出力されるかどうか
+     * @return true if debug is enabled, false otherwise
      */
     public boolean isDebugEnabled() {
         return log.isDebugEnabled();
     }
 
     /**
-     * DEBUG情報を出力します。
+     * Outputs DEBUG information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void debug(final Object message, final Throwable throwable) {
         if (isDebugEnabled()) {
@@ -177,10 +177,10 @@ public class Logger {
     }
 
     /**
-     * DEBUG情報を出力します。
+     * Outputs DEBUG information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public void debug(final Object message) {
         if (isDebugEnabled()) {
@@ -189,21 +189,21 @@ public class Logger {
     }
 
     /**
-     * INFO情報が出力されるかどうかを返します。
+     * Checks if info level is enabled.
      *
-     * @return INFO情報が出力されるかどうか
+     * @return true if info is enabled, false otherwise
      */
     public boolean isInfoEnabled() {
         return log.isInfoEnabled();
     }
 
     /**
-     * INFO情報を出力します。
+     * Outputs INFO information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void info(final Object message, final Throwable throwable) {
         if (isInfoEnabled()) {
@@ -212,10 +212,10 @@ public class Logger {
     }
 
     /**
-     * INFO情報を出力します。
+     * Outputs INFO information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public void info(final Object message) {
         if (isInfoEnabled()) {
@@ -224,76 +224,76 @@ public class Logger {
     }
 
     /**
-     * WARN情報を出力します。
+     * Outputs WARN information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void warn(final Object message, final Throwable throwable) {
         log.warn(toString(message), throwable);
     }
 
     /**
-     * WARN情報を出力します。
+     * Outputs WARN information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public void warn(final Object message) {
         log.warn(message.toString());
     }
 
     /**
-     * ERROR情報を出力します。
+     * Outputs ERROR information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void error(final Object message, final Throwable throwable) {
         log.error(message.toString(), throwable);
     }
 
     /**
-     * ERROR情報を出力します。
+     * Outputs ERROR information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public void error(final Object message) {
         log.error(message.toString());
     }
 
     /**
-     * FATAL情報を出力します。
+     * Outputs FATAL information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void fatal(final Object message, final Throwable throwable) {
         log.fatal(message.toString(), throwable);
     }
 
     /**
-     * FATAL情報を出力します。
+     * Outputs FATAL information.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public void fatal(final Object message) {
         log.fatal(message.toString());
     }
 
     /**
-     * ログを出力します。
+     * Outputs a log entry.
      *
      * @param throwable
-     *            例外。{@literal null}であってはいけません
+     *            Exception. Must not be {@literal null}.
      */
     public void log(final Throwable throwable) {
         assertArgumentNotNull("throwable", throwable);
@@ -302,12 +302,12 @@ public class Logger {
     }
 
     /**
-     * ログを出力します。
+     * Outputs a log entry.
      *
      * @param messageCode
-     *            メッセージコード。{@literal null}や空文字列であってはいけません
+     *            Message code. Must not be {@literal null} or empty string.
      * @param args
-     *            引数
+     *            Arguments
      */
     public void log(final String messageCode, final Object... args) {
         assertArgumentNotEmpty("messageCode", messageCode);
@@ -316,10 +316,10 @@ public class Logger {
     }
 
     /**
-     * ログを出力します。
+     * Outputs a log entry.
      * <p>
-     * ログメッセージは{@link #format(String, Object...)}メソッドで作成します。
-     * {@link #format(String, Object...)}を{@literal static import}しておくと便利です。
+     * The log message should be created using the {@link #format(String, Object...)} method.
+     * It is convenient to use a static import for {@link #format(String, Object...)}.
      * </p>
      *
      * <pre>
@@ -330,7 +330,7 @@ public class Logger {
      * </pre>
      *
      * @param logMessage
-     *            ログメッセージ。{@literal null}であってはいけません
+     *            Log message. Must not be {@literal null}.
      */
     public void log(final LogMessage logMessage) {
         assertArgumentNotNull("logMessage", logMessage);
@@ -339,10 +339,10 @@ public class Logger {
     }
 
     /**
-     * ログを出力します。
+     * Outputs a log entry.
      * <p>
-     * ログメッセージは{@link #format(String, Object...)}メソッドで作成します。
-     * {@link #format(String, Object...)}を{@literal static import}しておくと便利です。
+     * The log message should be created using the {@link #format(String, Object...)} method.
+     * It is convenient to use a static import for {@link #format(String, Object...)}.
      * </p>
      *
      * <pre>
@@ -353,9 +353,9 @@ public class Logger {
      * </pre>
      *
      * @param logMessage
-     *            ログメッセージ。{@literal null}であってはいけません
+     *            Log message. Must not be {@literal null}.
      * @param throwable
-     *            例外
+     *            Exception
      */
     public void log(final LogMessage logMessage, final Throwable throwable) {
         assertArgumentNotNull("logMessage", logMessage);
@@ -384,11 +384,11 @@ public class Logger {
     }
 
     /**
-     * 指定のログレベルが有効なら{@literal true}を返します．
+     * Returns {@literal true} if the specified log level is enabled.
      *
      * @param logLevel
-     *            ログレベル
-     * @return 指定のログレベルが有効なら{@literal true}
+     *            Log level
+     * @return {@literal true} if the specified log level is enabled
      */
     protected boolean isEnabledFor(final LogLevel logLevel) {
         switch (logLevel) {
@@ -408,11 +408,11 @@ public class Logger {
     }
 
     /**
-     * メッセージオブジェクトの文字列表現を返します。
+     * Returns the string representation of the message object.
      *
      * @param message
-     *            メッセージオブジェクト
-     * @return メッセージオブジェクトの文字列表現
+     *            Message object
+     * @return String representation of the message object
      */
     protected static String toString(final Object message) {
         if (message == null) {
@@ -425,24 +425,24 @@ public class Logger {
     }
 
     /**
-     * ログ出力するメッセージです。
+     * The message to be logged.
      *
      * @author koichik
      */
     public static class LogMessage {
-        /** ログレベル */
+        /** Log level */
         protected final LogLevel level;
 
-        /** ログメッセージ */
+        /** Log message */
         protected final String message;
 
         /**
-         * インスタンスを構築します。
+         * Constructs an instance.
          *
          * @param level
-         *            ログレベル。{@literal null}であってはいけません
+         *            Log level. Must not be {@literal null}.
          * @param message
-         *            ログメッセージ
+         *            Log message.
          */
         public LogMessage(final LogLevel level, final String message) {
             assertArgumentNotNull("level", level);
@@ -452,18 +452,18 @@ public class Logger {
         }
 
         /**
-         * 出力レベルを返します。
+         * Returns the log level.
          *
-         * @return 出力レベル
+         * @return the log level
          */
         public LogLevel getLevel() {
             return level;
         }
 
         /**
-         * メッセージを返します。
+         * Returns the message.
          *
-         * @return メッセージ
+         * @return the message
          */
         public String getMessage() {
             return message;

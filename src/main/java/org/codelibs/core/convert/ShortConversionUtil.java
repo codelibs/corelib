@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Short}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Short}.
  *
  * @author higa
  */
 public abstract class ShortConversionUtil {
 
     /**
-     * {@link Short}に変換します。
+     * Converts to {@link Short}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Short}
+     *            The object to convert
+     * @return The converted {@link Short}
      */
     public static Short toShort(final Object o) {
         return toShort(o, null);
     }
 
     /**
-     * {@link Short}に変換します。
+     * Converts to {@link Short}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Short}
+     *            The pattern string
+     * @return The converted {@link Short}
      */
     public static Short toShort(final Object o, final String pattern) {
         if (o == null) {
@@ -76,24 +76,24 @@ public abstract class ShortConversionUtil {
     }
 
     /**
-     * {@literal short}に変換します。
+     * Converts to {@literal short}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal short}
+     *            The object to convert
+     * @return The converted {@literal short}
      */
     public static short toPrimitiveShort(final Object o) {
         return toPrimitiveShort(o, null);
     }
 
     /**
-     * {@literal short}に変換します。
+     * Converts to {@literal short}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal short}
+     *            The pattern string
+     * @return The converted {@literal short}
      */
     public static short toPrimitiveShort(final Object o, final String pattern) {
         if (o == null) {

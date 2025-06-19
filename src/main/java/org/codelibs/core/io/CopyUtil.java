@@ -46,15 +46,15 @@ import org.codelibs.core.net.URLUtil;
 import org.codelibs.core.nio.ChannelUtil;
 
 /**
- * コピーのためのユーティリティです。
+ * Utility for copying.
  * <p>
- * コピー可能な入力と出力の組み合わせと、コピーされる要素の単位は以下のとおりです。
+ * The combinations of input and output types and the unit of elements copied are as follows:
  * </p>
  * <table border="1">
- * <caption>Elements for coping instances</caption>
+ * <caption>Elements for copying instances</caption>
  * <tr>
- * <th rowspan="2">入力の型</th>
- * <th colspan="4">出力の型</th>
+ * <th rowspan="2">Input type</th>
+ * <th colspan="4">Output type</th>
  * </tr>
  * <tr>
  * <th>{@link OutputStream}</th>
@@ -64,76 +64,73 @@ import org.codelibs.core.nio.ChannelUtil;
  * </tr>
  * <tr>
  * <th>{@link InputStream}</th>
- * <td>バイト</td>
- * <td>文字</td>
- * <td>バイト、文字</td>
- * <td>文字</td>
+ * <td>bytes</td>
+ * <td>characters</td>
+ * <td>bytes, characters</td>
+ * <td>characters</td>
  * </tr>
  * <tr>
  * <th>{@link Reader}</th>
- * <td>文字</td>
- * <td>文字</td>
- * <td>文字</td>
- * <td>文字</td>
+ * <td>characters</td>
+ * <td>characters</td>
+ * <td>characters</td>
+ * <td>characters</td>
  * </tr>
  * <tr>
  * <th>{@link File}</th>
- * <td>バイト</td>
- * <td>文字</td>
- * <td>バイト、文字</td>
- * <td>文字</td>
+ * <td>bytes</td>
+ * <td>characters</td>
+ * <td>bytes, characters</td>
+ * <td>characters</td>
  * </tr>
  * <tr>
  * <th>{@link URL}</th>
- * <td>バイト</td>
- * <td>文字</td>
- * <td>バイト、文字</td>
- * <td>文字</td>
+ * <td>bytes</td>
+ * <td>characters</td>
+ * <td>bytes, characters</td>
+ * <td>characters</td>
  * </tr>
  * <tr>
  * <th>{@literal byte[]}</th>
- * <td>バイト</td>
- * <td>文字</td>
- * <td>バイト、文字</td>
- * <td>文字</td>
+ * <td>bytes</td>
+ * <td>characters</td>
+ * <td>bytes, characters</td>
+ * <td>characters</td>
  * </tr>
  * <tr>
  * <th>{@link String}</th>
- * <td>文字</td>
- * <td>文字</td>
- * <td>文字</td>
- * <td>×</td>
+ * <td>characters</td>
+ * <td>characters</td>
+ * <td>characters</td>
+ * <td>&times;</td>
  * </tr>
  * </table>
  * <p>
- * 引数に{@link InputStream}/{@link OutputStream}/{@link Reader}/{@link Writer}
- * を受け取るメソッドは、 どれも引数に対して{@link Closeable#close()}を呼び出しません。 クローズする責務は呼び出し側にあります。
+ * Methods that take {@link InputStream}/{@link OutputStream}/{@link Reader}/{@link Writer} as arguments do not call {@link Closeable#close()} on the arguments. The caller is responsible for closing them.
  * </p>
  * <p>
- * どのメソッドも発生した{@link IOException}は{@link IORuntimeException}にラップしてスローされます。
+ * Any {@link IOException} thrown by these methods is wrapped and thrown as an {@link IORuntimeException}.
  * </p>
  *
  * @author koichik
  */
 public abstract class CopyUtil {
 
-    /** コピーで使用するバッファサイズ */
+    /** Buffer size used for copying. */
     protected static final int DEFAULT_BUF_SIZE = 4096;
 
     // ////////////////////////////////////////////////////////////////
     // from InputStream to OutputStream
     //
     /**
-     * 入力ストリームから出力ストリームへコピーします。
+     * Copies from an input stream to an output stream.
      * <p>
-     * 入力ストリーム、出力ストリームともクローズされません。
+     * Neither the input stream nor the output stream is closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the input stream (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final InputStream in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -155,16 +152,14 @@ public abstract class CopyUtil {
     // from InputStream to Writer
     //
     /**
-     * プラットフォームのデフォルトエンコーディングで入力ストリームからライターへコピーします。
+     * Copies from an input stream to a writer using the platform default encoding.
      * <p>
-     * 入力ストリーム、ライターともクローズされません。
+     * Neither the input stream nor the writer is closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the input stream (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final InputStream in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -175,18 +170,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングで入力ストリームからライターへコピーします。
+     * Copies from an input stream to a writer using the specified encoding.
      * <p>
-     * 入力ストリーム、ライターともクローズされません。
+     * Neither the input stream nor the writer is closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ライター
-     * @return コピーした文字数。{@literal null}であってはいけません
+     * @param in the input stream (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final InputStream in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -201,16 +193,14 @@ public abstract class CopyUtil {
     // from InputStream to File
     //
     /**
-     * 入力ストリームからファイルへコピーします。
+     * Copies from an input stream to a file.
      * <p>
-     * 入力ストリームはクローズされません。
+     * The input stream is not closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the input stream (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final InputStream in, final File out) {
         assertArgumentNotNull("in", in);
@@ -231,16 +221,14 @@ public abstract class CopyUtil {
     // from InputStream to StringBuilder
     //
     /**
-     * プラットフォームのデフォルトエンコーディングで入力ストリームから{@link StringBuilder}へコピーします。
+     * Copies from an input stream to a {@link StringBuilder} using the platform default encoding.
      * <p>
-     * 入力ストリームはクローズされません。
+     * The input stream is not closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the input stream (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final InputStream in, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -251,18 +239,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングで入力ストリームから{@link StringBuilder}へコピーします。
+     * Copies from an input stream to a {@link StringBuilder} using the specified encoding.
      * <p>
-     * 入力ストリームはクローズされません。
+     * The input stream is not closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the input stream (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final InputStream in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -277,16 +262,14 @@ public abstract class CopyUtil {
     // from Reader to OutputStream
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでリーダーから出力ストリームへコピーします。
+     * Copies from a reader to an output stream using the platform default encoding.
      * <p>
-     * リーダー、出力ストリームともクローズされません。
+     * Neither the reader nor the output stream is closed.
      * </p>
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -297,18 +280,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングでリーダーから出力ストリームへコピーします。
+     * Copies from a reader to an output stream using the specified encoding.
      * <p>
-     * リーダー、出力ストリームともクローズされません。
+     * Neither the reader nor the output stream is closed.
      * </p>
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final OutputStream out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -323,16 +303,14 @@ public abstract class CopyUtil {
     // from Reader to Writer
     //
     /**
-     * リーダーからライターへコピーします。
+     * Copies from a reader to a writer.
      * <p>
-     * リーダー、ライターともクローズされません。
+     * Neither the reader nor the writer is closed.
      * </p>
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -345,16 +323,14 @@ public abstract class CopyUtil {
     // from Reader to File
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでリーダーからファイルへコピーします。
+     * Copies from a reader to a file using the platform default encoding.
      * <p>
-     * リーダーはクローズされません。
+     * The reader is not closed.
      * </p>
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final File out) {
         assertArgumentNotNull("in", in);
@@ -369,15 +345,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングでリーダーからファイルへコピーします。
+     * Copies from a reader to a file using the specified encoding.
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -396,16 +369,14 @@ public abstract class CopyUtil {
     // from Reader to StringBuilder
     //
     /**
-     * リーダーから{@link StringBuilder}へコピーします。
+     * Copies from a reader to a {@link StringBuilder}.
      * <p>
-     * リーダーはクローズされません。
+     * The reader is not closed.
      * </p>
      *
-     * @param in
-     *            リーダー。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the reader (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final Reader in, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -418,16 +389,14 @@ public abstract class CopyUtil {
     // from File to OutputStream
     //
     /**
-     * ファイルから出力ストリームへコピーします。
+     * Copies from a file to an output stream.
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
-     * @param in
-     *            ファイル。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the file (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final File in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -448,16 +417,14 @@ public abstract class CopyUtil {
     // from File to Writer
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでファイルからライターへコピーします。
+     * Copies from a file to a writer using the platform default encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            ファイル。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the file (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final File in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -472,18 +439,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルからライターへコピーします。
+     * Copies from a file to a writer using the specified encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final File in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -502,13 +466,11 @@ public abstract class CopyUtil {
     // from File to File
     //
     /**
-     * ファイルからファイルへコピーします。
+     * Copies from a file to a file.
      *
-     * @param in
-     *            入力ファイル。{@literal null}であってはいけません
-     * @param out
-     *            出力ファイル。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the input file (must not be {@literal null})
+     * @param out the output file (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final File in, final File out) {
         assertArgumentNotNull("in", in);
@@ -528,15 +490,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのファイルからプラットフォームデフォルトエンコーディングのファイルへコピーします。
+     * Copies from a file with the specified encoding to a file with the platform default encoding.
      *
-     * @param in
-     *            入力ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            出力ファイル。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the input file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the output file (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final File in, final String encoding, final File out) {
         assertArgumentNotNull("in", in);
@@ -557,15 +516,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングのファイルから指定されたエンコーディングのファイルへコピーします。
+     * Copies from a file with the platform default encoding to a file with the specified encoding.
      *
-     * @param in
-     *            入力ファイル。{@literal null}であってはいけません
-     * @param out
-     *            出力ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the input file (must not be {@literal null})
+     * @param out the output file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final File in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -586,17 +542,13 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのファイルから指定されたエンコーディングのファイルへコピーします。
+     * Copies from a file with the specified encoding to a file with the specified encoding.
      *
-     * @param in
-     *            入力ファイル。{@literal null}であってはいけません
-     * @param inputEncoding
-     *            入力ファイルのエンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            出力ファイル。{@literal null}であってはいけません
-     * @param outputEncoding
-     *            出力ファイルのエンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the input file (must not be {@literal null})
+     * @param inputEncoding the input file encoding (must not be {@literal null} or empty)
+     * @param out the output file (must not be {@literal null})
+     * @param outputEncoding the output file encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final File in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
@@ -621,13 +573,11 @@ public abstract class CopyUtil {
     // from File to StringBuilder
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでファイルから{@link StringBuilder}へコピーします。
+     * Copies from a file to a {@link StringBuilder} using the platform default encoding.
      *
-     * @param in
-     *            ファイル。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the file (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final File in, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -642,15 +592,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングでファイルから{@link StringBuilder}へコピーします。
+     * Copies from a file to a {@link StringBuilder} using the specified encoding.
      *
-     * @param in
-     *            ファイル。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the file (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final File in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -669,16 +616,14 @@ public abstract class CopyUtil {
     // from URL to OutputStream
     //
     /**
-     * URLから出力ストリームへコピーします。
+     * Copies from a URL to an output stream.
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the URL (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final URL in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -699,16 +644,14 @@ public abstract class CopyUtil {
     // from URL to Writer
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでURLからライターへコピーします。
+     * Copies from a URL to a writer using the platform default encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -723,18 +666,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定のエンコーディングでURLからライターへコピーします。
+     * Copies from a URL to a writer using the specified encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -753,13 +693,11 @@ public abstract class CopyUtil {
     // from URL to File
     //
     /**
-     * URLからファイルへコピーします。
+     * Copies from a URL to a file.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the URL (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final URL in, final File out) {
         assertArgumentNotNull("in", in);
@@ -779,15 +717,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのURLからプラットフォームデフォルトエンコーディングのファイルへコピーします。
+     * Copies from a URL with the specified encoding to a file with the platform default encoding.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            出力ファイル。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the output file (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final String encoding, final File out) {
         assertArgumentNotNull("in", in);
@@ -808,15 +743,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングのURLから指定されたエンコーディングのファイルへコピーします。
+     * Copies from a URL with the platform default encoding to a file with the specified encoding.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -837,17 +769,13 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのURLから指定されたエンコーディングのファイルへコピーします。
+     * Copies from a URL with the specified encoding to a file with the specified encoding.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param inputEncoding
-     *            URLのエンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param outputEncoding
-     *            ファイルのエンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param inputEncoding the URL encoding (must not be {@literal null} or empty)
+     * @param out the file (must not be {@literal null})
+     * @param outputEncoding the file encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
@@ -872,13 +800,11 @@ public abstract class CopyUtil {
     // from URL to StringBuilder
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでURLから{@link StringBuilder}へコピーします。
+     * Copies from a URL to a {@link StringBuilder} using the platform default encoding.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -893,15 +819,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングでURLから{@link StringBuilder}へコピーします。
+     * Copies from a URL to a {@link StringBuilder} using the specified encoding.
      *
-     * @param in
-     *            URL。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the URL (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final URL in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -920,16 +843,14 @@ public abstract class CopyUtil {
     // from bytes to OutputStream
     //
     /**
-     * バイト配列から出力ストリームへコピーします。
+     * Copies from a byte array to an output stream.
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final byte[] in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -946,16 +867,14 @@ public abstract class CopyUtil {
     // from bytes to Writer
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでバイト配列からライターへコピーします。
+     * Copies from a byte array to a writer using the platform default encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -966,18 +885,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングでバイト配列からライターへコピーします。
+     * Copies from a byte array to a writer using the specified encoding.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final String encoding, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -992,13 +908,11 @@ public abstract class CopyUtil {
     // from bytes to File
     //
     /**
-     * バイト配列からファイルへコピーします。
+     * Copies from a byte array to a file.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーしたバイト数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @return the number of bytes copied
      */
     public static int copy(final byte[] in, final File out) {
         assertArgumentNotNull("in", in);
@@ -1015,15 +929,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのバイト配列からプラットフォームデフォルトエンコーディングのファイルへコピーします。
+     * Copies from a byte array with the specified encoding to a file with the platform default encoding.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @param out the file (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final String encoding, final File out) {
         assertArgumentNotNull("in", in);
@@ -1040,15 +951,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * プラットフォームデフォルトエンコーディングのバイト配列から指定されたエンコーディングのファイルへコピーします。
+     * Copies from a byte array with the platform default encoding to a file with the specified encoding.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -1065,17 +973,13 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのバイト配列から指定されたエンコーディングのファイルへコピーします。
+     * Copies from a byte array with the specified encoding to a file with the specified encoding.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param inputEncoding
-     *            入力のエンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param outputEncoding
-     *            出力のエンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param inputEncoding the input encoding (must not be {@literal null} or empty)
+     * @param out the file (must not be {@literal null})
+     * @param outputEncoding the output encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final String inputEncoding, final File out, final String outputEncoding) {
         assertArgumentNotNull("in", in);
@@ -1096,13 +1000,11 @@ public abstract class CopyUtil {
     // from bytes to StringBuilder
     //
     /**
-     * プラットフォームのデフォルトエンコーディングでバイト配列から{@link StringBuilder}へコピーします。
+     * Copies from a byte array to a {@link StringBuilder} using the platform default encoding.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -1113,15 +1015,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングのバイト配列からプラットフォームデフォルトエンコーディングの{@link StringBuilder}へコピーします。
+     * Copies from a byte array with the specified encoding to a {@link StringBuilder} using the platform default encoding.
      *
-     * @param in
-     *            バイト配列。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @param out
-     *            {@link StringBuilder}。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the byte array (must not be {@literal null})
+     * @param out the {@link StringBuilder} (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final byte[] in, final String encoding, final StringBuilder out) {
         assertArgumentNotNull("in", in);
@@ -1136,16 +1035,14 @@ public abstract class CopyUtil {
     // from String to OutputStream
     //
     /**
-     * プラットフォームのデフォルトエンコーディングで文字列を出力ストリームへコピーします。
+     * Copies a string to an output stream using the platform default encoding.
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
-     * @param in
-     *            文字列。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the string (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final String in, final OutputStream out) {
         assertArgumentNotNull("in", in);
@@ -1156,18 +1053,15 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングで文字列を出力ストリームへコピーします。
+     * Copies a string to an output stream using the specified encoding.
      * <p>
-     * 出力ストリームはクローズされません。
+     * The output stream is not closed.
      * </p>
      *
-     * @param in
-     *            文字列。{@literal null}であってはいけません
-     * @param out
-     *            出力ストリーム。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the string (must not be {@literal null})
+     * @param out the output stream (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final String in, final OutputStream out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -1182,16 +1076,14 @@ public abstract class CopyUtil {
     // from String to Writer
     //
     /**
-     * 文字列をライターへコピーします。
+     * Copies a string to a writer.
      * <p>
-     * ライターはクローズされません。
+     * The writer is not closed.
      * </p>
      *
-     * @param in
-     *            文字列。{@literal null}であってはいけません
-     * @param out
-     *            ライター。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the string (must not be {@literal null})
+     * @param out the writer (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final String in, final Writer out) {
         assertArgumentNotNull("in", in);
@@ -1204,13 +1096,11 @@ public abstract class CopyUtil {
     // from String to File
     //
     /**
-     * プラットフォームのデフォルトエンコーディングで文字列をファイルへコピーします。
+     * Copies a string to a file using the platform default encoding.
      *
-     * @param in
-     *            文字列。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @return コピーした文字数
+     * @param in the string (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @return the number of characters copied
      */
     public static int copy(final String in, final File out) {
         assertArgumentNotNull("in", in);
@@ -1225,15 +1115,12 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 指定されたエンコーディングで文字列をファイルへコピーします。
+     * Copies a string to a file using the specified encoding.
      *
-     * @param in
-     *            文字列。{@literal null}であってはいけません
-     * @param out
-     *            ファイル。{@literal null}であってはいけません
-     * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return コピーした文字数
+     * @param in the string (must not be {@literal null})
+     * @param out the file (must not be {@literal null})
+     * @param encoding the encoding (must not be {@literal null} or empty)
+     * @return the number of characters copied
      */
     public static int copy(final String in, final File out, final String encoding) {
         assertArgumentNotNull("in", in);
@@ -1252,16 +1139,14 @@ public abstract class CopyUtil {
     // internal methods
     //
     /**
-     * 入力ストリームの内容を出力ストリームにコピーします。
+     * Copies the contents of an input stream to an output stream.
      * <p>
-     * 入力ストリーム、出力ストリームともクローズされません。
+     * Neither the input stream nor the output stream is closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム
-     * @param out
-     *            出力ストリーム
-     * @return コピーしたバイト数
+     * @param in the input stream
+     * @param out the output stream
+     * @return the number of bytes copied
      */
     protected static int copyInternal(final InputStream in, final OutputStream out) {
         try {
@@ -1280,16 +1165,14 @@ public abstract class CopyUtil {
     }
 
     /**
-     * ファイル入力ストリームの内容を出力ストリームにコピーします。
+     * Copies the contents of a file input stream to an output stream.
      * <p>
-     * ファイル入力ストリーム、出力ストリームともクローズされません。
+     * Neither the file input stream nor the output stream is closed.
      * </p>
      *
-     * @param in
-     *            ファイル入力ストリーム
-     * @param out
-     *            出力ストリーム
-     * @return コピーしたバイト数
+     * @param in the file input stream
+     * @param out the output stream
+     * @return the number of bytes copied
      */
     protected static int copyInternal(final FileInputStream in, final OutputStream out) {
         try {
@@ -1311,16 +1194,14 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 入力ストリームの内容をファイル出力ストリームにコピーします。
+     * Copies the contents of an input stream to a file output stream.
      * <p>
-     * 入力ストリーム、ファイル出力ストリームともクローズされません。
+     * Neither the input stream nor the file output stream is closed.
      * </p>
      *
-     * @param in
-     *            入力ストリーム
-     * @param out
-     *            ファイル出力ストリーム
-     * @return コピーしたバイト数
+     * @param in the input stream
+     * @param out the file output stream
+     * @return the number of bytes copied
      */
     protected static int copyInternal(final InputStream in, final FileOutputStream out) {
         try {
@@ -1343,16 +1224,14 @@ public abstract class CopyUtil {
     }
 
     /**
-     * ファイル入力ストリームの内容をファイル出力ストリームにコピーします。
+     * Copies the contents of a file input stream to a file output stream.
      * <p>
-     * ファイル入力ストリーム、ファイル出力ストリームともクローズされません。
+     * Neither the file input stream nor the file output stream is closed.
      * </p>
      *
-     * @param in
-     *            ファイル入力ストリーム
-     * @param out
-     *            ファイル出力ストリーム
-     * @return コピーしたバイト数
+     * @param in the file input stream
+     * @param out the file output stream
+     * @return the number of bytes copied
      */
     protected static int copyInternal(final FileInputStream in, final FileOutputStream out) {
         final FileChannel ic = in.getChannel();
@@ -1361,16 +1240,14 @@ public abstract class CopyUtil {
     }
 
     /**
-     * リーダーの内容をライターにコピーします。
+     * Copies the contents of a reader to a writer.
      * <p>
-     * リーダー、ライターともクローズされません。
+     * Neither the reader nor the writer is closed.
      * </p>
      *
-     * @param in
-     *            リーダー
-     * @param out
-     *            ライター
-     * @return コピーした文字数
+     * @param in the reader
+     * @param out the writer
+     * @return the number of characters copied
      */
     protected static int copyInternal(final Reader in, final Writer out) {
         try {
@@ -1389,13 +1266,11 @@ public abstract class CopyUtil {
     }
 
     /**
-     * リーダーの内容を{@link StringBuilder}にコピーします。
+     * Copies the contents of a reader to a {@link StringBuilder}.
      *
-     * @param in
-     *            リーダー
-     * @param out
-     *            {@link StringBuilder}
-     * @return コピーした文字数
+     * @param in the reader
+     * @param out the {@link StringBuilder}
+     * @return the number of characters copied
      */
     protected static int copyInternal(final Reader in, final StringBuilder out) {
         try {
@@ -1413,11 +1288,10 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 必要があれば入力ストリームを{@link BufferedInputStream}でラップします。
+     * Wraps the input stream with a {@link BufferedInputStream} if necessary.
      *
-     * @param is
-     *            入力ストリーム
-     * @return ラップされた入力ストリーム
+     * @param is the input stream
+     * @return the wrapped input stream
      */
     protected static InputStream wrap(final InputStream is) {
         if (is instanceof BufferedInputStream) {
@@ -1430,11 +1304,10 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 必要があれば出力ストリームを{@link BufferedOutputStream}でラップします。
+     * Wraps the output stream with a {@link BufferedOutputStream} if necessary.
      *
-     * @param os
-     *            出力ストリーム
-     * @return ラップされた出力ストリーム
+     * @param os the output stream
+     * @return the wrapped output stream
      */
     protected static OutputStream wrap(final OutputStream os) {
         if (os instanceof BufferedOutputStream) {
@@ -1447,11 +1320,10 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 必要があればリーダーを{@link BufferedReader}でラップします。
+     * Wraps the reader with a {@link BufferedReader} if necessary.
      *
-     * @param reader
-     *            リーダー
-     * @return ラップされたリーダー
+     * @param reader the reader
+     * @return the wrapped reader
      */
     protected static Reader wrap(final Reader reader) {
         if (reader instanceof BufferedReader) {
@@ -1464,11 +1336,10 @@ public abstract class CopyUtil {
     }
 
     /**
-     * 必要があればライターを{@link BufferedWriter}でラップします。
+     * Wraps the writer with a {@link BufferedWriter} if necessary.
      *
-     * @param writer
-     *            ライター
-     * @return ラップされたライター
+     * @param writer the writer
+     * @return the wrapped writer
      */
     protected static Writer wrap(final Writer writer) {
         if (writer instanceof BufferedWriter) {

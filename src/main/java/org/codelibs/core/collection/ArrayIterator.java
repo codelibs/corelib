@@ -23,9 +23,9 @@ import java.util.NoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * 配列を{@link Iterator}にするAdaptorです。
+ * Adaptor that makes an array into an {@link Iterator}.
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
@@ -38,25 +38,22 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
  * </pre>
  *
  * @author shot
- * @param <T>
- *            配列の要素の型
+ * @param <T> the type of array elements
  */
 public class ArrayIterator<T> implements Iterator<T> {
 
-    /** イテレートする要素の配列 */
+    /** The array of elements to iterate over */
     protected final T[] items;
 
-    /** 現在参照している要素のインデックス */
+    /** The index of the currently referenced element */
     protected int index = 0;
 
     /**
-     * for each構文で使用するために配列をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps the array for use in a for-each statement.
      *
-     * @param <T>
-     *            列挙する要素の型
-     * @param items
-     *            イテレートする要素の並び。{@literal null}であってはいけません
-     * @return 配列をラップした{@link Iterable}
+     * @param <T> the type of elements
+     * @param items the array of elements to iterate (must not be {@literal null})
+     * @return an {@link Iterable} wrapping the array
      */
     public static <T> Iterable<T> iterable(final T... items) {
         assertArgumentNotNull("items", items);
@@ -65,10 +62,9 @@ public class ArrayIterator<T> implements Iterator<T> {
     }
 
     /**
-     * {@link ArrayIterator}を作成します。
+     * Creates an {@link ArrayIterator}.
      *
-     * @param items
-     *            イテレートする要素の並び。{@literal null}であってはいけません
+     * @param items the array of elements to iterate (must not be {@literal null})
      */
     public ArrayIterator(final T... items) {
         this.items = items;

@@ -18,16 +18,15 @@ package org.codelibs.core.collection;
 import java.util.Enumeration;
 
 /**
- * 空の {@link Enumeration}です。
+ * An empty {@link Enumeration}.
  *
  * @author higa
- * @param <T>
- *            列挙する要素の型
+ * @param <T> the type of elements
  */
 public class EmptyEnumeration<T> extends IteratorEnumeration<T> {
 
     /**
-     * {@link EmptyEnumeration}を作成します。
+     * Creates an {@link EmptyEnumeration}.
      */
     public EmptyEnumeration() {
         super(new EmptyIterator<T>());

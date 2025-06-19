@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 大文字小文字を気にしない {@link Set}です。
+ * {@link Set} that is case-insensitive.
  *
  * @author higa
  */
@@ -36,17 +36,16 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements Set<Strin
     private static final Object PRESENT = new Object();
 
     /**
-     * {@link CaseInsensitiveSet}を作成します。
+     * Creates a {@link CaseInsensitiveSet}.
      */
     public CaseInsensitiveSet() {
         map = new CaseInsensitiveMap<>();
     }
 
     /**
-     * {@link CaseInsensitiveSet}を作成します。
+     * Creates a {@link CaseInsensitiveSet}.
      *
-     * @param c
-     *            コピー元のコレクション
+     * @param c the collection to copy from
      */
     public CaseInsensitiveSet(final Collection<String> c) {
         map = new CaseInsensitiveMap<>(Math.max((int) (c.size() / .75f) + 1, 16));
@@ -54,10 +53,9 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements Set<Strin
     }
 
     /**
-     * {@link CaseInsensitiveSet}を作成します。
+     * Creates a {@link CaseInsensitiveSet}.
      *
-     * @param initialCapacity
-     *            初期容量
+     * @param initialCapacity the initial capacity
      */
     public CaseInsensitiveSet(final int initialCapacity) {
         map = new CaseInsensitiveMap<>(initialCapacity);

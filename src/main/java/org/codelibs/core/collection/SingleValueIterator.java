@@ -21,38 +21,34 @@ import java.util.NoSuchElementException;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * 一つの値を返す{@link Iterator}です。
+ * An {@link Iterator} that returns a single value.
  *
  * @author koichik
- * @param <E>
- *            要素の型
+ * @param <E> the element type
  */
 public class SingleValueIterator<E> implements Iterator<E> {
 
-    /** 反復子が返す唯一の値 */
+    /** The only value returned by the iterator. */
     protected final E value;
 
-    /** 反復子がさらに要素を持つ場合は{@literal true} */
+    /** {@literal true} if the iterator has more elements. */
     protected boolean hasNext = true;
 
     /**
-     * for each構文で使用するために{@link SingleValueIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link SingleValueIterator} for use in a for-each statement.
      *
-     * @param <E>
-     *            要素の型
-     * @param value
-     *            反復子が返す唯一の値
-     * @return {@link SingleValueIterator}をラップした{@link Iterable}
+     * @param <E> the element type
+     * @param value the single value returned by the iterator
+     * @return an {@link Iterable} wrapping a {@link SingleValueIterator}
      */
     public static <E> Iterable<E> iterable(final E value) {
         return () -> new SingleValueIterator<>(value);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
-     * @param value
-     *            反復子が返す唯一の値
+     * @param value the single value returned by the iterator
      */
     public SingleValueIterator(final E value) {
         this.value = value;

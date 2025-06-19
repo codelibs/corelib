@@ -16,7 +16,7 @@
 package org.codelibs.core.exception;
 
 /**
- * {@link IndexOutOfBoundsException}をラップする例外です。
+ * Exception that wraps {@link IndexOutOfBoundsException}.
  *
  * @author wyukawa
  */
@@ -25,17 +25,17 @@ public class ClIndexOutOfBoundsException extends IndexOutOfBoundsException {
     private static final long serialVersionUID = -824874776607593608L;
 
     /**
-     * {@link ClIndexOutOfBoundsException}を作成します。
+     * Creates a {@link ClIndexOutOfBoundsException}.
      */
     public ClIndexOutOfBoundsException() {
         super();
     }
 
     /**
-     * {@link ClIndexOutOfBoundsException}を作成します。
+     * Creates a {@link ClIndexOutOfBoundsException}.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public ClIndexOutOfBoundsException(final String message) {
         super(message);

@@ -16,7 +16,7 @@
 package org.codelibs.core.io;
 
 /**
- * クラスやリソースの集まりを表すオブジェクトです。
+ * Object representing a collection of classes or resources.
  *
  * @author koichik
  * @see TraversalUtil
@@ -24,44 +24,38 @@ package org.codelibs.core.io;
 public interface Traverser {
 
     /**
-     * 指定されたクラス名に対応するクラスファイルがこのインスタンスが扱うリソースの中に存在すれば<code>true</code>を返します。
+     * Returns <code>true</code> if the class file corresponding to the specified class name exists in the resources handled by this instance.
      * <p>
-     * インスタンス構築時にルートパッケージが指定されている場合、 指定されたクラス名はルートパッケージからの相対名として解釈されます。
+     * If a root package is specified at instance construction, the specified class name is interpreted as a relative name from the root package.
      * </p>
      *
-     * @param className
-     *            クラス名
-     * @return 指定されたクラス名に対応するクラスファイルがこのインスタンスが扱うリソースの中に存在すれば <code>true</code>
+     * @param className the class name
+     * @return <code>true</code> if the class file exists in the resources handled by this instance
      */
     boolean isExistClass(final String className);
 
     /**
-     * このインスタンスが扱うクラスを探して {@link ClassHandler#processClass(String, String) ハンドラ}
-     * をコールバックします。
+     * Searches for classes handled by this instance and calls the handler for each class.
      * <p>
-     * インスタンス構築時にルートパッケージが指定されている場合は、 ルートパッケージ以下のクラスのみが対象となります。
+     * If a root package is specified at instance construction, only classes under the root package are targeted.
      * </p>
      *
-     * @param handler
-     *            クラスを処理するハンドラ
+     * @param handler the handler to process classes
      */
     void forEach(ClassHandler handler);
 
     /**
-     * このインスタンスが扱うリソースを探して
-     * {@link ResourceHandler#processResource(String, java.io.InputStream) ハンドラ}
-     * をコールバックします。
+     * Searches for resources handled by this instance and calls the handler for each resource.
      * <p>
-     * インスタンス構築時にルートディレクトリが指定されている場合は、 ルートディレクトリ以下のリソースのみが対象となります。
+     * If a root directory is specified at instance construction, only resources under the root directory are targeted.
      * </p>
      *
-     * @param handler
-     *            リソースを処理するハンドラ
+     * @param handler the handler to process resources
      */
     void forEach(ResourceHandler handler);
 
     /**
-     * リソースの後処理を行います。
+     * Performs post-processing of resources.
      */
     void close();
 

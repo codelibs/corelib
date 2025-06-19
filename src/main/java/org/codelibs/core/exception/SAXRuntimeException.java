@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * {@link SAXException}をラップする例外です。
+ * Exception that wraps {@link SAXException}.
  *
  * @author higa
  */
@@ -30,21 +30,19 @@ public class SAXRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -4933312103385038765L;
 
     /**
-     * {@link SAXRuntimeException}を作成します。
+     * Creates a {@link SAXRuntimeException}.
      *
-     * @param cause
-     *            原因となった例外
+     * @param cause the underlying exception
      */
     public SAXRuntimeException(final SAXException cause) {
         super("ECL0054", asArray(createMessage(cause)), cause);
     }
 
     /**
-     * メッセージを作成します。
+     * Creates a message.
      *
-     * @param cause
-     *            原因
-     * @return メッセージ
+     * @param cause the underlying exception
+     * @return the message
      */
     protected static String createMessage(final SAXException cause) {
         final StringBuilder buf = new StringBuilder(100);

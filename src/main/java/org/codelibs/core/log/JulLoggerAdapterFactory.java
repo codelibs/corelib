@@ -16,7 +16,7 @@
 package org.codelibs.core.log;
 
 /**
- * java.util.logのロガーを利用するアダプタを生成するファクトリです。
+ * Factory for creating adapters that use java.util.logging loggers.
  *
  * @author koichik
  */

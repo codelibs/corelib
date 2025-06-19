@@ -16,28 +16,25 @@
 package org.codelibs.core.collection;
 
 /**
- * {@link IndexedIterator}でイテレートする要素です。
+ * Element to be iterated by {@link IndexedIterator}.
  *
  * @author wyukawa
- * @param <T>
- *            要素の型
+ * @param <T> the element type
  * @see IndexedIterator
  */
 public class Indexed<T> {
 
-    /** 要素 */
+    /** The element. */
     private final T element;
 
-    /** 要素のインデックス */
+    /** The index of the element. */
     private final int index;
 
     /**
-     * コンストラクタ
+     * Constructor.
      *
-     * @param element
-     *            要素
-     * @param index
-     *            要素のインデックス
+     * @param element the element
+     * @param index the index of the element
      */
     public Indexed(final T element, final int index) {
         this.element = element;
@@ -45,18 +42,18 @@ public class Indexed<T> {
     }
 
     /**
-     * 要素を返します。
+     * Returns the element.
      *
-     * @return 要素
+     * @return the element
      */
     public T getElement() {
         return element;
     }
 
     /**
-     * インデックスを返します。
+     * Returns the index.
      *
-     * @return インデックス
+     * @return the index
      */
     public int getIndex() {
         return index;

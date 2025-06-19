@@ -37,13 +37,13 @@ import org.codelibs.core.nio.ChannelUtil;
 import org.codelibs.core.timer.TimeoutManager;
 
 /**
- * {@link File}を扱うユーティリティ・クラスです。
+ * Utility class for handling {@link File}.
  *
  * @author higa
  */
 public abstract class FileUtil {
 
-    /** UTF-8のエンコーディング名 */
+    /** The encoding name for UTF-8. */
     private static final String UTF8 = "UTF-8";
 
     /** Default Buffer Size */
@@ -53,11 +53,10 @@ public abstract class FileUtil {
     protected static final int MAX_BUF_SIZE = 10 * 1024 * 1024; // 10m
 
     /**
-     * この抽象パス名の正規の形式を返します。
+     * Returns the canonical path string for this abstract pathname.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return この抽象パス名と同じファイルまたはディレクトリを示す正規パス名文字列
+     * @param file the file (must not be {@literal null})
+     * @return the canonical pathname string representing the same file or directory as this abstract pathname
      */
     public static String getCanonicalPath(final File file) {
         assertArgumentNotNull("file", file);
@@ -70,11 +69,10 @@ public abstract class FileUtil {
     }
 
     /**
-     * この抽象パス名を<code>file:</code> URLに変換します。
+     * Converts this abstract pathname to a <code>file:</code> URL.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルURLを表すURLオブジェクト
+     * @param file the file (must not be {@literal null})
+     * @return a URL object representing the file URL
      */
     public static URL toURL(final File file) {
         assertArgumentNotNull("file", file);
@@ -87,11 +85,11 @@ public abstract class FileUtil {
     }
 
     /**
-     * ファイルの内容をバイト配列に読み込んで返します。
+     * Reads the contents of a file into a byte array and returns it.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルの内容を読み込んだバイト配列
+     *            The file. Must not be {@literal null}.
+     * @return A byte array containing the contents of the file.
      */
     public static byte[] readBytes(final File file) {
         assertArgumentNotNull("file", file);
@@ -108,11 +106,11 @@ public abstract class FileUtil {
     }
 
     /**
-     * デフォルトエンコーディングでファイルからテキストを読み込みます。
+     * Reads text from a file using the default encoding.
      *
      * @param path
-     *            ファイルのパス。{@literal null}や空文字列であってはいけません
-     * @return 読み込んだテキスト
+     *            The file path. Must not be {@literal null} or empty.
+     * @return The text read from the file.
      */
     public static String readText(final String path) {
         assertArgumentNotEmpty("path", path);
@@ -120,11 +118,11 @@ public abstract class FileUtil {
     }
 
     /**
-     * デフォルトエンコーディングでファイルからテキストを読み込みます。
+     * Reads text from a file using the default encoding.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return 読み込んだテキスト
+     *            The file. Must not be {@literal null}.
+     * @return The text read from the file.
      */
     public static String readText(final File file) {
         assertArgumentNotNull("file", file);
@@ -132,13 +130,13 @@ public abstract class FileUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルからテキストを読み込みます。
+     * Reads text from a file with the specified encoding.
      *
      * @param path
-     *            パス。{@literal null}や空文字列であってはいけません
+     *            The file path. Must not be {@literal null} or empty.
      * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return 読み込んだテキスト
+     *            The encoding. Must not be {@literal null} or empty.
+     * @return The text read from the file.
      */
     public static String readText(final String path, final String encoding) {
         assertArgumentNotEmpty("path", path);
@@ -158,13 +156,13 @@ public abstract class FileUtil {
     }
 
     /**
-     * 指定のエンコーディングでファイルからテキストを読み込みます。
+     * Reads text from a file with the specified encoding.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
+     *            The file. Must not be {@literal null}.
      * @param encoding
-     *            エンコーディング。{@literal null}や空文字列であってはいけません
-     * @return 読み込んだテキスト
+     *            The encoding. Must not be {@literal null} or empty.
+     * @return The text read from the file.
      */
     public static String readText(final File file, final String encoding) {
         assertArgumentNotNull("file", file);
@@ -180,11 +178,11 @@ public abstract class FileUtil {
     }
 
     /**
-     * UTF8でファイルからテキストを読み込みます。
+     * Reads text from a file in UTF-8 encoding.
      *
      * @param path
-     *            パス。{@literal null}や空文字列であってはいけません
-     * @return 読み込んだテキスト
+     *            The path. Must not be {@literal null} or empty.
+     * @return The text read from the file.
      */
     public static String readUTF8(final String path) {
         assertArgumentNotEmpty("path", path);
@@ -192,11 +190,11 @@ public abstract class FileUtil {
     }
 
     /**
-     * UTF8でファイルからテキストを読み込みます。
+     * Reads text from a file in UTF-8 encoding.
      *
      * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return 読み込んだテキスト
+     *            The file. Must not be {@literal null}.
+     * @return The text read from the file.
      */
     public static String readUTF8(final File file) {
         assertArgumentNotNull("file", file);
@@ -204,13 +202,13 @@ public abstract class FileUtil {
     }
 
     /**
-     * リーダーから読み込んだ内容を文字列で返します。
+     * Returns the contents read from the reader as a string.
      *
      * @param reader
-     *            リーダー
+     *            the reader
      * @param initialCapacity
-     *            バッファの初期容量
-     * @return リーダーから読み込んだ文字列
+     *            the initial buffer capacity
+     * @return the string read from the reader
      */
     protected static String read(final Reader reader, final int initialCapacity) {
         int bufferSize;

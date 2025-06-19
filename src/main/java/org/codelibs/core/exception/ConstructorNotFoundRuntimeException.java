@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.lang.reflect.Constructor;
 
 /**
- * {@link Constructor}が見つからなかったときにスローされる例外Vです。
+ * Exception thrown when a {@link Constructor} cannot be found.
  *
  * @author higa
  */
@@ -35,12 +35,12 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
     private final Class<?>[] paramTypes;
 
     /**
-     * {@link ConstructorNotFoundRuntimeException}を作成します。
+     * Creates a {@link ConstructorNotFoundRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param methodArgs
-     *            引数の並び
+     *            Array of arguments
      */
     public ConstructorNotFoundRuntimeException(final Class<?> targetClass, final Object[] methodArgs) {
         super("ECL0048", asArray(targetClass.getName(), getSignature(methodArgs)));
@@ -50,12 +50,12 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * {@link ConstructorNotFoundRuntimeException}を作成します。
+     * Creates a {@link ConstructorNotFoundRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param paramTypes
-     *            引数型の並び
+     *            Array of parameter types
      */
     public ConstructorNotFoundRuntimeException(final Class<?> targetClass, final Class<?>[] paramTypes) {
         super("ECL0048", asArray(targetClass.getName(), getSignature(paramTypes)));
@@ -65,27 +65,27 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * 引数の並びを返します。
+     * Returns the array of arguments.
      *
-     * @return 引数の並び
+     * @return Array of arguments
      */
     public Object[] getMethodArgs() {
         return methodArgs;
     }
 
     /**
-     * 引数型の並びを返します。
+     * Returns the array of parameter types.
      *
-     * @return 引数型の並び
+     * @return Array of parameter types
      */
     public Class<?>[] getParamTypes() {
         return paramTypes;

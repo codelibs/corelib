@@ -18,19 +18,17 @@ package org.codelibs.core.io;
 import java.io.InputStream;
 
 /**
- * リソースを処理するハンドラのインターフェースです。
+ * Interface for handlers that process resources.
  *
  * @author taedium
  */
 public interface ResourceHandler {
 
     /**
-     * リソースを処理します。
+     * Processes a resource.
      *
-     * @param path
-     *            パス
-     * @param is
-     *            リソースを読み込むための{@link InputStream}
+     * @param path the path
+     * @param is the {@link InputStream} to read the resource
      */
     void processResource(String path, InputStream is);
 

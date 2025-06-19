@@ -25,9 +25,9 @@ import org.codelibs.core.exception.ClUnsupportedOperationException;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * クラスの継承階層を親クラスに向かって反復する{@link Iterator}です。
+ * An {@link Iterator} that iterates through the inheritance hierarchy of a class towards its superclasses.
  * <p>
- * 次のように使います．
+ * Usage example:
  * </p>
  *
  * <pre>
@@ -39,62 +39,56 @@ import org.codelibs.core.message.MessageFormatter;
  * }
  * </pre>
  * <p>
- * デフォルトでは{@link Object}クラスも反復の対象となります。 反復の対象に{@link Object}を含めたくない場合は、
- * {@link #iterable(Class, boolean)}または{@link #ClassIterator(Class, boolean)}
- * の第2引数に{@literal false}を指定します。
+ * By default, the {@link Object} class is also included in the iteration. If you do not want to include {@link Object},
+ * specify {@literal false} for the second argument of {@link #iterable(Class, boolean)} or {@link #ClassIterator(Class, boolean)}.
  * </p>
  *
  * @author koichik
  */
 public class ClassIterator implements Iterator<Class<?>> {
 
-    /** クラス */
+    /** The class */
     protected Class<?> clazz;
 
-    /** {@link Object}クラスも反復する場合は {@literal true} */
+    /** If {@link Object} class should also be iterated, set to {@literal true} */
     protected final boolean includeObject;
 
     /**
-     * for each構文で使用するために{@link ClassIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link ClassIterator} for use in a for-each statement.
      *
-     * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return {@link ClassIterator}をラップした{@link Iterable}
+     * @param clazz the class (must not be {@literal null})
+     * @return an {@link Iterable} wrapping a {@link ClassIterator}
      */
     public static Iterable<Class<?>> iterable(final Class<?> clazz) {
         return iterable(clazz, true);
     }
 
     /**
-     * for each構文で使用するために{@link ClassIterator}をラップした{@link Iterable}を返します。
+     * Returns an {@link Iterable} that wraps a {@link ClassIterator} for use in a for-each statement.
      *
-     * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @param includeObject
-     *            {@link Object}クラスも反復する場合は {@literal true}
-     * @return {@link ClassIterator}をラップした{@link Iterable}
+     * @param clazz the class (must not be {@literal null})
+     * @param includeObject if {@literal true}, includes the {@link Object} class in the iteration
+     * @return an {@link Iterable} wrapping a {@link ClassIterator}
      */
     public static Iterable<Class<?>> iterable(final Class<?> clazz, final boolean includeObject) {
         return () -> new ClassIterator(clazz, includeObject);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
+     *            the class (must not be {@literal null})
      */
     public ClassIterator(final Class<?> clazz) {
         this(clazz, true);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
-     * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @param includeObject
-     *            {@link Object}クラスも反復する場合は {@literal true}
+     * @param clazz the class (must not be {@literal null})
+     * @param includeObject if {@literal true}, includes the {@link Object} class in the iteration
      */
     public ClassIterator(final Class<?> clazz, final boolean includeObject) {
         assertArgumentNotNull("clazz", clazz);

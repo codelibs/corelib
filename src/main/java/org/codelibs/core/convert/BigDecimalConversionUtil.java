@@ -21,31 +21,31 @@ import java.text.SimpleDateFormat;
 import org.codelibs.core.lang.StringUtil;
 
 /**
- * {@link BigDecimal}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link BigDecimal}.
  *
  * @author higa
  */
 public abstract class BigDecimalConversionUtil {
 
     /**
-     * {@link BigDecimal}に変換します。
+     * Converts to {@link BigDecimal}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link BigDecimal}
+     *            The object to convert
+     * @return The converted {@link BigDecimal}
      */
     public static BigDecimal toBigDecimal(final Object o) {
         return toBigDecimal(o, null);
     }
 
     /**
-     * {@link BigDecimal}に変換します。
+     * Converts to {@link BigDecimal}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link BigDecimal}
+     *            The pattern string
+     * @return The converted {@link BigDecimal}
      */
     public static BigDecimal toBigDecimal(final Object o, final String pattern) {
         if (o == null) {
@@ -69,22 +69,22 @@ public abstract class BigDecimalConversionUtil {
     }
 
     /**
-     * {@link BigDecimal}を文字列に変換します。
+     * Converts a {@link BigDecimal} to a string.
      *
      * @param dec
-     *            変換元の{@link BigDecimal}
-     * @return 変換された文字列
+     *            The {@link BigDecimal} to convert
+     * @return The converted string
      */
     public static String toString(final BigDecimal dec) {
         return dec.toPlainString();
     }
 
     /**
-     * {@link BigDecimal}を正規化します。
+     * Normalizes a {@link BigDecimal}.
      *
      * @param dec
-     *            変換元の{@link BigDecimal}
-     * @return 正規化されたデータ
+     *            The {@link BigDecimal} to normalize
+     * @return The normalized data
      */
     private static BigDecimal normalize(final BigDecimal dec) {
         return new BigDecimal(dec.toPlainString());

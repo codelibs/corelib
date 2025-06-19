@@ -18,38 +18,35 @@ package org.codelibs.core.collection;
 import java.util.Map;
 
 /**
- * キーで大文字小文字を気にしない {@link ArrayMap}です。
+ * {@link ArrayMap} that is case-insensitive for keys.
  *
- * @author higa 値の型
- * @param <V>
- *            値の型
+ * @author higa
+ * @param <V> the type of values
  */
 public class CaseInsensitiveMap<V> extends ArrayMap<String, V> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * {@link CaseInsensitiveMap}を作成します。
+     * Creates a {@link CaseInsensitiveMap}.
      */
     public CaseInsensitiveMap() {
     }
 
     /**
-     * {@link CaseInsensitiveMap}を作成します。
+     * Creates a {@link CaseInsensitiveMap}.
      *
-     * @param capacity
-     *            初期容量
+     * @param capacity the initial capacity
      */
     public CaseInsensitiveMap(final int capacity) {
         super(capacity);
     }
 
     /**
-     * キーが含まれているかどうかを返します。
+     * Returns whether the key is contained.
      *
-     * @param key
-     *            キー
-     * @return キーが含まれているかどうか
+     * @param key the key
+     * @return whether the key is contained
      */
     public boolean containsKey(final String key) {
         return super.containsKey(convertKey(key));

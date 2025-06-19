@@ -28,7 +28,7 @@ import org.codelibs.core.lang.ClassUtil;
 import org.codelibs.core.zip.ZipInputStreamUtil;
 
 /**
- * クラスを横断して処理するためのハンドラです。
+ * Handler for traversing and processing classes.
  *
  * @author koichik
  * @see ClassHandler
@@ -36,22 +36,20 @@ import org.codelibs.core.zip.ZipInputStreamUtil;
  */
 public abstract class ClassTraversalUtil {
 
-    /** クラスファイルの拡張子 */
+    /** The file extension for class files. */
     protected static final String CLASS_SUFFIX = ".class";
 
-    /** WARファイルの拡張子 */
+    /** The file extension for WAR files. */
     protected static final String WAR_FILE_EXTENSION = ".war";
 
-    /** WARファイル内のクラスファイルのエントリプレフィックス */
+    /** The entry prefix for class files inside a WAR file. */
     protected static final String WEB_INF_CLASSES_PATH = "WEB-INF/classes/";
 
     /**
-     * ルートディレクトリ配下を処理します。
+     * Processes the directory under the root directory.
      *
-     * @param rootDir
-     *            ルートディレクトリ。{@literal null}であってはいけません
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param rootDir the root directory (must not be {@literal null})
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final File rootDir, final ClassHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
@@ -61,14 +59,11 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * ファイルシステムに含まれるクラスをトラバースします。
+     * Traverses classes contained in the file system.
      *
-     * @param rootDir
-     *            ルートディレクトリ。{@literal null}であってはいけません
-     * @param rootPackage
-     *            ルートパッケージ
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param rootDir the root directory (must not be {@literal null})
+     * @param rootPackage the root package
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final File rootDir, final String rootPackage, final ClassHandler handler) {
         assertArgumentNotNull("rootDir", rootDir);
@@ -81,19 +76,15 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * Jarファイルに含まれるクラスをトラバースします。
+     * Traverses classes contained in a Jar file.
      * <p>
-     * 指定されたJarファイルが拡張子<code>.war</code>を持つ場合は、 Jarファイル内のエントリのうち、 接頭辞
-     * <code>WEB-INF/classes</code>で始まるパスを持つエントリがトラバースの対象となります。
-     * クラスを処理するハンドラには、接頭辞を除くエントリ名が渡されます。 例えばJarファイル内に
-     * <code>/WEB-INF/classes/ccc/ddd/Eee.class</code>というクラスファイルが存在すると、 ハンドラには
-     * パッケージ名<code>ccc.ddd</code>およびクラス名<code>Eee</code>が渡されます。
+     * If the specified Jar file has the extension <code>.war</code>, only entries whose path starts with the prefix <code>WEB-INF/classes</code> are traversed.
+     * The handler receives the entry name excluding the prefix. For example, if the Jar file contains <code>/WEB-INF/classes/ccc/ddd/Eee.class</code>,
+     * the handler receives the package name <code>ccc.ddd</code> and the class name <code>Eee</code>.
      * </p>
      *
-     * @param jarFile
-     *            Jarファイル。{@literal null}であってはいけません
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param jarFile the Jar file (must not be {@literal null})
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final JarFile jarFile, final ClassHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
@@ -107,21 +98,17 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * Jarファイルに含まれるクラスをトラバースします。
+     * Traverses classes contained in a Jar file.
      * <p>
-     * Jarファイル内のエントリのうち、接頭辞で始まるパスを持つエントリがトラバースの対象となります。
-     * クラスを処理するハンドラには、接頭辞を除くエントリ名が渡されます。 例えば接頭辞が <code>/aaa/bbb/</code>
-     * で、Jarファイル内に <code>/aaa/bbb/ccc/ddd/Eee.class</code>というクラスファイルが存在すると、
-     * ハンドラには パッケージ名<code>ccc.ddd</code>およびクラス名<code>Eee</code>が渡されます。
+     * Only entries whose path starts with the specified prefix are traversed. The handler receives the entry name excluding the prefix.
+     * For example, if the prefix is <code>/aaa/bbb/</code> and the Jar file contains <code>/aaa/bbb/ccc/ddd/Eee.class</code>,
+     * the handler receives the package name <code>ccc.ddd</code> and the class name <code>Eee</code>.
      * </p>
      *
-     * @param jarFile
-     *            Jarファイル。{@literal null}であってはいけません
-     * @param prefix
-     *            トラバースするリソースの名前が含む接頭辞。{@literal null}であってはいけません。
-     *            空文字列でない場合はスラッシュ('/')で終了していなければなりません
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param jarFile the Jar file (must not be {@literal null})
+     * @param prefix the prefix that the resource name to traverse must contain (must not be {@literal null}).
+     *               If not empty, must end with a slash ('/')
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final JarFile jarFile, final String prefix, final ClassHandler handler) {
         assertArgumentNotNull("jarFile", jarFile);
@@ -142,12 +129,10 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * ZIPファイル形式の入力ストリームに含まれるクラスをトラバースします。
+     * Traverses classes contained in a ZIP file input stream.
      *
-     * @param zipInputStream
-     *            ZIPファイル形式の入力ストリーム。{@literal null}であってはいけません
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param zipInputStream the ZIP file input stream (must not be {@literal null})
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final ZipInputStream zipInputStream, final ClassHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
@@ -157,22 +142,17 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * ZIPファイル形式の入力ストリームに含まれるクラスをトラバースします。
+     * Traverses classes contained in a ZIP file input stream.
      * <p>
-     * 入力ストリーム内のエントリのうち、接頭辞で始まるパスを持つエントリがトラバースの対象となります。
-     * クラスを処理するハンドラには、接頭辞を除くエントリ名が渡されます。 例えば接頭辞が <code>/aaa/bbb/</code>
-     * で、入力ストリーム内に <code>/aaa/bbb/ccc/ddd/Eee.class</code>というクラスファイルが存在すると、
-     * ハンドラには パッケージ名<code>ccc.ddd</code>およびクラス名<code>Eee</code>が渡されます。
+     * Only entries whose path starts with the specified prefix are traversed. The handler receives the entry name excluding the prefix.
+     * For example, if the prefix is <code>/aaa/bbb/</code> and the input stream contains <code>/aaa/bbb/ccc/ddd/Eee.class</code>,
+     * the handler receives the package name <code>ccc.ddd</code> and the class name <code>Eee</code>.
      * </p>
      *
-     * @param zipInputStream
-     *            ZIPファイル形式の入力ストリーム。{@literal null}であってはいけません
-     * @param prefix
-     *            トラバースするリソースの名前が含む接頭辞。{@literal null}であってはいけません。
-     *            空文字列でない場合はスラッシュ('/')で終了していなければなりません
-     *
-     * @param handler
-     *            クラスを処理するハンドラ。{@literal null}であってはいけません
+     * @param zipInputStream the ZIP file input stream (must not be {@literal null})
+     * @param prefix the prefix that the resource name to traverse must contain (must not be {@literal null}).
+     *               If not empty, must end with a slash ('/')
+     * @param handler the handler to process classes (must not be {@literal null})
      */
     public static void forEach(final ZipInputStream zipInputStream, final String prefix, final ClassHandler handler) {
         assertArgumentNotNull("zipInputStream", zipInputStream);
@@ -198,14 +178,11 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * ファイルシステムに含まれるクラスをトラバースします。
+     * Traverses classes contained in the file system.
      *
-     * @param dir
-     *            基点となるディレクトリ
-     * @param packageName
-     *            トラバースするパッケージ名
-     * @param handler
-     *            クラスを処理するハンドラ
+     * @param dir the base directory
+     * @param packageName the package name to traverse
+     * @param handler the handler to process classes
      */
     protected static void traverseFileSystem(final File dir, final String packageName, final ClassHandler handler) {
         for (final File file : dir.listFiles()) {
@@ -220,13 +197,11 @@ public abstract class ClassTraversalUtil {
     }
 
     /**
-     * ルートパッケージに対応するディレクトリを表す{@link File}を返します。
+     * Returns a {@link File} representing the directory corresponding to the root package.
      *
-     * @param rootDir
-     *            ルートディレクトリ
-     * @param rootPackage
-     *            ルートパッケージ
-     * @return パッケージに対応するディレクトリを表す{@link File}
+     * @param rootDir the root directory
+     * @param rootPackage the root package
+     * @return a {@link File} representing the directory corresponding to the package
      */
     protected static File getPackageDir(final File rootDir, final String rootPackage) {
         File packageDir = rootDir;

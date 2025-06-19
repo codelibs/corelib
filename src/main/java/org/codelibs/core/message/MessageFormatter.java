@@ -25,55 +25,55 @@ import org.codelibs.core.misc.DisposableUtil;
 import org.codelibs.core.misc.LocaleUtil;
 
 /**
- * メッセージコードと引数からメッセージを組み立てるクラスです。
+ * Class for assembling messages from message codes and arguments.
  *
  * @author higa
  */
 public abstract class MessageFormatter {
 
-    /** メッセージコードの数値部の長さ */
+    /** Length of the numeric part of the message code */
     protected static final int CODE_NUMBER_LENGTH = 4;
 
-    /** メッセージコードに対応するリソースバンドル名の接尾辞 */
+    /** Suffix of the resource bundle name corresponding to the message code */
     protected static final String MESSAGES = "Messages";
 
-    /** 初期化済みを示すフラグ */
+    /** Flag indicating initialization */
     protected static volatile boolean initialized;
 
     /**
-     * メッセージを返します。
+     * Returns the message.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数
-     * @return メッセージ
+     *            Arguments
+     * @return Message
      */
     public static String getMessage(final String messageCode, final Object... args) {
         return getFormattedMessage(messageCode == null ? "" : messageCode, getSimpleMessage(messageCode, args));
     }
 
     /**
-     * メッセージコードつきのメッセージを返します。
+     * Returns the message with the message code.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param simpleMessage
-     *            引数が展開された単純なメッセージ
-     * @return メッセージコードつきのメッセージ
+     *            Simple message with arguments expanded
+     * @return Message with message code
      */
     public static String getFormattedMessage(final String messageCode, final String simpleMessage) {
         return "[" + messageCode + "]" + simpleMessage;
     }
 
     /**
-     * 引数を展開してメッセージコードなしの単純なメッセージを返します。
+     * Expands arguments and returns a simple message without a message code.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数
-     * @return メッセージコードなしの単純なメッセージ
+     *            Arguments
+     * @return Simple message without a message code
      */
     public static String getSimpleMessage(final String messageCode, final Object... args) {
         try {
@@ -88,11 +88,11 @@ public abstract class MessageFormatter {
     }
 
     /**
-     * メッセージコードに対応するパターン文字列を返します。
+     * Returns the pattern string corresponding to the message code.
      *
      * @param messageCode
-     *            メッセージコード
-     * @return パターン文字列
+     *            Message code
+     * @return Pattern string
      */
     protected static String getPattern(final String messageCode) {
         if (isEmpty(messageCode)) {
@@ -115,22 +115,22 @@ public abstract class MessageFormatter {
     }
 
     /**
-     * システム名を返します。
+     * Returns the system name.
      *
      * @param messageCode
-     *            メッセージコード
-     * @return システム名
+     *            Message code
+     * @return System name
      */
     protected static String getSystemName(final String messageCode) {
         return messageCode.substring(1, Math.max(1, messageCode.length() - CODE_NUMBER_LENGTH));
     }
 
     /**
-     * リソースバンドルを返します。
+     * Returns the resource bundle.
      *
      * @param systemName
-     *            システム名
-     * @return リソースバンドル
+     *            System name
+     * @return Resource bundle
      */
     protected static ResourceBundle getResourceBundle(final String systemName) {
         if (!initialized) {
@@ -140,11 +140,11 @@ public abstract class MessageFormatter {
     }
 
     /**
-     * パターンを使用しないで引数を並べたメッセージを返します。
+     * Returns a message with arguments lined up without using a pattern.
      *
      * @param args
-     *            引数
-     * @return 引数を並べたメッセージ
+     *            Arguments
+     * @return Message with arguments lined up
      */
     protected static String getNoPatternMessage(final Object... args) {
         if (args == null || args.length == 0) {
@@ -159,7 +159,7 @@ public abstract class MessageFormatter {
     }
 
     /**
-     * 初期化します。
+     * Initializes the class.
      */
     protected static synchronized void initialize() {
         if (!initialized) {

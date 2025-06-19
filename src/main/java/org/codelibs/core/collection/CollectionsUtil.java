@@ -52,20 +52,18 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
 /**
- * コレクションのためのユーティリティです。
+ * Utility class for collections.
  *
  * @author koichik
  */
 public abstract class CollectionsUtil {
 
     /**
-     * {@link ArrayBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayBlockingQueue}.
      *
-     * @param <E>
-     *            {@link ArrayBlockingQueue}の要素型
-     * @param capacity
-     *            キューの容量
-     * @return {@link ArrayBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayBlockingQueue}
+     * @param capacity the queue capacity
+     * @return a new instance of {@link ArrayBlockingQueue}
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int)
      */
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity) {
@@ -73,15 +71,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayBlockingQueue}.
      *
-     * @param <E>
-     *            {@link ArrayBlockingQueue}の要素型
-     * @param capacity
-     *            キューの容量
-     * @param fair
-     *            {@code true}の場合、挿入または削除時にブロックされたスレッドに対するキューアクセス
-     * @return {@link ArrayBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayBlockingQueue}
+     * @param capacity the queue capacity
+     * @param fair whether the queue is fair
+     * @return a new instance of {@link ArrayBlockingQueue}
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int, boolean)
      */
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity, final boolean fair) {
@@ -89,17 +84,13 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayBlockingQueue}.
      *
-     * @param <E>
-     *            {@link ArrayBlockingQueue}の要素型
-     * @param capacity
-     *            キューの容量
-     * @param fair
-     *            {@code true}の場合、挿入または削除時にブロックされたスレッドに対するキューアクセス
-     * @param c
-     *            最初に含む要素のコレクション
-     * @return {@link ArrayBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayBlockingQueue}
+     * @param capacity the queue capacity
+     * @param fair whether the queue is fair
+     * @param c the collection of initial elements
+     * @return a new instance of {@link ArrayBlockingQueue}
      * @see ArrayBlockingQueue#ArrayBlockingQueue(int, boolean, Collection)
      */
     public static <E> ArrayBlockingQueue<E> newArrayBlockingQueue(final int capacity, final boolean fair, final Collection<? extends E> c) {
@@ -107,11 +98,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayDeque}.
      *
-     * @param <E>
-     *            {@link ArrayDeque}の要素型
-     * @return {@link ArrayDeque}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayDeque}
+     * @return a new instance of {@link ArrayDeque}
      * @see ArrayDeque#ArrayDeque()
      */
     public static <E> ArrayDeque<E> newArrayDeque() {
@@ -119,13 +109,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayDeque}.
      *
-     * @param <E>
-     *            {@link ArrayDeque}の要素型
-     * @param c
-     *            要素が両端キューに配置されるコレクション
-     * @return {@link ArrayDeque}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayDeque}
+     * @param c the collection of elements to be placed in the deque
+     * @return a new instance of {@link ArrayDeque}
      * @see ArrayDeque#ArrayDeque(Collection)
      */
     public static <E> ArrayDeque<E> newArrayDeque(final Collection<? extends E> c) {
@@ -133,13 +121,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayDeque}.
      *
-     * @param <E>
-     *            {@link ArrayDeque}の要素型
-     * @param numElements
-     *            両端キューの初期容量の範囲の下限
-     * @return {@link ArrayDeque}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayDeque}
+     * @param numElements the lower bound of the initial capacity range for the deque
+     * @return a new instance of {@link ArrayDeque}
      * @see ArrayDeque#ArrayDeque(int)
      */
     public static <E> ArrayDeque<E> newArrayDeque(final int numElements) {
@@ -147,11 +133,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayList}.
      *
-     * @param <E>
-     *            {@link ArrayList}の要素型
-     * @return {@link ArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayList}
+     * @return a new instance of {@link ArrayList}
      * @see ArrayList#ArrayList()
      */
     public static <E> ArrayList<E> newArrayList() {
@@ -159,13 +144,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayList}.
      *
-     * @param <E>
-     *            {@link ArrayList}の要素型
-     * @param c
-     *            要素がリストに配置されるコレクション
-     * @return {@link ArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayList}
+     * @param c the collection of elements to be placed in the list
+     * @return a new instance of {@link ArrayList}
      * @see ArrayList#ArrayList(Collection)
      */
     public static <E> ArrayList<E> newArrayList(final Collection<? extends E> c) {
@@ -173,13 +156,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ArrayList}.
      *
-     * @param <E>
-     *            {@link ArrayList}の要素型
-     * @param initialCapacity
-     *            リストの初期容量
-     * @return {@link ArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link ArrayList}
+     * @param initialCapacity the initial capacity of the list
+     * @return a new instance of {@link ArrayList}
      * @see ArrayList#ArrayList(int)
      */
     public static <E> ArrayList<E> newArrayList(final int initialCapacity) {
@@ -187,13 +168,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentHashMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentHashMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentHashMap}の値の型
-     * @return {@link ConcurrentHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentHashMap}
+     * @param <V> the value type of {@link ConcurrentHashMap}
+     * @return a new instance of {@link ConcurrentHashMap}
      * @see ConcurrentHashMap#ConcurrentHashMap()
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap() {
@@ -201,15 +180,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentHashMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentHashMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link ConcurrentHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentHashMap}
+     * @param <V> the value type of {@link ConcurrentHashMap}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link ConcurrentHashMap}
      * @see ConcurrentHashMap#ConcurrentHashMap(int)
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final int initialCapacity) {
@@ -217,19 +193,14 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentHashMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentHashMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            サイズ変更の制御に使用される負荷係数のしきい値
-     * @param concurrencyLevel
-     *            同時更新を行うスレッドの推定数
-     * @return {@link ConcurrentHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentHashMap}
+     * @param <V> the value type of {@link ConcurrentHashMap}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor threshold for resizing
+     * @param concurrencyLevel the estimated number of threads for concurrent updates
+     * @return a new instance of {@link ConcurrentHashMap}
      * @see ConcurrentHashMap#ConcurrentHashMap(int, float, int)
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final int initialCapacity, final float loadFactor,
@@ -238,15 +209,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentHashMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentHashMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentHashMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link ConcurrentHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentHashMap}
+     * @param <V> the value type of {@link ConcurrentHashMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link ConcurrentHashMap}
      * @see ConcurrentHashMap#ConcurrentHashMap(Map)
      */
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMap(final Map<? extends K, ? extends V> m) {
@@ -254,11 +222,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentLinkedQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentLinkedQueue}.
      *
-     * @param <E>
-     *            {@link ConcurrentLinkedQueue}の要素型
-     * @return {@link ConcurrentLinkedQueue}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentLinkedQueue}
+     * @return a new instance of {@link ConcurrentLinkedQueue}
      * @see ConcurrentLinkedQueue#ConcurrentLinkedQueue()
      */
     public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue() {
@@ -266,13 +233,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentLinkedQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentLinkedQueue}.
      *
-     * @param <E>
-     *            {@link ConcurrentLinkedQueue}の要素型
-     * @param c
-     *            最初に含む要素のコレクション
-     * @return {@link ConcurrentLinkedQueue}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentLinkedQueue}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link ConcurrentLinkedQueue}
      * @see ConcurrentLinkedQueue#ConcurrentLinkedQueue(Collection)
      */
     public static <E> ConcurrentLinkedQueue<E> newConcurrentLinkedQueue(final Collection<? extends E> c) {
@@ -280,13 +245,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentSkipListMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentSkipListMap}の値の型
-     * @return {@link ConcurrentSkipListMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentSkipListMap}
+     * @param <V> the value type of {@link ConcurrentSkipListMap}
+     * @return a new instance of {@link ConcurrentSkipListMap}
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap()
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap() {
@@ -294,15 +257,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentSkipListMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentSkipListMap}の値の型
-     * @param c
-     *            {@link Comparator}
-     * @return {@link ConcurrentSkipListMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentSkipListMap}
+     * @param <V> the value type of {@link ConcurrentSkipListMap}
+     * @param c the comparator for sorting the map
+     * @return a new instance of {@link ConcurrentSkipListMap}
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(Comparator)
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final Comparator<? super K> c) {
@@ -310,15 +270,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentSkipListMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentSkipListMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link ConcurrentSkipListMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentSkipListMap}
+     * @param <V> the value type of {@link ConcurrentSkipListMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link ConcurrentSkipListMap}
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(Map)
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final Map<? extends K, ? extends V> m) {
@@ -326,15 +283,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListMap}.
      *
-     * @param <K>
-     *            {@link ConcurrentSkipListMap}のキーの型
-     * @param <V>
-     *            {@link ConcurrentSkipListMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link ConcurrentSkipListMap}の新しいインスタンス
+     * @param <K> the key type of {@link ConcurrentSkipListMap}
+     * @param <V> the value type of {@link ConcurrentSkipListMap}
+     * @param m the sorted map to be placed in the created map
+     * @return a new instance of {@link ConcurrentSkipListMap}
      * @see ConcurrentSkipListMap#ConcurrentSkipListMap(SortedMap)
      */
     public static <K, V> ConcurrentSkipListMap<K, V> newConcurrentSkipListMap(final SortedMap<K, ? extends V> m) {
@@ -342,11 +296,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListSet}.
      *
-     * @param <E>
-     *            {@link ConcurrentSkipListSet}の要素型
-     * @return {@link ConcurrentSkipListSet}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentSkipListSet}
+     * @return a new instance of {@link ConcurrentSkipListSet}
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet()
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet() {
@@ -354,13 +307,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListSet}.
      *
-     * @param <E>
-     *            {@link ConcurrentSkipListSet}の要素型
-     * @param c
-     *            要素がセットに配置されるコレクション
-     * @return {@link ConcurrentSkipListSet}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentSkipListSet}
+     * @param c the collection of elements to be placed in the set
+     * @return a new instance of {@link ConcurrentSkipListSet}
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(Collection)
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final Collection<? extends E> c) {
@@ -368,13 +319,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListSet}.
      *
-     * @param <E>
-     *            {@link ConcurrentSkipListSet}の要素型
-     * @param c
-     *            このセットをソートするために使用されるコンパレータ
-     * @return {@link ConcurrentSkipListSet}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentSkipListSet}
+     * @param c the comparator for sorting the set
+     * @return a new instance of {@link ConcurrentSkipListSet}
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(Comparator)
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final Comparator<? super E> c) {
@@ -382,13 +331,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link ConcurrentSkipListSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link ConcurrentSkipListSet}.
      *
-     * @param <E>
-     *            {@link ConcurrentSkipListSet}の要素型
-     * @param s
-     *            要素がセットに配置されるコレクション
-     * @return {@link ConcurrentSkipListSet}の新しいインスタンス
+     * @param <E> the element type of {@link ConcurrentSkipListSet}
+     * @param s the sorted set to be placed in the created set
+     * @return a new instance of {@link ConcurrentSkipListSet}
      * @see ConcurrentSkipListSet#ConcurrentSkipListSet(SortedSet)
      */
     public static <E> ConcurrentSkipListSet<E> newConcurrentSkipListSet(final SortedSet<? extends E> s) {
@@ -396,11 +343,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link CopyOnWriteArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link CopyOnWriteArrayList}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArrayList}の要素型
-     * @return {@link CopyOnWriteArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArrayList}
+     * @return a new instance of {@link CopyOnWriteArrayList}
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList()
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList() {
@@ -408,13 +354,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link CopyOnWriteArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link CopyOnWriteArrayList}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArrayList}の要素型
-     * @param c
-     *            最初に保持していた要素のコレクション
-     * @return {@link CopyOnWriteArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArrayList}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link CopyOnWriteArrayList}
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList(Collection)
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(final Collection<? extends E> c) {
@@ -422,13 +366,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link CopyOnWriteArrayList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link CopyOnWriteArrayList}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArrayList}の要素型
-     * @param toCopyIn
-     *            配列 (この配列のコピーは内部配列として使用される)
-     * @return {@link CopyOnWriteArrayList}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArrayList}
+     * @param toCopyIn the array to be used as the internal array
+     * @return a new instance of {@link CopyOnWriteArrayList}
      * @see CopyOnWriteArrayList#CopyOnWriteArrayList(Object[])
      */
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayList(final E[] toCopyIn) {
@@ -436,11 +378,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link CopyOnWriteArraySet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link CopyOnWriteArraySet}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArraySet}の要素型
-     * @return {@link CopyOnWriteArraySet}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArraySet}
+     * @return a new instance of {@link CopyOnWriteArraySet}
      * @see CopyOnWriteArraySet#CopyOnWriteArraySet()
      */
     public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet() {
@@ -448,13 +389,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link CopyOnWriteArraySet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link CopyOnWriteArraySet}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArraySet}の要素型
-     * @param c
-     *            コレクション
-     * @return {@link CopyOnWriteArraySet}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArraySet}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link CopyOnWriteArraySet}
      * @see CopyOnWriteArraySet#CopyOnWriteArraySet(Collection)
      */
     public static <E> CopyOnWriteArraySet<E> newCopyOnWriteArraySet(final Collection<? extends E> c) {
@@ -462,11 +401,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link DelayQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link DelayQueue}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArraySet}の要素型
-     * @return {@link DelayQueue}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArraySet}
+     * @return a new instance of {@link DelayQueue}
      * @see DelayQueue#DelayQueue()
      */
     public static <E extends Delayed> DelayQueue<E> newDelayQueue() {
@@ -474,13 +412,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link DelayQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link DelayQueue}.
      *
-     * @param <E>
-     *            {@link CopyOnWriteArraySet}の要素型
-     * @param c
-     *            コレクション
-     * @return {@link DelayQueue}の新しいインスタンス
+     * @param <E> the element type of {@link CopyOnWriteArraySet}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link DelayQueue}
      * @see DelayQueue#DelayQueue(Collection)
      */
     public static <E extends Delayed> DelayQueue<E> newDelayQueue(final Collection<? extends E> c) {
@@ -488,15 +424,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link EnumMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link EnumMap}.
      *
-     * @param <K>
-     *            {@link EnumMap}のキーの型
-     * @param <V>
-     *            {@link EnumMap}の値の型
-     * @param keyType
-     *            この {@literal enum} マップ用のキー型のクラスオブジェクト
-     * @return {@link EnumMap}の新しいインスタンス
+     * @param <K> the key type of {@link EnumMap}
+     * @param <V> the value type of {@link EnumMap}
+     * @param keyType the class object of the key type for this {@literal enum} map
+     * @return a new instance of {@link EnumMap}
      * @see EnumMap#EnumMap(Class)
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final Class<K> keyType) {
@@ -504,15 +437,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link EnumMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link EnumMap}.
      *
-     * @param <K>
-     *            {@link EnumMap}のキーの型
-     * @param <V>
-     *            {@link EnumMap}の値の型
-     * @param m
-     *            この {@literal enum} マップの初期化元の {@literal enum} マップ
-     * @return {@link EnumMap}の新しいインスタンス
+     * @param <K> the key type of {@link EnumMap}
+     * @param <V> the value type of {@link EnumMap}
+     * @param m the {@literal enum} map to be used for initialization
+     * @return a new instance of {@link EnumMap}
      * @see EnumMap#EnumMap(EnumMap)
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final EnumMap<K, ? extends V> m) {
@@ -520,15 +450,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link EnumMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link EnumMap}.
      *
-     * @param <K>
-     *            {@link EnumMap}のキーの型
-     * @param <V>
-     *            {@link EnumMap}の値の型
-     * @param m
-     *            この {@literal enum} マップの初期化元のマップ
-     * @return {@link EnumMap}の新しいインスタンス
+     * @param <K> the key type of {@link EnumMap}
+     * @param <V> the value type of {@link EnumMap}
+     * @param m the map to be used for initialization
+     * @return a new instance of {@link EnumMap}
      * @see EnumMap#EnumMap(Map)
      */
     public static <K extends Enum<K>, V> EnumMap<K, V> newEnumMap(final Map<K, ? extends V> m) {
@@ -536,13 +463,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashMap}.
      *
-     * @param <K>
-     *            {@link HashMap}のキーの型
-     * @param <V>
-     *            {@link HashMap}の値の型
-     * @return {@link HashMap}の新しいインスタンス
+     * @param <K> the key type of {@link HashMap}
+     * @param <V> the value type of {@link HashMap}
+     * @return a new instance of {@link HashMap}
      * @see HashMap#HashMap()
      */
     public static <K, V> HashMap<K, V> newHashMap() {
@@ -550,15 +475,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashMap}.
      *
-     * @param <K>
-     *            {@link HashMap}のキーの型
-     * @param <V>
-     *            {@link HashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link HashMap}の新しいインスタンス
+     * @param <K> the key type of {@link HashMap}
+     * @param <V> the value type of {@link HashMap}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link HashMap}
      * @see HashMap#HashMap(int)
      */
     public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity) {
@@ -566,17 +488,13 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashMap}.
      *
-     * @param <K>
-     *            {@link HashMap}のキーの型
-     * @param <V>
-     *            {@link HashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            サイズ変更の制御に使用される負荷係数のしきい値
-     * @return {@link HashMap}の新しいインスタンス
+     * @param <K> the key type of {@link HashMap}
+     * @param <V> the value type of {@link HashMap}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link HashMap}
      * @see HashMap#HashMap(int, float)
      */
     public static <K, V> HashMap<K, V> newHashMap(final int initialCapacity, final float loadFactor) {
@@ -584,15 +502,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashMap}.
      *
-     * @param <K>
-     *            {@link HashMap}のキーの型
-     * @param <V>
-     *            {@link HashMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link HashMap}の新しいインスタンス
+     * @param <K> the key type of {@link HashMap}
+     * @param <V> the value type of {@link HashMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link HashMap}
      * @see HashMap#HashMap(int, float)
      */
     public static <K, V> HashMap<K, V> newHashMap(final Map<? extends K, ? extends V> m) {
@@ -600,11 +515,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashSet}.
      *
-     * @param <E>
-     *            {@link HashSet}の要素型
-     * @return {@link HashSet}の新しいインスタンス
+     * @param <E> the element type of {@link HashSet}
+     * @return a new instance of {@link HashSet}
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet() {
@@ -612,13 +526,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashSet}.
      *
-     * @param <E>
-     *            {@link HashSet}の要素型
-     * @param c
-     *            要素がセットに配置されるコレクション
-     * @return {@link HashSet}の新しいインスタンス
+     * @param <E> the element type of {@link HashSet}
+     * @param c the collection of elements to be placed in the set
+     * @return a new instance of {@link HashSet}
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet(final Collection<? extends E> c) {
@@ -626,13 +538,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashSet}.
      *
-     * @param <E>
-     *            {@link HashSet}の要素型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link HashSet}の新しいインスタンス
+     * @param <E> the element type of {@link HashSet}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link HashSet}
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet(final int initialCapacity) {
@@ -640,15 +550,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link HashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link HashSet}.
      *
-     * @param <E>
-     *            {@link HashSet}の要素型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            負荷係数
-     * @return {@link HashSet}の新しいインスタンス
+     * @param <E> the element type of {@link HashSet}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link HashSet}
      * @see HashSet#HashSet()
      */
     public static <E> HashSet<E> newHashSet(final int initialCapacity, final float loadFactor) {
@@ -656,13 +563,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Hashtable}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Hashtable}.
      *
-     * @param <K>
-     *            {@link Hashtable}のキーの型
-     * @param <V>
-     *            {@link Hashtable}の値の型
-     * @return {@link Hashtable}の新しいインスタンス
+     * @param <K> the key type of {@link Hashtable}
+     * @param <V> the value type of {@link Hashtable}
+     * @return a new instance of {@link Hashtable}
      * @see Hashtable#Hashtable()
      */
     public static <K, V> Hashtable<K, V> newHashtable() {
@@ -670,15 +575,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Hashtable}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Hashtable}.
      *
-     * @param <K>
-     *            {@link Hashtable}のキーの型
-     * @param <V>
-     *            {@link Hashtable}の値の型
-     * @param initialCapacity
-     *            ハッシュテーブルの初期容量
-     * @return {@link Hashtable}の新しいインスタンス
+     * @param <K> the key type of {@link Hashtable}
+     * @param <V> the value type of {@link Hashtable}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link Hashtable}
      * @see Hashtable#Hashtable(int)
      */
     public static <K, V> Hashtable<K, V> newHashtable(final int initialCapacity) {
@@ -686,17 +588,13 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Hashtable}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Hashtable}.
      *
-     * @param <K>
-     *            {@link Hashtable}のキーの型
-     * @param <V>
-     *            {@link Hashtable}の値の型
-     * @param initialCapacity
-     *            ハッシュテーブルの初期容量
-     * @param loadFactor
-     *            ハッシュテーブルの負荷係数
-     * @return {@link Hashtable}の新しいインスタンス
+     * @param <K> the key type of {@link Hashtable}
+     * @param <V> the value type of {@link Hashtable}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link Hashtable}
      * @see Hashtable#Hashtable(int, float)
      */
     public static <K, V> Hashtable<K, V> newHashtable(final int initialCapacity, final float loadFactor) {
@@ -704,15 +602,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Hashtable}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Hashtable}.
      *
-     * @param <K>
-     *            {@link Hashtable}のキーの型
-     * @param <V>
-     *            {@link Hashtable}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link Hashtable}の新しいインスタンス
+     * @param <K> the key type of {@link Hashtable}
+     * @param <V> the value type of {@link Hashtable}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link Hashtable}
      * @see Hashtable#Hashtable(Map)
      */
     public static <K, V> Hashtable<K, V> newHashtable(final Map<? extends K, ? extends V> m) {
@@ -720,13 +615,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link IdentityHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link IdentityHashMap}.
      *
-     * @param <K>
-     *            {@link IdentityHashMap}のキーの型
-     * @param <V>
-     *            {@link IdentityHashMap}の値の型
-     * @return {@link IdentityHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link IdentityHashMap}
+     * @param <V> the value type of {@link IdentityHashMap}
+     * @return a new instance of {@link IdentityHashMap}
      * @see IdentityHashMap#IdentityHashMap()
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap() {
@@ -734,15 +627,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link IdentityHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link IdentityHashMap}.
      *
-     * @param <K>
-     *            {@link IdentityHashMap}のキーの型
-     * @param <V>
-     *            {@link IdentityHashMap}の値の型
-     * @param expectedMaxSize
-     *            マップの予想最大サイズ
-     * @return {@link IdentityHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link IdentityHashMap}
+     * @param <V> the value type of {@link IdentityHashMap}
+     * @param expectedMaxSize the expected maximum size of the map
+     * @return a new instance of {@link IdentityHashMap}
      * @see IdentityHashMap#IdentityHashMap(int)
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(final int expectedMaxSize) {
@@ -750,15 +640,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link IdentityHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link IdentityHashMap}.
      *
-     * @param <K>
-     *            {@link IdentityHashMap}のキーの型
-     * @param <V>
-     *            {@link IdentityHashMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link IdentityHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link IdentityHashMap}
+     * @param <V> the value type of {@link IdentityHashMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link IdentityHashMap}
      * @see IdentityHashMap#IdentityHashMap(Map)
      */
     public static <K, V> IdentityHashMap<K, V> newIdentityHashMap(final Map<? extends K, ? extends V> m) {
@@ -766,11 +653,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingDeque}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingDeque}の要素型
-     * @return {@link LinkedBlockingDeque}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingDeque}
+     * @return a new instance of {@link LinkedBlockingDeque}
      * @see LinkedBlockingDeque#LinkedBlockingDeque()
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque() {
@@ -778,13 +664,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingDeque}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingDeque}の要素型
-     * @param c
-     *            要素がリストに配置されるコレクション
-     * @return {@link LinkedBlockingDeque}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingDeque}
+     * @param c the collection of elements to be placed in the deque
+     * @return a new instance of {@link LinkedBlockingDeque}
      * @see LinkedBlockingDeque#LinkedBlockingDeque(Collection)
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(final Collection<? extends E> c) {
@@ -792,13 +676,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingDeque}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingDeque}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingDeque}の要素型
-     * @param initialCapacity
-     *            リストの初期容量
-     * @return {@link LinkedBlockingDeque}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingDeque}
+     * @param initialCapacity the initial capacity of the deque
+     * @return a new instance of {@link LinkedBlockingDeque}
      * @see LinkedBlockingDeque#LinkedBlockingDeque(int)
      */
     public static <E> LinkedBlockingDeque<E> newLinkedBlockingDeque(final int initialCapacity) {
@@ -806,11 +688,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingQueue}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingQueue}の要素型
-     * @return {@link LinkedBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingQueue}
+     * @return a new instance of {@link LinkedBlockingQueue}
      * @see LinkedBlockingQueue#LinkedBlockingQueue()
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue() {
@@ -818,13 +699,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingQueue}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingQueue}の要素型
-     * @param c
-     *            最初に含む要素のコレクション
-     * @return {@link LinkedBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingQueue}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link LinkedBlockingQueue}
      * @see LinkedBlockingQueue#LinkedBlockingQueue(Collection)
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(final Collection<? extends E> c) {
@@ -832,13 +711,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedBlockingQueue}.
      *
-     * @param <E>
-     *            {@link LinkedBlockingQueue}の要素型
-     * @param initialCapacity
-     *            このキューの容量
-     * @return {@link LinkedBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedBlockingQueue}
+     * @param initialCapacity the capacity of the queue
+     * @return a new instance of {@link LinkedBlockingQueue}
      * @see LinkedBlockingQueue#LinkedBlockingQueue(int)
      */
     public static <E> LinkedBlockingQueue<E> newLinkedBlockingQueue(final int initialCapacity) {
@@ -846,13 +723,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashMap}.
      *
-     * @param <K>
-     *            {@link LinkedHashMap}のキーの型
-     * @param <V>
-     *            {@link LinkedHashMap}の値の型
-     * @return {@link LinkedHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link LinkedHashMap}
+     * @param <V> the value type of {@link LinkedHashMap}
+     * @return a new instance of {@link LinkedHashMap}
      * @see LinkedHashMap#LinkedHashMap()
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap() {
@@ -860,15 +735,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashMap}.
      *
-     * @param <K>
-     *            {@link LinkedHashMap}のキーの型
-     * @param <V>
-     *            {@link LinkedHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link LinkedHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link LinkedHashMap}
+     * @param <V> the value type of {@link LinkedHashMap}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link LinkedHashMap}
      * @see LinkedHashMap#LinkedHashMap(int)
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final int initialCapacity) {
@@ -876,17 +748,13 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashMap}.
      *
-     * @param <K>
-     *            {@link LinkedHashMap}のキーの型
-     * @param <V>
-     *            {@link LinkedHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            負荷係数
-     * @return {@link LinkedHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link LinkedHashMap}
+     * @param <V> the value type of {@link LinkedHashMap}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link LinkedHashMap}
      * @see LinkedHashMap#LinkedHashMap(int, float)
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final int initialCapacity, final float loadFactor) {
@@ -894,15 +762,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashMap}.
      *
-     * @param <K>
-     *            {@link LinkedHashMap}のキーの型
-     * @param <V>
-     *            {@link LinkedHashMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link LinkedHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link LinkedHashMap}
+     * @param <V> the value type of {@link LinkedHashMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link LinkedHashMap}
      * @see LinkedHashMap#LinkedHashMap(Map)
      */
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final Map<? extends K, ? extends V> m) {
@@ -910,11 +775,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashSet}.
      *
-     * @param <E>
-     *            {@link LinkedHashSet}の要素型
-     * @return {@link LinkedHashSet}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedHashSet}
+     * @return a new instance of {@link LinkedHashSet}
      * @see LinkedHashSet#LinkedHashSet()
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet() {
@@ -922,13 +786,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashSet}.
      *
-     * @param <E>
-     *            {@link LinkedHashSet}の要素型
-     * @param c
-     *            要素がセットに配置されるコレクション
-     * @return {@link LinkedHashSet}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedHashSet}
+     * @param c the collection of elements to be placed in the set
+     * @return a new instance of {@link LinkedHashSet}
      * @see LinkedHashSet#LinkedHashSet(Collection)
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(final Collection<? extends E> c) {
@@ -936,13 +798,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashSet}.
      *
-     * @param <E>
-     *            {@link LinkedHashSet}の要素型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link LinkedHashSet}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedHashSet}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link LinkedHashSet}
      * @see LinkedHashSet#LinkedHashSet(int)
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(final int initialCapacity) {
@@ -950,15 +810,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedHashSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedHashSet}.
      *
-     * @param <E>
-     *            {@link LinkedHashSet}の要素型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            負荷係数
-     * @return {@link LinkedHashSet}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedHashSet}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link LinkedHashSet}
      * @see LinkedHashSet#LinkedHashSet(int, float)
      */
     public static <E> LinkedHashSet<E> newLinkedHashSet(final int initialCapacity, final float loadFactor) {
@@ -966,11 +823,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedList}.
      *
-     * @param <E>
-     *            {@link LinkedList}の要素型
-     * @return {@link LinkedList}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedList}
+     * @return a new instance of {@link LinkedList}
      * @see LinkedList#LinkedList()
      */
     public static <E> LinkedList<E> newLinkedList() {
@@ -978,13 +834,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link LinkedList}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link LinkedList}.
      *
-     * @param <E>
-     *            {@link LinkedList}の要素型
-     * @param c
-     *            要素がリストに配置されるコレクション
-     * @return {@link LinkedList}の新しいインスタンス
+     * @param <E> the element type of {@link LinkedList}
+     * @param c the collection of elements to be placed in the list
+     * @return a new instance of {@link LinkedList}
      * @see LinkedList#LinkedList(Collection)
      */
     public static <E> LinkedList<E> newLinkedList(final Collection<? extends E> c) {
@@ -992,11 +846,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityBlockingQueue}.
      *
-     * @param <E>
-     *            {@link PriorityBlockingQueue}の要素型
-     * @return {@link PriorityBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityBlockingQueue}
+     * @return a new instance of {@link PriorityBlockingQueue}
      * @see PriorityBlockingQueue#PriorityBlockingQueue()
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue() {
@@ -1004,13 +857,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityBlockingQueue}.
      *
-     * @param <E>
-     *            {@link PriorityBlockingQueue}の要素型
-     * @param c
-     *            最初に含む要素のコレクション
-     * @return {@link PriorityBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityBlockingQueue}
+     * @param c the collection of initial elements
+     * @return a new instance of {@link PriorityBlockingQueue}
      * @see PriorityBlockingQueue#PriorityBlockingQueue(Collection)
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final Collection<? extends E> c) {
@@ -1018,13 +869,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityBlockingQueue}.
      *
-     * @param <E>
-     *            {@link PriorityBlockingQueue}の要素型
-     * @param initialCapacity
-     *            この優先度キューの初期容量
-     * @return {@link PriorityBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityBlockingQueue}
+     * @param initialCapacity the initial capacity of the priority queue
+     * @return a new instance of {@link PriorityBlockingQueue}
      * @see PriorityBlockingQueue#PriorityBlockingQueue(int)
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final int initialCapacity) {
@@ -1032,15 +881,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityBlockingQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityBlockingQueue}.
      *
-     * @param <E>
-     *            {@link PriorityBlockingQueue}の要素型
-     * @param initialCapacity
-     *            この優先度キューの初期容量
-     * @param comparator
-     *            この優先度キューの順序付けに使用するコンパレータ
-     * @return {@link PriorityBlockingQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityBlockingQueue}
+     * @param initialCapacity the initial capacity of the priority queue
+     * @param comparator the comparator for ordering the elements in the priority queue
+     * @return a new instance of {@link PriorityBlockingQueue}
      * @see PriorityBlockingQueue#PriorityBlockingQueue(int, Comparator)
      */
     public static <E> PriorityBlockingQueue<E> newPriorityBlockingQueue(final int initialCapacity, final Comparator<? super E> comparator) {
@@ -1048,11 +894,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue()
      */
     public static <E> PriorityQueue<E> newPriorityQueue() {
@@ -1060,13 +905,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @param c
-     *            要素が優先度キューに配置されるコレクション
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @param c the collection of elements to be placed in the priority queue
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue(Collection)
      */
     public static <E> PriorityQueue<E> newPriorityQueue(final Collection<? extends E> c) {
@@ -1074,13 +917,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @param initialCapacity
-     *            この優先度キューの初期容量
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @param initialCapacity the initial capacity of the priority queue
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue(int)
      */
     public static <E> PriorityQueue<E> newPriorityQueue(final int initialCapacity) {
@@ -1088,15 +929,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @param initialCapacity
-     *            この優先度キューの初期容量
-     * @param comparator
-     *            この優先度キューの順序付けに使用するコンパレータ
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @param initialCapacity the initial capacity of the priority queue
+     * @param comparator the comparator for ordering the elements in the priority queue
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue(int, Comparator)
      */
     public static <E> PriorityQueue<E> newPriorityQueue(final int initialCapacity, final Comparator<? super E> comparator) {
@@ -1104,13 +942,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @param c
-     *            要素が優先度キューに配置されるコレクション
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @param c the collection of elements to be placed in the priority queue
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue(PriorityQueue)
      */
     public static <E> PriorityQueue<E> newPriorityQueue(final PriorityQueue<? extends E> c) {
@@ -1118,13 +954,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link PriorityQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link PriorityQueue}.
      *
-     * @param <E>
-     *            {@link PriorityQueue}の要素型
-     * @param c
-     *            要素が優先度キューに配置されるコレクション
-     * @return {@link PriorityQueue}の新しいインスタンス
+     * @param <E> the element type of {@link PriorityQueue}
+     * @param c the collection of elements to be placed in the priority queue
+     * @return a new instance of {@link PriorityQueue}
      * @see PriorityQueue#PriorityQueue(SortedSet)
      */
     public static <E> PriorityQueue<E> newPriorityQueue(final SortedSet<? extends E> c) {
@@ -1132,11 +966,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Stack}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Stack}.
      *
-     * @param <E>
-     *            {@link Stack}の要素型
-     * @return {@link Stack}の新しいインスタンス
+     * @param <E> the element type of {@link Stack}
+     * @return a new instance of {@link Stack}
      * @see Stack#Stack()
      */
     public static <E> Stack<E> newStack() {
@@ -1144,11 +977,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link SynchronousQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link SynchronousQueue}.
      *
-     * @param <E>
-     *            {@link SynchronousQueue}の要素型
-     * @return {@link SynchronousQueue}の新しいインスタンス
+     * @param <E> the element type of {@link SynchronousQueue}
+     * @return a new instance of {@link SynchronousQueue}
      * @see SynchronousQueue#SynchronousQueue()
      */
     public static <E> SynchronousQueue<E> newSynchronousQueue() {
@@ -1156,14 +988,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link SynchronousQueue}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link SynchronousQueue}.
      *
-     * @param <E>
-     *            {@link SynchronousQueue}の要素型
-     * @param fair
-     *            {@literal true} の場合、待機中のスレッドは FIFO
-     *            の順序でアクセスが決定される。そうでない場合、順序は未指定
-     * @return {@link SynchronousQueue}の新しいインスタンス
+     * @param <E> the element type of {@link SynchronousQueue}
+     * @param fair whether the access order is FIFO for waiting threads
+     * @return a new instance of {@link SynchronousQueue}
      * @see SynchronousQueue#SynchronousQueue()
      */
     public static <E> SynchronousQueue<E> newSynchronousQueue(final boolean fair) {
@@ -1171,13 +1000,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeMap}.
      *
-     * @param <K>
-     *            {@link TreeMap}のキーの型
-     * @param <V>
-     *            {@link TreeMap}の値の型
-     * @return {@link TreeMap}の新しいインスタンス
+     * @param <K> the key type of {@link TreeMap}
+     * @param <V> the value type of {@link TreeMap}
+     * @return a new instance of {@link TreeMap}
      * @see TreeMap#TreeMap()
      */
     public static <K, V> TreeMap<K, V> newTreeMap() {
@@ -1185,15 +1012,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeMap}.
      *
-     * @param <K>
-     *            {@link TreeMap}のキーの型
-     * @param <V>
-     *            {@link TreeMap}の値の型
-     * @param c
-     *            {@link Comparator}
-     * @return {@link TreeMap}の新しいインスタンス
+     * @param <K> the key type of {@link TreeMap}
+     * @param <V> the value type of {@link TreeMap}
+     * @param c the comparator for sorting the map
+     * @return a new instance of {@link TreeMap}
      * @see TreeMap#TreeMap(Comparator)
      */
     public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> c) {
@@ -1201,15 +1025,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeMap}.
      *
-     * @param <K>
-     *            {@link TreeMap}のキーの型
-     * @param <V>
-     *            {@link TreeMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link TreeMap}の新しいインスタンス
+     * @param <K> the key type of {@link TreeMap}
+     * @param <V> the value type of {@link TreeMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link TreeMap}
      * @see TreeMap#TreeMap(Map)
      */
     public static <K, V> TreeMap<K, V> newTreeMap(final Map<? extends K, ? extends V> m) {
@@ -1217,15 +1038,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeMap}.
      *
-     * @param <K>
-     *            {@link TreeMap}のキーの型
-     * @param <V>
-     *            {@link TreeMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link TreeMap}の新しいインスタンス
+     * @param <K> the key type of {@link TreeMap}
+     * @param <V> the value type of {@link TreeMap}
+     * @param m the sorted map to be placed in the created map
+     * @return a new instance of {@link TreeMap}
      * @see TreeMap#TreeMap(SortedMap)
      */
     public static <K, V> TreeMap<K, V> newTreeMap(final SortedMap<K, ? extends V> m) {
@@ -1233,11 +1051,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeSet}.
      *
-     * @param <E>
-     *            {@link TreeSet}の要素型
-     * @return {@link TreeSet}の新しいインスタンス
+     * @param <E> the element type of {@link TreeSet}
+     * @return a new instance of {@link TreeSet}
      * @see TreeSet#TreeSet()
      */
     public static <E> TreeSet<E> newTreeSet() {
@@ -1245,13 +1062,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeSet}.
      *
-     * @param <E>
-     *            {@link TreeSet}の要素型
-     * @param c
-     *            要素がセットに配置されるコレクション
-     * @return {@link TreeSet}の新しいインスタンス
+     * @param <E> the element type of {@link TreeSet}
+     * @param c the collection of elements to be placed in the set
+     * @return a new instance of {@link TreeSet}
      * @see TreeSet#TreeSet(Collection)
      */
     public static <E> TreeSet<E> newTreeSet(final Collection<? extends E> c) {
@@ -1259,13 +1074,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeSet}.
      *
-     * @param <E>
-     *            {@link TreeSet}の要素型
-     * @param c
-     *            このセットをソートするために使用されるコンパレータ
-     * @return {@link TreeSet}の新しいインスタンス
+     * @param <E> the element type of {@link TreeSet}
+     * @param c the comparator for sorting the set
+     * @return a new instance of {@link TreeSet}
      * @see TreeSet#TreeSet(Comparator)
      */
     public static <E> TreeSet<E> newTreeSet(final Comparator<? super E> c) {
@@ -1273,13 +1086,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link TreeSet}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link TreeSet}.
      *
-     * @param <E>
-     *            {@link TreeSet}の要素型
-     * @param s
-     *            要素がセットに配置されるコレクション
-     * @return {@link TreeSet}の新しいインスタンス
+     * @param <E> the element type of {@link TreeSet}
+     * @param s the sorted set to be placed in the created set
+     * @return a new instance of {@link TreeSet}
      * @see TreeSet#TreeSet(SortedSet)
      */
     public static <E> TreeSet<E> newTreeSet(final SortedSet<? extends E> s) {
@@ -1287,11 +1098,10 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Vector}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Vector}.
      *
-     * @param <E>
-     *            {@link Vector}の要素型
-     * @return {@link Vector}の新しいインスタンス
+     * @param <E> the element type of {@link Vector}
+     * @return a new instance of {@link Vector}
      * @see Vector#Vector()
      */
     public static <E> Vector<E> newVector() {
@@ -1299,13 +1109,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Vector}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Vector}.
      *
-     * @param <E>
-     *            {@link Vector}の要素型
-     * @param c
-     *            要素がセットに配置されるコレクション
-     * @return {@link Vector}の新しいインスタンス
+     * @param <E> the element type of {@link Vector}
+     * @param c the collection of elements to be placed in the vector
+     * @return a new instance of {@link Vector}
      * @see Vector#Vector(Collection)
      */
     public static <E> Vector<E> newVector(final Collection<? extends E> c) {
@@ -1313,13 +1121,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Vector}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Vector}.
      *
-     * @param <E>
-     *            {@link Vector}の要素型
-     * @param initialCapacity
-     *            {@link Vector}の初期容量
-     * @return {@link Vector}の新しいインスタンス
+     * @param <E> the element type of {@link Vector}
+     * @param initialCapacity the initial capacity of the vector
+     * @return a new instance of {@link Vector}
      * @see Vector#Vector(int)
      */
     public static <E> Vector<E> newVector(final int initialCapacity) {
@@ -1327,15 +1133,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Vector}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link Vector}.
      *
-     * @param <E>
-     *            {@link Vector}の要素型
-     * @param initialCapacity
-     *            {@link Vector}の初期容量
-     * @param capacityIncrement
-     *            {@link Vector}があふれたときに増加される容量
-     * @return {@link Vector}の新しいインスタンス
+     * @param <E> the element type of {@link Vector}
+     * @param initialCapacity the initial capacity of the vector
+     * @param capacityIncrement the capacity increment when the vector overflows
+     * @return a new instance of {@link Vector}
      * @see Vector#Vector(int, int)
      */
     public static <E> Vector<E> newVector(final int initialCapacity, final int capacityIncrement) {
@@ -1343,13 +1146,11 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link WeakHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link WeakHashMap}.
      *
-     * @param <K>
-     *            {@link WeakHashMap}のキーの型
-     * @param <V>
-     *            {@link WeakHashMap}の値の型
-     * @return {@link WeakHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link WeakHashMap}
+     * @param <V> the value type of {@link WeakHashMap}
+     * @return a new instance of {@link WeakHashMap}
      * @see WeakHashMap#WeakHashMap()
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap() {
@@ -1357,15 +1158,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link WeakHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link WeakHashMap}.
      *
-     * @param <K>
-     *            {@link WeakHashMap}のキーの型
-     * @param <V>
-     *            {@link WeakHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @return {@link WeakHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link WeakHashMap}
+     * @param <V> the value type of {@link WeakHashMap}
+     * @param initialCapacity the initial capacity
+     * @return a new instance of {@link WeakHashMap}
      * @see WeakHashMap#WeakHashMap(int)
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(final int initialCapacity) {
@@ -1373,17 +1171,13 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link WeakHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link WeakHashMap}.
      *
-     * @param <K>
-     *            {@link WeakHashMap}のキーの型
-     * @param <V>
-     *            {@link WeakHashMap}の値の型
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            サイズ変更の制御に使用される負荷係数のしきい値
-     * @return {@link WeakHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link WeakHashMap}
+     * @param <V> the value type of {@link WeakHashMap}
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
+     * @return a new instance of {@link WeakHashMap}
      * @see WeakHashMap#WeakHashMap(int, float)
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(final int initialCapacity, final float loadFactor) {
@@ -1391,15 +1185,12 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link WeakHashMap}の新しいインスタンスを作成して返します。
+     * Creates and returns a new instance of {@link WeakHashMap}.
      *
-     * @param <K>
-     *            {@link WeakHashMap}のキーの型
-     * @param <V>
-     *            {@link WeakHashMap}の値の型
-     * @param m
-     *            作成されるマップに配置されるマップ
-     * @return {@link WeakHashMap}の新しいインスタンス
+     * @param <K> the key type of {@link WeakHashMap}
+     * @param <V> the value type of {@link WeakHashMap}
+     * @param m the map to be placed in the created map
+     * @return a new instance of {@link WeakHashMap}
      * @see WeakHashMap#WeakHashMap(Map)
      */
     public static <K, V> WeakHashMap<K, V> newWeakHashMap(final Map<? extends K, ? extends V> m) {
@@ -1407,24 +1198,19 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * マップが指定されたキーを含んでいない場合は、キーを指定された値に関連付けます。
+     * Associates the specified value with the specified key in the map if the map does not already contain the key.
      * <p>
-     * マップがすでに指定されたキーを含んでいる場合は、 キーに関連づけられている値を返します。 マップは変更されず、 指定された値は使われません。
-     * マップがまだ指定されたキーを含んでいない場合は、 指定された値を値を返します。 マップは変更され、指定されたキーと指定された値が関連づけられます。
-     * いずれの場合も、返される値はマップがその時点でキーと関連づけている値です。
+     * If the map already contains the key, the value associated with the key is returned and the map is unchanged.
+     * If the map does not contain the key, the specified value is associated with the key and the value is returned.
+     * In either case, the returned value is the value currently associated with the key in the map.
      * </p>
      *
-     * @param <K>
-     *            {@link HashMap}のキーの型
-     * @param <V>
-     *            {@link HashMap}の値の型
-     * @param map
-     *            マップ
-     * @param key
-     *            指定される値が関連付けられるキー
-     * @param value
-     *            指定されるキーに関連付けられる値
-     * @return 指定されたキーと関連付けられていた以前の値または、キーに関連付けられる値
+     * @param <K> the key type of {@link HashMap}
+     * @param <V> the value type of {@link HashMap}
+     * @param map the map
+     * @param key the key with which the specified value is to be associated
+     * @param value the value to be associated with the specified key
+     * @return the previous value associated with the specified key, or the specified value if the key was not present
      * @see ConcurrentHashMap#putIfAbsent(Object, Object)
      */
     public static <K, V> V putIfAbsent(final ConcurrentMap<K, V> map, final K key, final V value) {
@@ -1436,44 +1222,40 @@ public abstract class CollectionsUtil {
     }
 
     /**
-     * {@link Collection}が{@literal null}または要素が無い場合は{@literal true}を返します。
+     * Returns {@literal true} if the given {@link Collection} is {@literal null} or empty.
      *
-     * @param collection
-     *            コレクション
-     * @return コレクションが{@literal null}または要素が無い場合は{@literal true}
+     * @param collection the collection
+     * @return {@literal true} if the collection is {@literal null} or empty
      */
     public static boolean isEmpty(final Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
 
     /**
-     * {@link Collection}が{@literal null}でも要素が無いわけでもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the given {@link Collection} is not {@literal null} and not empty.
      *
-     * @param collection
-     *            コレクション
-     * @return コレクションが{@literal null}でも要素が無いわけでもない場合は{@literal true}
+     * @param collection the collection
+     * @return {@literal true} if the collection is not {@literal null} and not empty
      */
     public static boolean isNotEmpty(final Collection<?> collection) {
         return !isEmpty(collection);
     }
 
     /**
-     * {@link Map}が{@literal null}または要素が無い場合は{@literal true}を返します。
+     * Returns {@literal true} if the given {@link Map} is {@literal null} or empty.
      *
-     * @param map
-     *            マップ
-     * @return マップが{@literal null}または要素が無い場合は{@literal true}
+     * @param map the map
+     * @return {@literal true} if the map is {@literal null} or empty
      */
     public static boolean isEmpty(final Map<?, ?> map) {
         return map == null || map.isEmpty();
     }
 
     /**
-     * {@link Map}が{@literal null}でも要素が無いわけでもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the given {@link Map} is not {@literal null} and not empty.
      *
-     * @param map
-     *            マップ
-     * @return マップが{@literal null}でも要素が無いわけでもない場合は{@literal true}
+     * @param map the map
+     * @return {@literal true} if the map is not {@literal null} and not empty
      */
     public static boolean isNotEmpty(final Map<?, ?> map) {
         return !isEmpty(map);

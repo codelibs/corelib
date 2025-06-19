@@ -20,52 +20,46 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * エントリ数の上限を持ち、新しいエントリが追加されるとLRUで古いエントリを破棄する{@link HashMap}です。
+ * {@link HashMap} with an upper limit on the number of entries. When a new entry is added, the oldest entry is discarded using LRU if the limit is exceeded.
  *
  * @author koichik
- * @param <K>
- *            キーの型
- * @param <V>
- *            値の型
+ * @param <K> the key type
+ * @param <V> the value type
  */
 public class LruHashMap<K, V> extends LinkedHashMap<K, V> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * デフォルトの初期容量です。
+     * Default initial capacity.
      */
     protected static final int DEFAULT_INITIAL_CAPACITY = 16;
 
     /**
-     * デフォルトのロードファクタです。
+     * Default load factor.
      */
     protected static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
-     * 上限サイズです。
+     * Upper limit on the number of entries.
      */
     protected final int limitSize;
 
     /**
-     * {@link LruHashMap}を作成します。
+     * Creates an {@link LruHashMap}.
      *
-     * @param limitSize
-     *            エントリ数の上限
+     * @param limitSize the upper limit on the number of entries
      */
     public LruHashMap(final int limitSize) {
         this(limitSize, DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR);
     }
 
     /**
-     * {@link LruHashMap}を作成します。
+     * Creates an {@link LruHashMap}.
      *
-     * @param limitSize
-     *            エントリ数の上限
-     * @param initialCapacity
-     *            初期容量
-     * @param loadFactor
-     *            負荷係数
+     * @param limitSize the upper limit on the number of entries
+     * @param initialCapacity the initial capacity
+     * @param loadFactor the load factor
      */
     public LruHashMap(final int limitSize, final int initialCapacity, final float loadFactor) {
         super(initialCapacity, loadFactor, true);
@@ -73,9 +67,9 @@ public class LruHashMap<K, V> extends LinkedHashMap<K, V> {
     }
 
     /**
-     * エントリ数の上限を返します。
+     * Returns the upper limit on the number of entries.
      *
-     * @return エントリ数の上限
+     * @return the upper limit on the number of entries
      */
     public int getLimitSize() {
         return limitSize;

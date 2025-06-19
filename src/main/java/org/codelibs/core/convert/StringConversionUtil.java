@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import org.codelibs.core.misc.Base64Util;
 
 /**
- * {@link String}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link String}.
  *
  * @author higa
  */
@@ -66,24 +66,24 @@ public abstract class StringConversionUtil {
     public static final char FULLWIDTH_NOT_SIGN = '\uFFE2';
 
     /**
-     * 文字列に変換します。
+     * Converts the given object to a string.
      *
      * @param value
-     *            変換元のオブジェクト
-     * @return 変換された{@literal String}
+     *            The object to convert
+     * @return The converted {@literal String}
      */
     public static String toString(final Object value) {
         return toString(value, null);
     }
 
     /**
-     * 文字列に変換します。
+     * Converts the given object to a string.
      *
      * @param value
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal String}
+     *            The pattern string
+     * @return The converted {@literal String}
      */
     public static String toString(final Object value, final String pattern) {
         if (value == null) {
@@ -102,13 +102,13 @@ public abstract class StringConversionUtil {
     }
 
     /**
-     * 文字列に変換します。
+     * Converts the given object to a string.
      *
      * @param value
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal String}
+     *            The pattern string
+     * @return The converted {@literal String}
      */
     public static String toString(final Number value, final String pattern) {
         if (value != null) {
@@ -121,13 +121,13 @@ public abstract class StringConversionUtil {
     }
 
     /**
-     * 文字列に変換します。
+     * Converts the given object to a string.
      *
      * @param value
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal String}
+     *            The pattern string
+     * @return The converted {@literal String}
      */
     public static String toString(final java.util.Date value, final String pattern) {
         if (value != null) {
@@ -140,11 +140,11 @@ public abstract class StringConversionUtil {
     }
 
     /**
-     * Windows固有のマッピングルールで作成された文字列を修正します。
+     * Fixes a string created with Windows-specific mapping rules.
      *
      * @param source
-     *            Windows固有のマッピングルールで作成された文字列
-     * @return 修正された文字列
+     *            String created with Windows-specific mapping rules
+     * @return The fixed string
      */
     public static String fromWindowsMapping(final String source) {
         if (isEmpty(source)) {
@@ -179,11 +179,11 @@ public abstract class StringConversionUtil {
     }
 
     /**
-     * 文字列をWindows固有のマッピングルールに合わせて修正します。
+     * Fixes a string to match Windows-specific mapping rules.
      *
      * @param source
-     *            文字列
-     * @return Windows固有のマッピングルールに修正された文字列
+     *            The string
+     * @return The string fixed to match Windows-specific mapping rules
      */
     public static String toWindowsMapping(final String source) {
         if (isEmpty(source)) {

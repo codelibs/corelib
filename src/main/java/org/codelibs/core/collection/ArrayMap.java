@@ -32,52 +32,49 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * 配列の性質を併せ持つ {@link Map}です。
+ * A {@link Map} that combines the characteristics of an array.
  *
  * @author higa
- * @param <K>
- *            キーの型
- * @param <V>
- *            値の型
+ * @param <K> the type of keys
+ * @param <V> the type of values
  *
  */
 public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cloneable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 初期容量のデフォルト値 */
+    /** The default value of the initial capacity */
     public static final int INITIAL_CAPACITY = 17;
 
-    /** 負荷係数のデフォルト値 */
+    /** The default value of the load factor */
     public static final float LOAD_FACTOR = 0.75f;
 
-    /** 負荷係数 */
+    /** Load factor */
     protected transient int threshold;
 
-    /** マップとしてのエントリ */
+    /** Entry as a map */
     protected transient Entry<K, V>[] mapTable;
 
-    /** 配列としてのエントリ */
+    /** Entry as an array */
     protected transient Entry<K, V>[] listTable;
 
-    /** 要素数 */
+    /** Number of elements */
     protected transient int size = 0;
 
-    /** {@link Set}としてのビュー */
+    /** View as a {@link Set} */
     protected transient Set<? extends Map.Entry<K, V>> entrySet = null;
 
     /**
-     * デフォルトの初期容量を持つインスタンスを構築します。
+     * Constructs an instance with the default initial capacity.
      */
     public ArrayMap() {
         this(INITIAL_CAPACITY);
     }
 
     /**
-     * 指定された初期容量を持つインスタンスを構築します。
+     * Constructs an instance with the specified initial capacity.
      *
-     * @param initialCapacity
-     *            初期容量
+     * @param initialCapacity the initial capacity
      */
     @SuppressWarnings("unchecked")
     public ArrayMap(int initialCapacity) {
@@ -90,10 +87,10 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * 指定された{@link Map}と同じマッピングでインスタンスを構築します。
+     * Constructs an instance with the same mappings as the specified {@link Map}.
      *
      * @param map
-     *            マッピングがこのマップに配置されるマップ
+     *            the map whose mappings are to be placed in this map
      */
     public ArrayMap(final Map<? extends K, ? extends V> map) {
         this((int) (map.size() / LOAD_FACTOR) + 1);
@@ -116,11 +113,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * 値に対するインデックスを返します。
+     * Returns the index for the specified value.
      *
      * @param value
-     *            値
-     * @return 値に対するインデックス。値が含まれていない場合は{@literal -1}
+     *            the value
+     * @return the index for the value, or {@literal -1} if the value is not contained
      */
     public int indexOf(final Object value) {
         if (value != null) {
@@ -182,33 +179,33 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * インデックスで指定された位置の値を返します。
+     * Returns the value at the specified index.
      *
      * @param index
-     *            インデックス
-     * @return インデックスで指定された位置の値
+     *            the index
+     * @return the value at the specified index
      */
     public V getAt(final int index) {
         return getEntryAt(index).getValue();
     }
 
     /**
-     * インデックスで指定された位置のキーを返します。
+     * Returns the key at the specified index.
      *
      * @param index
-     *            インデックス
-     * @return インデックスで指定された位置のキー
+     *            the index
+     * @return the key at the specified index
      */
     public K getKeyAt(final int index) {
         return getEntryAt(index).getKey();
     }
 
     /**
-     * インデックスで指定された位置の{@link java.util.Map.Entry}を返します。
+     * Returns the {@link java.util.Map.Entry} at the specified index.
      *
      * @param index
-     *            インデックス
-     * @return インデックスで指定された位置の{@link java.util.Map.Entry}
+     *            the index
+     * @return the {@link java.util.Map.Entry} at the specified index
      */
     public Map.Entry<K, V> getEntryAt(final int index) {
         assertIndex(index < size, "Index:" + index + ", Size:" + size);
@@ -244,12 +241,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * インデックスで指定された位置に値を設定します。
+     * Sets the value at the specified index.
      *
      * @param index
-     *            インデックス
+     *            the index
      * @param value
-     *            値
+     *            the value
      */
     public void setAt(final int index, final V value) {
         getEntryAt(index).setValue(value);
@@ -268,11 +265,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * インデックスで指定された位置のエントリを削除します。
+     * Removes the entry at the specified index.
      *
      * @param index
-     *            インデックス
-     * @return インデックスで指定された位置にあったエントリの値
+     *            the index
+     * @return the value of the entry at the specified index
      */
     public V removeAt(final int index) {
         final Entry<K, V> e = removeList(index);
@@ -301,9 +298,9 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * 配列に変換します。
+     * Converts this map to an array.
      *
-     * @return 配列
+     * @return the array
      */
     public Object[] toArray() {
         final Object[] array = new Object[size];
@@ -314,11 +311,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * 配列に変換します。
+     * Converts this map to an array.
      *
      * @param proto
-     *            要素の格納先の配列。配列のサイズが十分でない場合は、同じ実行時の型で新しい配列が格納用として割り当てられる
-     * @return 配列
+     *            the array into which the elements of this map are to be stored, if it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose.
+     * @return the array containing the values of this map
      */
     public V[] toArray(final V[] proto) {
         @SuppressWarnings("unchecked")
@@ -443,11 +440,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * エントリのインデックスを返します。
+     * Returns the index of the entry.
      *
      * @param entry
-     *            エントリ
-     * @return エントリのインデックス
+     *            the entry
+     * @return the index of the entry
      */
     protected int entryIndexOf(final Entry<K, V> entry) {
         for (int i = 0; i < size; i++) {
@@ -459,11 +456,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * キーで指定されたエントリをマップのエントリから削除します。
+     * Removes the entry corresponding to the specified key from the map entries.
      *
      * @param key
-     *            キー
-     * @return 削除されたエントリ。キーに対応するエントリがなかった場合は{@literal null}
+     *            the key
+     * @return the removed entry, or {@literal null} if there was no entry for the key
      */
     protected Entry<K, V> removeMap(final Object key) {
         int hashCode = 0;
@@ -498,11 +495,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * インデックスで指定されたエントリをリストのエントリから削除します。
+     * Removes the entry at the specified index from the list entries.
      *
      * @param index
-     *            削除するエントリのインデックス
-     * @return 削除されたエントリ
+     *            the index of the entry to remove
+     * @return the removed entry
      */
     protected Entry<K, V> removeList(final int index) {
         final Entry<K, V> e = listTable[index];
@@ -515,7 +512,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * サイズが閾値を超えた場合に容量を確保します。
+     * Ensures capacity when the size exceeds the threshold.
      */
     protected void ensureCapacity() {
         if (size >= threshold) {
@@ -541,13 +538,13 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * エントリの値を新しい値で置き換えます。
+     * Replaces the value of the entry with a new value.
      *
      * @param entry
-     *            エントリ
+     *            the entry
      * @param value
-     *            エントリの新しい値
-     * @return エントリの置き換えられる前の値
+     *            the new value for the entry
+     * @return the previous value of the entry
      */
     protected V swapValue(final Entry<K, V> entry, final V value) {
         final V old = entry.value;
@@ -556,14 +553,14 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * {@link ArrayMap}用の{@link Iterator}です。
+     * {@link Iterator} for {@link ArrayMap}.
      */
     protected class ArrayMapIterator implements Iterator<Entry<K, V>> {
 
-        /** 現在のインデックス */
+        /** Current index */
         protected int current = 0;
 
-        /** 最後にアクセスした要素のインデックス */
+        /** Index of the last accessed element */
         protected int last = -1;
 
         @Override
@@ -594,46 +591,46 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
     }
 
     /**
-     * {@link ArrayMap}の{@link Map.Entry}です。
+     * {@link Map.Entry} implementation for {@link ArrayMap}.
      *
      * @param <K>
-     *            キーの型
+     *            the type of keys
      * @param <V>
-     *            キーの値
+     *            the type of values
      */
     protected static class Entry<K, V> implements Map.Entry<K, V>, Externalizable {
 
         private static final long serialVersionUID = -6625980241350717177L;
 
-        /** ハッシュ値 */
+        /** Hash value */
         protected transient int hashCode;
 
-        /** キー */
+        /** Key */
         protected transient K key;
 
-        /** 値 */
+        /** Value */
         protected transient V value;
 
-        /** 次のエントリ */
+        /** Next entry */
         protected transient Entry<K, V> next;
 
         /**
-         * インスタンスを構築します。
+         * Constructs an instance.
          */
         public Entry() {
         }
 
         /**
-         * インスタンスを構築します。
+         * Constructs an instance.
          *
          * @param hashCode
-         *            ハッシュ値
+         *            the hash value
          * @param key
-         *            キー
+         *            the key
          * @param value
-         *            値
+         *            the value
          * @param next
-         *            次のエントリ
+         *            the next entry
          */
         public Entry(final int hashCode, final K key, final V value, final Entry<K, V> next) {
             this.hashCode = hashCode;
@@ -660,7 +657,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
         }
 
         /**
-         * 状態をクリアします。
+         * Clears the state.
          */
         public void clear() {
             key = null;

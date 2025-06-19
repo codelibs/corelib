@@ -18,18 +18,18 @@ package org.codelibs.core.convert;
 import static org.codelibs.core.misc.AssertionUtil.assertArgument;
 
 /**
- * byte配列用の変換ユーティリティです。
+ * Utility class for conversions related to byte arrays.
  *
  * @author higa
  */
 public abstract class BinaryConversionUtil {
 
     /**
-     * {@literal byte}の配列に変換します。
+     * Converts to a {@literal byte} array.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return {@literal byte}の配列
+     *            The object to convert
+     * @return The {@literal byte} array
      */
     public static byte[] toBinary(final Object o) {
         if (o instanceof byte[]) {

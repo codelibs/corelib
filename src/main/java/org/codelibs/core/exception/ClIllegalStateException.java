@@ -16,7 +16,7 @@
 package org.codelibs.core.exception;
 
 /**
- * {@link IllegalStateException}をラップする例外です。
+ * Exception that wraps {@link IllegalStateException}.
  *
  * @author wyukawa
  */
@@ -25,39 +25,39 @@ public class ClIllegalStateException extends IllegalStateException {
     private static final long serialVersionUID = -2154525994315946504L;
 
     /**
-     * {@link ClIllegalStateException}を作成します。
+     * Creates a {@link ClIllegalStateException}.
      */
     public ClIllegalStateException() {
         super();
     }
 
     /**
-     * {@link ClIllegalStateException}を作成します。
+     * Creates a {@link ClIllegalStateException}.
      *
      * @param message
-     *            メッセージ
+     *            Message
      */
     public ClIllegalStateException(final String message) {
         super(message);
     }
 
     /**
-     * {@link ClIllegalStateException}を作成します。
+     * Creates a {@link ClIllegalStateException}.
      *
      * @param message
-     *            メッセージ
+     *            Message
      * @param cause
-     *            元の例外
+     *            The original exception
      */
     public ClIllegalStateException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * {@link ClIllegalStateException}を作成します。
+     * Creates a {@link ClIllegalStateException}.
      *
      * @param cause
-     *            元の例外
+     *            The original exception
      */
     public ClIllegalStateException(final Throwable cause) {
         super(cause);

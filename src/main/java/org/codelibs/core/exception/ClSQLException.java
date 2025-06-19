@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * S2Util用の{@link SQLException}です。
+ * {@link SQLException} for S2Util.
  *
  * @author higa
  */
@@ -35,90 +35,90 @@ public class ClSQLException extends SQLException {
     private final String sql;
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      */
     public ClSQLException(final String messageCode, final Object[] args) {
         this(messageCode, args, null, 0, null, null);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public ClSQLException(final String messageCode, final Object[] args, final Throwable cause) {
         this(messageCode, args, null, 0, cause, null);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState) {
         this(messageCode, args, sqlState, 0, null, null);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final Throwable cause) {
         this(messageCode, args, sqlState, 0, cause, null);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      * @param vendorCode
-     *            ベンダーコード
+     *            Vendor code
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode) {
         this(messageCode, args, sqlState, vendorCode, null, null);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      * @param vendorCode
-     *            ベンダーコード
+     *            Vendor code
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode,
             final Throwable cause) {
@@ -126,38 +126,38 @@ public class ClSQLException extends SQLException {
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      * @param vendorCode
-     *            ベンダーコード
+     *            Vendor code
      * @param sql
-     *            SQL文字列
+     *            SQL string
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode, final String sql) {
         this(messageCode, args, sqlState, vendorCode, null, sql);
     }
 
     /**
-     * {@link ClSQLException}を作成します。
+     * Creates a {@link ClSQLException}.
      *
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の並び
+     *            Array of arguments
      * @param sqlState
-     *            SQLステート
+     *            SQL state
      * @param vendorCode
-     *            ベンダーコード
+     *            Vendor code
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      * @param sql
-     *            SQL文字列
+     *            SQL string
      */
     public ClSQLException(final String messageCode, final Object[] args, final String sqlState, final int vendorCode, final Throwable cause,
             final String sql) {
@@ -168,25 +168,25 @@ public class ClSQLException extends SQLException {
     }
 
     /**
-     * メッセージコードを返します。
+     * Returns the message code.
      *
-     * @return メッセージコード
+     * @return Message code
      */
     public String getMessageCode() {
         return messageCode;
     }
 
     /**
-     * 引数の配列を返します。
+     * Returns the array of arguments.
      *
-     * @return 引数の配列
+     * @return Array of arguments
      */
     public Object[] getArgs() {
         return args;
     }
 
     /**
-     * SQLを返します。
+     * Returns the SQL.
      *
      * @return SQL
      */

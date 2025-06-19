@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import org.codelibs.core.beans.Converter;
 
 /**
- * {@link Converter}でエラーが起きた場合にスローされる例外です。
+ * Exception thrown when an error occurs in a {@link Converter}.
  *
  * @author higa
  */
@@ -33,14 +33,14 @@ public class ConverterRuntimeException extends ClRuntimeException {
     private final Object value;
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
      * @param propertyName
-     *            プロパティ名
+     *            Property name
      * @param value
-     *            値
+     *            Value
      * @param cause
-     *            原因
+     *            Cause
      */
     public ConverterRuntimeException(final String propertyName, final Object value, final Throwable cause) {
         super("ECL0097", asArray(propertyName, value, cause), cause);
@@ -49,18 +49,18 @@ public class ConverterRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * プロパティ名を返します。
+     * Returns the property name.
      *
-     * @return プロパティ名
+     * @return Property name
      */
     public String getPropertyName() {
         return propertyName;
     }
 
     /**
-     * 値を返します。
+     * Returns the value.
      *
-     * @return 値
+     * @return Value
      */
     public Object getValue() {
         return value;

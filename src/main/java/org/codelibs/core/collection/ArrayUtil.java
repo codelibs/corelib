@@ -28,242 +28,222 @@ import java.util.List;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * 配列に対するユーティリティクラスです。
+ * Utility class for array operations.
  *
  * @author higa
  */
 public abstract class ArrayUtil {
 
     /**
-     * {@literal boolean}の配列を返します。
+     * Returns an array of {@literal boolean}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static boolean[] asBooleanArray(final boolean... elements) {
         return elements;
     }
 
     /**
-     * {@literal char}の配列を返します。
+     * Returns an array of {@literal char}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static char[] asCharArray(final char... elements) {
         return elements;
     }
 
     /**
-     * {@literal byte}の配列を返します。
+     * Returns an array of {@literal byte}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static byte[] asByteArray(final byte... elements) {
         return elements;
     }
 
     /**
-     * {@literal short}の配列を返します。
+     * Returns an array of {@literal short}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static short[] asShortArray(final short... elements) {
         return elements;
     }
 
     /**
-     * {@literal int}の配列を返します。
+     * Returns an array of {@literal int}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static int[] asIntArray(final int... elements) {
         return elements;
     }
 
     /**
-     * {@literal long}の配列を返します。
+     * Returns an array of {@literal long}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static long[] asLongArray(final long... elements) {
         return elements;
     }
 
     /**
-     * {@literal float}の配列を返します。
+     * Returns an array of {@literal float}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static float[] asFloatArray(final float... elements) {
         return elements;
     }
 
     /**
-     * {@literal double}の配列を返します。
+     * Returns an array of {@literal double}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static double[] asDoubleArray(final double... elements) {
         return elements;
     }
 
     /**
-     * {@literal Object}の配列を返します。
+     * Returns an array of {@literal Object}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Object[] asArray(final Object... elements) {
         return elements;
     }
 
     /**
-     * {@literal String}の配列を返します。
+     * Returns an array of {@literal String}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static String[] asStringArray(final String... elements) {
         return elements;
     }
 
     /**
-     * {@literal Boolean}の配列を返します。
+     * Returns an array of {@literal Boolean}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Boolean[] asArray(final Boolean... elements) {
         return elements;
     }
 
     /**
-     * {@literal Character}の配列を返します。
+     * Returns an array of {@literal Character}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Character[] asArray(final Character... elements) {
         return elements;
     }
 
     /**
-     * {@literal Byte}の配列を返します。
+     * Returns an array of {@literal Byte}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Byte[] asArray(final Byte... elements) {
         return elements;
     }
 
     /**
-     * {@literal Short}の配列を返します。
+     * Returns an array of {@literal Short}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Short[] asArray(final Short... elements) {
         return elements;
     }
 
     /**
-     * {@literal Integer}の配列を返します。
+     * Returns an array of {@literal Integer}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Integer[] asArray(final Integer... elements) {
         return elements;
     }
 
     /**
-     * {@literal Long}の配列を返します。
+     * Returns an array of {@literal Long}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Long[] asArray(final Long... elements) {
         return elements;
     }
 
     /**
-     * {@literal Float}の配列を返します。
+     * Returns an array of {@literal Float}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Float[] asArray(final Float... elements) {
         return elements;
     }
 
     /**
-     * {@literal Double}の配列を返します。
+     * Returns an array of {@literal Double}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static Double[] asArray(final Double... elements) {
         return elements;
     }
 
     /**
-     * {@literal BigInteger}の配列を返します。
+     * Returns an array of {@literal BigInteger}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static BigInteger[] asArray(final BigInteger... elements) {
         return elements;
     }
 
     /**
-     * {@literal BigDecimal}の配列を返します。
+     * Returns an array of {@literal BigDecimal}.
      *
-     * @param elements
-     *            配列の要素
-     * @return 配列
+     * @param elements the elements of the array
+     * @return the array
      */
     public static BigDecimal[] asArray(final BigDecimal... elements) {
         return elements;
     }
 
     /**
-     * 配列の末尾にオブジェクトを追加した配列を返します。
+     * Returns a new array with the specified object appended to the end.
      *
      * @param <T>
-     *            配列の要素型
+     *            the type of the array elements
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param obj
-     *            オブジェクト
-     * @return オブジェクトが追加された結果の配列
+     *            the object to add
+     * @return a new array with the object appended
      */
     public static <T> T[] add(final T[] array, final T obj) {
         assertArgumentNotNull("array", array);
@@ -277,13 +257,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal boolean}配列の末尾に{@literal boolean}の値を追加した配列を返します。
+     * Returns a new array with the specified boolean value appended to the end of the boolean array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static boolean[] add(final boolean[] array, final boolean value) {
         assertArgumentNotNull("array", array);
@@ -294,13 +274,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal byte}配列の末尾に{@literal byte}の値を追加した配列を返します。
+     * Returns a new array with the specified byte value appended to the end of the byte array.
      *
      * @param array
-     *            配列
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static byte[] add(final byte[] array, final byte value) {
         assertArgumentNotNull("array", array);
@@ -312,13 +292,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal short}配列の末尾に{@literal short}の値を追加した配列を返します。
+     * Returns a new array with the specified short value appended to the end of the short array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static short[] add(final short[] array, final short value) {
         assertArgumentNotNull("array", array);
@@ -330,13 +310,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal int}配列の末尾に{@literal int}の値を追加した配列を返します。
+     * Returns a new array with the specified int value appended to the end of the int array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static int[] add(final int[] array, final int value) {
         assertArgumentNotNull("array", array);
@@ -348,13 +328,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal long}配列の末尾に{@literal long}の値を追加した配列を返します。
+     * Returns a new array with the specified long value appended to the end of the long array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static long[] add(final long[] array, final long value) {
         assertArgumentNotNull("array", array);
@@ -366,13 +346,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal float}配列の末尾に{@literal float}の値を追加した配列を返します。
+     * Returns a new array with the specified float value appended to the end of the float array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static float[] add(final float[] array, final float value) {
         assertArgumentNotNull("array", array);
@@ -384,13 +364,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * {@literal double}配列の末尾に{@literal double}の値を追加した配列を返します。
+     * Returns a new array with the specified double value appended to the end of the double array.
      *
      * @param array
-     *            配列。{@literal null}であってはいけません
+     *            the array. Must not be {@literal null}
      * @param value
-     *            値
-     * @return 値が追加された結果の配列
+     *            the value to add
+     * @return a new array with the value appended
      */
     public static double[] add(final double[] array, final double value) {
         assertArgumentNotNull("array", array);
@@ -402,19 +382,20 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static <T> T[] addAll(final T[] a, final T[] b) {
         if (a == null) {
@@ -437,17 +418,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static boolean[] addAll(final boolean[] a, final boolean[] b) {
         if (a == null) {
@@ -469,17 +451,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static byte[] addAll(final byte[] a, final byte[] b) {
         if (a == null) {
@@ -501,17 +484,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static short[] addAll(final short[] a, final short[] b) {
         if (a == null) {
@@ -533,17 +517,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static int[] addAll(final int[] a, final int[] b) {
         if (a == null) {
@@ -565,17 +550,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static long[] addAll(final long[] a, final long[] b) {
         if (a == null) {
@@ -597,17 +583,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static float[] addAll(final float[] a, final float[] b) {
         if (a == null) {
@@ -629,17 +616,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static double[] addAll(final double[] a, final double[] b) {
         if (a == null) {
@@ -661,17 +649,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 二つの配列を連結した配列を返します。
+     * Returns an array that is the concatenation of two arrays.
      * <p>
-     * どちらかあるいは両方の配列が{@literal null}の場合、他方の配列がそのまま返されます。 どちらかあるいは両方の配列の長さが
-     * {@literal 0}の場合、他方の配列がそのまま返されます。 いずれの場合も返される配列は引数に渡された配列そのものでコピーはされません。
+     * If either or both arrays are {@literal null}, the other array is returned as is.
+     * If either or both arrays have a length of {@literal 0}, the other array is returned as is.
+     * In any case, the returned array is the same instance as the argument array and is not copied.
      * </p>
      *
      * @param a
-     *            配列1
+     *            first array
      * @param b
-     *            配列2
-     * @return 配列が連結された結果の配列
+     *            second array
+     * @return the concatenated result array
      */
     public static char[] addAll(final char[] a, final char[] b) {
         if (a == null) {
@@ -693,32 +682,32 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中からオジェクトが最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified object in the array.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array
-     *            配列
+     *            the array
      * @param obj
-     *            検索するオブジェクト
-     * @return 配列中からオジェクトが最初に見つかったインデックス
+     *            the object to search for
+     * @return the index of the first occurrence of the object in the array
      */
     public static <T> int indexOf(final T[] array, final T obj) {
         return indexOf(array, obj, 0);
     }
 
     /**
-     * 配列中からオジェクトが最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified object in the array, starting the search at the specified index.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array
-     *            配列
+     *            the array
      * @param obj
-     *            検索するオブジェクト
+     *            the object to search for
      * @param fromIndex
-     *            検索を始めるインデックス
-     * @return 配列中からオジェクトが最初に見つかったインデックス。見つからなかった場合は{@literal -1}
+     *            the index to start the search from
+     * @return the index of the first occurrence of the object in the array, or {@literal -1} if not found
      */
     public static <T> int indexOf(final T[] array, final T obj, final int fromIndex) {
         if (array != null) {
@@ -738,13 +727,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final boolean[] array, final boolean value) {
         if (array != null) {
@@ -758,13 +747,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final byte[] array, final byte value) {
         if (array != null) {
@@ -778,13 +767,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final short[] array, final short value) {
         if (array != null) {
@@ -798,13 +787,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final int[] array, final int value) {
         if (array != null) {
@@ -818,13 +807,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final long[] array, final long value) {
         if (array != null) {
@@ -838,13 +827,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final float[] array, final float value) {
         if (array != null) {
@@ -858,13 +847,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final double[] array, final double value) {
         if (array != null) {
@@ -878,13 +867,13 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列中から値が最初に見つかったインデックスを返します。
+     * Returns the index of the first occurrence of the specified value in the array.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列中から値が最初に見つかったインデックス
+     *            the value to search for
+     * @return the index of the first occurrence of the value in the array
      */
     public static int indexOf(final char[] array, final char value) {
         if (array != null) {
@@ -898,18 +887,18 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列から最初に見つかったオブジェクトを削除した結果の配列を返します。
+     * Returns a new array with the first occurrence of the specified object removed.
      * <p>
-     * 配列にオブジェクトが含まれていない場合は引数で渡された配列をそのまま返します。
+     * If the array does not contain the object, the original array is returned as is.
      * </p>
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array
-     *            配列
+     *            the array
      * @param obj
-     *            配列から削除する要素
-     * @return 削除後の配列
+     *            the element to remove from the array
+     * @return the array after removal
      */
     public static <T> T[] remove(final T[] array, final T obj) {
         final int index = indexOf(array, obj);
@@ -928,336 +917,336 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static <T> boolean isEmpty(final T[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static <T> boolean isNotEmpty(final T[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final boolean[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final boolean[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final byte[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final byte[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final short[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final short[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final int[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final int[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final long[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final long[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final float[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final float[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final double[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final double[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列が{@literal null}または長さが0の場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is {@literal null} or has a length of 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}または長さが0の場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is {@literal null} or has a length of 0
      */
     public static boolean isEmpty(final char[] arrays) {
         return arrays == null || arrays.length == 0;
     }
 
     /**
-     * 配列が{@literal null}でも長さが0でもない場合は{@literal true}を返します。
+     * Returns {@literal true} if the array is not {@literal null} and its length is not 0.
      *
      * @param arrays
-     *            配列
-     * @return 配列が{@literal null}でも長さが0でもない場合は{@literal true}
+     *            the array
+     * @return {@literal true} if the array is not {@literal null} and its length is not 0
      */
     public static boolean isNotEmpty(final char[] arrays) {
         return arrays != null && arrays.length != 0;
     }
 
     /**
-     * 配列にオブジェクトが含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified object.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array
-     *            配列
+     *            the array
      * @param obj
-     *            オブジェクト
-     * @return 配列にオブジェクトが含まれていれば{@literal true}
+     *            the object to search for
+     * @return {@literal true} if the array contains the specified object
      */
     public static <T> boolean contains(final T[] array, final T obj) {
         return indexOf(array, obj) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final boolean[] array, final boolean value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final byte[] array, final byte value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final short[] array, final short value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final int[] array, final int value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final long[] array, final long value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final float[] array, final float value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に値が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified value
      */
     public static boolean contains(final double[] array, final double value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 配列に値が含まれていれば{@literal true}を返します。
+     * Returns {@literal true} if the array contains the specified value.
      *
      * @param array
-     *            配列
+     *            the array
      * @param value
-     *            値
-     * @return 配列に文字が含まれていれば{@literal true}
+     *            the value to search for
+     * @return {@literal true} if the array contains the specified character
      */
     public static boolean contains(final char[] array, final char value) {
         return indexOf(array, value) > -1;
     }
 
     /**
-     * 順番は無視して2つの配列が等しければ{@literal true}を返します。
+     * Returns {@literal true} if the two arrays are equal, ignoring the order of elements.
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array1
-     *            配列1
+     *            the first array
      * @param array2
-     *            配列2
-     * @return 順番は無視して2つの配列が等しければ{@literal true}
+     *            the second array
+     * @return {@literal true} if the two arrays are equal, ignoring the order of elements
      */
     public static <T> boolean equalsIgnoreSequence(final T[] array1, final T[] array2) {
         if (array1 == null && array2 == null) {
@@ -1285,14 +1274,14 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列をオブジェクトの配列({@literal Object[]})に変換します。
+     * Converts an array to an object array ({@literal Object[]}).
      * <p>
-     * 変換元の配列にはプリミティブ型の配列を渡すことができます。 その場合、変換された配列の要素型はプリミティブ型に対応するラッパー型の配列となります。
+     * The source array can be a primitive array. In that case, the resulting array will contain the corresponding wrapper types.
      * </p>
      *
      * @param array
-     *            配列
-     * @return オブジェクトの配列
+     *            the array
+     * @return the object array
      */
     public static Object[] toObjectArray(final Object array) {
         assertArgumentNotNull("array", array);
@@ -1307,16 +1296,16 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * 配列をリストに変換します。
+     * Converts an array to a list.
      * <p>
-     * 変換元の配列にはプリミティブ型の配列を渡すことができます。その場合、変換されたリストの要素型はプリミティブ型に対応するラッパー型の配列となります。
+     * The source array can be a primitive array. In that case, the resulting list will contain the corresponding wrapper types.
      * </p>
      *
      * @param <T>
-     *            配列の要素の型
+     *            the type of the array elements
      * @param array
-     *            配列
-     * @return リスト
+     *            the array
+     * @return the list
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> toList(final Object array) {
@@ -1332,24 +1321,22 @@ public abstract class ArrayUtil {
     }
 
     /**
-     * オブジェクトが配列の場合は{@literal true}を返します。{@literal null}の場合は{@literal false}
-     * を返します。
+     * Returns {@literal true} if the object is an array. Returns {@literal false} if the object is {@literal null}.
      *
      * @param object
-     *            オブジェクト
-     * @return オブジェクトが配列の場合は{@literal true}。{@literal null}の場合は{@literal false}
+     *            the object
+     * @return {@literal true} if the object is an array; {@literal false} if the object is {@literal null}
      */
     public static boolean isArray(final Object object) {
         return object != null && object.getClass().isArray();
     }
 
     /**
-     * オブジェクトが配列でない場合は{@literal true}を返します。{@literal null}の場合は{@literal true}
-     * を返します。
+     * Returns {@literal true} if the object is not an array. Returns {@literal true} if the object is {@literal null}.
      *
      * @param object
-     *            オブジェクト
-     * @return オブジェクトが配列でない場合は{@literal true}。{@literal null}の場合は{@literal true}
+     *            the object
+     * @return {@literal true} if the object is not an array, or if the object is {@literal null}
      */
     public static boolean isNotArray(final Object object) {
         return !isArray(object);

@@ -16,7 +16,7 @@
 package org.codelibs.core.log;
 
 /**
- * ロガーアダプタを生成するファクトリです。
+ * Factory for creating logger adapters.
  *
  * @author koichik
  */

@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Long}用の変換ユーティリティです。
+ * Utility class for conversions to {@link Long}.
  *
  * @author higa
  */
 public abstract class LongConversionUtil {
 
     /**
-     * {@link Long}に変換します。
+     * Converts the given object to a {@link Long}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Long}
+     *            the object to convert
+     * @return the converted {@link Long}
      */
     public static Long toLong(final Object o) {
         return toLong(o, null);
     }
 
     /**
-     * {@link Long}に変換します。
+     * Converts the given object to a {@link Long}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            the object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Long}
+     *            the pattern string
+     * @return the converted {@link Long}
      */
     public static Long toLong(final Object o, final String pattern) {
         if (o == null) {
@@ -76,24 +76,24 @@ public abstract class LongConversionUtil {
     }
 
     /**
-     * 変換された{@literal long}に変換します。
+     * Converts the given object to a {@literal long}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal long}
+     *            the object to convert
+     * @return the converted {@literal long}
      */
     public static long toPrimitiveLong(final Object o) {
         return toPrimitiveLong(o, null);
     }
 
     /**
-     * {@literal long}に変換します。
+     * Converts the given object to a {@literal long}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            the object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal long}
+     *            the pattern string
+     * @return the converted {@literal long}
      */
     public static long toPrimitiveLong(final Object o, final String pattern) {
         if (o == null) {

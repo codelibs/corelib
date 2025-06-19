@@ -26,22 +26,19 @@ import org.codelibs.core.exception.ClIllegalArgumentException;
 import org.codelibs.core.exception.IllegalAccessRuntimeException;
 
 /**
- * {@link Field}用のユーティリティクラスです。
+ * Utility class for {@link Field} operations.
  *
  * @author higa
  */
 public abstract class FieldUtil {
 
     /**
-     * {@link Field}によって表される{@code static}フィールドの値を返します。
+     * Returns the value of a {@code static} field represented by the given {@link Field}.
      *
-     * @param <T>
-     *            フィールドの型
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return {@code static}フィールドで表現される値
-     * @throws IllegalAccessRuntimeException
-     *             基本となるフィールドにアクセスできない場合
+     * @param <T> the type of the field
+     * @param field the field (must not be {@literal null})
+     * @return the value represented by the {@code static} field
+     * @throws IllegalAccessRuntimeException if the field cannot be accessed
      * @see Field#get(Object)
      */
     @SuppressWarnings("unchecked")
@@ -52,18 +49,13 @@ public abstract class FieldUtil {
     }
 
     /**
-     * 指定されたオブジェクトについて、{@link Field}によって表されるフィールドの値を返します。
+     * Returns the value of the field represented by the given {@link Field} for the specified object.
      *
-     * @param <T>
-     *            フィールドの型
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @param target
-     *            表現されるフィールド値の抽出元オブジェクト。フィールドが{@literal static}の場合は
-     *            {@literal null}
-     * @return オブジェクト{@code obj}内で表現される値
-     * @throws IllegalAccessRuntimeException
-     *             基本となるフィールドにアクセスできない場合
+     * @param <T> the type of the field
+     * @param field the field (must not be {@literal null})
+     * @param target the object from which to extract the field value; {@literal null} if the field is static
+     * @return the value represented by the field in the object
+     * @throws IllegalAccessRuntimeException if the field cannot be accessed
      * @see Field#get(Object)
      */
     @SuppressWarnings("unchecked")
@@ -78,13 +70,11 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@literal static}な {@link Field}の値をintとして取得します。
+     * Returns the value of a {@literal static} {@link Field} as an int.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return フィールドの値
-     * @throws IllegalAccessRuntimeException
-     *             {@link IllegalAccessException}が発生した場合
+     * @param field the field (must not be {@literal null})
+     * @return the field value
+     * @throws IllegalAccessRuntimeException {@link IllegalAccessException} if an error occurs
      * @see #getInt(Field, Object)
      */
     public static int getInt(final Field field) throws IllegalAccessRuntimeException {
@@ -94,15 +84,12 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@link Field}の値をintとして取得します。
+     * Returns the value of a {@link Field} as an int.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @param target
-     *            ターゲットオブジェクト。フィールドが{@literal static}の場合は{@literal null}
-     * @return フィールドの値
-     * @throws IllegalAccessRuntimeException
-     *             {@link IllegalAccessException}が発生した場合
+     * @param field the field (must not be {@literal null})
+     * @param target the target object; {@literal null} if the field is static
+     * @return the field value
+     * @throws IllegalAccessRuntimeException {@link IllegalAccessException} if an error occurs
      * @see Field#getInt(Object)
      */
     public static int getInt(final Field field, final Object target) throws IllegalAccessRuntimeException {
@@ -116,13 +103,11 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@literal static}な {@link Field}の値を {@link String}として取得します。
+     * Returns the value of a {@literal static} {@link Field} as a {@link String}.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return フィールドの値
-     * @throws IllegalAccessRuntimeException
-     *             {@link IllegalAccessException}が発生した場合
+     * @param field the field (must not be {@literal null})
+     * @return the field value
+     * @throws IllegalAccessRuntimeException {@link IllegalAccessException} if an error occurs
      * @see #getString(Field, Object)
      */
     public static String getString(final Field field) throws IllegalAccessRuntimeException {
@@ -132,15 +117,12 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@link Field}の値を {@link String}として取得します。
+     * Returns the value of a {@link Field} as a {@link String}.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @param target
-     *            ターゲットオブジェクト。フィールドが{@literal static}の場合は{@literal null}
-     * @return フィールドの値
-     * @throws IllegalAccessRuntimeException
-     *             {@link IllegalAccessException}が発生した場合
+     * @param field the field (must not be {@literal null})
+     * @param target the target object; {@literal null} if the field is static
+     * @return the field value
+     * @throws IllegalAccessRuntimeException {@link IllegalAccessException} if an error occurs
      * @see Field#get(Object)
      */
     public static String getString(final Field field, final Object target) throws IllegalAccessRuntimeException {
@@ -154,14 +136,11 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@link Field}オブジェクトによって表される{@code static}フィールドを、指定された新しい値に設定します。
+     * Sets the value of the given {@link Field} representing a {@code static} field to the specified new value.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @param value
-     *            {@literal static}フィールドの新しい値
-     * @throws IllegalAccessRuntimeException
-     *             基本となるフィールドにアクセスできない場合
+     * @param field the field (must not be {@literal null})
+     * @param value the new value for the {@literal static} field
+     * @throws IllegalAccessRuntimeException if the field cannot be accessed
      * @see Field#set(Object, Object)
      */
     public static void set(final Field field, final Object value) throws IllegalAccessRuntimeException {
@@ -171,16 +150,12 @@ public abstract class FieldUtil {
     }
 
     /**
-     * {@link Field}オブジェクトによって表される指定されたオブジェクト引数のフィールドを、指定された新しい値に設定します。
+     * Sets the value of the given {@link Field} representing the specified object argument's field to the specified new value.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @param target
-     *            フィールドを変更するオブジェクト。フィールドが{@literal static}の場合は{@literal null}
-     * @param value
-     *            変更中の{@code target}の新しいフィールド値
-     * @throws IllegalAccessRuntimeException
-     *             基本となるフィールドにアクセスできない場合
+     * @param field the field (must not be {@literal null})
+     * @param target the object whose field is to be modified; {@literal null} if the field is static
+     * @param value the new value for the field of the {@code target} object
+     * @throws IllegalAccessRuntimeException if the field cannot be accessed
      * @see Field#set(Object, Object)
      */
     public static void set(final Field field, final Object target, final Object value) throws IllegalAccessRuntimeException {
@@ -205,11 +180,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * インスタンスフィールドかどうか返します。
+     * Checks if the given field is an instance field.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return インスタンスフィールドなら{@literal true}
+     * @param field the field (must not be {@literal null})
+     * @return {@literal true} if it is an instance field
      */
     public static boolean isInstanceField(final Field field) {
         assertArgumentNotNull("field", field);
@@ -218,11 +192,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * パブリックフィールドかどうか返します。
+     * Checks if the given field is a public field.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return パブリックフィールドなら{@literal true}
+     * @param field the field (must not be {@literal null})
+     * @return {@literal true} if it is a public field
      */
     public static boolean isPublicField(final Field field) {
         assertArgumentNotNull("field", field);
@@ -231,11 +204,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * ファイナルフィールドかどうか返します。
+     * Checks if the given field is a final field.
      *
-     * @param field
-     *            フィールド。{@literal null}であってはいけません
-     * @return ファイナルフィールドなら{@literal true}
+     * @param field the field (must not be {@literal null})
+     * @return {@literal true} if it is a final field
      */
     public static boolean isFinalField(final Field field) {
         assertArgumentNotNull("field", field);
@@ -244,11 +216,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * パラメタ化されたコレクション型のフィールドの要素型を返します。
+     * Returns the element type of a parameterized collection field.
      *
-     * @param field
-     *            パラメタ化されたコレクション型のフィールド。{@literal null}であってはいけません
-     * @return コレクションの要素型
+     * @param field a field of a parameterized collection type (must not be {@literal null})
+     * @return the element type of the collection
      */
     public static Class<?> getElementTypeOfCollection(final Field field) {
         assertArgumentNotNull("field", field);
@@ -258,11 +229,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * パラメタ化されたマップ型のフィールドのキー型を返します。
+     * Returns the key type of a parameterized map field.
      *
-     * @param field
-     *            パラメタ化されたマップ型のフィールド。{@literal null}であってはいけません
-     * @return マップのキー型
+     * @param field a field of a parameterized map type (must not be {@literal null})
+     * @return the key type of the map
      */
     public static Class<?> getKeyTypeOfMap(final Field field) {
         assertArgumentNotNull("field", field);
@@ -272,11 +242,10 @@ public abstract class FieldUtil {
     }
 
     /**
-     * パラメタ化されたマップ型のフィールドの値型を返します。
+     * Returns the value type of a parameterized map field.
      *
-     * @param field
-     *            パラメタ化されたマップ型のフィールド。{@literal null}であってはいけません
-     * @return マップの値型
+     * @param field a field of a parameterized map type (must not be {@literal null})
+     * @return the value type of the map
      */
     public static Class<?> getValueTypeOfMap(final Field field) {
         assertArgumentNotNull("field", field);

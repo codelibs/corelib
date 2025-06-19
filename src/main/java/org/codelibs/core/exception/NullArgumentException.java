@@ -18,9 +18,9 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * 引数がnullだった場合にthrowする例外です。
+ * Exception thrown when an argument is null.
  *
- * {@link NullPointerException}をthrowする代わりに使うことを想定しています。
+ * Intended to be used instead of throwing {@link NullPointerException}.
  *
  * @author wyukawa
  */
@@ -32,10 +32,10 @@ public class NullArgumentException extends ClIllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * {@link NullArgumentException}を作成します。
+     * Creates a {@link NullArgumentException}.
      *
      * @param argName
-     *            {@code null} である引数の名前
+     *            Name of the argument that is {@code null}
      */
     public NullArgumentException(final String argName) {
         super(argName, "ECL0008", asArray(argName));

@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * プロパティの値の設定に失敗したときにスローされる例外です。
+ * Exception thrown when setting a property value fails.
  *
  * @author higa
  *
@@ -32,14 +32,14 @@ public class IllegalPropertyRuntimeException extends ClRuntimeException {
     private final String propertyName;
 
     /**
-     * {@link IllegalPropertyRuntimeException}を作成します。
+     * Creates a {@link IllegalPropertyRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param propertyName
-     *            プロパティ名
+     *            Property name
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public IllegalPropertyRuntimeException(final Class<?> targetClass, final String propertyName, final Throwable cause) {
         super("ECL0059", asArray(targetClass.getName(), propertyName, cause), cause);
@@ -48,18 +48,18 @@ public class IllegalPropertyRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * プロパティ名を返します。
+     * Returns the property name.
      *
-     * @return プロパティ名
+     * @return Property name
      */
     public String getPropertyName() {
         return propertyName;

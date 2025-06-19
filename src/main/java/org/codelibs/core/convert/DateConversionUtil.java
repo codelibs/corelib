@@ -39,64 +39,61 @@ import org.codelibs.core.exception.ParseRuntimeException;
 import org.codelibs.core.misc.LocaleUtil;
 
 /**
- * 日付だけを表現するオブジェクトから{@link Date}、{@link Calendar}、{@link java.sql.Date}
- * への変換ユーティリティです。
+ * Utility for converting objects that represent only dates to {@link Date}, {@link Calendar}, or {@link java.sql.Date}.
  * <p>
- * 時刻だけを表現するオブジェクトを変換する場合は {@link TimeConversionUtil}を、 日付と時刻を表現するオブジェクトを変換する場合は
- * {@link TimestampConversionUtil}を 参照してください。
+ * For objects that represent only time, see {@link TimeConversionUtil}. For objects that represent both date and time, see {@link TimestampConversionUtil}.
  * </p>
  * <p>
- * 変換元のオブジェクトが{@link Date}、{@link Calendar}、{@link java.sql.Date}の場合は、
- * それらの持つミリ秒単位の値を使って変換後のオブジェクトを作成します。
- * その他の型の場合は変換元オブジェクトの文字列表現から変換後のオブジェクトを作成します。
+ * If the source object is a {@link Date}, {@link Calendar}, or {@link java.sql.Date}, the converted object is created using the millisecond value of the source.
+ * For other types, the converted object is created from the string representation of the source object.
  * </p>
  * <p>
- * パターンを指定されなかった場合、変換に使用するパターンはロケールに依存して次のようになります。
+ * If no pattern is specified, the pattern used for conversion depends on the locale as follows:
  * </p>
  * <table border="1">
  * <caption>Conversion Patterns</caption>
  * <tr>
- * <th>カテゴリ</th>
- * <th>パターン</th>
- * <th>{@link Locale#JAPANESE}の例</th>
+ * <th>Category</th>
+ * <th>Pattern</th>
+ * <th>Example for {@link Locale#JAPANESE}</th>
  * </tr>
  * <tr>
- * <td rowspan="4">{@link DateFormat}の標準形式</td>
- * <td>{@link DateFormat#SHORT}の形式</td>
+ * <td rowspan="4">Standard formats of {@link DateFormat}</td>
+ * <td>{@link DateFormat#SHORT} format</td>
  * <td>{@literal yy/MM/dd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#MEDIUM}の形式</td>
+ * <td>{@link DateFormat#MEDIUM} format</td>
  * <td>{@literal yyyy/MM/dd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#LONG}の形式</td>
+ * <td>{@link DateFormat#LONG} format</td>
  * <td>{@literal yyyy/MM/dd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#FULL}の形式</td>
- * <td>{@literal yyyy'年'M'月'd'日'}</td>
+ * <td>{@link DateFormat#FULL} format</td>
+ * <td>{@literal yyyy'nen'M'gatsu'd'nichi'}</td>
  * </tr>
  * <tr>
- * <td rowspan="4">プレーン形式</td>
- * <td>{@link DateFormat#SHORT}の区切り文字を除去した形式</td>
+ * <td rowspan="4">Plain formats</td>
+ * <td>{@link DateFormat#SHORT} format without delimiters</td>
  * <td>{@literal yyMMdd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#MEDIUM}の区切り文字を除去した形式</td>
+ * <td>{@link DateFormat#MEDIUM} format without delimiters</td>
  * <td>{@literal yyyyMMdd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#LONG}の区切り文字を除去した形式</td>
+ * <td>{@link DateFormat#LONG} format without delimiters</td>
  * <td>{@literal yyyyMMdd}</td>
  * </tr>
  * <tr>
- * <td>{@link DateFormat#FULL}の区切り文字を除去した形式</td>
+ * <td>{@link DateFormat#FULL} format without delimiters</td>
  * <td>{@literal yyyyMMdd}</td>
  * </tr>
  * <tr>
- * <td>その他</td>
- * <td>{@link java.sql.Date#valueOf(String) Jdbcエスケープ構文}形式</td>
+ * <td>Other</td>
+ * <td>{@link java.sql.Date#valueOf(String) Jdbc escape syntax} format</td>
  * <td>{@literal yyyy-MM-dd}</td>
  * </tr>
  * </table>
@@ -107,24 +104,23 @@ import org.codelibs.core.misc.LocaleUtil;
  */
 public abstract class DateConversionUtil {
 
-    /** {@link DateFormat}が持つスタイルの配列 */
+    /** Array of styles held by {@link DateFormat}. */
     protected static final int[] STYLES = new int[] { SHORT, MEDIUM, LONG, FULL };
 
     /**
-     * デフォルロケールで{@link DateFormat#SHORT}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#SHORT} style in the default locale.
      *
-     * @return {@link DateFormat#SHORT}スタイルのパターン文字列
+     * @return the pattern string for {@link DateFormat#SHORT} style
      */
     public static String getShortPattern() {
         return getShortPattern(LocaleUtil.getDefault());
     }
 
     /**
-     * 指定されたロケールで{@link DateFormat#SHORT}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#SHORT} style in the specified locale.
      *
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return {@link DateFormat#SHORT}スタイルのパターン文字列
+     * @param locale the locale (must not be {@literal null})
+     * @return the pattern string for {@link DateFormat#SHORT} style
      */
     public static String getShortPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -132,20 +128,19 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * デフォルロケールで{@link DateFormat#MEDIUM}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#MEDIUM} style in the default locale.
      *
-     * @return {@link DateFormat#MEDIUM}スタイルのパターン文字列
+     * @return the pattern string for {@link DateFormat#MEDIUM} style
      */
     public static String getMediumPattern() {
         return getMediumPattern(LocaleUtil.getDefault());
     }
 
     /**
-     * 指定されたロケールで{@link DateFormat#MEDIUM}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#MEDIUM} style in the specified locale.
      *
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return {@link DateFormat#MEDIUM}スタイルのパターン文字列
+     * @param locale the locale (must not be {@literal null})
+     * @return the pattern string for {@link DateFormat#MEDIUM} style
      */
     public static String getMediumPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -153,20 +148,19 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * デフォルロケールで{@link DateFormat#LONG}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#LONG} style in the default locale.
      *
-     * @return {@link DateFormat#LONG}スタイルのパターン文字列
+     * @return the pattern string for {@link DateFormat#LONG} style
      */
     public static String getLongPattern() {
         return getLongPattern(LocaleUtil.getDefault());
     }
 
     /**
-     * 指定されたロケールで{@link DateFormat#LONG}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#LONG} style in the specified locale.
      *
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return {@link DateFormat#LONG}スタイルのパターン文字列
+     * @param locale the locale (must not be {@literal null})
+     * @return the pattern string for {@link DateFormat#LONG} style
      */
     public static String getLongPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -174,20 +168,19 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * デフォルロケールで{@link DateFormat#FULL}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#FULL} style in the default locale.
      *
-     * @return {@link DateFormat#FULL}スタイルのパターン文字列
+     * @return the pattern string for {@link DateFormat#FULL} style
      */
     public static String getFullPattern() {
         return getFullPattern(LocaleUtil.getDefault());
     }
 
     /**
-     * 指定されたロケールで{@link DateFormat#FULL}スタイルのパターン文字列を返します。
+     * Returns the pattern string for {@link DateFormat#FULL} style in the specified locale.
      *
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return {@link DateFormat#FULL}スタイルのパターン文字列
+     * @param locale the locale (must not be {@literal null})
+     * @return the pattern string for {@link DateFormat#FULL} style
      */
     public static String getFullPattern(final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -195,37 +188,32 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link Date}に変換します。
+     * Converts an object to {@link Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @return the converted {@link Date}
      */
     public static Date toDate(final Object src) {
         return toDate(src, null, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link Date}に変換します。
+     * Converts an object to {@link Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @return the converted {@link Date}
      */
     public static Date toDate(final Object src, final String pattern) {
         return toDate(src, pattern, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link Date}に変換します。
+     * Converts an object to {@link Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param locale the locale (must not be {@literal null})
+     * @return the converted {@link Date}
      */
     public static Date toDate(final Object src, final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -233,15 +221,12 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link Date}に変換します。
+     * Converts an object to {@link Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @param locale
-     *            ロケール
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @param locale the locale
+     * @return the converted {@link Date}
      */
     protected static Date toDate(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
@@ -279,37 +264,32 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link Calendar}に変換します。
+     * Converts an object to {@link Calendar}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @return the converted {@link Date}
      */
     public static Calendar toCalendar(final Object src) {
         return toCalendar(src, null, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link Calendar}に変換します。
+     * Converts an object to {@link Calendar}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @return the converted {@link Date}
      */
     public static Calendar toCalendar(final Object src, final String pattern) {
         return toCalendar(src, pattern, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link Calendar}に変換します。
+     * Converts an object to {@link Calendar}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param locale the locale (must not be {@literal null})
+     * @return the converted {@link Date}
      */
     public static Calendar toCalendar(final Object src, final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -317,15 +297,12 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link Calendar}に変換します。
+     * Converts an object to {@link Calendar}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @param locale
-     *            ロケール
-     * @return 変換された{@link Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @param locale the locale
+     * @return the converted {@link Date}
      */
     protected static Calendar toCalendar(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
@@ -360,37 +337,32 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link java.sql.Date}に変換します。
+     * Converts an object to {@link java.sql.Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @return 変換された{@link java.sql.Date}
+     * @param src the source object
+     * @return the converted {@link java.sql.Date}
      */
     public static java.sql.Date toSqlDate(final Object src) {
         return toSqlDate(src, null, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link java.sql.Date}に変換します。
+     * Converts an object to {@link java.sql.Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link java.sql.Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @return the converted {@link java.sql.Date}
      */
     public static java.sql.Date toSqlDate(final Object src, final String pattern) {
         return toSqlDate(src, pattern, LocaleUtil.getDefault());
     }
 
     /**
-     * オブジェクトを{@link java.sql.Date}に変換します。
+     * Converts an object to {@link java.sql.Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param locale
-     *            ロケール。{@literal null}であってはいけません
-     * @return 変換された{@link java.sql.Date}
+     * @param src the source object
+     * @param locale the locale (must not be {@literal null})
+     * @return the converted {@link java.sql.Date}
      */
     public static java.sql.Date toSqlDate(final Object src, final Locale locale) {
         assertArgumentNotNull("locale", locale);
@@ -398,15 +370,12 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * オブジェクトを{@link java.sql.Date}に変換します。
+     * Converts an object to {@link java.sql.Date}.
      *
-     * @param src
-     *            変換元のオブジェクト
-     * @param pattern
-     *            パターン文字列
-     * @param locale
-     *            ロケール
-     * @return 変換された{@link java.sql.Date}
+     * @param src the source object
+     * @param pattern the pattern string
+     * @param locale the locale
+     * @return the converted {@link java.sql.Date}
      */
     protected static java.sql.Date toSqlDate(final Object src, final String pattern, final Locale locale) {
         if (src == null) {
@@ -444,13 +413,11 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * 文字列を{@link Date}に変換します。
+     * Converts a string to a {@link Date}.
      *
-     * @param str
-     *            文字列
-     * @param locale
-     *            ロケール
-     * @return 変換された{@link Date}
+     * @param str the string
+     * @param locale the locale
+     * @return the converted {@link Date}
      */
     @SuppressWarnings("unchecked")
     protected static Date toDate(final String str, final Locale locale) {
@@ -467,13 +434,11 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * 文字列を{@link Date}に変換します。
+     * Converts a string to a {@link Date}.
      *
-     * @param str
-     *            文字列
-     * @param format
-     *            {@link DateFormat}
-     * @return 変換された{@link Date}
+     * @param str the string
+     * @param format the {@link DateFormat}
+     * @return the converted {@link Date}
      */
     protected static Date toDate(final String str, final DateFormat format) {
         final ParsePosition pos = new ParsePosition(0);
@@ -492,13 +457,11 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * {@link Date}を{@link Calendar}に変換します。
+     * Converts a {@link Date} to a {@link Calendar}.
      *
-     * @param date
-     *            {@link Date}
-     * @param locale
-     *            ロケール
-     * @return 変換された{@link Calendar}
+     * @param date the {@link Date}
+     * @param locale the locale
+     * @return the converted {@link Calendar}
      */
     protected static Calendar toCalendar(final Date date, final Locale locale) {
         final Calendar calendar;
@@ -512,11 +475,10 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * 文字列を{@link java.sql.Date}に変換します。
+     * Converts a string to a {@link java.sql.Date}.
      *
-     * @param str
-     *            文字列
-     * @return 変換された{@link java.sql.Date}
+     * @param str the string
+     * @return the converted {@link java.sql.Date}
      */
     protected static java.sql.Date toSqlDateJdbcEscape(final String str) {
         try {
@@ -527,11 +489,10 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * パターン文字列を区切り文字を含まないプレーンなパターン文字列に変換して返します。
+     * Converts a pattern string to a plain pattern string without delimiters.
      *
-     * @param pattern
-     *            パターン文字列
-     * @return 区切り文字を含まないプレーンなパターン文字列
+     * @param pattern the pattern string
+     * @return the plain pattern string without delimiters
      */
     protected static String toPlainPattern(final String pattern) {
         final StringBuilder buf = new StringBuilder(pattern.length());
@@ -563,23 +524,22 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * ロケールが持つスタイルに対応する{@link DateFormat}を反復する{@link Iterator}です。
+     * {@link Iterator} that iterates over {@link DateFormat}s corresponding to the styles held by the locale.
      *
      * @author koichik
      */
     protected static class DateFormatIterator implements Iterator<DateFormat> {
 
-        /** ロケール */
+        /** The locale. */
         protected final Locale locale;
 
-        /** 現在のスタイルを示すインデックス */
+        /** The index indicating the current style. */
         protected int index;
 
         /**
-         * インスタンスを構築します。
+         * Constructs an instance.
          *
-         * @param locale
-         *            ロケール
+         * @param locale the locale
          */
         public DateFormatIterator(final Locale locale) {
             this.locale = locale;
@@ -607,28 +567,26 @@ public abstract class DateConversionUtil {
     }
 
     /**
-     * ロケールが持つスタイルに対応する{@link DateFormat}を反復する{@link Iterator}です。
+     * {@link Iterator} that iterates over {@link DateFormat}s corresponding to the styles held by the locale.
      *
      * @author koichik
      */
     protected static class PlainDateFormatIterator implements Iterator<DateFormat> {
 
-        /** 変換元の文字列 */
+        /** The source string to convert. */
         protected final String src;
 
-        /** ロケール */
+        /** The locale. */
         protected final Locale locale;
 
-        /** 現在のスタイルを示すインデックス */
+        /** The index indicating the current style. */
         protected int index;
 
         /**
-         * インスタンスを構築します。
+         * Constructs an instance.
          *
-         * @param src
-         *            変換後の文字列
-         * @param locale
-         *            ロケール
+         * @param src the string after conversion
+         * @param locale the locale
          */
         public PlainDateFormatIterator(final String src, final Locale locale) {
             this.src = src;

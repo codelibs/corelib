@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * {@link InvocationTargetException}をラップする例外です。
+ * Exception that wraps {@link InvocationTargetException}.
  *
  * @author higa
  */
@@ -31,12 +31,12 @@ public class InvocationTargetRuntimeException extends ClRuntimeException {
     private final Class<?> targetClass;
 
     /**
-     * {@link InvocationTargetRuntimeException}を作成します。
+     * Creates a {@link InvocationTargetRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public InvocationTargetRuntimeException(final Class<?> targetClass, final InvocationTargetException cause) {
         super("ECL0043", asArray(targetClass.getName(), cause.getTargetException()), cause.getTargetException());
@@ -44,9 +44,9 @@ public class InvocationTargetRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;

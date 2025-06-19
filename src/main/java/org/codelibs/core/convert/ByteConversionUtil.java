@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Byte}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Byte}.
  *
  * @author higa
  */
 public abstract class ByteConversionUtil {
 
     /**
-     * {@link Byte}に変換します。
+     * Converts to {@link Byte}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Byte}
+     *            The object to convert
+     * @return The converted {@link Byte}
      */
     public static Byte toByte(final Object o) {
         return toByte(o, null);
     }
 
     /**
-     * {@link Byte}に変換します。
+     * Converts to {@link Byte}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Byte}
+     *            The pattern string
+     * @return The converted {@link Byte}
      */
     public static Byte toByte(final Object o, final String pattern) {
         if (o == null) {
@@ -76,24 +76,24 @@ public abstract class ByteConversionUtil {
     }
 
     /**
-     * {@literal byte}に変換します。
+     * Converts to {@literal byte}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal byte}
+     *            The object to convert
+     * @return The converted {@literal byte}
      */
     public static byte toPrimitiveByte(final Object o) {
         return toPrimitiveByte(o, null);
     }
 
     /**
-     * {@literal byte}に変換します。
+     * Converts to {@literal byte}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal byte}
+     *            The pattern string
+     * @return The converted {@literal byte}
      */
     public static byte toPrimitiveByte(final Object o, final String pattern) {
         if (o == null) {

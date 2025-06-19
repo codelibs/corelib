@@ -16,19 +16,17 @@
 package org.codelibs.core.io;
 
 /**
- * クラスを処理するハンドラのインターフェースです。
+ * Interface for handlers that process classes.
  *
  * @author koichik
  */
 public interface ClassHandler {
 
     /**
-     * クラスを処理します。
+     * Processes a class.
      *
-     * @param packageName
-     *            パッケージ名
-     * @param shortClassName
-     *            クラスの単純名
+     * @param packageName the package name
+     * @param shortClassName the simple class name
      */
     void processClass(String packageName, String shortClassName);
 

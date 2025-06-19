@@ -25,18 +25,17 @@ import java.io.OutputStream;
 import org.codelibs.core.exception.IORuntimeException;
 
 /**
- * {@link OutputStream}用のユーティリティクラスです。
+ * Utility class for {@link OutputStream} operations.
  *
  * @author shot
  */
 public abstract class OutputStreamUtil {
 
     /**
-     * {@link FileOutputStream}を作成します。
+     * Creates a {@link FileOutputStream}.
      *
-     * @param file
-     *            ファイル。{@literal null}であってはいけません
-     * @return ファイルへ出力する{@link FileOutputStream}
+     * @param file the file (must not be {@literal null})
+     * @return a {@link FileOutputStream} to output to the file
      * @see FileOutputStream#FileOutputStream(File)
      */
     public static FileOutputStream create(final File file) {
@@ -50,10 +49,9 @@ public abstract class OutputStreamUtil {
     }
 
     /**
-     * {@link OutputStream}をflushします。
+     * Flushes the {@link OutputStream}.
      *
-     * @param out
-     *            出力ストリーム
+     * @param out the output stream
      */
     public static void flush(final OutputStream out) {
         if (out == null) {

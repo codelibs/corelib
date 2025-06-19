@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * {@link InstantiationException}をラップする例外です。
+ * Exception that wraps {@link InstantiationException}.
  *
  * @author higa
  */
@@ -29,12 +29,12 @@ public class InstantiationRuntimeException extends ClRuntimeException {
     private final Class<?> targetClass;
 
     /**
-     * {@link InstantiationRuntimeException}を作成します。
+     * Creates a {@link InstantiationRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public InstantiationRuntimeException(final Class<?> targetClass, final InstantiationException cause) {
         super("ECL0041", asArray(targetClass.getName(), cause), cause);
@@ -47,9 +47,9 @@ public class InstantiationRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;

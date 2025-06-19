@@ -28,17 +28,16 @@ import java.util.ResourceBundle;
 import org.codelibs.core.misc.LocaleUtil;
 
 /**
- * {@link ResourceBundle}用のユーティリティクラスです。
+ * Utility class for {@link ResourceBundle} operations.
  *
  * @author higa
  */
 public abstract class ResourceBundleUtil {
 
     /**
-     * バンドルを返します。 見つからない場合は、<code>null</code>を返します。
+     * Returns the bundle. Returns <code>null</code> if not found.
      *
-     * @param name
-     *            リソースバンドの名前。{@literal null}や空文字列であってはいけません
+     * @param name the resource bundle name (must not be {@literal null} or empty)
      * @return {@link ResourceBundle}
      * @see ResourceBundle#getBundle(String)
      */
@@ -53,12 +52,10 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * バンドルを返します。 見つからない場合は、<code>null</code>を返します。
+     * Returns the bundle. Returns <code>null</code> if not found.
      *
-     * @param name
-     *            リソースバンドの名前。{@literal null}や空文字列であってはいけません
-     * @param locale
-     *            ロケール
+     * @param name the resource bundle name (must not be {@literal null} or empty)
+     * @param locale the locale
      * @return {@link ResourceBundle}
      * @see ResourceBundle#getBundle(String, Locale)
      */
@@ -73,14 +70,11 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * バンドルを返します。 見つからない場合は、<code>null</code>を返します。
+     * Returns the bundle. Returns <code>null</code> if not found.
      *
-     * @param name
-     *            リソースバンドルの名前。{@literal null}や空文字列であってはいけません
-     * @param locale
-     *            ロケール
-     * @param classLoader
-     *            クラスローダ。{@literal null}や空文字列であってはいけません
+     * @param name the resource bundle name (must not be {@literal null} or empty)
+     * @param locale the locale
+     * @param classLoader the class loader (must not be {@literal null} or empty)
      * @return {@link ResourceBundle}
      * @see ResourceBundle#getBundle(String, Locale, ClassLoader)
      */
@@ -96,13 +90,11 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * リソースバンドルから指定されたキーの文字列を返します。
+     * Returns the string for the specified key from the resource bundle.
      *
-     * @param bundle
-     *            リソースバンドル。{@literal null}や空文字列であってはいけません
-     * @param key
-     *            キー
-     * @return 指定されたキーの文字列。{@literal null}や空文字列であってはいけません
+     * @param bundle the resource bundle (must not be {@literal null} or empty)
+     * @param key the key
+     * @return the string for the specified key (must not be {@literal null} or empty)
      * @see ResourceBundle#getString(String)
      */
     public static String getString(final ResourceBundle bundle, final String key) {
@@ -117,10 +109,9 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * リソースバンドルを{@link Map}に変換します。
+     * Converts the resource bundle to a {@link Map}.
      *
-     * @param bundle
-     *            リソースバンドル。{@literal null}であってはいけません
+     * @param bundle the resource bundle (must not be {@literal null})
      * @return {@link Map}
      */
     public static final Map<String, String> convertMap(final ResourceBundle bundle) {
@@ -136,12 +127,10 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * リソースバンドルを{@link Map}に変換して返します。
+     * Converts the resource bundle to a {@link Map} and returns it.
      *
-     * @param name
-     *            リソースバンドルの名前。{@literal null}や空文字列であってはいけません
-     * @param locale
-     *            ロケール
+     * @param name the resource bundle name (must not be {@literal null} or empty)
+     * @param locale the locale
      * @return {@link Map}
      */
     public static final Map<String, String> convertMap(final String name, final Locale locale) {
@@ -152,13 +141,10 @@ public abstract class ResourceBundleUtil {
     }
 
     /**
-     * {@literal locale}が{@literal null}でなければ{@literal locale}を、{@literal null}
-     * ならデフォルトのロケールを返します。
+     * Returns the {@literal locale} if not {@literal null}, otherwise returns the default locale.
      *
-     * @param locale
-     *            ロケール
-     * @return {@literal locale}が{@literal null}でなければ{@literal locale}を、
-     *         {@literal null}ならデフォルトのロケールを返します。
+     * @param locale the locale
+     * @return the {@literal locale} if not {@literal null}, otherwise the default locale
      */
     protected static Locale getLocale(final Locale locale) {
         if (locale != null) {

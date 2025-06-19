@@ -25,9 +25,9 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 簡潔な記述で{@link Map}のインスタンスを生成して値を設定するためのユーティリティクラスです。
+ * Utility class for easily creating and setting values in {@link Map} instances.
  * <p>
- * 本クラスをstatic importすることにより、次のように{@literal Map}のインスタンスを簡潔に初期化することができます。
+ * By statically importing this class, you can easily initialize {@literal Map} instances as follows:
  * </p>
  *
  * <pre>
@@ -37,170 +37,133 @@ import java.util.concurrent.ConcurrentHashMap;
  * </pre>
  *
  * @author koichik
- * @param <K>
- *            {@literal Map}のキーの型
- * @param <V>
- *            {@literal Map}の値の型
+ * @param <K> the key type of the {@literal Map}
+ * @param <V> the value type of the {@literal Map}
  */
 public class Maps<K, V> {
 
-    /** 作成対象の<code>Map</code> */
+    /** The target <code>Map</code> to be created. */
     protected Map<K, V> map;
 
     /**
-     * 指定されたキーと値を持つ{@link Map}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link Map} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link Map}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link Map} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> map(final KEY key, final VALUE value) {
         return linkedHashMap(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link ConcurrentHashMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link ConcurrentHashMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link ConcurrentHashMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link ConcurrentHashMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> concurrentHashMap(final KEY key, final VALUE value) {
         return new Maps<>(new ConcurrentHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link HashMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link HashMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link HashMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link HashMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> hashMap(final KEY key, final VALUE value) {
         return new Maps<>(new HashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link Hashtable}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link Hashtable} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link Hashtable}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link Hashtable} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> hashtable(final KEY key, final VALUE value) {
         return new Maps<>(new Hashtable<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link IdentityHashMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link IdentityHashMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link IdentityHashMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link IdentityHashMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> identityHashMap(final KEY key, final VALUE value) {
         return new Maps<>(new IdentityHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link LinkedHashMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link LinkedHashMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link LinkedHashMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link LinkedHashMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> linkedHashMap(final KEY key, final VALUE value) {
         return new Maps<>(new LinkedHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link TreeMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link TreeMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link TreeMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link TreeMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> treeMap(final KEY key, final VALUE value) {
         return new Maps<>(new TreeMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * 指定されたキーと値を持つ{@link WeakHashMap}を構築するための{@literal Maps}を返します。
+     * Returns a {@literal Maps} for constructing a {@link WeakHashMap} with the specified key and value.
      *
-     * @param <KEY>
-     *            <code>Map</code>のキーの型
-     * @param <VALUE>
-     *            <code>Map</code>の値ーの型
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return 指定されたキーと値を持つ{@link WeakHashMap}を構築するための{@literal Maps}
+     * @param <KEY> the key type of the <code>Map</code>
+     * @param <VALUE> the value type of the <code>Map</code>
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return a {@literal Maps} for constructing a {@link WeakHashMap} with the specified key and value
      */
     public static <KEY, VALUE> Maps<KEY, VALUE> weakHashMap(final KEY key, final VALUE value) {
         return new Maps<>(new WeakHashMap<KEY, VALUE>()).$(key, value);
     }
 
     /**
-     * インスタンスを構築します。
+     * Constructs an instance.
      *
-     * @param map
-     *            キーと値を追加する対象の<code>Map</code>
+     * @param map the <code>Map</code> to which keys and values are added
      */
     protected Maps(final Map<K, V> map) {
         this.map = map;
     }
 
     /**
-     * {@link Map}にキーと値を追加します。
+     * Adds a key and value to the {@link Map}.
      *
-     * @param key
-     *            <code>Map</code>に追加されるキー
-     * @param value
-     *            <code>Map</code>に追加される値
-     * @return このインスタンス自身
+     * @param key the key to be added to the <code>Map</code>
+     * @param value the value to be added to the <code>Map</code>
+     * @return this instance
      */
     public Maps<K, V> $(final K key, final V value) {
         map.put(key, value);
@@ -208,9 +171,9 @@ public class Maps<K, V> {
     }
 
     /**
-     * <code>Map</code>を返します。
+     * Returns the <code>Map</code>.
      *
-     * @return キーと値が追加された<code>Map</code>
+     * @return the <code>Map</code> with the added keys and values
      */
     public Map<K, V> $() {
         return map;

@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Float}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Float}.
  *
  * @author higa
  */
 public abstract class FloatConversionUtil {
 
     /**
-     * {@link Float}に変換します。
+     * Converts to {@link Float}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Float}
+     *            The object to convert
+     * @return The converted {@link Float}
      */
     public static Float toFloat(final Object o) {
         return toFloat(o, null);
     }
 
     /**
-     * {@link Float}に変換します。
+     * Converts to {@link Float}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Float}
+     *            The pattern string
+     * @return The converted {@link Float}
      */
     public static Float toFloat(final Object o, final String pattern) {
         if (o == null) {
@@ -74,24 +74,24 @@ public abstract class FloatConversionUtil {
     }
 
     /**
-     * {@literal float}に変換します。
+     * Converts to {@literal float}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal float}
+     *            The object to convert
+     * @return The converted {@literal float}
      */
     public static float toPrimitiveFloat(final Object o) {
         return toPrimitiveFloat(o, null);
     }
 
     /**
-     * {@literal float}に変換します。
+     * Converts to {@literal float}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal float}
+     *            The pattern string
+     * @return The converted {@literal float}
      */
     public static float toPrimitiveFloat(final Object o, final String pattern) {
         if (o == null) {

@@ -30,20 +30,20 @@ import org.codelibs.core.jar.JarFileUtil;
 import org.codelibs.core.net.URLUtil;
 
 /**
- * リソース用のユーティリティクラスです。
+ * Utility class for resource handling.
  *
  * @author higa
  */
 public abstract class ResourceUtil {
 
     /**
-     * リソースパスを返します。
+     * Returns the resource path.
      *
      * @param path
-     *            パス。{@literal null}であってはいけません
+     *            The path. Must not be {@literal null}.
      * @param extension
-     *            拡張子
-     * @return リソースパス
+     *            The extension.
+     * @return The resource path.
      */
     public static String getResourcePath(final String path, final String extension) {
         assertArgumentNotNull("path", path);
@@ -59,11 +59,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースパスを返します。
+     * Returns the resource path.
      *
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return リソースパス
+     *            The class. Must not be {@literal null}.
+     * @return The resource path.
      */
     public static String getResourcePath(final Class<?> clazz) {
         assertArgumentNotNull("clazz", clazz);
@@ -72,20 +72,20 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダを返します。
+     * Returns the context class loader.
      *
-     * @return コンテキストクラスローダ
+     * @return the context class loader
      */
     public static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();
     }
 
     /**
-     * コンテキストクラスローダからリソースを返します。
+     * Returns the resource from the context class loader.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return リソースの{@link URL}
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The resource {@link URL}
      * @see #getResource(String, String)
      */
     public static URL getResource(final String path) {
@@ -95,13 +95,13 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを返します。
+     * Returns the resource from the context class loader.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            リソースの拡張子
-     * @return リソースの{@link URL}
+     *            The resource extension.
+     * @return The resource {@link URL}
      */
     public static URL getResource(final String path, final String extension) {
         assertArgumentNotEmpty("path", path);
@@ -114,11 +114,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを返します。見つからなかった場合は<code>null</code>を返します。
+     * Returns the resource from the context class loader. Returns <code>null</code> if not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return リソースの{@link URL}
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The resource {@link URL}
      * @see #getResourceNoException(String, String)
      */
     public static URL getResourceNoException(final String path) {
@@ -128,13 +128,13 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを返します。見つからなかった場合は<code>null</code>を返します。
+     * Returns the resource from the context class loader. Returns <code>null</code> if not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            拡張子
-     * @return リソースの{@link URL}
+     *            The extension.
+     * @return The resource {@link URL}
      * @see #getResourceNoException(String, String, ClassLoader)
      */
     public static URL getResourceNoException(final String path, final String extension) {
@@ -144,15 +144,15 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * 指定のクラスローダからリソースを返します。見つからなかった場合は<code>null</code>を返します。
+     * Returns the resource from the specified class loader. Returns <code>null</code> if not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            リソースの拡張子
+     *            The resource extension.
      * @param loader
-     *            リソースを検索するクラスローダ。{@literal null}であってはいけません
-     * @return リソース
+     *            The class loader to search for the resource. Must not be {@literal null}.
+     * @return The resource {@link URL}
      * @see #getResourcePath(String, String)
      */
     public static URL getResourceNoException(final String path, final String extension, final ClassLoader loader) {
@@ -166,11 +166,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを検索してストリームとして返します。
+     * Returns the resource as a stream from the context class loader.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return ストリーム
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The input stream
      * @see #getResourceAsStream(String, String)
      */
     public static InputStream getResourceAsStream(final String path) {
@@ -180,13 +180,13 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを検索してストリームとして返します。
+     * Returns the resource as a stream from the context class loader.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            リソースの拡張子
-     * @return ストリーム
+     *            The resource extension.
+     * @return The input stream
      * @see #getResource(String, String)
      */
     public static InputStream getResourceAsStream(final String path, final String extension) {
@@ -197,12 +197,12 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを検索してストリームとして返します。 リソースが見つからなかった場合は<code>null</code>
-     * を返します。
+     * Returns the resource as a stream from the context class loader.
+     * Returns <code>null</code> if the resource is not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return ストリーム
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The input stream, or <code>null</code> if not found.
      * @see #getResourceAsStreamNoException(String, String)
      */
     public static InputStream getResourceAsStreamNoException(final String path) {
@@ -212,14 +212,14 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからリソースを検索してストリームとして返します。 リソースが見つからなかった場合は<code>null</code>
-     * を返します。
+     * Returns the resource as a stream from the context class loader.
+     * Returns <code>null</code> if the resource is not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            リソースの拡張子
-     * @return ストリーム
+     *            The resource extension.
+     * @return The input stream, or <code>null</code> if not found.
      * @see #getResourceNoException(String, String)
      */
     public static InputStream getResourceAsStreamNoException(final String path, final String extension) {
@@ -237,11 +237,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダにリソースが存在するかどうかを返します。
+     * Returns whether the resource exists in the context class loader.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return リソースが存在すれば{@literal true}
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return {@literal true} if the resource exists
      * @see #getResourceNoException(String)
      */
     public static boolean isExist(final String path) {
@@ -251,11 +251,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * コンテキストクラスローダからプロパティファイルをロードして返します。
+     * Loads and returns a properties file from the context class loader.
      *
      * @param path
-     *            プロパティファイルのパス。{@literal null}や空文字列であってはいけません
-     * @return プロパティファイル
+     *            The path to the properties file. Must not be {@literal null} or empty string.
+     * @return The properties file.
      */
     public static Properties getProperties(final String path) {
         assertArgumentNotEmpty("path", path);
@@ -273,11 +273,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * パスの拡張子を返します。
+     * Returns the extension of the path.
      *
      * @param path
-     *            パス。{@literal null}であってはいけません
-     * @return 拡張子
+     *            The path. Must not be {@literal null}.
+     * @return The extension.
      */
     public static String getExtension(final String path) {
         assertArgumentNotNull("path", path);
@@ -290,11 +290,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * パスから拡張子を取り除きます。
+     * Removes the extension from the path.
      *
      * @param path
-     *            パス。{@literal null}であってはいけません
-     * @return 拡張子を取り除いたパス
+     *            The path. Must not be {@literal null}.
+     * @return The path without the extension.
      */
     public static String removeExtension(final String path) {
         assertArgumentNotNull("path", path);
@@ -307,11 +307,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * 指定されたクラスのクラスファイルが置かれているルートディレクトリを返します。
+     * Returns the root directory where the class file of the specified class is located.
      *
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return ルートディレクトリ
+     *            The class. Must not be {@literal null}.
+     * @return The root directory.
      * @see #getBuildDir(String)
      */
     public static File getBuildDir(final Class<?> clazz) {
@@ -321,11 +321,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * クラスファイルが置かれているルートディレクトリを返します。
+     * Returns the root directory where the class file is located.
      *
      * @param path
-     *            クラスファイルのパス。{@literal null}や空文字列であってはいけません
-     * @return ルートディレクトリ
+     *            The path to the class file. Must not be {@literal null} or empty string.
+     * @return The root directory.
      */
     public static File getBuildDir(final String path) {
         assertArgumentNotEmpty("path", path);
@@ -345,11 +345,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースのURLを外部形式に変換します。
+     * Converts the resource URL to an external form.
      *
      * @param url
-     *            リソースのURL。{@literal null}であってはいけません
-     * @return 外部形式
+     *            The resource URL. Must not be {@literal null}.
+     * @return The external form.
      */
     public static String toExternalForm(final URL url) {
         assertArgumentNotNull("url", url);
@@ -359,11 +359,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースのファイル名を返します。
+     * Returns the file name of the resource.
      *
      * @param url
-     *            リソースのURL。{@literal null}であってはいけません
-     * @return ファイル名
+     *            The resource URL. Must not be {@literal null}.
+     * @return The file name.
      */
     public static String getFileName(final URL url) {
         assertArgumentNotNull("url", url);
@@ -373,11 +373,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースのファイルを返します。
+     * Returns the file of the resource.
      *
      * @param url
-     *            リソースのURL。{@literal null}であってはいけません
-     * @return ファイル
+     *            The resource URL. Must not be {@literal null}.
+     * @return The file.
      */
     public static File getFile(final URL url) {
         assertArgumentNotNull("url", url);
@@ -390,11 +390,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースをファイルとして返します。
+     * Returns the resource as a file.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return ファイル
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The file.
      * @see #getResourceAsFile(String, String)
      */
     public static File getResourceAsFile(final String path) {
@@ -404,13 +404,13 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースをファイルとして返します。
+     * Returns the resource as a file.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
+     *            The resource path. Must not be {@literal null} or empty string.
      * @param extension
-     *            リソースの拡張子
-     * @return ファイル
+     *            The resource extension.
+     * @return The file.
      * @see #getFile(URL)
      */
     public static File getResourceAsFile(final String path, final String extension) {
@@ -420,11 +420,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * クラスファイルを表すリソースをファイルとして返します。リソースが見つからない場合は<code>null</code>を返します。
+     * Returns the resource representing the class file as a file. Returns <code>null</code> if the resource is not found.
      *
      * @param clazz
-     *            クラス。{@literal null}であってはいけません
-     * @return ファイル
+     *            The class. Must not be {@literal null}.
+     * @return The file.
      * @see #getResourceAsFileNoException(String)
      */
     public static File getResourceAsFileNoException(final Class<?> clazz) {
@@ -434,11 +434,11 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * リソースをファイルとして返します。リソースが見つからない場合は<code>null</code>を返します。
+     * Returns the resource as a file. Returns <code>null</code> if the resource is not found.
      *
      * @param path
-     *            リソースのパス。{@literal null}や空文字列であってはいけません
-     * @return ファイル
+     *            The resource path. Must not be {@literal null} or empty string.
+     * @return The file.
      * @see #getResourceNoException(String)
      */
     public static File getResourceAsFileNoException(final String path) {
@@ -452,13 +452,13 @@ public abstract class ResourceUtil {
     }
 
     /**
-     * パスを変換します。
+     * Converts the path.
      *
      * @param path
-     *            リソースのパス
+     *            The resource path.
      * @param clazz
-     *            クラス
-     * @return 変換された結果
+     *            The class.
+     * @return The converted result.
      */
     public static String convertPath(final String path, final Class<?> clazz) {
         assertArgumentNotEmpty("path", path);

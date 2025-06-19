@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.lang.reflect.Field;
 
 /**
- * オブジェクトを指定せずに非{@literal static}な{@link Field}にアクセスした場合にスローされる例外です。
+ * Exception thrown when accessing a non-{@literal static} {@link Field} without specifying an object.
  *
  * @author koichik
  */
@@ -33,12 +33,12 @@ public class FieldNotStaticRuntimeException extends ClRuntimeException {
     private final String fieldName;
 
     /**
-     * {@link FieldNotStaticRuntimeException}を作成します。
+     * Creates a {@link FieldNotStaticRuntimeException}.
      *
      * @param targetClass
-     *            ターゲットクラス
+     *            Target class
      * @param fieldName
-     *            フィールド名
+     *            Field name
      */
     public FieldNotStaticRuntimeException(final Class<?> targetClass, final String fieldName) {
         super("ECL0099", asArray(targetClass.getName(), fieldName));
@@ -47,18 +47,18 @@ public class FieldNotStaticRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return Target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * フィールド名を返します。
+     * Returns the field name.
      *
-     * @return フィールド名
+     * @return Field name
      */
     public String getFieldName() {
         return fieldName;

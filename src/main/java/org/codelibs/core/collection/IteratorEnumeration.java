@@ -21,11 +21,10 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 /**
- * {@link Iterator}を {@link Enumeration}にするためのアダブタです。
+ * Adapter to convert an {@link Iterator} to an {@link Enumeration}.
  *
  * @author higa
- * @param <T>
- *            列挙する要素の型
+ * @param <T> the element type
  */
 public class IteratorEnumeration<T> implements Enumeration<T> {
 
@@ -33,10 +32,9 @@ public class IteratorEnumeration<T> implements Enumeration<T> {
     protected final Iterator<T> iterator;
 
     /**
-     * {@link IteratorEnumeration}を作成します。
+     * Creates an {@link IteratorEnumeration}.
      *
-     * @param iterator
-     *            反復子。{@literal null}であってはいけません
+     * @param iterator the iterator (must not be {@literal null})
      */
     public IteratorEnumeration(final Iterator<T> iterator) {
         assertArgumentNotNull("iterator", iterator);
@@ -44,10 +42,9 @@ public class IteratorEnumeration<T> implements Enumeration<T> {
     }
 
     /**
-     * {@link IteratorEnumeration}を作成します。
+     * Creates an {@link IteratorEnumeration}.
      *
-     * @param iterable
-     *            反復可能なオブジェクト。{@literal null}であってはいけません
+     * @param iterable the iterable object (must not be {@literal null})
      */
     public IteratorEnumeration(final Iterable<T> iterable) {
         assertArgumentNotNull("iterable", iterable);

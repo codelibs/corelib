@@ -20,16 +20,15 @@ import java.util.Iterator;
 import org.codelibs.core.exception.ClUnsupportedOperationException;
 
 /**
- * 空の {@link Iterator}です。
+ * An empty {@link Iterator}.
  *
  * @author higa
- * @param <T>
- *            反復する要素の型
+ * @param <T> the element type
  */
 public class EmptyIterator<T> implements Iterator<T> {
 
     /**
-     * {@link EmptyIterator}を作成します。
+     * Creates an {@link EmptyIterator}.
      */
     public EmptyIterator() {
     }

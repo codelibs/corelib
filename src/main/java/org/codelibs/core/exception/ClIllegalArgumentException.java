@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import org.codelibs.core.message.MessageFormatter;
 
 /**
- * {@link IllegalArgumentException}をラップする例外です。
+ * Exception that wraps {@link IllegalArgumentException}.
  *
  * @author koichik
  */
@@ -26,40 +26,40 @@ public class ClIllegalArgumentException extends IllegalArgumentException {
 
     private static final long serialVersionUID = -3701473506893554853L;
 
-    /** {@code null} である引数の名前 */
+    /** Name of the argument that is {@code null} */
     protected final String argName;
 
-    /** メッセージコード */
+    /** Message code */
     protected final String messageCode;
 
-    /** メッセージの引数 */
+    /** Arguments for the message */
     protected final Object[] args;
 
     /**
-     * {@link ClIllegalArgumentException}を作成します。
+     * Creates a {@link ClIllegalArgumentException}.
      *
      * @param argName
-     *            引数の名前
+     *            Name of the argument
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の配列
+     *            Array of arguments
      */
     public ClIllegalArgumentException(final String argName, final String messageCode, final Object[] args) {
         this(argName, messageCode, args, null);
     }
 
     /**
-     * {@link ClIllegalArgumentException}を作成します。
+     * Creates a {@link ClIllegalArgumentException}.
      *
      * @param argName
-     *            引数の名前
+     *            Name of the argument
      * @param messageCode
-     *            メッセージコード
+     *            Message code
      * @param args
-     *            引数の配列
+     *            Array of arguments
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public ClIllegalArgumentException(final String argName, final String messageCode, final Object[] args, final Throwable cause) {
         super(MessageFormatter.getMessage(messageCode, args), cause);
@@ -69,27 +69,27 @@ public class ClIllegalArgumentException extends IllegalArgumentException {
     }
 
     /**
-     * 引数の名前を返します。
+     * Returns the name of the argument.
      *
-     * @return 引数の名前
+     * @return Name of the argument
      */
     public String getArgName() {
         return argName;
     }
 
     /**
-     * メッセージコードを返します。
+     * Returns the message code.
      *
-     * @return メッセージコード
+     * @return Message code
      */
     public String getMessageCode() {
         return messageCode;
     }
 
     /**
-     * 引数の配列を返します。
+     * Returns the array of arguments.
      *
-     * @return 引数の配列
+     * @return Array of arguments
      */
     public Object[] getArgs() {
         return args;

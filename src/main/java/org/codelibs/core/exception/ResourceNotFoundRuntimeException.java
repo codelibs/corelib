@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * リソースが見つからなかったときにスローされる例外です。
+ * Exception thrown when a resource cannot be found.
  *
  * @author higa
  */
@@ -29,10 +29,9 @@ public class ResourceNotFoundRuntimeException extends ClRuntimeException {
     private final String path;
 
     /**
-     * {@link ResourceNotFoundRuntimeException}を作成します。
+     * Creates a {@link ResourceNotFoundRuntimeException}.
      *
-     * @param path
-     *            リソースのパス
+     * @param path the resource path
      */
     public ResourceNotFoundRuntimeException(final String path) {
         super("ECL0055", asArray(path));
@@ -40,9 +39,9 @@ public class ResourceNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * パスを返します。
+     * Returns the path.
      *
-     * @return パス
+     * @return the path
      */
     public String getPath() {
         return path;

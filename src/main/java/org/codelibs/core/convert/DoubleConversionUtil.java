@@ -21,31 +21,31 @@ import org.codelibs.core.lang.StringUtil;
 import org.codelibs.core.text.DecimalFormatUtil;
 
 /**
- * {@link Double}用の変換ユーティリティです。
+ * Utility class for conversions related to {@link Double}.
  *
  * @author higa
  */
 public abstract class DoubleConversionUtil {
 
     /**
-     * {@link Double}に変換します。
+     * Converts to {@link Double}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@link Double}
+     *            The object to convert
+     * @return The converted {@link Double}
      */
     public static Double toDouble(final Object o) {
         return toDouble(o, null);
     }
 
     /**
-     * {@link Double}に変換します。
+     * Converts to {@link Double}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@link Double}
+     *            The pattern string
+     * @return The converted {@link Double}
      */
     public static Double toDouble(final Object o, final String pattern) {
         if (o == null) {
@@ -74,24 +74,24 @@ public abstract class DoubleConversionUtil {
     }
 
     /**
-     * {@literal double}に変換します。
+     * Converts to {@literal double}.
      *
      * @param o
-     *            変換元のオブジェクト
-     * @return 変換された{@literal double}
+     *            The object to convert
+     * @return The converted {@literal double}
      */
     public static double toPrimitiveDouble(final Object o) {
         return toPrimitiveDouble(o, null);
     }
 
     /**
-     * {@literal double}に変換します。
+     * Converts to {@literal double}.
      *
      * @param o
-     *            変換元のオブジェクト
+     *            The object to convert
      * @param pattern
-     *            パターン文字列
-     * @return 変換された{@literal double}
+     *            The pattern string
+     * @return The converted {@literal double}
      */
     public static double toPrimitiveDouble(final Object o, final String pattern) {
         if (o == null) {

@@ -20,7 +20,7 @@ import static org.codelibs.core.collection.ArrayUtil.asArray;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * {@link NoSuchAlgorithmException}をラップする例外です。
+ * Exception that wraps {@link NoSuchAlgorithmException}.
  *
  * @author higa
  */
@@ -29,10 +29,10 @@ public class NoSuchAlgorithmRuntimeException extends ClRuntimeException {
     private static final long serialVersionUID = -3176447530746274091L;
 
     /**
-     * {@link NoSuchAlgorithmRuntimeException}を作成します。
+     * Creates a {@link NoSuchAlgorithmRuntimeException}.
      *
      * @param cause
-     *            原因となった例外
+     *            The cause of the exception
      */
     public NoSuchAlgorithmRuntimeException(final NoSuchAlgorithmException cause) {
         super("ECL0067", asArray(cause), cause);

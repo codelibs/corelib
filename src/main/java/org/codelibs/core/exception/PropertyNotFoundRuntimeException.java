@@ -18,7 +18,7 @@ package org.codelibs.core.exception;
 import static org.codelibs.core.collection.ArrayUtil.asArray;
 
 /**
- * プロパティが見つからなかった場合にスローされる例外です。
+ * Exception thrown when a property cannot be found.
  *
  * @author higa
  *
@@ -32,12 +32,10 @@ public class PropertyNotFoundRuntimeException extends ClRuntimeException {
     private final String propertyName;
 
     /**
-     * {@link PropertyNotFoundRuntimeException}を返します。
+     * Returns a {@link PropertyNotFoundRuntimeException}.
      *
-     * @param targetClass
-     *            ターゲットクラス
-     * @param propertyName
-     *            プロパティ名
+     * @param targetClass the target class
+     * @param propertyName the property name
      */
     public PropertyNotFoundRuntimeException(final Class<?> targetClass, final String propertyName) {
         super("ECL0065", asArray(targetClass.getName(), propertyName));
@@ -46,18 +44,18 @@ public class PropertyNotFoundRuntimeException extends ClRuntimeException {
     }
 
     /**
-     * ターゲットクラスを返します。
+     * Returns the target class.
      *
-     * @return ターゲットクラス
+     * @return the target class
      */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
     /**
-     * プロパティ名を返します。
+     * Returns the property name.
      *
-     * @return プロパティ名
+     * @return the property name
      */
     public String getPropertyName() {
         return propertyName;

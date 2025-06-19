@@ -19,7 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * (Jakarta) Commons Loggingのロガーを利用するアダプタです。
+ * Logger adapter for Jakarta Commons Logging.
  *
  * @author koichik
  */
@@ -29,6 +29,11 @@ class JclLoggerAdapter implements LoggerAdapter {
 
     protected final Log logger;
 
+    /**
+     * Creates a new instance of JclLoggerAdapter.
+     *
+     * @param name the logger name
+     */
     public JclLoggerAdapter(final Class<?> clazz) {
         sourceClass = clazz.getName();
         logger = LogFactory.getLog(clazz);
