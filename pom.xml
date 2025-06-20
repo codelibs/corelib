@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<name>CodeLibs Core Library</name>
 	<version>0.6.0-SNAPSHOT</version>
-	<description />
+	<description>Core library providing essential utilities and functionalities.</description>
 	<url>https://github.com/codelibs/corelib</url>
 	<inceptionYear>2012</inceptionYear>
 	<licenses>
