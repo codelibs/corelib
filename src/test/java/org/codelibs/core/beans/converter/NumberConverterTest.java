@@ -43,7 +43,7 @@ public class NumberConverterTest {
     @Test
     public void testGetAsString() throws Exception {
         final NumberConverter converter = new NumberConverter("##0");
-        assertThat(converter.getAsString(new Integer("100")), is("100"));
+        assertThat(converter.getAsString(Integer.valueOf("100")), is("100"));
     }
 
     /**

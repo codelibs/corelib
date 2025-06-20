@@ -27,7 +27,7 @@ public class ByteConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToByte() throws Exception {
-        assertEquals(new Byte("100"), ByteConversionUtil.toByte("100"));
+        assertEquals(Byte.valueOf("100"), ByteConversionUtil.toByte("100"));
     }
 
     /**

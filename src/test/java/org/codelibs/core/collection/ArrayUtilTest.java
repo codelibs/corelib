@@ -228,7 +228,7 @@ public class ArrayUtilTest {
         assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "3" }, new Object[] { "2", "3", "1" }), is(true));
         assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" }, new Object[] { "2" }), is(not(true)));
         assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1" }, new Object[] {}), is(not(true)));
-        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { new Integer("1") }, new Object[] { "1" }), is(not(true)));
+        assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { Integer.valueOf("1") }, new Object[] { "1" }), is(not(true)));
         assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "1" }, new Object[] { "1", "2" }), is(not(true)));
         assertThat(ArrayUtil.equalsIgnoreSequence(new Object[] { "1", "2", "1", "2" }, new Object[] { "2", "2", "1", "1" }), is(true));
 
@@ -242,9 +242,9 @@ public class ArrayUtilTest {
     @Test
     public void testSetArrayValue() throws Exception {
         final Object o = Array.newInstance(int.class, 3);
-        Array.set(o, 0, new Integer(1));
-        Array.set(o, 1, new Integer(2));
-        Array.set(o, 2, new Integer(3));
+        Array.set(o, 0, Integer.valueOf(1));
+        Array.set(o, 1, Integer.valueOf(2));
+        Array.set(o, 2, Integer.valueOf(3));
         final int[] num = (int[]) o;
         assertArrayEquals(new int[] { 1, 2, 3 }, num);
     }
@@ -255,7 +255,7 @@ public class ArrayUtilTest {
     @Test
     public void testToObjectArray() throws Exception {
         final Object[] a = ArrayUtil.toObjectArray(new int[] { 1, 5, 2 });
-        assertArrayEquals(new Integer[] { new Integer(1), new Integer(5), new Integer(2) }, a);
+        assertArrayEquals(new Integer[] { Integer.valueOf(1), Integer.valueOf(5), Integer.valueOf(2) }, a);
     }
 
     /**

@@ -27,7 +27,7 @@ public class DoubleConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToDouble() throws Exception {
-        assertEquals(new Double("1000.5"), DoubleConversionUtil.toDouble("1,000.5"));
+        assertEquals(Double.valueOf("1000.5"), DoubleConversionUtil.toDouble("1,000.5"));
     }
 
     /**

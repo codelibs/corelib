@@ -27,7 +27,7 @@ public class IntegerConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToInteger() throws Exception {
-        assertEquals(new Integer("1000"), IntegerConversionUtil.toInteger("1,000"));
+        assertEquals(Integer.valueOf("1000"), IntegerConversionUtil.toInteger("1,000"));
     }
 
     /**

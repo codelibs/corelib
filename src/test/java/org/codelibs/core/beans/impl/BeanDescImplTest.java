@@ -370,7 +370,7 @@ public class BeanDescImplTest {
          * @return Number
          */
         public Number add(final Number arg1, final Number arg2) {
-            return new Integer(3);
+            return Integer.valueOf(3);
         }
 
         /**

@@ -176,7 +176,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_zeroConverter() throws Exception {
-        assertThat(new CopyOptions().convertValue(new Integer(1), "aaa", null), is((Object) 1));
+        assertThat(new CopyOptions().convertValue(Integer.valueOf(1), "aaa", null), is((Object) 1));
     }
 
     /**
@@ -184,7 +184,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_propertyConverter_asString() throws Exception {
-        assertThat(new CopyOptions().converter(new NumberConverter("##0"), "aaa").convertValue(new Integer(1), "aaa", null),
+        assertThat(new CopyOptions().converter(new NumberConverter("##0"), "aaa").convertValue(Integer.valueOf(1), "aaa", null),
                 is((Object) "1"));
     }
 
@@ -202,7 +202,7 @@ public class CopyOptionsTest {
      */
     @Test
     public void testConvertValue_typeConverter_asString() throws Exception {
-        assertThat(new CopyOptions().converter(new NumberConverter("##0")).convertValue(new Integer(1), "aaa", null), is((Object) "1"));
+        assertThat(new CopyOptions().converter(new NumberConverter("##0")).convertValue(Integer.valueOf(1), "aaa", null), is((Object) "1"));
     }
 
     /**
