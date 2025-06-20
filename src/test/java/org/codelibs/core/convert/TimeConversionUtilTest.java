@@ -129,7 +129,6 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToDate_SpecificLocale() throws Exception {
-        // Locale.US用のAM/PM表記とパターン指定でパース
         final Date date = toDate("11:49:10 AM", "hh:mm:ss a", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
@@ -222,7 +221,6 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToCalendar_SpecificLocale() throws Exception {
-        // Java 21でパースできる24時間表記に修正
         final Calendar calendar = toCalendar("11:49:10", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
@@ -315,7 +313,6 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToTime_SpecificLocale() throws Exception {
-        // Java 21でパースできる24時間表記に修正
         final Time time = toSqlTime("11:49:10", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }

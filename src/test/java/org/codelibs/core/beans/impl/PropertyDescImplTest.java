@@ -150,7 +150,6 @@ public class PropertyDescImplTest {
         final MyBean myBean = new MyBean();
         final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         final PropertyDesc propDesc = beanDesc.getPropertyDesc("hhh");
-        // Java 21でパースできるISO形式に修正
         propDesc.setValue(myBean, "2024-06-20 12:08:00");
         assertThat(myBean.getHhh(), is(notNullValue()));
     }
