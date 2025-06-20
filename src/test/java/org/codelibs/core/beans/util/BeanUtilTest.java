@@ -246,7 +246,7 @@ public class BeanUtilTest {
         bean.aaa = "1,000";
         final Bean2 bean2 = new Bean2();
         BeanUtil.copyBeanToBean(bean, bean2, converter(new NumberConverter("#,##0")));
-        assertThat(bean2.aaa, is(new Integer(1000)));
+        assertThat(bean2.aaa, is(Integer.valueOf(1000)));
     }
 
     /**
@@ -394,7 +394,7 @@ public class BeanUtilTest {
     @Test
     public void testCopyBeanToMap_converter3() throws Exception {
         final Bean2 bean2 = new Bean2();
-        bean2.aaa = new Integer(1000);
+        bean2.aaa = Integer.valueOf(1000);
         final Map<String, Object> map = newHashMap();
         BeanUtil.copyBeanToMap(bean2, map, converter(new NumberConverter("#,##0")));
         assertThat(map.get("aaa"), is((Object) "1,000"));
@@ -406,7 +406,7 @@ public class BeanUtilTest {
     @Test
     public void testCopyMapToBean_converter() throws Exception {
         final Map<String, Object> map = newHashMap();
-        map.put("aaa", new Integer(1000));
+        map.put("aaa", Integer.valueOf(1000));
         final Bean bean = new Bean();
         BeanUtil.copyMapToBean(map, bean, converter(new NumberConverter("#,##0")));
         assertThat(bean.aaa, is((Object) "1,000"));
@@ -421,7 +421,7 @@ public class BeanUtilTest {
         map.put("aaa", "1,000");
         final Bean2 bean2 = new Bean2();
         BeanUtil.copyMapToBean(map, bean2, converter(new NumberConverter("#,##0")));
-        assertThat(bean2.aaa, is(new Integer(1000)));
+        assertThat(bean2.aaa, is(Integer.valueOf(1000)));
     }
 
     /**
@@ -652,7 +652,7 @@ public class BeanUtilTest {
     @Test
     public void testCopyMapToMap_converter() throws Exception {
         final Map<String, Object> map = newHashMap();
-        map.put("aaa", new Integer(1000));
+        map.put("aaa", Integer.valueOf(1000));
         final Map<String, Object> map2 = newHashMap();
         BeanUtil.copyMapToMap(map, map2, converter(new NumberConverter("#,##0")));
         assertEquals("1,000", map2.get("aaa"));

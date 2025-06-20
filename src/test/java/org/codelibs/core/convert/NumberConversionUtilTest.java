@@ -32,15 +32,15 @@ public class NumberConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testConvertNumber_byte() throws Exception {
-        assertEquals(new Byte("1"), NumberConversionUtil.convertNumber(Byte.class, "1"));
+        assertEquals(Byte.valueOf("1"), NumberConversionUtil.convertNumber(Byte.class, "1"));
     }
 
     /**
      * @throws Exception
      */
     public void testConvertNumber_primitiveWrapper() throws Exception {
-        assertEquals(new Byte("1"), NumberConversionUtil.convertPrimitiveWrapper(byte.class, "1"));
-        assertEquals(new Byte("0"), NumberConversionUtil.convertPrimitiveWrapper(byte.class, null));
+        assertEquals(Byte.valueOf("1"), NumberConversionUtil.convertPrimitiveWrapper(byte.class, "1"));
+        assertEquals(Byte.valueOf("0"), NumberConversionUtil.convertPrimitiveWrapper(byte.class, null));
     }
 
     /**

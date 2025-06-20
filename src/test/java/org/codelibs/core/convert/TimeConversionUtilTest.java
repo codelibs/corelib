@@ -129,7 +129,7 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToDate_SpecificLocale() throws Exception {
-        final Date date = toDate("11:49:10 AM", Locale.US);
+        final Date date = toDate("11:49:10 AM", "hh:mm:ss a", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(date), is("11:49:10"));
     }
 
@@ -221,7 +221,7 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToCalendar_SpecificLocale() throws Exception {
-        final Calendar calendar = toCalendar("11:49:10 AM", Locale.US);
+        final Calendar calendar = toCalendar("11:49:10", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()), is("11:49:10"));
     }
 
@@ -313,7 +313,7 @@ public class TimeConversionUtilTest {
      */
     @Test
     public void testToTime_SpecificLocale() throws Exception {
-        final Time time = toSqlTime("11:49:10 AM", Locale.US);
+        final Time time = toSqlTime("11:49:10", Locale.US);
         assertThat(new SimpleDateFormat("HH:mm:ss").format(time), is("11:49:10"));
     }
 

@@ -53,14 +53,14 @@ public abstract class FloatConversionUtil {
         } else if (o instanceof Float) {
             return (Float) o;
         } else if (o instanceof Number) {
-            return new Float(((Number) o).floatValue());
+            return Float.valueOf(((Number) o).floatValue());
         } else if (o instanceof String) {
             return toFloat((String) o);
         } else if (o instanceof java.util.Date) {
             if (pattern != null) {
-                return new Float(new SimpleDateFormat(pattern).format(o));
+                return Float.valueOf(new SimpleDateFormat(pattern).format(o));
             }
-            return new Float(((java.util.Date) o).getTime());
+            return Float.valueOf(((java.util.Date) o).getTime());
         } else {
             return toFloat(o.toString());
         }
@@ -70,7 +70,7 @@ public abstract class FloatConversionUtil {
         if (StringUtil.isEmpty(s)) {
             return null;
         }
-        return new Float(DecimalFormatUtil.normalize(s));
+        return Float.valueOf(DecimalFormatUtil.normalize(s));
     }
 
     /**

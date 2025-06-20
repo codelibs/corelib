@@ -27,7 +27,7 @@ public class ShortConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToShort() throws Exception {
-        assertEquals(new Short("1000"), ShortConversionUtil.toShort("1,000"));
+        assertEquals(Short.valueOf("1000"), ShortConversionUtil.toShort("1,000"));
     }
 
     /**

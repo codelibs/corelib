@@ -81,7 +81,7 @@ public abstract class NumberConversionUtil {
             if (d != null) {
                 return d;
             }
-            return new Double(0);
+            return Double.valueOf(0);
         } else if (type == long.class) {
             final Long l = LongConversionUtil.toLong(o);
             if (l != null) {
@@ -93,7 +93,7 @@ public abstract class NumberConversionUtil {
             if (f != null) {
                 return f;
             }
-            return new Float(0);
+            return Float.valueOf(0);
         } else if (type == short.class) {
             final Short s = ShortConversionUtil.toShort(o);
             if (s != null) {

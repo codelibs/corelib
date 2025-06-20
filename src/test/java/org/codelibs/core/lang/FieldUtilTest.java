@@ -55,7 +55,7 @@ public class FieldUtilTest {
     @Test
     public void testGet() throws Exception {
         final Field field = getClass().getField("objectField");
-        final Integer testData = new Integer(123);
+        final Integer testData = Integer.valueOf(123);
         FieldUtil.set(field, this, testData);
         assertThat((Integer) FieldUtil.get(field, this), is(testData));
     }
@@ -67,7 +67,7 @@ public class FieldUtilTest {
     public void testGetIntField() throws Exception {
         final Field field = getClass().getField("intField");
         final int testData = 1234567890;
-        FieldUtil.set(field, this, new Integer(testData));
+        FieldUtil.set(field, this, Integer.valueOf(testData));
         assertThat(FieldUtil.getInt(field, this), is(testData));
     }
 

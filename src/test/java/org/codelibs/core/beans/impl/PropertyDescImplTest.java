@@ -138,7 +138,7 @@ public class PropertyDescImplTest {
         final MyBean myBean = new MyBean();
         final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         final PropertyDesc propDesc = beanDesc.getPropertyDesc("ggg");
-        propDesc.setValue(myBean, new Integer(1));
+        propDesc.setValue(myBean, Integer.valueOf(1));
         assertThat(myBean.getGgg(), is(new BigDecimal(1)));
     }
 
@@ -150,8 +150,7 @@ public class PropertyDescImplTest {
         final MyBean myBean = new MyBean();
         final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         final PropertyDesc propDesc = beanDesc.getPropertyDesc("hhh");
-        // propDesc.setValue(myBean, "2000/11/8 11:22:33");
-        propDesc.setValue(myBean, "1/2/24, 12:08 PM");
+        propDesc.setValue(myBean, "2024-06-20 12:08:00");
         assertThat(myBean.getHhh(), is(notNullValue()));
     }
 
@@ -176,7 +175,7 @@ public class PropertyDescImplTest {
         final MyBean myBean = new MyBean();
         final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         final PropertyDesc propDesc = beanDesc.getPropertyDesc("str");
-        propDesc.setValue(myBean, new Integer(1));
+        propDesc.setValue(myBean, Integer.valueOf(1));
         assertThat(myBean.str, is("1"));
     }
 
@@ -337,7 +336,7 @@ public class PropertyDescImplTest {
          * @return Number
          */
         public Number add(final Number arg1, final Number arg2) {
-            return new Integer(3);
+            return Integer.valueOf(3);
         }
 
         /**

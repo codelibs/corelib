@@ -27,7 +27,7 @@ public class FloatConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToFloat() throws Exception {
-        assertEquals(new Float("1000.5"), FloatConversionUtil.toFloat("1,000.5"));
+        assertEquals(Float.valueOf("1000.5"), FloatConversionUtil.toFloat("1,000.5"));
     }
 
     /**

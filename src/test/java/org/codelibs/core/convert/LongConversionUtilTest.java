@@ -27,7 +27,7 @@ public class LongConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToLong() throws Exception {
-        assertEquals(new Long("1000"), LongConversionUtil.toLong("1,000"));
+        assertEquals(Long.valueOf("1000"), LongConversionUtil.toLong("1,000"));
     }
 
     /**
