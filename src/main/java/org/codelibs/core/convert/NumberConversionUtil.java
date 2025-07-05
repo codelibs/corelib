@@ -31,6 +31,12 @@ import org.codelibs.core.text.DecimalFormatSymbolsUtil;
 public abstract class NumberConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private NumberConversionUtil() {
+    }
+
+    /**
      * Converts to the appropriate {@link Number}.
      *
      * @param type

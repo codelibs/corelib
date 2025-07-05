@@ -36,6 +36,12 @@ import org.codelibs.core.exception.IORuntimeException;
 public abstract class WriterUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private WriterUtil() {
+    }
+
+    /**
      * Creates a {@link Writer} to output to a stream with the specified encoding.
      *
      * @param os the stream (must not be {@literal null})

@@ -23,6 +23,12 @@ package org.codelibs.core.convert;
 public abstract class BooleanConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private BooleanConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Boolean}.
      *
      * @param o

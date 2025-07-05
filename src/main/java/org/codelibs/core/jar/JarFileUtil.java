@@ -40,6 +40,12 @@ import org.codelibs.core.net.URLUtil;
  */
 public abstract class JarFileUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private JarFileUtil() {
+    }
+
     private static final Logger logger = Logger.getLogger(JarFileUtil.class);
 
     /**

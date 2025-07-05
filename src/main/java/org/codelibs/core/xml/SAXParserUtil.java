@@ -37,6 +37,12 @@ import org.xml.sax.helpers.DefaultHandler;
 public abstract class SAXParserUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private SAXParserUtil() {
+    }
+
+    /**
      * Parses the content of the specified {@link InputSource} as XML using the specified {@link DefaultHandler}.
      *
      * @param parser

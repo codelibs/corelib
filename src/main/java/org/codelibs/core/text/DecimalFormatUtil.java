@@ -31,6 +31,12 @@ import org.codelibs.core.misc.LocaleUtil;
 public abstract class DecimalFormatUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private DecimalFormatUtil() {
+    }
+
+    /**
      * Normalizes the string representation of a number.
      *
      * @param s

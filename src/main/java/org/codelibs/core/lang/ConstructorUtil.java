@@ -33,6 +33,12 @@ import org.codelibs.core.exception.InvocationTargetRuntimeException;
 public abstract class ConstructorUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ConstructorUtil() {
+    }
+
+    /**
      * Creates and initializes a new instance of the class declared by the specified constructor with the given initialization parameters.
      *
      * @param <T> the type of the object

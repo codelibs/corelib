@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class IntegerConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private IntegerConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Integer}.
      *
      * @param o

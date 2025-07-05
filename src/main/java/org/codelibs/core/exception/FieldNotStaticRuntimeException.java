@@ -28,8 +28,14 @@ public class FieldNotStaticRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -7791347225750660981L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the field.
+     */
     private final String fieldName;
 
     /**

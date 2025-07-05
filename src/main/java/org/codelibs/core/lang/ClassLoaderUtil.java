@@ -39,6 +39,12 @@ import org.codelibs.core.message.MessageFormatter;
 public abstract class ClassLoaderUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ClassLoaderUtil() {
+    }
+
+    /**
      * Returns the class loader.
      * <p>
      * The class loader is searched in the following order:

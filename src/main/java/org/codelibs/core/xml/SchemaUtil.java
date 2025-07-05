@@ -35,6 +35,12 @@ import org.xml.sax.SAXException;
 public abstract class SchemaUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private SchemaUtil() {
+    }
+
+    /**
      * Generates a {@link Schema} for W3C XML Schema from a file.
      *
      * @param schema

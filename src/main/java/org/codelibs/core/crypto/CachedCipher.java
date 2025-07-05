@@ -37,24 +37,58 @@ import org.codelibs.core.exception.NoSuchPaddingRuntimeException;
 import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
 import org.codelibs.core.misc.Base64Util;
 
+/**
+ * A utility class for encrypting and decrypting data using a cached {@link Cipher} instance.
+ */
 public class CachedCipher {
+
+    /**
+     * Creates a new {@link CachedCipher} instance.
+     */
+    public CachedCipher() {
+    }
 
     private static final String BLOWFISH = "Blowfish";
 
     private static final String RSA = "RSA";
 
+    /**
+     * The algorithm to use for the cipher.
+     */
     protected String algorithm = BLOWFISH;
 
+    /**
+     * The transformation to use for the cipher.
+     */
     protected String transformation = RSA;
 
+    /**
+     * The key to use for encryption/decryption.
+     */
     protected String key;
 
+    /**
+     * The character set name to use for encoding/decoding strings.
+     */
     protected String charsetName = CoreLibConstants.UTF_8;
 
+    /**
+     * The queue of ciphers for encryption.
+     */
     protected Queue<Cipher> encryptoQueue = new ConcurrentLinkedQueue<>();
 
+    /**
+     * The queue of ciphers for decryption.
+     */
     protected Queue<Cipher> decryptoQueue = new ConcurrentLinkedQueue<>();
 
+    /**
+     * Encrypts the given data.
+     *
+     * @param data
+     *            the data to encrypt
+     * @return the encrypted data
+     */
     public byte[] encrypto(final byte[] data) {
         final Cipher cipher = pollEncryptoCipher();
         byte[] encrypted;
@@ -70,6 +104,15 @@ public class CachedCipher {
         return encrypted;
     }
 
+    /**
+     * Encrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to encrypt
+     * @param key
+     *            the key to use for encryption
+     * @return the encrypted data
+     */
     public byte[] encrypto(final byte[] data, final Key key) {
         final Cipher cipher = pollEncryptoCipher(key);
         byte[] encrypted;
@@ -85,6 +128,13 @@ public class CachedCipher {
         return encrypted;
     }
 
+    /**
+     * Encrypts the given text.
+     *
+     * @param text
+     *            the text to encrypt
+     * @return the encrypted text
+     */
     public String encryptoText(final String text) {
         try {
             return Base64Util.encode(encrypto(text.getBytes(charsetName)));
@@ -93,6 +143,13 @@ public class CachedCipher {
         }
     }
 
+    /**
+     * Decrypts the given data.
+     *
+     * @param data
+     *            the data to decrypt
+     * @return the decrypted data
+     */
     public byte[] decrypto(final byte[] data) {
         final Cipher cipher = pollDecryptoCipher();
         byte[] decrypted;
@@ -108,6 +165,15 @@ public class CachedCipher {
         return decrypted;
     }
 
+    /**
+     * Decrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to decrypt
+     * @param key
+     *            the key to use for decryption
+     * @return the decrypted data
+     */
     public byte[] decrypto(final byte[] data, final Key key) {
         final Cipher cipher = pollDecryptoCipher(key);
         byte[] decrypted;
@@ -123,6 +189,13 @@ public class CachedCipher {
         return decrypted;
     }
 
+    /**
+     * Decrypts the given text.
+     *
+     * @param text
+     *            the text to decrypt
+     * @return the decrypted text
+     */
     public String decryptoText(final String text) {
         try {
             return new String(decrypto(Base64Util.decode(text)), charsetName);
@@ -131,6 +204,11 @@ public class CachedCipher {
         }
     }
 
+    /**
+     * Polls an encryption cipher from the queue, creating a new one if none are available.
+     *
+     * @return an encryption cipher
+     */
     protected Cipher pollEncryptoCipher() {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
@@ -149,6 +227,13 @@ public class CachedCipher {
         return cipher;
     }
 
+    /**
+     * Polls an encryption cipher from the queue, creating a new one if none are available, using the specified key.
+     *
+     * @param key
+     *            the key to use for the cipher
+     * @return an encryption cipher
+     */
     protected Cipher pollEncryptoCipher(final Key key) {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
@@ -166,10 +251,21 @@ public class CachedCipher {
         return cipher;
     }
 
+    /**
+     * Offers an encryption cipher back to the queue.
+     *
+     * @param cipher
+     *            the cipher to offer
+     */
     protected void offerEncryptoCipher(final Cipher cipher) {
         encryptoQueue.offer(cipher);
     }
 
+    /**
+     * Polls a decryption cipher from the queue, creating a new one if none are available.
+     *
+     * @return a decryption cipher
+     */
     protected Cipher pollDecryptoCipher() {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
@@ -188,6 +284,13 @@ public class CachedCipher {
         return cipher;
     }
 
+    /**
+     * Polls a decryption cipher from the queue, creating a new one if none are available, using the specified key.
+     *
+     * @param key
+     *            the key to use for the cipher
+     * @return a decryption cipher
+     */
     protected Cipher pollDecryptoCipher(final Key key) {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
@@ -205,38 +308,88 @@ public class CachedCipher {
         return cipher;
     }
 
+    /**
+     * Offers a decryption cipher back to the queue.
+     *
+     * @param cipher
+     *            the cipher to offer
+     */
     protected void offerDecryptoCipher(final Cipher cipher) {
         decryptoQueue.offer(cipher);
     }
 
+    /**
+     * Returns the algorithm.
+     *
+     * @return the algorithm
+     */
     public String getAlgorithm() {
         return algorithm;
     }
 
+    /**
+     * Sets the algorithm.
+     *
+     * @param algorithm
+     *            the algorithm
+     */
     public void setAlgorithm(final String algorithm) {
         this.algorithm = algorithm;
     }
 
+    /**
+     * Returns the transformation.
+     *
+     * @return the transformation
+     */
     public String getTransformation() {
         return transformation;
     }
 
+    /**
+     * Sets the transformation.
+     *
+     * @param transformation
+     *            the transformation
+     */
     public void setTransformation(final String transformation) {
         this.transformation = transformation;
     }
 
+    /**
+     * Returns the key.
+     *
+     * @return the key
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Sets the key.
+     *
+     * @param key
+     *            the key
+     */
     public void setKey(final String key) {
         this.key = key;
     }
 
+    /**
+     * Returns the charset name.
+     *
+     * @return the charset name
+     */
     public String getCharsetName() {
         return charsetName;
     }
 
+    /**
+     * Sets the charset name.
+     *
+     * @param charsetName
+     *            the charset name
+     */
     public void setCharsetName(final String charsetName) {
         this.charsetName = charsetName;
     }

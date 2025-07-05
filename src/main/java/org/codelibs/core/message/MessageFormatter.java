@@ -31,6 +31,12 @@ import org.codelibs.core.misc.LocaleUtil;
  */
 public abstract class MessageFormatter {
 
+    /**
+     * Do not instantiate.
+     */
+    private MessageFormatter() {
+    }
+
     /** Length of the numeric part of the message code */
     protected static final int CODE_NUMBER_LENGTH = 4;
 

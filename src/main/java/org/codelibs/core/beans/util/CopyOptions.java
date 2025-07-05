@@ -45,6 +45,12 @@ import org.codelibs.core.exception.ConverterRuntimeException;
 public class CopyOptions {
 
     /**
+     * Creates a new {@link CopyOptions} instance.
+     */
+    public CopyOptions() {
+    }
+
+    /**
      * Default converter for dates.
      */
     protected static final Converter DEFAULT_DATE_CONVERTER = new DateConverter(DateConversionUtil.getMediumPattern());

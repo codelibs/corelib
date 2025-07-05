@@ -35,6 +35,12 @@ import org.codelibs.core.misc.LocaleUtil;
 public abstract class ResourceBundleUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ResourceBundleUtil() {
+    }
+
+    /**
      * Returns the bundle. Returns <code>null</code> if not found.
      *
      * @param name the resource bundle name (must not be {@literal null} or empty)

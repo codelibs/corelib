@@ -32,6 +32,12 @@ import org.codelibs.core.exception.IORuntimeException;
 public abstract class JarInputStreamUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private JarInputStreamUtil() {
+    }
+
+    /**
      * Creates a {@link JarInputStream}.
      *
      * @param is the input stream (must not be {@literal null})

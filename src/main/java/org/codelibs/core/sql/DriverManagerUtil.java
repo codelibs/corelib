@@ -34,6 +34,12 @@ import org.codelibs.core.lang.ClassUtil;
 public abstract class DriverManagerUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private DriverManagerUtil() {
+    }
+
+    /**
      * Registers a JDBC driver.
      *
      * @param driverClassName

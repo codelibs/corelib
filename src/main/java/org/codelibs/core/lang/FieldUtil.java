@@ -33,6 +33,12 @@ import org.codelibs.core.exception.IllegalAccessRuntimeException;
 public abstract class FieldUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private FieldUtil() {
+    }
+
+    /**
      * Returns the value of a {@code static} field represented by the given {@link Field}.
      *
      * @param <T> the type of the field

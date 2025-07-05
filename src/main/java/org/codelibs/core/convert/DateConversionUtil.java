@@ -104,6 +104,12 @@ import org.codelibs.core.misc.LocaleUtil;
  */
 public abstract class DateConversionUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private DateConversionUtil() {
+    }
+
     /** Array of styles held by {@link DateFormat}. */
     protected static final int[] STYLES = new int[] { SHORT, MEDIUM, LONG, FULL };
 

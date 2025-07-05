@@ -25,6 +25,12 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgument;
 public abstract class BinaryConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private BinaryConversionUtil() {
+    }
+
+    /**
      * Converts to a {@literal byte} array.
      *
      * @param o

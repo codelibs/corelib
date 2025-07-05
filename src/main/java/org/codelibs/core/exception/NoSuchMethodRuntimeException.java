@@ -28,10 +28,19 @@ public class NoSuchMethodRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -5673845060079098617L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the method.
+     */
     private final String methodName;
 
+    /**
+     * The argument types.
+     */
     private final Class<?>[] argTypes;
 
     /**

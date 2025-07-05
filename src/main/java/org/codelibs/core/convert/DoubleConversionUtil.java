@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class DoubleConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private DoubleConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Double}.
      *
      * @param o

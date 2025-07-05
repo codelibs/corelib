@@ -26,6 +26,9 @@ public class InstantiationRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 5220902071756706607L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
     /**

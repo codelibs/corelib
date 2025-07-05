@@ -26,6 +26,9 @@ public class ClassNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -9022468864937761059L;
 
+    /**
+     * The name of the class that could not be found.
+     */
     private final String className;
 
     /**

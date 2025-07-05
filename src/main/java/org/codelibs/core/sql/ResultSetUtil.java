@@ -34,6 +34,12 @@ public abstract class ResultSetUtil {
     private static final Logger logger = Logger.getLogger(ResultSetUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private ResultSetUtil() {
+    }
+
+    /**
      * Closes the result set.
      * <p>
      * If {@link ResultSet#close()} throws an exception, an error message is logged. The exception is not rethrown.

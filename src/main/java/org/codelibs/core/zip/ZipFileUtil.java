@@ -41,6 +41,12 @@ public abstract class ZipFileUtil {
     private static final Logger logger = Logger.getLogger(ZipFileUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private ZipFileUtil() {
+    }
+
+    /**
      * Creates and returns a <code>ZipFile</code> for reading the specified Zip file.
      *
      * @param file

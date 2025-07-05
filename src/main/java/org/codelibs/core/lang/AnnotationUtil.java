@@ -33,6 +33,12 @@ import org.codelibs.core.beans.factory.BeanDescFactory;
 public abstract class AnnotationUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private AnnotationUtil() {
+    }
+
+    /**
      * Returns the elements of the annotation as a {@link Map} of names and values.
      *
      * @param annotation the annotation (must not be {@literal null})

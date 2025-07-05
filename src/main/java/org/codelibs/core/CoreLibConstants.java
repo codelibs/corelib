@@ -30,16 +30,34 @@ public class CoreLibConstants {
      */
     public static final String UTF_8 = "UTF-8";
 
+    /**
+     * UTF-8 Charset.
+     */
     public static final Charset CHARSET_UTF_8 = Charset.forName(UTF_8);
 
+    /**
+     * ISO 8601 basic format: yyyyMMdd'T'HHmmss.SSSZ
+     */
     public static final String DATE_FORMAT_ISO_8601_BASIC = "yyyyMMdd'T'HHmmss.SSSZ";
 
+    /**
+     * ISO 8601 extended format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+     */
     public static final String DATE_FORMAT_ISO_8601_EXTEND = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
+    /**
+     * ISO 8601 extended UTC format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+     */
     public static final String DATE_FORMAT_ISO_8601_EXTEND_UTC = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
+    /**
+     * Digit only date format: yyyyMMddHHmmss
+     */
     public static final String DATE_FORMAT_DIGIT_ONLY = "yyyyMMddHHmmss";
 
+    /**
+     * Do not instantiate.
+     */
     protected CoreLibConstants() {
     }
 }

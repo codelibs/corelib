@@ -23,6 +23,12 @@ package org.codelibs.core.lang;
 public abstract class ObjectUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ObjectUtil() {
+    }
+
+    /**
      * Returns true if the two objects are equal, or both are null.
      *
      * @param object1 the first object

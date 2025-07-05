@@ -28,8 +28,14 @@ public class ConverterRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The name of the property.
+     */
     private final String propertyName;
 
+    /**
+     * The value that caused the conversion error.
+     */
     private final Object value;
 
     /**

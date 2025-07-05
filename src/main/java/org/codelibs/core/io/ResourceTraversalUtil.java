@@ -40,6 +40,12 @@ import org.codelibs.core.zip.ZipInputStreamUtil;
 public abstract class ResourceTraversalUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ResourceTraversalUtil() {
+    }
+
+    /**
      * Traverses resources contained in the file system.
      *
      * @param rootDir the root directory (must not be {@literal null})

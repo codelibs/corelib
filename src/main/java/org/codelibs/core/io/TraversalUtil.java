@@ -66,6 +66,12 @@ import org.codelibs.core.zip.ZipInputStreamUtil;
  */
 public abstract class TraversalUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private TraversalUtil() {
+    }
+
     /** An empty array of {@link Traverser}. */
     protected static final Traverser[] EMPTY_ARRAY = new Traverser[0];
 

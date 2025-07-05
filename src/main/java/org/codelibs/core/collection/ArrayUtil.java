@@ -35,6 +35,12 @@ import org.codelibs.core.message.MessageFormatter;
 public abstract class ArrayUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ArrayUtil() {
+    }
+
+    /**
      * Returns an array of {@literal boolean}.
      *
      * @param elements the elements of the array

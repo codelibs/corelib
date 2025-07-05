@@ -27,12 +27,24 @@ public class ClRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = -4452607868694297329L;
 
+    /**
+     * The message code.
+     */
     private final String messageCode;
 
+    /**
+     * The arguments for the message.
+     */
     private final Object[] args;
 
+    /**
+     * The formatted message.
+     */
     private final String message;
 
+    /**
+     * The simple message without the message code.
+     */
     private final String simpleMessage;
 
     /**

@@ -26,8 +26,14 @@ public class NoSuchFieldRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 6609175673610180338L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the field.
+     */
     private final String fieldName;
 
     /**

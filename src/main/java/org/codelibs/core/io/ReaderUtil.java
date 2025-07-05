@@ -36,6 +36,12 @@ import org.codelibs.core.exception.IORuntimeException;
  */
 public abstract class ReaderUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private ReaderUtil() {
+    }
+
     /** Default buffer size */
     private static final int BUF_SIZE = 4096;
 

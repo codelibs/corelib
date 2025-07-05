@@ -28,10 +28,19 @@ public class ClSQLException extends SQLException {
 
     private static final long serialVersionUID = 4098267431221202677L;
 
+    /**
+     * The message code.
+     */
     private final String messageCode;
 
+    /**
+     * The arguments for the message.
+     */
     private final Object[] args;
 
+    /**
+     * The SQL string.
+     */
     private final String sql;
 
     /**

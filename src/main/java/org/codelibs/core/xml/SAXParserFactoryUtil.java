@@ -40,6 +40,12 @@ import org.xml.sax.SAXNotSupportedException;
 public abstract class SAXParserFactoryUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private SAXParserFactoryUtil() {
+    }
+
+    /**
      * Creates a new instance of {@link SAXParserFactory}.
      *
      * @return A new instance of {@link SAXParserFactory}.

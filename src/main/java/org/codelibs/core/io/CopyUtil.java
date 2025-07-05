@@ -116,6 +116,12 @@ import org.codelibs.core.nio.ChannelUtil;
  */
 public abstract class CopyUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private CopyUtil() {
+    }
+
     /** Buffer size used for copying. */
     protected static final int DEFAULT_BUF_SIZE = 4096;
 

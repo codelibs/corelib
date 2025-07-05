@@ -56,6 +56,12 @@ import org.codelibs.core.collection.Indexed;
 public abstract class ParameterizedClassDescFactory {
 
     /**
+     * Do not instantiate.
+     */
+    private ParameterizedClassDescFactory() {
+    }
+
+    /**
      * Returns a {@link Map} with type variables as keys and type arguments as values for a parameterized type (class or interface).
      * <p>
      * If the type is not parameterized, an empty {@link Map} is returned.

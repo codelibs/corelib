@@ -36,6 +36,12 @@ import org.codelibs.core.lang.StringUtil;
 public abstract class AssertionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private AssertionUtil() {
+    }
+
+    /**
      * Asserts that the argument is not <code>null</code>.
      *
      * @param argName

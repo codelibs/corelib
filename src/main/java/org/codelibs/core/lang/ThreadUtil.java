@@ -28,6 +28,20 @@ public abstract class ThreadUtil {
 
     private static final Logger logger = Logger.getLogger(ThreadUtil.class);
 
+    /**
+     * Do not instantiate.
+     */
+    private ThreadUtil() {
+    }
+
+    /**
+     * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+     *
+     * @param millis
+     *            the length of time to sleep in milliseconds
+     * @throws InterruptedRuntimeException
+     *             if any thread has interrupted the current thread.
+     */
     public static void sleep(final long millis) {
         if (millis < 1L) {
             return;
@@ -39,6 +53,13 @@ public abstract class ThreadUtil {
         }
     }
 
+    /**
+     * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+     * Any {@link InterruptedException} is caught and logged at debug level.
+     *
+     * @param millis
+     *            the length of time to sleep in milliseconds
+     */
     public static void sleepQuietly(final long millis) {
         if (millis < 1L) {
             return;

@@ -44,6 +44,12 @@ import org.codelibs.core.misc.DisposableUtil;
  */
 public abstract class BeanDescFactory {
 
+    /**
+     * Do not instantiate.
+     */
+    private BeanDescFactory() {
+    }
+
     /** True if initialized */
     private static volatile boolean initialized;
 

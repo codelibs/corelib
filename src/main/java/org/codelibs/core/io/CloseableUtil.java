@@ -29,6 +29,12 @@ import org.codelibs.core.log.Logger;
  */
 public abstract class CloseableUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private CloseableUtil() {
+    }
+
     private static final Logger logger = Logger.getLogger(CloseableUtil.class);
 
     /**
@@ -62,6 +68,11 @@ public abstract class CloseableUtil {
         }
     }
 
+    /**
+     * Closes a {@link Closeable} quietly, suppressing any {@link IOException}.
+     *
+     * @param closeable the closeable object
+     */
     public static void closeQuietly(final Closeable closeable) {
         if (closeable == null) {
             return;

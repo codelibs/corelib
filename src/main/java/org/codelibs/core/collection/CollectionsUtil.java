@@ -59,6 +59,12 @@ import java.util.concurrent.SynchronousQueue;
 public abstract class CollectionsUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private CollectionsUtil() {
+    }
+
+    /**
      * Creates and returns a new instance of {@link ArrayBlockingQueue}.
      *
      * @param <E> the element type of {@link ArrayBlockingQueue}

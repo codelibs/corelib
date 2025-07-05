@@ -26,6 +26,9 @@ public class ResourceNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 9033370905740809950L;
 
+    /**
+     * The path to the resource.
+     */
     private final String path;
 
     /**

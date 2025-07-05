@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class ShortConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ShortConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Short}.
      *
      * @param o

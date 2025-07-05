@@ -35,6 +35,12 @@ public abstract class ZipInputStreamUtil {
     private static final Logger logger = Logger.getLogger(ZipInputStreamUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private ZipInputStreamUtil() {
+    }
+
+    /**
      * A method that wraps the exception handling of {@link ZipInputStream#getNextEntry()}.
      *
      * @param zis

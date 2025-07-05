@@ -73,24 +73,63 @@ public class DynamicProperties extends Properties {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The interval in milliseconds to check for file modifications. Default is 5000ms.
+     */
     protected long checkInterval = 5000L;
 
+    /**
+     * The timestamp of the last check for file modifications.
+     */
     protected volatile long lastChecked = 0L;
 
+    /**
+     * The timestamp of the last modification of the properties file.
+     */
     protected volatile long lastModified = 0L;
 
+    /**
+     * The properties file.
+     */
     protected volatile File propertiesFile;
 
+    /**
+     * The properties instance.
+     */
     protected volatile Properties properties;
 
+    /**
+     * Constructs a {@code DynamicProperties} instance with the specified file path.
+     *
+     * @param path
+     *            The path to the properties file. If {@code null}, a {@link FileAccessException} is thrown.
+     * @throws FileAccessException
+     *             If the file cannot be accessed or created.
+     */
     public DynamicProperties(final String path) {
         this(path == null ? null : new File(path));
     }
 
+    /**
+     * Constructs a {@code DynamicProperties} instance with the specified {@link Path}.
+     *
+     * @param path
+     *            The {@link Path} to the properties file. If {@code null}, a {@link FileAccessException} is thrown.
+     * @throws FileAccessException
+     *             If the file cannot be accessed or created.
+     */
     public DynamicProperties(final Path path) {
         this(path == null ? null : path.toFile());
     }
 
+    /**
+     * Constructs a {@code DynamicProperties} instance with the specified {@link File}.
+     *
+     * @param file
+     *            The {@link File} representing the properties file. If {@code null}, a {@link FileAccessException} is thrown.
+     * @throws FileAccessException
+     *             If the file cannot be accessed or created.
+     */
     public DynamicProperties(final File file) {
         // check path
         if (file == null) {
@@ -115,6 +154,14 @@ public class DynamicProperties extends Properties {
         load();
     }
 
+    /**
+     * Reloads the properties from the specified path.
+     *
+     * @param path
+     *            The path to the properties file.
+     * @throws FileAccessException
+     *             If the file cannot be accessed or created.
+     */
     public synchronized void reload(final String path) {
         final File file = new File(path);
         if (!file.exists()) {
@@ -136,6 +183,11 @@ public class DynamicProperties extends Properties {
         load();
     }
 
+    /**
+     * Checks if the properties file has been updated since the last load.
+     *
+     * @return {@code true} if the file has been updated, {@code false} otherwise.
+     */
     public boolean isUpdated() {
         final long now = System.currentTimeMillis();
         if (now - lastChecked < checkInterval) {
@@ -152,6 +204,9 @@ public class DynamicProperties extends Properties {
         return true;
     }
 
+    /**
+     * Loads properties from the file.
+     */
     public synchronized void load() {
         final Properties prop = new Properties();
         try (final FileInputStream fis = new FileInputStream(propertiesFile)) {
@@ -163,6 +218,9 @@ public class DynamicProperties extends Properties {
         properties = prop;
     }
 
+    /**
+     * Stores the properties to the file.
+     */
     public synchronized void store() {
         FileOutputStream fos = null;
         try {
@@ -182,6 +240,11 @@ public class DynamicProperties extends Properties {
         lastModified = propertiesFile.lastModified();
     }
 
+    /**
+     * Returns the current properties, reloading them if the file has been updated.
+     *
+     * @return The current {@link Properties} instance.
+     */
     protected Properties getProperties() {
         if (isUpdated()) {
             load();
@@ -370,6 +433,12 @@ public class DynamicProperties extends Properties {
         return getProperties().values();
     }
 
+    /**
+     * Sets the check interval for file modifications.
+     *
+     * @param checkInterval
+     *            The new check interval in milliseconds.
+     */
     public void setCheckInterval(final long checkInterval) {
         this.checkInterval = checkInterval;
     }

@@ -28,8 +28,14 @@ public class MethodNotStaticRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 7186052234464152208L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the method.
+     */
     private final String methodName;
 
     /**

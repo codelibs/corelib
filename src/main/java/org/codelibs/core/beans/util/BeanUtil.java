@@ -80,6 +80,12 @@ import org.codelibs.core.lang.ClassUtil;
  */
 public abstract class BeanUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private BeanUtil() {
+    }
+
     /** Default options */
     protected static final CopyOptions DEFAULT_OPTIONS = new CopyOptions();
 
@@ -93,6 +99,13 @@ public abstract class BeanUtil {
         copyBeanToBean(src, dest, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies properties from one Bean to another Bean.
+     *
+     * @param src The source Bean. Must not be {@literal null}.
+     * @param dest The destination Bean. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     */
     public static void copyBeanToBean(final Object src, final Object dest, final Consumer<CopyOptions> option) {
         copyBeanToBean(src, dest, buildCopyOptions(option));
     }
@@ -144,6 +157,13 @@ public abstract class BeanUtil {
         copyBeanToMap(src, dest, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies from a Bean to a {@literal Map}.
+     *
+     * @param src The source Bean. Must not be {@literal null}.
+     * @param dest The destination {@literal Map}. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     */
     public static void copyBeanToMap(final Object src, final Map<String, Object> dest, final Consumer<CopyOptions> option) {
         copyBeanToMap(src, dest, buildCopyOptions(option));
     }
@@ -187,6 +207,13 @@ public abstract class BeanUtil {
         copyMapToBean(src, dest, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies from a {@literal Map} to a Bean.
+     *
+     * @param src The source {@literal Map}. Must not be {@literal null}.
+     * @param dest The destination Bean. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     */
     public static void copyMapToBean(final Map<String, ? extends Object> src, final Object dest, final Consumer<CopyOptions> option) {
         copyMapToBean(src, dest, buildCopyOptions(option));
     }
@@ -237,6 +264,13 @@ public abstract class BeanUtil {
         copyMapToMap(src, dest, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies from a {@literal Map} to another {@literal Map}.
+     *
+     * @param src The source {@literal Map}. Must not be {@literal null}.
+     * @param dest The destination {@literal Map}. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     */
     public static void copyMapToMap(final Map<String, ? extends Object> src, final Map<String, Object> dest,
             final Consumer<CopyOptions> option) {
         copyMapToMap(src, dest, buildCopyOptions(option));
@@ -282,6 +316,15 @@ public abstract class BeanUtil {
         return copyBeanToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source Bean to a new instance of the destination Bean and returns it.
+     *
+     * @param <T> The type of the destination Bean.
+     * @param src The source Bean. Must not be {@literal null}.
+     * @param destClass The type of the destination Bean. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied Bean.
+     */
     public static <T> T copyBeanToNewBean(final Object src, final Class<T> destClass, final Consumer<CopyOptions> option) {
         return copyBeanToNewBean(src, destClass, buildCopyOptions(option));
     }
@@ -318,6 +361,15 @@ public abstract class BeanUtil {
         return copyMapToNewBean(src, destClass, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source {@literal Map} to a new instance of the destination Bean and returns it.
+     *
+     * @param <T> The type of the destination Bean.
+     * @param src The source {@literal Map}. Must not be {@literal null}.
+     * @param destClass The type of the destination Bean. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied {@literal Map}.
+     */
     public static <T> T copyMapToNewBean(final Map<String, ? extends Object> src, final Class<T> destClass,
             final Consumer<CopyOptions> option) {
         return copyMapToNewBean(src, destClass, buildCopyOptions(option));
@@ -353,6 +405,13 @@ public abstract class BeanUtil {
         return copyBeanToNewMap(src, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source Bean to a new instance of {@literal LinkedHashMap} and returns it.
+     *
+     * @param src The source Bean. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied Bean.
+     */
     public static Map<String, Object> copyBeanToNewMap(final Object src, final Consumer<CopyOptions> option) {
         return copyBeanToNewMap(src, buildCopyOptions(option));
     }
@@ -386,6 +445,15 @@ public abstract class BeanUtil {
         return copyBeanToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source Bean to a new instance of a {@literal Map} and returns it.
+     *
+     * @param <T> The type of the destination {@literal Map}.
+     * @param src The source Bean. Must not be {@literal null}.
+     * @param destClass The type of the destination {@literal Map}. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied {@literal Map}.
+     */
     public static <T extends Map<String, Object>> T copyBeanToNewMap(final Object src, final Class<? extends T> destClass,
             final Consumer<CopyOptions> option) {
         return copyBeanToNewMap(src, destClass, buildCopyOptions(option));
@@ -422,6 +490,13 @@ public abstract class BeanUtil {
         return copyMapToNewMap(src, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source {@literal Map} to a new instance of {@literal LinkedHashMap} and returns it.
+     *
+     * @param src The source {@literal Map}. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied {@literal Map}.
+     */
     public static Map<String, Object> copyMapToNewMap(final Map<String, ? extends Object> src, final Consumer<CopyOptions> option) {
         return copyMapToNewMap(src, buildCopyOptions(option));
     }
@@ -456,6 +531,15 @@ public abstract class BeanUtil {
         return copyMapToNewMap(src, destClass, DEFAULT_OPTIONS);
     }
 
+    /**
+     * Copies the source {@literal Map} to a new instance of a {@literal Map} and returns it.
+     *
+     * @param <T> The type of the destination {@literal Map}.
+     * @param src The source {@literal Map}. Must not be {@literal null}.
+     * @param destClass The type of the destination {@literal Map}. Must not be {@literal null}.
+     * @param option The consumer for copy options.
+     * @return The newly copied {@literal Map}.
+     */
     public static <T extends Map<String, Object>> T copyMapToNewMap(final Map<String, ? extends Object> src,
             final Class<? extends T> destClass, final Consumer<CopyOptions> option) {
         return copyMapToNewMap(src, destClass, buildCopyOptions(option));
@@ -482,6 +566,13 @@ public abstract class BeanUtil {
         return dest;
     }
 
+    /**
+     * Builds {@link CopyOptions} from a {@link Consumer}.
+     *
+     * @param option
+     *            the option
+     * @return the copy options
+     */
     protected static CopyOptions buildCopyOptions(final Consumer<CopyOptions> option) {
         final CopyOptions copyOptions = new CopyOptions();
         option.accept(copyOptions);

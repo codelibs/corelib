@@ -33,6 +33,12 @@ import org.codelibs.core.io.ResourceUtil;
 public abstract class MimeTypeUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private MimeTypeUtil() {
+    }
+
+    /**
      * Guesses the content type.
      *
      * @param path

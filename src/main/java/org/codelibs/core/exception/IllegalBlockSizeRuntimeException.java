@@ -18,13 +18,19 @@ package org.codelibs.core.exception;
 import javax.crypto.IllegalBlockSizeException;
 
 /**
+ * Signals that this exception has been thrown when a block cipher is supplied with input data whose length is not a multiple of the cipher's block size, or that has been padded to the wrong length.
  * @author shinsuke
- *
  */
 public class IllegalBlockSizeRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Creates a new {@link IllegalBlockSizeRuntimeException} with the specified cause.
+     *
+     * @param cause
+     *            the cause
+     */
     public IllegalBlockSizeRuntimeException(final IllegalBlockSizeException cause) {
         super("ECL0105", new Object[] { cause.getMessage() }, cause);
     }

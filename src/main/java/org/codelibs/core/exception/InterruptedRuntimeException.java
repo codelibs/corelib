@@ -25,6 +25,12 @@ public class InterruptedRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Creates a new {@link InterruptedRuntimeException} with the specified cause.
+     *
+     * @param e
+     *            the cause
+     */
     public InterruptedRuntimeException(final InterruptedException e) {
         super(e);
     }
