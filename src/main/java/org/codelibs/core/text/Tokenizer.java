@@ -100,8 +100,10 @@ public class Tokenizer {
     }
 
     /**
+     * Sets up the character type array.
+     *
      * @param ctype2
-     *            The array of character types.
+     *            The array of character types to set up.
      */
     protected static void setup(final byte[] ctype2) {
         wordChars(ctype2, 'a', 'z');
@@ -124,6 +126,16 @@ public class Tokenizer {
         whitespaceChars(ctype2, 0, ' ');
     }
 
+    /**
+     * Sets a range of characters as word characters.
+     *
+     * @param ctype2
+     *            The array of character types.
+     * @param low
+     *            The lower bound of the character range (inclusive).
+     * @param hi
+     *            The upper bound of the character range (inclusive).
+     */
     protected static void wordChars(final byte[] ctype2, int low, int hi) {
         if (low < 0) {
             low = 0;

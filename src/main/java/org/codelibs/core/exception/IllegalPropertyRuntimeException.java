@@ -27,8 +27,14 @@ public class IllegalPropertyRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 3584516316082904020L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the property.
+     */
     private final String propertyName;
 
     /**

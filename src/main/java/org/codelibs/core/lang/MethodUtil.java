@@ -34,6 +34,12 @@ import org.codelibs.core.exception.InvocationTargetRuntimeException;
 public abstract class MethodUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private MethodUtil() {
+    }
+
+    /**
      * Invokes the underlying method represented by the {@link Method} object, with the specified object and parameters.
      *
      * @param <T>

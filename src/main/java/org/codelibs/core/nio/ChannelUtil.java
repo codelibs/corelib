@@ -33,6 +33,12 @@ import org.codelibs.core.exception.IORuntimeException;
 public abstract class ChannelUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ChannelUtil() {
+    }
+
+    /**
      * Returns a {@link ByteBuffer} that maps the file channel to memory.
      *
      * @param channel

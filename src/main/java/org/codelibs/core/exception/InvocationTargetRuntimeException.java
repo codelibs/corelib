@@ -28,6 +28,9 @@ public class InvocationTargetRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 7760491787158046906L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
     /**

@@ -563,6 +563,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
         /** Index of the last accessed element */
         protected int last = -1;
 
+        /**
+         * Constructs an instance.
+         */
+        protected ArrayMapIterator() {
+        }
+
         @Override
         public boolean hasNext() {
             return current != size;

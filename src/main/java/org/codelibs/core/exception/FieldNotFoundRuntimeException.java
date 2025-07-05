@@ -29,8 +29,14 @@ public class FieldNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -2715036865146285893L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the field.
+     */
     private final String fieldName;
 
     /**

@@ -43,6 +43,12 @@ import org.codelibs.core.timer.TimeoutManager;
  */
 public abstract class FileUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private FileUtil() {
+    }
+
     /** The encoding name for UTF-8. */
     private static final String UTF8 = "UTF-8";
 
@@ -236,6 +242,14 @@ public abstract class FileUtil {
         }
     }
 
+    /**
+     * Writes the specified byte array to the file at the given pathname.
+     *
+     * @param pathname
+     *            The path to the file.
+     * @param bytes
+     *            The byte array to write.
+     */
     public static void writeBytes(final String pathname, final byte[] bytes) {
         try (FileOutputStream fos = OutputStreamUtil.create(new File(pathname))) {
             ChannelUtil.write(fos.getChannel(), ByteBuffer.wrap(bytes));
@@ -244,6 +258,12 @@ public abstract class FileUtil {
         }
     }
 
+    /**
+     * Deletes the specified file in a background thread.
+     *
+     * @param file
+     *            The file to delete.
+     */
     public static void deleteInBackground(final File file) {
         if (file != null) {
             TimeoutManager.getInstance().addTimeoutTarget(() -> {

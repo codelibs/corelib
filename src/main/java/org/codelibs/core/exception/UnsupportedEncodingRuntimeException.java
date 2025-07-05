@@ -18,13 +18,19 @@ package org.codelibs.core.exception;
 import java.io.UnsupportedEncodingException;
 
 /**
+ * Signals that a character encoding is not supported.
  * @author shinsuke
- *
  */
 public class UnsupportedEncodingRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Creates a new {@link UnsupportedEncodingRuntimeException} with the specified cause.
+     *
+     * @param cause
+     *            the cause
+     */
     public UnsupportedEncodingRuntimeException(final UnsupportedEncodingException cause) {
         super("ECL0105", new Object[] { cause.getMessage() }, cause);
     }

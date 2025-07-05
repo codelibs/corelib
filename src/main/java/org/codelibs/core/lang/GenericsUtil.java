@@ -40,6 +40,12 @@ import org.codelibs.core.collection.CollectionsUtil;
 public abstract class GenericsUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private GenericsUtil() {
+    }
+
+    /**
      * Returns <code>true</code> if the raw type of <code>type</code> can be assigned to <code>clazz</code>,
      * <code>false</code> otherwise.
      *

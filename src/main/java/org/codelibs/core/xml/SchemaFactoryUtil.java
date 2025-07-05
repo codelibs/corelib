@@ -31,6 +31,12 @@ public abstract class SchemaFactoryUtil {
     private static final Logger logger = Logger.getLogger(SchemaFactoryUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private SchemaFactoryUtil() {
+    }
+
+    /**
      * Creates a {@link SchemaFactory} for W3C XML Schema.
      *
      * @return a {@link SchemaFactory} for W3C XML Schema
@@ -39,6 +45,13 @@ public abstract class SchemaFactoryUtil {
         return newW3cXmlSchemaFactory(false);
     }
 
+    /**
+     * Creates a {@link SchemaFactory} for W3C XML Schema.
+     *
+     * @param external
+     *            If {@code true}, external access is allowed.
+     * @return a {@link SchemaFactory} for W3C XML Schema
+     */
     public static SchemaFactory newW3cXmlSchemaFactory(final boolean external) {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         if (!external) {
@@ -56,6 +69,13 @@ public abstract class SchemaFactoryUtil {
         return newRelaxNgSchemaFactory(false);
     }
 
+    /**
+     * Creates a {@link SchemaFactory} for RELAX NG.
+     *
+     * @param external
+     *            If {@code true}, external access is allowed.
+     * @return a {@link SchemaFactory} for RELAX NG
+     */
     public static SchemaFactory newRelaxNgSchemaFactory(final boolean external) {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
         if (!external) {

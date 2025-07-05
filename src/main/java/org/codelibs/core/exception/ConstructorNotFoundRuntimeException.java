@@ -28,10 +28,19 @@ public class ConstructorNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 8584662068396978822L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The method arguments.
+     */
     private final Object[] methodArgs;
 
+    /**
+     * The parameter types.
+     */
     private final Class<?>[] paramTypes;
 
     /**

@@ -40,6 +40,12 @@ import org.w3c.dom.Text;
 public abstract class DomUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private DomUtil() {
+    }
+
+    /**
      * Retrieves the XML content as an {@link InputStream} using the platform's default encoding.
      *
      * @param contents

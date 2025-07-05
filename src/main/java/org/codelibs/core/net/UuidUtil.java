@@ -28,6 +28,12 @@ import org.codelibs.core.lang.StringUtil;
  */
 public abstract class UuidUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private UuidUtil() {
+    }
+
     private static final byte[] DEFAULT_ADDRESS = new byte[] { (byte) 127, (byte) 0, (byte) 0, (byte) 1 };
 
     private static final SecureRandom RANDOM = new SecureRandom();

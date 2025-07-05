@@ -32,6 +32,12 @@ import org.codelibs.core.exception.IORuntimeException;
  */
 public abstract class InputStreamUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private InputStreamUtil() {
+    }
+
     /** Default buffer size. */
     private static final int BUF_SIZE = 4096;
 

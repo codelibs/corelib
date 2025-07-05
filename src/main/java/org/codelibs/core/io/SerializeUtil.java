@@ -34,6 +34,12 @@ import org.codelibs.core.exception.IORuntimeException;
  */
 public abstract class SerializeUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private SerializeUtil() {
+    }
+
     private static final int BYTE_ARRAY_SIZE = 8 * 1024;
 
     /**

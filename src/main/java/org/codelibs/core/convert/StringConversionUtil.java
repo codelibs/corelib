@@ -29,6 +29,12 @@ import org.codelibs.core.misc.Base64Util;
  */
 public abstract class StringConversionUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private StringConversionUtil() {
+    }
+
     /** WAVE DASH */
     public static final char WAVE_DASH = '\u301C';
 

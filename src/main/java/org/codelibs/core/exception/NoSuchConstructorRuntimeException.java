@@ -30,8 +30,14 @@ public class NoSuchConstructorRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = 8688818589925114466L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The parameter types.
+     */
     private final Class<?>[] argTypes;
 
     /**

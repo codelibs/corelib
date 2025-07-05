@@ -36,6 +36,12 @@ public abstract class StatementUtil {
     private static final Logger logger = Logger.getLogger(StatementUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private StatementUtil() {
+    }
+
+    /**
      * Executes the SQL.
      *
      * @param statement

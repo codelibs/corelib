@@ -30,6 +30,12 @@ import java.util.StringTokenizer;
 public abstract class StringUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private StringUtil() {
+    }
+
+    /**
      * A system line separator.
      */
     public static final String RETURN_STRING = System.getProperty("line.separator");
@@ -713,6 +719,17 @@ public abstract class StringUtil {
         return ch >= 32 && ch < 127;
     }
 
+    /**
+     * Creates a new String from a char array without copying the array.
+     * <p>
+     * This method uses internal JDK APIs and may not be available in all Java versions.
+     * If the internal API is not available, it falls back to the standard String constructor.
+     * </p>
+     *
+     * @param chars
+     *            the char array
+     * @return a new String
+     */
     public static String newStringUnsafe(final char[] chars) {
         if (chars == null) {
             return null;

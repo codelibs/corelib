@@ -31,10 +31,19 @@ public class MethodNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -3508955801981550317L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the method.
+     */
     private final String methodName;
 
+    /**
+     * The classes of the method arguments.
+     */
     private final Class<?>[] methodArgClasses;
 
     /**

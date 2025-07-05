@@ -21,17 +21,31 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * A {@link Set} implementation that stores its elements in a {@link LruHashMap}.
+ * <p>
+ * This set has a fixed maximum capacity. When the capacity is reached and a new element is added,
+ * the least recently used element is removed.
+ * </p>
  * @author shinsuke
- *
+ * @param <E> the type of elements maintained by this set
  */
 public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The internal LRU hash map used to store elements.
+     */
     private final LruHashMap<E, Object> map;
 
     // Dummy value to associate with an Object in the backing Map
     private static final Object PRESENT = new Object();
 
+    /**
+     * Creates a new {@link LruHashSet} with the specified limit size.
+     *
+     * @param limitSize
+     *            the maximum number of elements to retain in the set
+     */
     public LruHashSet(final int limitSize) {
         map = new LruHashMap<>(limitSize);
     }

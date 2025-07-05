@@ -33,6 +33,12 @@ import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 public abstract class MessageDigestUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private MessageDigestUtil() {
+    }
+
+    /**
      * Wraps the exception handling of {@link MessageDigest#getInstance(String)}.
      *
      * @param algorithm

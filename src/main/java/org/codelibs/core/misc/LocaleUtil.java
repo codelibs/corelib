@@ -26,6 +26,12 @@ import java.util.function.Supplier;
 public abstract class LocaleUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private LocaleUtil() {
+    }
+
+    /**
      * Returns a {@link Locale}.
      *
      * @param localeStr
@@ -50,6 +56,11 @@ public abstract class LocaleUtil {
 
     private static Supplier<Locale> defaultLocaleSupplier;
 
+    /**
+     * Returns the default locale.
+     *
+     * @return the default locale
+     */
     public static Locale getDefault() {
         if (defaultLocaleSupplier != null) {
             return defaultLocaleSupplier.get();
@@ -57,6 +68,12 @@ public abstract class LocaleUtil {
         return Locale.ENGLISH;
     }
 
+    /**
+     * Sets the default locale supplier.
+     *
+     * @param localeSupplier
+     *            the supplier for the default locale
+     */
     public static void setDefault(final Supplier<Locale> localeSupplier) {
         defaultLocaleSupplier = localeSupplier;
     }

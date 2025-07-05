@@ -46,6 +46,12 @@ import org.codelibs.core.beans.converter.TimestampConverter;
 public abstract class CopyOptionsUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private CopyOptionsUtil() {
+    }
+
+    /**
      * Returns a {@link CopyOptions} with the specified property names to include in the operation.
      *
      * @param propertyNames

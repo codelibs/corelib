@@ -17,23 +17,52 @@ package org.codelibs.core.exception;
 
 import java.lang.reflect.Field;
 
+/**
+ * Signals that a field could not be made accessible.
+ */
 public class BeanFieldSetAccessibleFailureException extends ClRuntimeException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The target class.
+     */
     protected final Class<?> targetClass;
 
+    /**
+     * The target field.
+     */
     protected final transient Field targetField;
 
+    /**
+     * Creates a new {@link BeanFieldSetAccessibleFailureException} with the specified cause.
+     *
+     * @param componentClass
+     *            the component class
+     * @param targetField
+     *            the target field
+     * @param cause
+     *            the cause
+     */
     public BeanFieldSetAccessibleFailureException(final Class<?> componentClass, final Field targetField, final Throwable cause) {
         super("ECL0115", new Object[] { targetField }, cause);
         this.targetClass = componentClass;
         this.targetField = targetField;
     }
 
+    /**
+     * Returns the target class.
+     *
+     * @return the target class
+     */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
+    /**
+     * Returns the target field.
+     *
+     * @return the target field
+     */
     public Field getTargetField() {
         return targetField;
     }

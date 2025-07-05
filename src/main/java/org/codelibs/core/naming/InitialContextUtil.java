@@ -33,6 +33,12 @@ import org.codelibs.core.exception.NamingRuntimeException;
 public abstract class InitialContextUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private InitialContextUtil() {
+    }
+
+    /**
      * Creates and returns an initial context.
      *
      * @return the initial context

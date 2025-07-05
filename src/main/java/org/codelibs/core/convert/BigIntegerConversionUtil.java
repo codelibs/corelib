@@ -25,6 +25,12 @@ import java.math.BigInteger;
 public abstract class BigIntegerConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private BigIntegerConversionUtil() {
+    }
+
+    /**
      * Converts to {@link BigInteger}.
      *
      * @param o

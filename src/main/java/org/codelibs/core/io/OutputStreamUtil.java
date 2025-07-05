@@ -32,6 +32,12 @@ import org.codelibs.core.exception.IORuntimeException;
 public abstract class OutputStreamUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private OutputStreamUtil() {
+    }
+
+    /**
      * Creates a {@link FileOutputStream}.
      *
      * @param file the file (must not be {@literal null})

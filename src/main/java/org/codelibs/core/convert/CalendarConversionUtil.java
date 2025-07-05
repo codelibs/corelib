@@ -29,6 +29,12 @@ import java.util.TimeZone;
 public abstract class CalendarConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private CalendarConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Calendar}.
      *
      * @param o

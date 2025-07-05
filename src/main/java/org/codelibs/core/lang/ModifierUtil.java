@@ -29,6 +29,12 @@ import java.lang.reflect.Modifier;
 public abstract class ModifierUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ModifierUtil() {
+    }
+
+    /**
      * Checks if the specified method is public.
      *
      * @param method

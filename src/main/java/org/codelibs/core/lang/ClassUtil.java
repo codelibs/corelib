@@ -39,6 +39,12 @@ import org.codelibs.core.exception.NoSuchMethodRuntimeException;
  */
 public abstract class ClassUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private ClassUtil() {
+    }
+
     /** Map from wrapper types to primitive types */
     protected static final Map<Class<?>, Class<?>> wrapperToPrimitiveMap = newHashMap();
 

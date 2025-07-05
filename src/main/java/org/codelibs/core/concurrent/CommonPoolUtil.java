@@ -19,6 +19,9 @@ import java.util.concurrent.ForkJoinPool;
 
 import org.codelibs.core.log.Logger;
 
+/**
+ * Utility for common pool operations.
+ */
 public class CommonPoolUtil {
     private static final Logger logger = Logger.getLogger(CommonPoolUtil.class);
 
@@ -26,6 +29,12 @@ public class CommonPoolUtil {
         // nothing
     }
 
+    /**
+     * Executes the given task in the common ForkJoinPool.
+     *
+     * @param task
+     *            the task to execute
+     */
     public static void execute(final Runnable task) {
         ForkJoinPool.commonPool().execute(() -> {
             final Thread currentThread = Thread.currentThread();

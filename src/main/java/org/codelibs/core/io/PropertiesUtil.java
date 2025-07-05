@@ -39,6 +39,12 @@ import org.codelibs.core.net.URLUtil;
 public abstract class PropertiesUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private PropertiesUtil() {
+    }
+
+    /**
      * Wraps exception handling for {@link Properties#load(InputStream)}.
      * <p>
      * The input stream is not closed.

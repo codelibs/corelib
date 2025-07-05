@@ -33,6 +33,12 @@ public abstract class DocumentBuilderFactoryUtil {
     private static final Logger logger = Logger.getLogger(DocumentBuilderFactoryUtil.class);
 
     /**
+     * Do not instantiate.
+     */
+    private DocumentBuilderFactoryUtil() {
+    }
+
+    /**
      * Returns a new instance of {@link DocumentBuilderFactory}.
      *
      * @return A new instance of {@link DocumentBuilderFactory}.
@@ -41,6 +47,13 @@ public abstract class DocumentBuilderFactoryUtil {
         return newInstance(false);
     }
 
+    /**
+     * Returns a new instance of {@link DocumentBuilderFactory}.
+     *
+     * @param external
+     *            If {@code true}, external access is allowed.
+     * @return A new instance of {@link DocumentBuilderFactory}.
+     */
     public static DocumentBuilderFactory newInstance(final boolean external) {
         final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         if (!external) {

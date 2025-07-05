@@ -27,8 +27,14 @@ public class PropertyNotFoundRuntimeException extends ClRuntimeException {
 
     private static final long serialVersionUID = -5177019197796206774L;
 
+    /**
+     * The target class.
+     */
     private final Class<?> targetClass;
 
+    /**
+     * The name of the property.
+     */
     private final String propertyName;
 
     /**

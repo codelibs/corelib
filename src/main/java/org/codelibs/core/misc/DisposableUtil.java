@@ -32,6 +32,12 @@ import java.util.Deque;
  */
 public abstract class DisposableUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private DisposableUtil() {
+    }
+
     /** Registered {@link Disposable} */
     protected static final Deque<Disposable> disposables = newLinkedList();
 

@@ -25,18 +25,50 @@ public class FileAccessException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Creates a new {@link FileAccessException} with the specified message code, arguments, and cause.
+     *
+     * @param messageCode
+     *            the message code
+     * @param args
+     *            the message arguments
+     * @param cause
+     *            the cause
+     */
     public FileAccessException(final String messageCode, final Object[] args, final Throwable cause) {
         super(messageCode, args, cause);
     }
 
+    /**
+     * Creates a new {@link FileAccessException} with the specified message code and arguments.
+     *
+     * @param messageCode
+     *            the message code
+     * @param args
+     *            the message arguments
+     */
     public FileAccessException(final String messageCode, final Object[] args) {
         super(messageCode, args);
     }
 
+    /**
+     * Creates a new {@link FileAccessException} with the specified message code and cause.
+     *
+     * @param messageCode
+     *            the message code
+     * @param cause
+     *            the cause
+     */
     public FileAccessException(final String messageCode, final Throwable cause) {
         super(messageCode, new Object[0], cause);
     }
 
+    /**
+     * Creates a new {@link FileAccessException} with the specified message code.
+     *
+     * @param messageCode
+     *            the message code
+     */
     public FileAccessException(final String messageCode) {
         super(messageCode, new Object[0]);
     }

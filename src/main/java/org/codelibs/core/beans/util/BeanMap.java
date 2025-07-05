@@ -28,6 +28,12 @@ public class BeanMap extends LinkedHashMap<String, Object> {
 
     private static final long serialVersionUID = 1;
 
+    /**
+     * Creates a new {@link BeanMap}.
+     */
+    public BeanMap() {
+    }
+
     @Override
     public Object get(final Object key) {
         if (!containsKey(key)) {

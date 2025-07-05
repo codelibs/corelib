@@ -25,6 +25,12 @@ package org.codelibs.core.lang;
 public abstract class SystemUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private SystemUtil() {
+    }
+
+    /**
      * <code>file.encoding</code> system property. Example: UTF-8
      */
     public static final String FILE_ENCODING = System.getProperty("file.encoding");
@@ -101,6 +107,11 @@ public abstract class SystemUtil {
         return System.getenv().getOrDefault(key, defaultValue);
     }
 
+    /**
+     * Returns the current time in milliseconds.
+     *
+     * @return the current time in milliseconds
+     */
     public static long currentTimeMillis() {
         // TODO provider
         return System.currentTimeMillis();

@@ -28,6 +28,12 @@ import org.codelibs.core.lang.StringUtil;
 public abstract class BigDecimalConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private BigDecimalConversionUtil() {
+    }
+
+    /**
      * Converts to {@link BigDecimal}.
      *
      * @param o

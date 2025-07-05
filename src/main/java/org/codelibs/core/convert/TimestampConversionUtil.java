@@ -83,6 +83,12 @@ import org.codelibs.core.misc.LocaleUtil;
  */
 public abstract class TimestampConversionUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private TimestampConversionUtil() {
+    }
+
     /** Array of styles held by {@link DateFormat} */
     protected static final int[] STYLES = new int[] { SHORT, MEDIUM, LONG, FULL };
 

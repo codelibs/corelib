@@ -40,6 +40,12 @@ import org.codelibs.core.exception.IORuntimeException;
  */
 public abstract class URLUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private URLUtil() {
+    }
+
     /** Map for normalizing protocols */
     protected static final Map<String, String> CANONICAL_PROTOCOLS = newHashMap();
     static {

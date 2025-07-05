@@ -17,24 +17,53 @@ package org.codelibs.core.exception;
 
 import java.lang.reflect.Method;
 
+/**
+ * Signals that a method could not be made accessible.
+ */
 public class BeanMethodSetAccessibleFailureException extends ClRuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The target class.
+     */
     protected final Class<?> targetClass;
 
+    /**
+     * The target method.
+     */
     protected final transient Method targetMethod;
 
+    /**
+     * Creates a new {@link BeanMethodSetAccessibleFailureException} with the specified cause.
+     *
+     * @param componentClass
+     *            the component class
+     * @param targetMethod
+     *            the target method
+     * @param cause
+     *            the cause
+     */
     public BeanMethodSetAccessibleFailureException(final Class<?> componentClass, final Method targetMethod, final Throwable cause) {
         super("ECL0116", new Object[] { targetMethod }, cause);
         this.targetClass = componentClass;
         this.targetMethod = targetMethod;
     }
 
+    /**
+     * Returns the target class.
+     *
+     * @return the target class
+     */
     public Class<?> getTargetClass() {
         return targetClass;
     }
 
+    /**
+     * Returns the target method.
+     *
+     * @return the target method
+     */
     public Method getTargetMethod() {
         return targetMethod;
     }

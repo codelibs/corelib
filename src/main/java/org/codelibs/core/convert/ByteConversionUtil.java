@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class ByteConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ByteConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Byte}.
      *
      * @param o

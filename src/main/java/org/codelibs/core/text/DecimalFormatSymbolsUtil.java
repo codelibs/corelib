@@ -34,6 +34,12 @@ public abstract class DecimalFormatSymbolsUtil {
     private static final Map<Locale, DecimalFormatSymbols> CACHE = newConcurrentHashMap();
 
     /**
+     * Do not instantiate.
+     */
+    private DecimalFormatSymbolsUtil() {
+    }
+
+    /**
      * Returns {@link DecimalFormatSymbols}.
      *
      * @return {@link DecimalFormatSymbols}

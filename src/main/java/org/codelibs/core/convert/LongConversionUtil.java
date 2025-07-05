@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class LongConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private LongConversionUtil() {
+    }
+
+    /**
      * Converts the given object to a {@link Long}.
      *
      * @param o

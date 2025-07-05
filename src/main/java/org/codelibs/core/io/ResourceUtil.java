@@ -37,6 +37,12 @@ import org.codelibs.core.net.URLUtil;
 public abstract class ResourceUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private ResourceUtil() {
+    }
+
+    /**
      * Returns the resource path.
      *
      * @param path

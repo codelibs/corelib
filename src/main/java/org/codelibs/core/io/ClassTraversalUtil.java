@@ -36,6 +36,12 @@ import org.codelibs.core.zip.ZipInputStreamUtil;
  */
 public abstract class ClassTraversalUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private ClassTraversalUtil() {
+    }
+
     /** The file extension for class files. */
     protected static final String CLASS_SUFFIX = ".class";
 

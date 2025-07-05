@@ -35,6 +35,12 @@ import org.xml.sax.SAXException;
 public abstract class DocumentBuilderUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private DocumentBuilderUtil() {
+    }
+
+    /**
      * Parses the XML.
      *
      * @param builder

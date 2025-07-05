@@ -31,6 +31,12 @@ import org.codelibs.core.exception.SQLRuntimeException;
 public abstract class PreparedStatementUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private PreparedStatementUtil() {
+    }
+
+    /**
      * Executes the query.
      *
      * @param ps

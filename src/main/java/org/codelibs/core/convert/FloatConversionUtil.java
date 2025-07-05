@@ -28,6 +28,12 @@ import org.codelibs.core.text.DecimalFormatUtil;
 public abstract class FloatConversionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private FloatConversionUtil() {
+    }
+
+    /**
      * Converts to {@link Float}.
      *
      * @param o

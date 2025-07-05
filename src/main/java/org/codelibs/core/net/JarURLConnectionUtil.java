@@ -31,6 +31,12 @@ import org.codelibs.core.exception.IORuntimeException;
 public abstract class JarURLConnectionUtil {
 
     /**
+     * Do not instantiate.
+     */
+    private JarURLConnectionUtil() {
+    }
+
+    /**
      * A method that wraps the exception handling of {@link JarURLConnection#getJarFile()}.
      *
      * @param conn

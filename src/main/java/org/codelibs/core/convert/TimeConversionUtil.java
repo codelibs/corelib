@@ -107,6 +107,12 @@ import org.codelibs.core.misc.LocaleUtil;
  */
 public abstract class TimeConversionUtil {
 
+    /**
+     * Do not instantiate.
+     */
+    private TimeConversionUtil() {
+    }
+
     /** Array of styles held by {@link DateFormat} */
     protected static final int[] STYLES = new int[] { SHORT, MEDIUM, LONG, FULL };
 

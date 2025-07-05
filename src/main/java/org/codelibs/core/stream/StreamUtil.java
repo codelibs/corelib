@@ -68,10 +68,20 @@ public class StreamUtil {
         return new StreamOf<>(() -> map != null ? map.entrySet().stream() : Collections.<K, V> emptyMap().entrySet().stream());
     }
 
+    /**
+     * A wrapper class for a {@link Stream} that provides utility methods.
+     *
+     * @param <T> the type of elements in the stream
+     */
     public static class StreamOf<T> {
 
         private final Supplier<Stream<T>> supplier;
 
+        /**
+         * Constructs a new {@link StreamOf} instance with the given supplier.
+         *
+         * @param supplier the supplier of the stream
+         */
         public StreamOf(final Supplier<Stream<T>> supplier) {
             this.supplier = supplier;
         }
