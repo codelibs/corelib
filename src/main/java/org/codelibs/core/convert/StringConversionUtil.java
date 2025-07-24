@@ -92,7 +92,14 @@ public abstract class StringConversionUtil {
      * @return The converted {@literal String}
      */
     public static String toString(final Object value, final String pattern) {
-        return switch(value){case null->null;case String s->s;case java.util.Date d->toString(d,pattern);case Number n->toString(n,pattern);case byte[]bytes->Base64Util.encode(bytes);default->value.toString();};
+        return switch (value) {
+        case null -> null;
+        case String s -> s;
+        case java.util.Date d -> toString(d, pattern);
+        case Number n -> toString(n, pattern);
+        case byte[] bytes -> Base64Util.encode(bytes);
+        default -> value.toString();
+        };
     }
 
     /**
@@ -147,13 +154,13 @@ public abstract class StringConversionUtil {
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
             array[i] = switch (array[i]) {
-                case WAVE_DASH -> FULLWIDTH_TILDE;
-                case DOUBLE_VERTICAL_LINE -> PARALLEL_TO;
-                case MINUS_SIGN -> FULLWIDTH_HYPHEN_MINUS;
-                case CENT_SIGN -> FULLWIDTH_CENT_SIGN;
-                case POUND_SIGN -> FULLWIDTH_POUND_SIGN;
-                case NOT_SIGN -> FULLWIDTH_NOT_SIGN;
-                default -> array[i];
+            case WAVE_DASH -> FULLWIDTH_TILDE;
+            case DOUBLE_VERTICAL_LINE -> PARALLEL_TO;
+            case MINUS_SIGN -> FULLWIDTH_HYPHEN_MINUS;
+            case CENT_SIGN -> FULLWIDTH_CENT_SIGN;
+            case POUND_SIGN -> FULLWIDTH_POUND_SIGN;
+            case NOT_SIGN -> FULLWIDTH_NOT_SIGN;
+            default -> array[i];
             };
         }
         return new String(array);
@@ -173,13 +180,13 @@ public abstract class StringConversionUtil {
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
             array[i] = switch (array[i]) {
-                case FULLWIDTH_TILDE -> WAVE_DASH;
-                case PARALLEL_TO -> DOUBLE_VERTICAL_LINE;
-                case FULLWIDTH_HYPHEN_MINUS -> MINUS_SIGN;
-                case FULLWIDTH_CENT_SIGN -> CENT_SIGN;
-                case FULLWIDTH_POUND_SIGN -> POUND_SIGN;
-                case FULLWIDTH_NOT_SIGN -> NOT_SIGN;
-                default -> array[i];
+            case FULLWIDTH_TILDE -> WAVE_DASH;
+            case PARALLEL_TO -> DOUBLE_VERTICAL_LINE;
+            case FULLWIDTH_HYPHEN_MINUS -> MINUS_SIGN;
+            case FULLWIDTH_CENT_SIGN -> CENT_SIGN;
+            case FULLWIDTH_POUND_SIGN -> POUND_SIGN;
+            case FULLWIDTH_NOT_SIGN -> NOT_SIGN;
+            default -> array[i];
             };
         }
         return new String(array);

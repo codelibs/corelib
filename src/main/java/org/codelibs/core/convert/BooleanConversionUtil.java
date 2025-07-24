@@ -36,7 +36,17 @@ public abstract class BooleanConversionUtil {
      * @return The converted {@link Boolean}
      */
     public static Boolean toBoolean(final Object o) {
-        return switch(o){case null->null;case Boolean b->b;case Number n->n.intValue()!=0;case String s->switch(s.toLowerCase()){case"true"->Boolean.TRUE;case"false","0"->Boolean.FALSE;default->Boolean.TRUE;};default->Boolean.TRUE;};
+        return switch (o) {
+        case null -> null;
+        case Boolean b -> b;
+        case Number n -> n.intValue() != 0;
+        case String s -> switch (s.toLowerCase()) {
+        case "true" -> Boolean.TRUE;
+        case "false", "0" -> Boolean.FALSE;
+        default -> Boolean.TRUE;
+        };
+        default -> Boolean.TRUE;
+        };
     }
 
     /**

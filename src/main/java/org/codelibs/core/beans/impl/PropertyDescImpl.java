@@ -304,8 +304,7 @@ public class PropertyDescImpl implements PropertyDesc {
                                     propertyName, valueClass == null ? null : valueClass.getName(),
                                     valueClass == null ? null : valueClass.getClassLoader(), convertedValue,
                                     targetClass == null ? null : targetClass.getName(),
-                                    targetClass == null ? null : targetClass.getClassLoader() })
-                            .initCause(t);
+                                    targetClass == null ? null : targetClass.getClassLoader() }).initCause(t);
                 }
             } else {
                 FieldUtil.set(field, target, convertedValue);
@@ -323,8 +322,13 @@ public class PropertyDescImpl implements PropertyDesc {
     @Override
     public final String toString() {
         final StringBuilder buf = new StringBuilder(256);
-        buf.append("propertyName=").append(propertyName).append(",propertyType=").append(propertyType.getName()).append(",readMethod=")
-                .append(readMethod != null ? readMethod.getName() : "null").append(",writeMethod=")
+        buf.append("propertyName=")
+                .append(propertyName)
+                .append(",propertyType=")
+                .append(propertyType.getName())
+                .append(",readMethod=")
+                .append(readMethod != null ? readMethod.getName() : "null")
+                .append(",writeMethod=")
                 .append(writeMethod != null ? writeMethod.getName() : "null");
         return new String(buf);
     }

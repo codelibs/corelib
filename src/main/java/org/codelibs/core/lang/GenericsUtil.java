@@ -85,14 +85,14 @@ public abstract class GenericsUtil {
      */
     public static Class<?> getRawClass(final Type type) {
         return switch (type) {
-            case Class<?> clazz -> clazz;
-            case ParameterizedType paramType -> getRawClass(paramType.getRawType());
-            case WildcardType wildcard -> getRawClass(wildcard.getUpperBounds()[0]);
-            case GenericArrayType arrayType -> {
-                Class<?> rawClass = getRawClass(arrayType.getGenericComponentType());
-                yield Array.newInstance(rawClass, 0).getClass();
-            }
-            case null, default -> null;
+        case Class<?> clazz -> clazz;
+        case ParameterizedType paramType -> getRawClass(paramType.getRawType());
+        case WildcardType wildcard -> getRawClass(wildcard.getUpperBounds()[0]);
+        case GenericArrayType arrayType -> {
+            Class<?> rawClass = getRawClass(arrayType.getGenericComponentType());
+            yield Array.newInstance(rawClass, 0).getClass();
+        }
+        case null, default -> null;
         };
     }
 
@@ -406,17 +406,16 @@ public abstract class GenericsUtil {
      */
     public static Class<?> getActualClass(final Type type, final Map<TypeVariable<?>, Type> map) {
         return switch (type) {
-            case Class<?> clazz -> clazz;
-            case ParameterizedType paramType -> getActualClass(paramType.getRawType(), map);
-            case WildcardType wildcard -> getActualClass(wildcard.getUpperBounds()[0], map);
-            case TypeVariable<?> typeVar -> map.containsKey(typeVar) ?
-                getActualClass(map.get(typeVar), map) :
-                getActualClass(typeVar.getBounds()[0], map);
-            case GenericArrayType arrayType -> {
-                Class<?> componentClass = getActualClass(arrayType.getGenericComponentType(), map);
-                yield Array.newInstance(componentClass, 0).getClass();
-            }
-            case null, default -> null;
+        case Class<?> clazz -> clazz;
+        case ParameterizedType paramType -> getActualClass(paramType.getRawType(), map);
+        case WildcardType wildcard -> getActualClass(wildcard.getUpperBounds()[0], map);
+        case TypeVariable<?> typeVar -> map.containsKey(typeVar) ? getActualClass(map.get(typeVar), map)
+                : getActualClass(typeVar.getBounds()[0], map);
+        case GenericArrayType arrayType -> {
+            Class<?> componentClass = getActualClass(arrayType.getGenericComponentType(), map);
+            yield Array.newInstance(componentClass, 0).getClass();
+        }
+        case null, default -> null;
         };
     }
 

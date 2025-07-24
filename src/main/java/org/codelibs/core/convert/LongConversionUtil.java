@@ -54,7 +54,15 @@ public abstract class LongConversionUtil {
      * @return the converted {@link Long}
      */
     public static Long toLong(final Object o, final String pattern) {
-        return switch(o){case null->null;case Long l->l;case Number n->n.longValue();case String s->toLong(s);case java.util.Date d->pattern!=null?Long.valueOf(new SimpleDateFormat(pattern).format(d)):d.getTime();case Boolean b->b?1L:0L;default->toLong(o.toString());};
+        return switch (o) {
+        case null -> null;
+        case Long l -> l;
+        case Number n -> n.longValue();
+        case String s -> toLong(s);
+        case java.util.Date d -> pattern != null ? Long.valueOf(new SimpleDateFormat(pattern).format(d)) : d.getTime();
+        case Boolean b -> b ? 1L : 0L;
+        default -> toLong(o.toString());
+        };
     }
 
     private static Long toLong(final String s) {
@@ -85,7 +93,14 @@ public abstract class LongConversionUtil {
      * @return the converted {@literal long}
      */
     public static long toPrimitiveLong(final Object o, final String pattern) {
-        return switch(o){case null->0L;case Number n->n.longValue();case String s->toPrimitiveLong(s);case java.util.Date d->pattern!=null?Long.parseLong(new SimpleDateFormat(pattern).format(d)):d.getTime();case Boolean b->b?1L:0L;default->toPrimitiveLong(o.toString());};
+        return switch (o) {
+        case null -> 0L;
+        case Number n -> n.longValue();
+        case String s -> toPrimitiveLong(s);
+        case java.util.Date d -> pattern != null ? Long.parseLong(new SimpleDateFormat(pattern).format(d)) : d.getTime();
+        case Boolean b -> b ? 1L : 0L;
+        default -> toPrimitiveLong(o.toString());
+        };
     }
 
     private static long toPrimitiveLong(final String s) {

@@ -17,8 +17,6 @@ package org.codelibs.core.xml;
 
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
-import java.lang.reflect.Method;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -26,8 +24,6 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.codelibs.core.exception.ParserConfigurationRuntimeException;
 import org.codelibs.core.exception.SAXRuntimeException;
-import org.codelibs.core.lang.ClassUtil;
-import org.codelibs.core.lang.MethodUtil;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;

@@ -15,7 +15,6 @@
  */
 package org.codelibs.core.beans;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Map;

@@ -19,7 +19,6 @@ import javax.xml.XMLConstants;
 import javax.xml.validation.SchemaFactory;
 
 import org.codelibs.core.log.Logger;
-import org.xml.sax.SAXException;
 
 /**
  * Utility class for {@link SchemaFactory}.
