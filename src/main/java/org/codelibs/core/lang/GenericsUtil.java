@@ -84,24 +84,16 @@ public abstract class GenericsUtil {
      * @return the raw class of the specified type
      */
     public static Class<?> getRawClass(final Type type) {
-        if (type instanceof Class) {
-            return Class.class.cast(type);
-        }
-        if (type instanceof ParameterizedType) {
-            final ParameterizedType parameterizedType = ParameterizedType.class.cast(type);
-            return getRawClass(parameterizedType.getRawType());
-        }
-        if (type instanceof WildcardType) {
-            final WildcardType wildcardType = WildcardType.class.cast(type);
-            final Type[] types = wildcardType.getUpperBounds();
-            return getRawClass(types[0]);
-        }
-        if (type instanceof GenericArrayType) {
-            final GenericArrayType genericArrayType = GenericArrayType.class.cast(type);
-            final Class<?> rawClass = getRawClass(genericArrayType.getGenericComponentType());
-            return Array.newInstance(rawClass, 0).getClass();
-        }
-        return null;
+        return switch (type) {
+            case Class<?> clazz -> clazz;
+            case ParameterizedType paramType -> getRawClass(paramType.getRawType());
+            case WildcardType wildcard -> getRawClass(wildcard.getUpperBounds()[0]);
+            case GenericArrayType arrayType -> {
+                Class<?> rawClass = getRawClass(arrayType.getGenericComponentType());
+                yield Array.newInstance(rawClass, 0).getClass();
+            }
+            case null, default -> null;
+        };
     }
 
     /**
@@ -413,28 +405,19 @@ public abstract class GenericsUtil {
      * @return the actual class of the specified type
      */
     public static Class<?> getActualClass(final Type type, final Map<TypeVariable<?>, Type> map) {
-        if (type instanceof Class) {
-            return Class.class.cast(type);
-        }
-        if (type instanceof ParameterizedType) {
-            return getActualClass(ParameterizedType.class.cast(type).getRawType(), map);
-        }
-        if (type instanceof WildcardType) {
-            return getActualClass(WildcardType.class.cast(type).getUpperBounds()[0], map);
-        }
-        if (type instanceof TypeVariable) {
-            final TypeVariable<?> typeVariable = TypeVariable.class.cast(type);
-            if (map.containsKey(typeVariable)) {
-                return getActualClass(map.get(typeVariable), map);
+        return switch (type) {
+            case Class<?> clazz -> clazz;
+            case ParameterizedType paramType -> getActualClass(paramType.getRawType(), map);
+            case WildcardType wildcard -> getActualClass(wildcard.getUpperBounds()[0], map);
+            case TypeVariable<?> typeVar -> map.containsKey(typeVar) ?
+                getActualClass(map.get(typeVar), map) :
+                getActualClass(typeVar.getBounds()[0], map);
+            case GenericArrayType arrayType -> {
+                Class<?> componentClass = getActualClass(arrayType.getGenericComponentType(), map);
+                yield Array.newInstance(componentClass, 0).getClass();
             }
-            return getActualClass(typeVariable.getBounds()[0], map);
-        }
-        if (type instanceof GenericArrayType) {
-            final GenericArrayType genericArrayType = GenericArrayType.class.cast(type);
-            final Class<?> componentClass = getActualClass(genericArrayType.getGenericComponentType(), map);
-            return Array.newInstance(componentClass, 0).getClass();
-        }
-        return null;
+            case null, default -> null;
+        };
     }
 
     /**

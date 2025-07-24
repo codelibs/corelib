@@ -36,56 +36,11 @@ public class JsonUtil {
      * @return escaped string.
      */
     public static String escape(final String value) {
-        if (value == null) {
-            return null;
-        }
+        if(value==null){return null;}
 
-        char c;
-        final int len = value.length();
-        final StringBuilder buf = new StringBuilder(len * 2);
+        char c;final int len=value.length();final StringBuilder buf=new StringBuilder(len*2);
 
-        for (int i = 0; i < len; i++) {
-            c = value.charAt(i);
-            switch (c) {
-            case '\\':
-            case '"':
-                buf.append('\\');
-                buf.append(c);
-                break;
-            case '/':
-                buf.append('\\');
-                buf.append(c);
-                break;
-            case '\b':
-                buf.append("\\b");
-                break;
-            case '\t':
-                buf.append("\\t");
-                break;
-            case '\n':
-                buf.append("\\n");
-                break;
-            case '\f':
-                buf.append("\\f");
-                break;
-            case '\r':
-                buf.append("\\r");
-                break;
-            default:
-                if (c < ' ') {
-                    final String hex = Integer.toHexString(c);
-                    buf.append("\\u");
-                    for (int j = 0; j < 4 - hex.length(); j++) {
-                        buf.append('0');
-
-                    }
-                    buf.append(hex);
-                } else {
-                    buf.append(c);
-                }
-            }
-        }
-        return buf.toString();
+        for(int i=0;i<len;i++){c=value.charAt(i);String escaped=switch(c){case'\\','"'->"\\"+c;case'/'->"\\/";case'\b'->"\\b";case'\t'->"\\t";case'\n'->"\\n";case'\f'->"\\f";case'\r'->"\\r";default->c<' '?"\\u"+"0".repeat(4-Integer.toHexString(c).length())+Integer.toHexString(c):String.valueOf(c);};buf.append(escaped);}return buf.toString();
     }
 
 }

@@ -54,24 +54,7 @@ public abstract class IntegerConversionUtil {
      * @return The converted {@link Integer}
      */
     public static Integer toInteger(final Object o, final String pattern) {
-        if (o == null) {
-            return null;
-        } else if (o instanceof Integer) {
-            return (Integer) o;
-        } else if (o instanceof Number) {
-            return ((Number) o).intValue();
-        } else if (o instanceof String) {
-            return toInteger((String) o);
-        } else if (o instanceof java.util.Date) {
-            if (pattern != null) {
-                return Integer.valueOf(new SimpleDateFormat(pattern).format(o));
-            }
-            return (int) ((java.util.Date) o).getTime();
-        } else if (o instanceof Boolean) {
-            return ((Boolean) o) ? 1 : 0;
-        } else {
-            return toInteger(o.toString());
-        }
+        return switch(o){case null->null;case Integer i->i;case Number n->n.intValue();case String s->toInteger(s);case java.util.Date d->pattern!=null?Integer.valueOf(new SimpleDateFormat(pattern).format(d)):(int)d.getTime();case Boolean b->b?1:0;default->toInteger(o.toString());};
     }
 
     private static Integer toInteger(final String s) {
@@ -102,22 +85,7 @@ public abstract class IntegerConversionUtil {
      * @return The converted {@literal int}
      */
     public static int toPrimitiveInt(final Object o, final String pattern) {
-        if (o == null) {
-            return 0;
-        } else if (o instanceof Number) {
-            return ((Number) o).intValue();
-        } else if (o instanceof String) {
-            return toPrimitiveInt((String) o);
-        } else if (o instanceof java.util.Date) {
-            if (pattern != null) {
-                return Integer.parseInt(new SimpleDateFormat(pattern).format(o));
-            }
-            return (int) ((java.util.Date) o).getTime();
-        } else if (o instanceof Boolean) {
-            return ((Boolean) o) ? 1 : 0;
-        } else {
-            return toPrimitiveInt(o.toString());
-        }
+        return switch(o){case null->0;case Number n->n.intValue();case String s->toPrimitiveInt(s);case java.util.Date d->pattern!=null?Integer.parseInt(new SimpleDateFormat(pattern).format(d)):(int)d.getTime();case Boolean b->b?1:0;default->toPrimitiveInt(o.toString());};
     }
 
     private static int toPrimitiveInt(final String s) {

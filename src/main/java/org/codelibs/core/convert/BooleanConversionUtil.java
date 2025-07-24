@@ -36,27 +36,7 @@ public abstract class BooleanConversionUtil {
      * @return The converted {@link Boolean}
      */
     public static Boolean toBoolean(final Object o) {
-        if (o == null) {
-            return null;
-        } else if (o instanceof Boolean) {
-            return (Boolean) o;
-        } else if (o instanceof Number) {
-            final int num = ((Number) o).intValue();
-            return num != 0;
-        } else if (o instanceof String) {
-            final String s = (String) o;
-            if ("true".equalsIgnoreCase(s)) {
-                return Boolean.TRUE;
-            } else if ("false".equalsIgnoreCase(s)) {
-                return Boolean.FALSE;
-            } else if (s.equals("0")) {
-                return Boolean.FALSE;
-            } else {
-                return Boolean.TRUE;
-            }
-        } else {
-            return Boolean.TRUE;
-        }
+        return switch(o){case null->null;case Boolean b->b;case Number n->n.intValue()!=0;case String s->switch(s.toLowerCase()){case"true"->Boolean.TRUE;case"false","0"->Boolean.FALSE;default->Boolean.TRUE;};default->Boolean.TRUE;};
     }
 
     /**
