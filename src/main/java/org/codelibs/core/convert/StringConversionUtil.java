@@ -92,19 +92,14 @@ public abstract class StringConversionUtil {
      * @return The converted {@literal String}
      */
     public static String toString(final Object value, final String pattern) {
-        if (value == null) {
-            return null;
-        } else if (value instanceof String) {
-            return (String) value;
-        } else if (value instanceof java.util.Date) {
-            return toString((java.util.Date) value, pattern);
-        } else if (value instanceof Number) {
-            return toString((Number) value, pattern);
-        } else if (value instanceof byte[]) {
-            return Base64Util.encode((byte[]) value);
-        } else {
-            return value.toString();
-        }
+        return switch (value) {
+        case null -> null;
+        case String s -> s;
+        case java.util.Date d -> toString(d, pattern);
+        case Number n -> toString(n, pattern);
+        case byte[] bytes -> Base64Util.encode(bytes);
+        default -> value.toString();
+        };
     }
 
     /**
@@ -158,28 +153,15 @@ public abstract class StringConversionUtil {
         }
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
-            switch (array[i]) {
-            case WAVE_DASH:
-                array[i] = FULLWIDTH_TILDE;
-                break;
-            case DOUBLE_VERTICAL_LINE:
-                array[i] = PARALLEL_TO;
-                break;
-            case MINUS_SIGN:
-                array[i] = FULLWIDTH_HYPHEN_MINUS;
-                break;
-            case CENT_SIGN:
-                array[i] = FULLWIDTH_CENT_SIGN;
-                break;
-            case POUND_SIGN:
-                array[i] = FULLWIDTH_POUND_SIGN;
-                break;
-            case NOT_SIGN:
-                array[i] = FULLWIDTH_NOT_SIGN;
-                break;
-            default:
-                break;
-            }
+            array[i] = switch (array[i]) {
+            case WAVE_DASH -> FULLWIDTH_TILDE;
+            case DOUBLE_VERTICAL_LINE -> PARALLEL_TO;
+            case MINUS_SIGN -> FULLWIDTH_HYPHEN_MINUS;
+            case CENT_SIGN -> FULLWIDTH_CENT_SIGN;
+            case POUND_SIGN -> FULLWIDTH_POUND_SIGN;
+            case NOT_SIGN -> FULLWIDTH_NOT_SIGN;
+            default -> array[i];
+            };
         }
         return new String(array);
     }
@@ -197,28 +179,15 @@ public abstract class StringConversionUtil {
         }
         final char[] array = source.toCharArray();
         for (int i = 0; i < array.length; ++i) {
-            switch (array[i]) {
-            case FULLWIDTH_TILDE:
-                array[i] = WAVE_DASH;
-                break;
-            case PARALLEL_TO:
-                array[i] = DOUBLE_VERTICAL_LINE;
-                break;
-            case FULLWIDTH_HYPHEN_MINUS:
-                array[i] = MINUS_SIGN;
-                break;
-            case FULLWIDTH_CENT_SIGN:
-                array[i] = CENT_SIGN;
-                break;
-            case FULLWIDTH_POUND_SIGN:
-                array[i] = POUND_SIGN;
-                break;
-            case FULLWIDTH_NOT_SIGN:
-                array[i] = NOT_SIGN;
-                break;
-            default:
-                break;
-            }
+            array[i] = switch (array[i]) {
+            case FULLWIDTH_TILDE -> WAVE_DASH;
+            case PARALLEL_TO -> DOUBLE_VERTICAL_LINE;
+            case FULLWIDTH_HYPHEN_MINUS -> MINUS_SIGN;
+            case FULLWIDTH_CENT_SIGN -> CENT_SIGN;
+            case FULLWIDTH_POUND_SIGN -> POUND_SIGN;
+            case FULLWIDTH_NOT_SIGN -> NOT_SIGN;
+            default -> array[i];
+            };
         }
         return new String(array);
     }

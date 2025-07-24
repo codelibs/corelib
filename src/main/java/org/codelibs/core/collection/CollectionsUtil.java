@@ -29,6 +29,8 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.SequencedCollection;
+import java.util.SequencedMap;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.Stack;
@@ -1265,6 +1267,107 @@ public abstract class CollectionsUtil {
      */
     public static boolean isNotEmpty(final Map<?, ?> map) {
         return !isEmpty(map);
+    }
+
+    // Java 21 Sequenced Collections support
+
+    /**
+     * Returns the first element of a sequenced collection.
+     *
+     * @param <E> the element type
+     * @param collection the sequenced collection
+     * @return the first element, or null if the collection is empty
+     * @since Java 21
+     */
+    public static <E> E getFirst(final SequencedCollection<E> collection) {
+        return collection.isEmpty() ? null : collection.getFirst();
+    }
+
+    /**
+     * Returns the last element of a sequenced collection.
+     *
+     * @param <E> the element type
+     * @param collection the sequenced collection
+     * @return the last element, or null if the collection is empty
+     * @since Java 21
+     */
+    public static <E> E getLast(final SequencedCollection<E> collection) {
+        return collection.isEmpty() ? null : collection.getLast();
+    }
+
+    /**
+     * Adds an element to the beginning of a sequenced collection.
+     *
+     * @param <E> the element type
+     * @param collection the sequenced collection
+     * @param element the element to add
+     * @since Java 21
+     */
+    public static <E> void addFirst(final SequencedCollection<E> collection, final E element) {
+        collection.addFirst(element);
+    }
+
+    /**
+     * Adds an element to the end of a sequenced collection.
+     *
+     * @param <E> the element type
+     * @param collection the sequenced collection
+     * @param element the element to add
+     * @since Java 21
+     */
+    public static <E> void addLast(final SequencedCollection<E> collection, final E element) {
+        collection.addLast(element);
+    }
+
+    /**
+     * Returns a reversed view of a sequenced collection.
+     *
+     * @param <E> the element type
+     * @param collection the sequenced collection
+     * @return a reversed view of the collection
+     * @since Java 21
+     */
+    public static <E> SequencedCollection<E> reversed(final SequencedCollection<E> collection) {
+        return collection.reversed();
+    }
+
+    /**
+     * Returns the first entry of a sequenced map.
+     *
+     * @param <K> the key type
+     * @param <V> the value type
+     * @param map the sequenced map
+     * @return the first entry, or null if the map is empty
+     * @since Java 21
+     */
+    public static <K, V> Map.Entry<K, V> firstEntry(final SequencedMap<K, V> map) {
+        return map.isEmpty() ? null : map.firstEntry();
+    }
+
+    /**
+     * Returns the last entry of a sequenced map.
+     *
+     * @param <K> the key type
+     * @param <V> the value type
+     * @param map the sequenced map
+     * @return the last entry, or null if the map is empty
+     * @since Java 21
+     */
+    public static <K, V> Map.Entry<K, V> lastEntry(final SequencedMap<K, V> map) {
+        return map.isEmpty() ? null : map.lastEntry();
+    }
+
+    /**
+     * Returns a reversed view of a sequenced map.
+     *
+     * @param <K> the key type
+     * @param <V> the value type
+     * @param map the sequenced map
+     * @return a reversed view of the map
+     * @since Java 21
+     */
+    public static <K, V> SequencedMap<K, V> reversed(final SequencedMap<K, V> map) {
+        return map.reversed();
     }
 
 }
