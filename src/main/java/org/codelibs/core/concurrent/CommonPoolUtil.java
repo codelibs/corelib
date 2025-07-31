@@ -22,7 +22,7 @@ import org.codelibs.core.log.Logger;
 /**
  * Utility for common pool operations.
  */
-public class CommonPoolUtil {
+public abstract class CommonPoolUtil {
     private static final Logger logger = Logger.getLogger(CommonPoolUtil.class);
 
     protected CommonPoolUtil() {
