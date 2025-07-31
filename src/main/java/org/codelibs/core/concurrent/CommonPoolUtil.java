@@ -25,7 +25,7 @@ import org.codelibs.core.log.Logger;
 public class CommonPoolUtil {
     private static final Logger logger = Logger.getLogger(CommonPoolUtil.class);
 
-    private CommonPoolUtil() {
+    protected CommonPoolUtil() {
         // nothing
     }
 

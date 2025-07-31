@@ -25,7 +25,7 @@ public abstract class ObjectUtil {
     /**
      * Do not instantiate.
      */
-    private ObjectUtil() {
+    protected ObjectUtil() {
     }
 
     /**

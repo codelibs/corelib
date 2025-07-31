@@ -37,7 +37,7 @@ public abstract class ArrayUtil {
     /**
      * Do not instantiate.
      */
-    private ArrayUtil() {
+    protected ArrayUtil() {
     }
 
     /**

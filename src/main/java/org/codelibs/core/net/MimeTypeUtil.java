@@ -35,7 +35,7 @@ public abstract class MimeTypeUtil {
     /**
      * Do not instantiate.
      */
-    private MimeTypeUtil() {
+    protected MimeTypeUtil() {
     }
 
     /**

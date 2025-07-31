@@ -110,7 +110,7 @@ public abstract class TimeConversionUtil {
     /**
      * Do not instantiate.
      */
-    private TimeConversionUtil() {
+    protected TimeConversionUtil() {
     }
 
     /** Array of styles held by {@link DateFormat} */

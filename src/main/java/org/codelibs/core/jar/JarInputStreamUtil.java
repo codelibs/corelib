@@ -34,7 +34,7 @@ public abstract class JarInputStreamUtil {
     /**
      * Do not instantiate.
      */
-    private JarInputStreamUtil() {
+    protected JarInputStreamUtil() {
     }
 
     /**

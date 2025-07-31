@@ -27,7 +27,7 @@ public abstract class SystemUtil {
     /**
      * Do not instantiate.
      */
-    private SystemUtil() {
+    protected SystemUtil() {
     }
 
     /**

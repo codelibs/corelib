@@ -46,7 +46,7 @@ public abstract class FileUtil {
     /**
      * Do not instantiate.
      */
-    private FileUtil() {
+    protected FileUtil() {
     }
 
     /** The encoding name for UTF-8. */

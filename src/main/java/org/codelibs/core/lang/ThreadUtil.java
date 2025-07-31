@@ -31,7 +31,7 @@ public abstract class ThreadUtil {
     /**
      * Do not instantiate.
      */
-    private ThreadUtil() {
+    protected ThreadUtil() {
     }
 
     /**

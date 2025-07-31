@@ -31,7 +31,7 @@ public abstract class UuidUtil {
     /**
      * Do not instantiate.
      */
-    private UuidUtil() {
+    protected UuidUtil() {
     }
 
     private static final byte[] DEFAULT_ADDRESS = new byte[] { (byte) 127, (byte) 0, (byte) 0, (byte) 1 };

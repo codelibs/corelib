@@ -30,7 +30,7 @@ public abstract class IntegerConversionUtil {
     /**
      * Do not instantiate.
      */
-    private IntegerConversionUtil() {
+    protected IntegerConversionUtil() {
     }
 
     /**

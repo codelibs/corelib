@@ -63,7 +63,7 @@ public abstract class CollectionsUtil {
     /**
      * Do not instantiate.
      */
-    private CollectionsUtil() {
+    protected CollectionsUtil() {
     }
 
     /**

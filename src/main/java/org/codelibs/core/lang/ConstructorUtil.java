@@ -35,7 +35,7 @@ public abstract class ConstructorUtil {
     /**
      * Do not instantiate.
      */
-    private ConstructorUtil() {
+    protected ConstructorUtil() {
     }
 
     /**

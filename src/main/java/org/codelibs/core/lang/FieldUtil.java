@@ -35,7 +35,7 @@ public abstract class FieldUtil {
     /**
      * Do not instantiate.
      */
-    private FieldUtil() {
+    protected FieldUtil() {
     }
 
     /**

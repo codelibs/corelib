@@ -42,7 +42,7 @@ public abstract class DomUtil {
     /**
      * Do not instantiate.
      */
-    private DomUtil() {
+    protected DomUtil() {
     }
 
     /**

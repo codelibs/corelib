@@ -41,7 +41,7 @@ public abstract class PropertiesUtil {
     /**
      * Do not instantiate.
      */
-    private PropertiesUtil() {
+    protected PropertiesUtil() {
     }
 
     /**

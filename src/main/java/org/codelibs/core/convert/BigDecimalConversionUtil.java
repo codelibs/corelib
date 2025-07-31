@@ -30,7 +30,7 @@ public abstract class BigDecimalConversionUtil {
     /**
      * Do not instantiate.
      */
-    private BigDecimalConversionUtil() {
+    protected BigDecimalConversionUtil() {
     }
 
     /**

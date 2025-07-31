@@ -33,7 +33,7 @@ public abstract class PreparedStatementUtil {
     /**
      * Do not instantiate.
      */
-    private PreparedStatementUtil() {
+    protected PreparedStatementUtil() {
     }
 
     /**

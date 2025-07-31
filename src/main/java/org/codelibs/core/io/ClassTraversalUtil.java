@@ -39,7 +39,7 @@ public abstract class ClassTraversalUtil {
     /**
      * Do not instantiate.
      */
-    private ClassTraversalUtil() {
+    protected ClassTraversalUtil() {
     }
 
     /** The file extension for class files. */

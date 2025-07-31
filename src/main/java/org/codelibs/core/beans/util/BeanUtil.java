@@ -83,7 +83,7 @@ public abstract class BeanUtil {
     /**
      * Do not instantiate.
      */
-    private BeanUtil() {
+    protected BeanUtil() {
     }
 
     /** Default options */

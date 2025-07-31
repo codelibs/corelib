@@ -36,7 +36,7 @@ public abstract class DriverManagerUtil {
     /**
      * Do not instantiate.
      */
-    private DriverManagerUtil() {
+    protected DriverManagerUtil() {
     }
 
     /**

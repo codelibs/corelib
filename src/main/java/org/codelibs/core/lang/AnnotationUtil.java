@@ -35,7 +35,7 @@ public abstract class AnnotationUtil {
     /**
      * Do not instantiate.
      */
-    private AnnotationUtil() {
+    protected AnnotationUtil() {
     }
 
     /**

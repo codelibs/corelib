@@ -28,7 +28,7 @@ public abstract class LocaleUtil {
     /**
      * Do not instantiate.
      */
-    private LocaleUtil() {
+    protected LocaleUtil() {
     }
 
     /**

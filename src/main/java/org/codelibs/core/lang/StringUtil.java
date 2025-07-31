@@ -32,7 +32,7 @@ public abstract class StringUtil {
     /**
      * Do not instantiate.
      */
-    private StringUtil() {
+    protected StringUtil() {
     }
 
     /**

@@ -37,7 +37,7 @@ public abstract class ResourceBundleUtil {
     /**
      * Do not instantiate.
      */
-    private ResourceBundleUtil() {
+    protected ResourceBundleUtil() {
     }
 
     /**

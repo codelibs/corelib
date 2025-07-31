@@ -36,7 +36,7 @@ public abstract class DecimalFormatSymbolsUtil {
     /**
      * Do not instantiate.
      */
-    private DecimalFormatSymbolsUtil() {
+    protected DecimalFormatSymbolsUtil() {
     }
 
     /**

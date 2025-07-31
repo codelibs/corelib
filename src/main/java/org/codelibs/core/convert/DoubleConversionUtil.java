@@ -30,7 +30,7 @@ public abstract class DoubleConversionUtil {
     /**
      * Do not instantiate.
      */
-    private DoubleConversionUtil() {
+    protected DoubleConversionUtil() {
     }
 
     /**

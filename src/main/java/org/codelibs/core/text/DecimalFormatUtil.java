@@ -33,7 +33,7 @@ public abstract class DecimalFormatUtil {
     /**
      * Do not instantiate.
      */
-    private DecimalFormatUtil() {
+    protected DecimalFormatUtil() {
     }
 
     /**

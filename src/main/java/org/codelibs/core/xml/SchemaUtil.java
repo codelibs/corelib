@@ -37,7 +37,7 @@ public abstract class SchemaUtil {
     /**
      * Do not instantiate.
      */
-    private SchemaUtil() {
+    protected SchemaUtil() {
     }
 
     /**

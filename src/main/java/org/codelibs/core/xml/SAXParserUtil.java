@@ -39,7 +39,7 @@ public abstract class SAXParserUtil {
     /**
      * Do not instantiate.
      */
-    private SAXParserUtil() {
+    protected SAXParserUtil() {
     }
 
     /**

@@ -38,7 +38,7 @@ public abstract class WriterUtil {
     /**
      * Do not instantiate.
      */
-    private WriterUtil() {
+    protected WriterUtil() {
     }
 
     /**

@@ -43,7 +43,7 @@ public abstract class ZipFileUtil {
     /**
      * Do not instantiate.
      */
-    private ZipFileUtil() {
+    protected ZipFileUtil() {
     }
 
     /**

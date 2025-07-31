@@ -39,7 +39,7 @@ public abstract class ResourceUtil {
     /**
      * Do not instantiate.
      */
-    private ResourceUtil() {
+    protected ResourceUtil() {
     }
 
     /**

@@ -58,7 +58,7 @@ public abstract class ParameterizedClassDescFactory {
     /**
      * Do not instantiate.
      */
-    private ParameterizedClassDescFactory() {
+    protected ParameterizedClassDescFactory() {
     }
 
     /**
