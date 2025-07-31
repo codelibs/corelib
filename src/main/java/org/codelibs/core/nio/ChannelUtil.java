@@ -35,7 +35,7 @@ public abstract class ChannelUtil {
     /**
      * Do not instantiate.
      */
-    private ChannelUtil() {
+    protected ChannelUtil() {
     }
 
     /**

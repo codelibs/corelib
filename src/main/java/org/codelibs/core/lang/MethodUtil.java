@@ -36,7 +36,7 @@ public abstract class MethodUtil {
     /**
      * Do not instantiate.
      */
-    private MethodUtil() {
+    protected MethodUtil() {
     }
 
     /**

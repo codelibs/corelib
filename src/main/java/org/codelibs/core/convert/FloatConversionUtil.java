@@ -30,7 +30,7 @@ public abstract class FloatConversionUtil {
     /**
      * Do not instantiate.
      */
-    private FloatConversionUtil() {
+    protected FloatConversionUtil() {
     }
 
     /**

@@ -30,7 +30,7 @@ public abstract class ShortConversionUtil {
     /**
      * Do not instantiate.
      */
-    private ShortConversionUtil() {
+    protected ShortConversionUtil() {
     }
 
     /**

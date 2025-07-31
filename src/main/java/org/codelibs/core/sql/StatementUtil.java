@@ -38,7 +38,7 @@ public abstract class StatementUtil {
     /**
      * Do not instantiate.
      */
-    private StatementUtil() {
+    protected StatementUtil() {
     }
 
     /**

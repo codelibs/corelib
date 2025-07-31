@@ -119,7 +119,7 @@ public abstract class CopyUtil {
     /**
      * Do not instantiate.
      */
-    private CopyUtil() {
+    protected CopyUtil() {
     }
 
     /** Buffer size used for copying. */

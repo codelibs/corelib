@@ -42,7 +42,7 @@ public abstract class ClassUtil {
     /**
      * Do not instantiate.
      */
-    private ClassUtil() {
+    protected ClassUtil() {
     }
 
     /** Map from wrapper types to primitive types */

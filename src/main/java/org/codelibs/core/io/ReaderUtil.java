@@ -39,7 +39,7 @@ public abstract class ReaderUtil {
     /**
      * Do not instantiate.
      */
-    private ReaderUtil() {
+    protected ReaderUtil() {
     }
 
     /** Default buffer size */

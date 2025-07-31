@@ -107,7 +107,7 @@ public abstract class DateConversionUtil {
     /**
      * Do not instantiate.
      */
-    private DateConversionUtil() {
+    protected DateConversionUtil() {
     }
 
     /** Array of styles held by {@link DateFormat}. */

@@ -31,7 +31,7 @@ public abstract class CalendarConversionUtil {
     /**
      * Do not instantiate.
      */
-    private CalendarConversionUtil() {
+    protected CalendarConversionUtil() {
     }
 
     /**

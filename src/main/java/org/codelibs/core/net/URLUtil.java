@@ -43,7 +43,7 @@ public abstract class URLUtil {
     /**
      * Do not instantiate.
      */
-    private URLUtil() {
+    protected URLUtil() {
     }
 
     /** Map for normalizing protocols */

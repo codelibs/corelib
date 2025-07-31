@@ -35,7 +35,7 @@ public abstract class DisposableUtil {
     /**
      * Do not instantiate.
      */
-    private DisposableUtil() {
+    protected DisposableUtil() {
     }
 
     /** Registered {@link Disposable} */

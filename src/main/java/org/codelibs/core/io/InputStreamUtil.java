@@ -35,7 +35,7 @@ public abstract class InputStreamUtil {
     /**
      * Do not instantiate.
      */
-    private InputStreamUtil() {
+    protected InputStreamUtil() {
     }
 
     /** Default buffer size. */

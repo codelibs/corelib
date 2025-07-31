@@ -36,7 +36,7 @@ public abstract class ResultSetUtil {
     /**
      * Do not instantiate.
      */
-    private ResultSetUtil() {
+    protected ResultSetUtil() {
     }
 
     /**

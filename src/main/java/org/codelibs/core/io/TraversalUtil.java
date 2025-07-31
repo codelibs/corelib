@@ -69,7 +69,7 @@ public abstract class TraversalUtil {
     /**
      * Do not instantiate.
      */
-    private TraversalUtil() {
+    protected TraversalUtil() {
     }
 
     /** An empty array of {@link Traverser}. */

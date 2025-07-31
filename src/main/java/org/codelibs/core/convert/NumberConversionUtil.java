@@ -33,7 +33,7 @@ public abstract class NumberConversionUtil {
     /**
      * Do not instantiate.
      */
-    private NumberConversionUtil() {
+    protected NumberConversionUtil() {
     }
 
     /**

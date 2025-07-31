@@ -28,7 +28,7 @@ public abstract class Base64Util {
     /**
      * Do not instantiate.
      */
-    private Base64Util() {
+    protected Base64Util() {
     }
 
     private static final char[] ENCODE_TABLE = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',

@@ -35,7 +35,7 @@ public abstract class DocumentBuilderFactoryUtil {
     /**
      * Do not instantiate.
      */
-    private DocumentBuilderFactoryUtil() {
+    protected DocumentBuilderFactoryUtil() {
     }
 
     /**

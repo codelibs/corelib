@@ -30,7 +30,7 @@ public abstract class ByteConversionUtil {
     /**
      * Do not instantiate.
      */
-    private ByteConversionUtil() {
+    protected ByteConversionUtil() {
     }
 
     /**

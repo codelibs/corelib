@@ -34,7 +34,7 @@ public abstract class MessageFormatter {
     /**
      * Do not instantiate.
      */
-    private MessageFormatter() {
+    protected MessageFormatter() {
     }
 
     /** Length of the numeric part of the message code */

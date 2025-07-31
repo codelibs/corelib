@@ -30,7 +30,7 @@ public abstract class LongConversionUtil {
     /**
      * Do not instantiate.
      */
-    private LongConversionUtil() {
+    protected LongConversionUtil() {
     }
 
     /**

@@ -32,7 +32,7 @@ public abstract class CloseableUtil {
     /**
      * Do not instantiate.
      */
-    private CloseableUtil() {
+    protected CloseableUtil() {
     }
 
     private static final Logger logger = Logger.getLogger(CloseableUtil.class);

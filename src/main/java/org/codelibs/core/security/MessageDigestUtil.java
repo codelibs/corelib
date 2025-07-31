@@ -35,7 +35,7 @@ public abstract class MessageDigestUtil {
     /**
      * Do not instantiate.
      */
-    private MessageDigestUtil() {
+    protected MessageDigestUtil() {
     }
 
     /**

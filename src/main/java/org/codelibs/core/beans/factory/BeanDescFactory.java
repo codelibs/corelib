@@ -47,7 +47,7 @@ public abstract class BeanDescFactory {
     /**
      * Do not instantiate.
      */
-    private BeanDescFactory() {
+    protected BeanDescFactory() {
     }
 
     /** True if initialized */

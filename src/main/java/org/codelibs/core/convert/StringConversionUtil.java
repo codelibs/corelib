@@ -32,7 +32,7 @@ public abstract class StringConversionUtil {
     /**
      * Do not instantiate.
      */
-    private StringConversionUtil() {
+    protected StringConversionUtil() {
     }
 
     /** WAVE DASH */

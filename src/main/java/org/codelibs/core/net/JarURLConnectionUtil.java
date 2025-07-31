@@ -33,7 +33,7 @@ public abstract class JarURLConnectionUtil {
     /**
      * Do not instantiate.
      */
-    private JarURLConnectionUtil() {
+    protected JarURLConnectionUtil() {
     }
 
     /**

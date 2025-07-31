@@ -37,7 +37,7 @@ public abstract class ZipInputStreamUtil {
     /**
      * Do not instantiate.
      */
-    private ZipInputStreamUtil() {
+    protected ZipInputStreamUtil() {
     }
 
     /**

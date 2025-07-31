@@ -42,7 +42,7 @@ public abstract class ResourceTraversalUtil {
     /**
      * Do not instantiate.
      */
-    private ResourceTraversalUtil() {
+    protected ResourceTraversalUtil() {
     }
 
     /**

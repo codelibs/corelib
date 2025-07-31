@@ -40,7 +40,7 @@ public abstract class ClassLoaderUtil {
     /**
      * Do not instantiate.
      */
-    private ClassLoaderUtil() {
+    protected ClassLoaderUtil() {
     }
 
     /**

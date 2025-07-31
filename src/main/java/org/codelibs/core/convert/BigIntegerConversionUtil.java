@@ -27,7 +27,7 @@ public abstract class BigIntegerConversionUtil {
     /**
      * Do not instantiate.
      */
-    private BigIntegerConversionUtil() {
+    protected BigIntegerConversionUtil() {
     }
 
     /**

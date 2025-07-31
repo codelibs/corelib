@@ -43,7 +43,7 @@ public abstract class JarFileUtil {
     /**
      * Do not instantiate.
      */
-    private JarFileUtil() {
+    protected JarFileUtil() {
     }
 
     private static final Logger logger = Logger.getLogger(JarFileUtil.class);

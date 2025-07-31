@@ -32,7 +32,7 @@ public abstract class SchemaFactoryUtil {
     /**
      * Do not instantiate.
      */
-    private SchemaFactoryUtil() {
+    protected SchemaFactoryUtil() {
     }
 
     /**

@@ -25,7 +25,7 @@ public abstract class BooleanConversionUtil {
     /**
      * Do not instantiate.
      */
-    private BooleanConversionUtil() {
+    protected BooleanConversionUtil() {
     }
 
     /**

@@ -38,7 +38,7 @@ public abstract class SAXParserFactoryUtil {
     /**
      * Do not instantiate.
      */
-    private SAXParserFactoryUtil() {
+    protected SAXParserFactoryUtil() {
     }
 
     /**

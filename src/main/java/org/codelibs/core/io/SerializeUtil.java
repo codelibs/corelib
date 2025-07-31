@@ -37,7 +37,7 @@ public abstract class SerializeUtil {
     /**
      * Do not instantiate.
      */
-    private SerializeUtil() {
+    protected SerializeUtil() {
     }
 
     private static final int BYTE_ARRAY_SIZE = 8 * 1024;

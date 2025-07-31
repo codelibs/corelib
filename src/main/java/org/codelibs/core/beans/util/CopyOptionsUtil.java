@@ -48,7 +48,7 @@ public abstract class CopyOptionsUtil {
     /**
      * Do not instantiate.
      */
-    private CopyOptionsUtil() {
+    protected CopyOptionsUtil() {
     }
 
     /**

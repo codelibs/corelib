@@ -86,7 +86,7 @@ public abstract class TimestampConversionUtil {
     /**
      * Do not instantiate.
      */
-    private TimestampConversionUtil() {
+    protected TimestampConversionUtil() {
     }
 
     /** Array of styles held by {@link DateFormat} */

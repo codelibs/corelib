@@ -31,7 +31,7 @@ public abstract class ModifierUtil {
     /**
      * Do not instantiate.
      */
-    private ModifierUtil() {
+    protected ModifierUtil() {
     }
 
     /**

@@ -35,7 +35,7 @@ public abstract class InitialContextUtil {
     /**
      * Do not instantiate.
      */
-    private InitialContextUtil() {
+    protected InitialContextUtil() {
     }
 
     /**

@@ -34,7 +34,7 @@ public abstract class OutputStreamUtil {
     /**
      * Do not instantiate.
      */
-    private OutputStreamUtil() {
+    protected OutputStreamUtil() {
     }
 
     /**

@@ -37,7 +37,7 @@ public abstract class DocumentBuilderUtil {
     /**
      * Do not instantiate.
      */
-    private DocumentBuilderUtil() {
+    protected DocumentBuilderUtil() {
     }
 
     /**

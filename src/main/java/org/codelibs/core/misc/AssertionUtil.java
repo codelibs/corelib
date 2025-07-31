@@ -38,7 +38,7 @@ public abstract class AssertionUtil {
     /**
      * Do not instantiate.
      */
-    private AssertionUtil() {
+    protected AssertionUtil() {
     }
 
     /**

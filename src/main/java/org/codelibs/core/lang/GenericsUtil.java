@@ -42,7 +42,7 @@ public abstract class GenericsUtil {
     /**
      * Do not instantiate.
      */
-    private GenericsUtil() {
+    protected GenericsUtil() {
     }
 
     /**

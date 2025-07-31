@@ -27,7 +27,7 @@ public abstract class BinaryConversionUtil {
     /**
      * Do not instantiate.
      */
-    private BinaryConversionUtil() {
+    protected BinaryConversionUtil() {
     }
 
     /**
