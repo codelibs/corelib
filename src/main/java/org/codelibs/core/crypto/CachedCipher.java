@@ -38,25 +38,52 @@ import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
 import org.codelibs.core.misc.Base64Util;
 
 /**
- * A utility class for encrypting and decrypting data using a cached {@link Cipher} instance.
+ * A high-performance utility class for encrypting and decrypting data using cached {@link Cipher} instances.
  * <p>
- * <strong>SECURITY WARNING:</strong> This class has several security limitations:
+ * This class provides efficient encryption/decryption by pooling and reusing cipher instances,
+ * reducing the overhead of repeated cipher initialization. It supports both string-based keys
+ * and {@link Key} objects, with configurable algorithms and character encodings.
+ * </p>
+ * <p>
+ * <strong>Key Features:</strong>
  * </p>
  * <ul>
- * <li>Does not use Initialization Vectors (IV), making it vulnerable to pattern analysis</li>
- * <li>Does not provide authenticated encryption (no HMAC), vulnerable to tampering</li>
- * <li>Uses older algorithms (Blowfish) instead of modern standards (AES-256-GCM)</li>
- * <li>Reuses cipher instances without proper state management</li>
+ * <li>Thread-safe cipher pooling using {@link ConcurrentLinkedQueue}</li>
+ * <li>Configurable encryption algorithms (default: Blowfish)</li>
+ * <li>Proper charset handling for key generation (UTF-8 by default)</li>
+ * <li>Base64 encoding for text operations</li>
  * </ul>
  * <p>
- * <strong>Recommendation:</strong> For new code, use {@code javax.crypto.Cipher} directly with
- * AES-256-GCM mode, proper key derivation (PBKDF2/Argon2), and authenticated encryption.
- * This class is maintained for backward compatibility only.
+ * <strong>Security Considerations:</strong>
  * </p>
+ * <ul>
+ * <li>Default Blowfish algorithm is suitable for general-purpose encryption</li>
+ * <li>For high-security applications, consider using AES with GCM mode via {@link #setAlgorithm(String)} and {@link #setTransformation(String)}</li>
+ * <li>Ensure keys are securely generated and stored</li>
+ * <li>For production systems with stringent security requirements, consider using authenticated encryption modes</li>
+ * </ul>
+ * <p>
+ * <strong>Usage Example:</strong>
+ * </p>
+ * <pre>
+ * CachedCipher cipher = new CachedCipher();
+ * cipher.setKey("mySecretKey");
  *
- * @deprecated Use standard JCA APIs with AES-GCM mode for better security
+ * // Encrypt text
+ * String encrypted = cipher.encryptoText("Hello World");
+ *
+ * // Decrypt text
+ * String decrypted = cipher.decryptoText(encrypted);
+ *
+ * // For AES encryption
+ * CachedCipher aesCipher = new CachedCipher();
+ * aesCipher.setAlgorithm("AES");
+ * aesCipher.setTransformation("AES");
+ * aesCipher.setKey("0123456789abcdef"); // 16-byte key for AES-128
+ * </pre>
+ *
+ * @author higa
  */
-@Deprecated(since = "0.7.1")
 public class CachedCipher {
 
     /**
