@@ -39,7 +39,24 @@ import org.codelibs.core.misc.Base64Util;
 
 /**
  * A utility class for encrypting and decrypting data using a cached {@link Cipher} instance.
+ * <p>
+ * <strong>SECURITY WARNING:</strong> This class has several security limitations:
+ * </p>
+ * <ul>
+ * <li>Does not use Initialization Vectors (IV), making it vulnerable to pattern analysis</li>
+ * <li>Does not provide authenticated encryption (no HMAC), vulnerable to tampering</li>
+ * <li>Uses older algorithms (Blowfish) instead of modern standards (AES-256-GCM)</li>
+ * <li>Reuses cipher instances without proper state management</li>
+ * </ul>
+ * <p>
+ * <strong>Recommendation:</strong> For new code, use {@code javax.crypto.Cipher} directly with
+ * AES-256-GCM mode, proper key derivation (PBKDF2/Argon2), and authenticated encryption.
+ * This class is maintained for backward compatibility only.
+ * </p>
+ *
+ * @deprecated Use standard JCA APIs with AES-GCM mode for better security
  */
+@Deprecated(since = "0.7.1")
 public class CachedCipher {
 
     /**
@@ -50,17 +67,22 @@ public class CachedCipher {
 
     private static final String BLOWFISH = "Blowfish";
 
-    private static final String RSA = "RSA";
+    private static final String AES = "AES";
 
     /**
      * The algorithm to use for the cipher.
+     * Default is Blowfish for backward compatibility.
      */
     protected String algorithm = BLOWFISH;
 
     /**
-     * The transformation to use for the cipher.
+     * The transformation to use for the cipher when using Key objects.
+     * Default is Blowfish to match the algorithm default.
+     * <p>
+     * Note: For better security, consider using "AES/GCM/NoPadding" with proper IV handling.
+     * </p>
      */
-    protected String transformation = RSA;
+    protected String transformation = BLOWFISH;
 
     /**
      * The key to use for encryption/decryption.
@@ -212,8 +234,8 @@ public class CachedCipher {
     protected Cipher pollEncryptoCipher() {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
+                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.ENCRYPT_MODE, sksSpec);
             } catch (final InvalidKeyException e) {
@@ -222,6 +244,8 @@ public class CachedCipher {
                 throw new NoSuchAlgorithmRuntimeException(e);
             } catch (final NoSuchPaddingException e) {
                 throw new NoSuchPaddingRuntimeException(e);
+            } catch (final UnsupportedEncodingException e) {
+                throw new UnsupportedEncodingRuntimeException(e);
             }
         }
         return cipher;
@@ -269,8 +293,8 @@ public class CachedCipher {
     protected Cipher pollDecryptoCipher() {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
+                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.DECRYPT_MODE, sksSpec);
             } catch (final InvalidKeyException e) {
@@ -279,6 +303,8 @@ public class CachedCipher {
                 throw new NoSuchAlgorithmRuntimeException(e);
             } catch (final NoSuchPaddingException e) {
                 throw new NoSuchPaddingRuntimeException(e);
+            } catch (final UnsupportedEncodingException e) {
+                throw new UnsupportedEncodingRuntimeException(e);
             }
         }
         return cipher;

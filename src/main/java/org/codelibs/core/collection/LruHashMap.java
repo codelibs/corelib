@@ -21,6 +21,22 @@ import java.util.Map;
 
 /**
  * {@link HashMap} with an upper limit on the number of entries. When a new entry is added, the oldest entry is discarded using LRU if the limit is exceeded.
+ * <p>
+ * <strong>Thread-Safety:</strong> This class is <strong>NOT thread-safe</strong>.
+ * It extends {@link LinkedHashMap} without synchronization. If multiple threads access
+ * an instance concurrently, and at least one thread modifies the map structurally,
+ * it must be synchronized externally.
+ * </p>
+ * <p>
+ * For thread-safe usage, wrap with {@link java.util.Collections#synchronizedMap(Map)}:
+ * </p>
+ * <pre>
+ * Map&lt;K, V&gt; syncMap = Collections.synchronizedMap(new LruHashMap&lt;&gt;(100));
+ * </pre>
+ * <p>
+ * Alternatively, for high-concurrency scenarios, consider implementing a custom
+ * LRU cache using {@link java.util.concurrent.ConcurrentHashMap} with an eviction strategy.
+ * </p>
  *
  * @author koichik
  * @param <K> the key type

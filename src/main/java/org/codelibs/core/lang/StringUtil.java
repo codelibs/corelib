@@ -50,21 +50,6 @@ public abstract class StringUtil {
      */
     public static final String[] EMPTY_STRINGS = new String[0];
 
-    static Object javaLangAccess = null;
-
-    static Method newStringUnsafeMethod = null;
-
-    static {
-        try {
-            final Class<?> sharedSecretsClass = Class.forName("sun.misc.SharedSecrets");
-            javaLangAccess = sharedSecretsClass.getDeclaredMethod("getJavaLangAccess").invoke(null);
-            final Class<?> javaLangAccessClass = Class.forName("sun.misc.JavaLangAccess");
-            newStringUnsafeMethod = javaLangAccessClass.getMethod("newStringUnsafe", char[].class);
-        } catch (final Throwable t) {
-            // ignore
-            // t.printStackTrace();
-        }
-    }
 
     /**
      * Checks if the string is empty or null.
@@ -720,26 +705,19 @@ public abstract class StringUtil {
     }
 
     /**
-     * Creates a new String from a char array without copying the array.
+     * Creates a new String from a char array.
      * <p>
-     * This method uses internal JDK APIs and may not be available in all Java versions.
-     * If the internal API is not available, it falls back to the standard String constructor.
+     * Note: This method no longer uses internal JDK APIs for safety and compatibility.
+     * It now uses the standard String constructor.
      * </p>
      *
      * @param chars
      *            the char array
-     * @return a new String
+     * @return a new String, or null if the input is null
      */
     public static String newStringUnsafe(final char[] chars) {
         if (chars == null) {
             return null;
-        }
-        if (newStringUnsafeMethod != null) {
-            try {
-                return (String) newStringUnsafeMethod.invoke(javaLangAccess, chars);
-            } catch (final Throwable t) {
-                // ignore
-            }
         }
         return new String(chars);
     }

@@ -30,6 +30,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.codelibs.core.exception.IORuntimeException;
 import org.codelibs.core.net.URLUtil;
@@ -38,6 +39,11 @@ import org.codelibs.core.timer.TimeoutManager;
 
 /**
  * Utility class for handling {@link File}.
+ * <p>
+ * <strong>SECURITY NOTE:</strong> When accepting file paths from untrusted sources,
+ * always validate them using {@link #isPathSafe(Path, Path)} to prevent path traversal attacks.
+ * Methods that accept path strings do not perform automatic validation to maintain backward compatibility.
+ * </p>
  *
  * @author higa
  */
@@ -57,6 +63,61 @@ public abstract class FileUtil {
 
     /** Max Buffer Size */
     protected static final int MAX_BUF_SIZE = 10 * 1024 * 1024; // 10m
+
+    /**
+     * Validates that a given path is safe and does not attempt path traversal attacks.
+     * <p>
+     * This method checks if the resolved absolute path starts with the allowed base directory,
+     * preventing access to files outside the intended directory through path traversal
+     * techniques like "../../../etc/passwd".
+     * </p>
+     * <p>
+     * Example usage:
+     * </p>
+     * <pre>
+     * Path baseDir = Paths.get("/var/app/data");
+     * Path userPath = Paths.get(userInput);
+     * if (!FileUtil.isPathSafe(userPath, baseDir)) {
+     *     throw new SecurityException("Path traversal attempt detected");
+     * }
+     * </pre>
+     *
+     * @param pathToCheck the path to validate (must not be {@literal null})
+     * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
+     * @return true if the path is safe (within the base directory), false otherwise
+     * @throws IORuntimeException if an I/O error occurs during path resolution
+     */
+    public static boolean isPathSafe(final Path pathToCheck, final Path baseDirectory) {
+        assertArgumentNotNull("pathToCheck", pathToCheck);
+        assertArgumentNotNull("baseDirectory", baseDirectory);
+
+        try {
+            final Path normalizedPath = pathToCheck.toAbsolutePath().normalize();
+            final Path normalizedBase = baseDirectory.toAbsolutePath().normalize();
+            return normalizedPath.startsWith(normalizedBase);
+        } catch (final Exception e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    /**
+     * Validates that a given file is safe and does not attempt path traversal attacks.
+     * <p>
+     * This is a convenience method that converts File objects to Path and calls
+     * {@link #isPathSafe(Path, Path)}.
+     * </p>
+     *
+     * @param fileToCheck the file to validate (must not be {@literal null})
+     * @param baseDirectory the base directory that the file must be within (must not be {@literal null})
+     * @return true if the file is safe (within the base directory), false otherwise
+     * @throws IORuntimeException if an I/O error occurs during path resolution
+     */
+    public static boolean isPathSafe(final File fileToCheck, final File baseDirectory) {
+        assertArgumentNotNull("fileToCheck", fileToCheck);
+        assertArgumentNotNull("baseDirectory", baseDirectory);
+
+        return isPathSafe(fileToCheck.toPath(), baseDirectory.toPath());
+    }
 
     /**
      * Returns the canonical path string for this abstract pathname.
@@ -92,10 +153,17 @@ public abstract class FileUtil {
 
     /**
      * Reads the contents of a file into a byte array and returns it.
+     * <p>
+     * <strong>Note:</strong> This method loads the entire file into memory.
+     * For files larger than {@value #MAX_BUF_SIZE} bytes (10MB), an
+     * {@link IORuntimeException} will be thrown to prevent OutOfMemoryError.
+     * For large files, use streaming APIs instead.
+     * </p>
      *
      * @param file
      *            The file. Must not be {@literal null}.
      * @return A byte array containing the contents of the file.
+     * @throws IORuntimeException if the file is larger than {@value #MAX_BUF_SIZE} bytes
      */
     public static byte[] readBytes(final File file) {
         assertArgumentNotNull("file", file);
@@ -103,7 +171,13 @@ public abstract class FileUtil {
         final FileInputStream is = InputStreamUtil.create(file);
         try {
             final FileChannel channel = is.getChannel();
-            final ByteBuffer buffer = ByteBuffer.allocate((int) ChannelUtil.size(channel));
+            final long fileSize = ChannelUtil.size(channel);
+
+            if (fileSize > MAX_BUF_SIZE) {
+                throw new IORuntimeException("File too large: " + fileSize + " bytes (max: " + MAX_BUF_SIZE + " bytes). Use streaming APIs for large files.");
+            }
+
+            final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
             ChannelUtil.read(channel, buffer);
             return buffer.array();
         } finally {
@@ -230,10 +304,15 @@ public abstract class FileUtil {
             while ((len = reader.read(buf, size, bufferSize - size)) != -1) {
                 size += len;
                 if (size == bufferSize) {
-                    final char[] newBuf = new char[bufferSize + initialCapacity];
+                    // Enforce MAX_BUF_SIZE to prevent unbounded memory growth
+                    final int newBufferSize = bufferSize + initialCapacity;
+                    if (newBufferSize > MAX_BUF_SIZE) {
+                        throw new IORuntimeException("Content too large: exceeds maximum buffer size of " + MAX_BUF_SIZE + " bytes. Use streaming APIs for large content.");
+                    }
+                    final char[] newBuf = new char[newBufferSize];
                     System.arraycopy(buf, 0, newBuf, 0, bufferSize);
                     buf = newBuf;
-                    bufferSize += initialCapacity;
+                    bufferSize = newBufferSize;
                 }
             }
             return new String(buf, 0, size);
