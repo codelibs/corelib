@@ -85,19 +85,14 @@ public abstract class FileUtil {
      * @param pathToCheck the path to validate (must not be {@literal null})
      * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
      * @return true if the path is safe (within the base directory), false otherwise
-     * @throws IORuntimeException if an I/O error occurs during path resolution
      */
     public static boolean isPathSafe(final Path pathToCheck, final Path baseDirectory) {
         assertArgumentNotNull("pathToCheck", pathToCheck);
         assertArgumentNotNull("baseDirectory", baseDirectory);
 
-        try {
-            final Path normalizedPath = pathToCheck.toAbsolutePath().normalize();
-            final Path normalizedBase = baseDirectory.toAbsolutePath().normalize();
-            return normalizedPath.startsWith(normalizedBase);
-        } catch (final Exception e) {
-            throw new IORuntimeException(e);
-        }
+        final Path normalizedPath = pathToCheck.toAbsolutePath().normalize();
+        final Path normalizedBase = baseDirectory.toAbsolutePath().normalize();
+        return normalizedPath.startsWith(normalizedBase);
     }
 
     /**
@@ -110,7 +105,6 @@ public abstract class FileUtil {
      * @param fileToCheck the file to validate (must not be {@literal null})
      * @param baseDirectory the base directory that the file must be within (must not be {@literal null})
      * @return true if the file is safe (within the base directory), false otherwise
-     * @throws IORuntimeException if an I/O error occurs during path resolution
      */
     public static boolean isPathSafe(final File fileToCheck, final File baseDirectory) {
         assertArgumentNotNull("fileToCheck", fileToCheck);
@@ -174,7 +168,7 @@ public abstract class FileUtil {
             final long fileSize = ChannelUtil.size(channel);
 
             if (fileSize > MAX_BUF_SIZE) {
-                throw new IORuntimeException("File too large: " + fileSize + " bytes (max: " + MAX_BUF_SIZE + " bytes). Use streaming APIs for large files.");
+                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + MAX_BUF_SIZE + " bytes). Use streaming APIs for large files."));
             }
 
             final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
@@ -307,7 +301,7 @@ public abstract class FileUtil {
                     // Enforce MAX_BUF_SIZE to prevent unbounded memory growth
                     final int newBufferSize = bufferSize + initialCapacity;
                     if (newBufferSize > MAX_BUF_SIZE) {
-                        throw new IORuntimeException("Content too large: exceeds maximum buffer size of " + MAX_BUF_SIZE + " bytes. Use streaming APIs for large content.");
+                        throw new IORuntimeException(new IOException("Content too large: exceeds maximum buffer size of " + MAX_BUF_SIZE + " bytes. Use streaming APIs for large content."));
                     }
                     final char[] newBuf = new char[newBufferSize];
                     System.arraycopy(buf, 0, newBuf, 0, bufferSize);
