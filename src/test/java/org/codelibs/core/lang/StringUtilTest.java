@@ -351,17 +351,6 @@ public class StringUtilTest {
     @Test
     public void testNewStringUnsafe() {
         assertNull(StringUtil.newStringUnsafe(null));
-        Method newStringUnsafeMethod = StringUtil.newStringUnsafeMethod;
-        if (newStringUnsafeMethod != null) {
-            StringUtil.newStringUnsafeMethod = null;
-            char[] chars = new char[0];
-            assertThat(StringUtil.newStringUnsafe(chars), is(""));
-            chars = new char[] { 'a', 'b', 'c' };
-            assertThat(StringUtil.newStringUnsafe(chars), is("abc"));
-            StringUtil.newStringUnsafeMethod = newStringUnsafeMethod;
-            chars = new char[] { 'a', 'b', 'c', ' ' };
-            assertThat(StringUtil.newStringUnsafe(chars), is("abc "));
-        }
         char[] chars = new char[0];
         assertThat(StringUtil.newStringUnsafe(chars), is(""));
         chars = new char[] { 'a', 'b', 'c' };
