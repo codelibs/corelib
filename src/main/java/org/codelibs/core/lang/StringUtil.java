@@ -714,7 +714,14 @@ public abstract class StringUtil {
      * @param chars
      *            the char array
      * @return a new String, or null if the input is null
+     * @deprecated This method originally used internal JDK APIs (sun.misc.SharedSecrets) for
+     *             performance optimization, but those APIs have been removed for safety and
+     *             compatibility with modern Java versions. This method now simply calls
+     *             {@code new String(chars)}, providing no additional value.
+     *             Use the {@link String#String(char[])} constructor directly instead.
+     *             This method will be removed in a future version.
      */
+    @Deprecated
     public static String newStringUnsafe(final char[] chars) {
         if (chars == null) {
             return null;
