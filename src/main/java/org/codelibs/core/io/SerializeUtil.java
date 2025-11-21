@@ -85,13 +85,13 @@ public abstract class SerializeUtil {
         }
 
         // Check against allowed patterns
-        for (String pattern : DEFAULT_ALLOWED_PATTERNS) {
-            if (pattern.endsWith("*")) {
-                String prefix = pattern.substring(0, pattern.length() - 1);
+        for (String allowedPattern : DEFAULT_ALLOWED_PATTERNS) {
+            if (allowedPattern.endsWith("*")) {
+                String prefix = allowedPattern.substring(0, allowedPattern.length() - 1);
                 if (className.startsWith(prefix)) {
                     return ObjectInputFilter.Status.ALLOWED;
                 }
-            } else if (className.equals(pattern)) {
+            } else if (className.equals(allowedPattern)) {
                 return ObjectInputFilter.Status.ALLOWED;
             }
         }
@@ -228,13 +228,13 @@ public abstract class SerializeUtil {
             }
 
             // Check against allowed patterns
-            for (String pattern : allowedPatterns) {
-                if (pattern.endsWith("*")) {
-                    String prefix = pattern.substring(0, pattern.length() - 1);
+            for (String allowedPattern : allowedPatterns) {
+                if (allowedPattern.endsWith("*")) {
+                    String prefix = allowedPattern.substring(0, allowedPattern.length() - 1);
                     if (className.startsWith(prefix)) {
                         return ObjectInputFilter.Status.ALLOWED;
                     }
-                } else if (className.equals(pattern)) {
+                } else if (className.equals(allowedPattern)) {
                     return ObjectInputFilter.Status.ALLOWED;
                 }
             }
