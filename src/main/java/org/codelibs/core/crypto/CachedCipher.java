@@ -38,7 +38,51 @@ import org.codelibs.core.exception.UnsupportedEncodingRuntimeException;
 import org.codelibs.core.misc.Base64Util;
 
 /**
- * A utility class for encrypting and decrypting data using a cached {@link Cipher} instance.
+ * A high-performance utility class for encrypting and decrypting data using cached {@link Cipher} instances.
+ * <p>
+ * This class provides efficient encryption/decryption by pooling and reusing cipher instances,
+ * reducing the overhead of repeated cipher initialization. It supports both string-based keys
+ * and {@link Key} objects, with configurable algorithms and character encodings.
+ * </p>
+ * <p>
+ * <strong>Key Features:</strong>
+ * </p>
+ * <ul>
+ * <li>Thread-safe cipher pooling using {@link ConcurrentLinkedQueue}</li>
+ * <li>Configurable encryption algorithms (default: Blowfish)</li>
+ * <li>Proper charset handling for key generation (UTF-8 by default)</li>
+ * <li>Base64 encoding for text operations</li>
+ * </ul>
+ * <p>
+ * <strong>Security Considerations:</strong>
+ * </p>
+ * <ul>
+ * <li>Default Blowfish algorithm is suitable for general-purpose encryption</li>
+ * <li>For high-security applications, consider using AES with GCM mode via {@link #setAlgorithm(String)} and {@link #setTransformation(String)}</li>
+ * <li>Ensure keys are securely generated and stored</li>
+ * <li>For production systems with stringent security requirements, consider using authenticated encryption modes</li>
+ * </ul>
+ * <p>
+ * <strong>Usage Example:</strong>
+ * </p>
+ * <pre>
+ * CachedCipher cipher = new CachedCipher();
+ * cipher.setKey("mySecretKey");
+ *
+ * // Encrypt text
+ * String encrypted = cipher.encryptText("Hello World");
+ *
+ * // Decrypt text
+ * String decrypted = cipher.decryptText(encrypted);
+ *
+ * // For AES encryption
+ * CachedCipher aesCipher = new CachedCipher();
+ * aesCipher.setAlgorithm("AES");
+ * aesCipher.setTransformation("AES");
+ * aesCipher.setKey("0123456789abcdef"); // 16-byte key for AES-128
+ * </pre>
+ *
+ * @author higa
  */
 public class CachedCipher {
 
@@ -50,17 +94,22 @@ public class CachedCipher {
 
     private static final String BLOWFISH = "Blowfish";
 
-    private static final String RSA = "RSA";
+    private static final String AES = "AES";
 
     /**
      * The algorithm to use for the cipher.
+     * Default is Blowfish for backward compatibility.
      */
     protected String algorithm = BLOWFISH;
 
     /**
-     * The transformation to use for the cipher.
+     * The transformation to use for the cipher when using Key objects.
+     * Default is Blowfish to match the algorithm default.
+     * <p>
+     * Note: For better security, consider using "AES/GCM/NoPadding" with proper IV handling.
+     * </p>
      */
-    protected String transformation = RSA;
+    protected String transformation = BLOWFISH;
 
     /**
      * The key to use for encryption/decryption.
@@ -89,8 +138,45 @@ public class CachedCipher {
      *            the data to encrypt
      * @return the encrypted data
      */
-    public byte[] encrypto(final byte[] data) {
+    public byte[] encrypt(final byte[] data) {
         final Cipher cipher = pollEncryptoCipher();
+        byte[] encrypted;
+        try {
+            encrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerEncryptoCipher(cipher);
+        }
+        return encrypted;
+    }
+
+    /**
+     * Encrypts the given data.
+     *
+     * @param data
+     *            the data to encrypt
+     * @return the encrypted data
+     * @deprecated Use {@link #encrypt(byte[])} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public byte[] encrypto(final byte[] data) {
+        return encrypt(data);
+    }
+
+    /**
+     * Encrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to encrypt
+     * @param key
+     *            the key to use for encryption
+     * @return the encrypted data
+     */
+    public byte[] encrypt(final byte[] data, final Key key) {
+        final Cipher cipher = pollEncryptoCipher(key);
         byte[] encrypted;
         try {
             encrypted = cipher.doFinal(data);
@@ -112,20 +198,11 @@ public class CachedCipher {
      * @param key
      *            the key to use for encryption
      * @return the encrypted data
+     * @deprecated Use {@link #encrypt(byte[], Key)} instead. This method name contains a typo.
      */
+    @Deprecated
     public byte[] encrypto(final byte[] data, final Key key) {
-        final Cipher cipher = pollEncryptoCipher(key);
-        byte[] encrypted;
-        try {
-            encrypted = cipher.doFinal(data);
-        } catch (final IllegalBlockSizeException e) {
-            throw new IllegalBlockSizeRuntimeException(e);
-        } catch (final BadPaddingException e) {
-            throw new BadPaddingRuntimeException(e);
-        } finally {
-            offerEncryptoCipher(cipher);
-        }
-        return encrypted;
+        return encrypt(data, key);
     }
 
     /**
@@ -135,12 +212,25 @@ public class CachedCipher {
      *            the text to encrypt
      * @return the encrypted text
      */
-    public String encryptoText(final String text) {
+    public String encryptText(final String text) {
         try {
-            return Base64Util.encode(encrypto(text.getBytes(charsetName)));
+            return Base64Util.encode(encrypt(text.getBytes(charsetName)));
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }
+    }
+
+    /**
+     * Encrypts the given text.
+     *
+     * @param text
+     *            the text to encrypt
+     * @return the encrypted text
+     * @deprecated Use {@link #encryptText(String)} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public String encryptoText(final String text) {
+        return encryptText(text);
     }
 
     /**
@@ -150,8 +240,45 @@ public class CachedCipher {
      *            the data to decrypt
      * @return the decrypted data
      */
-    public byte[] decrypto(final byte[] data) {
+    public byte[] decrypt(final byte[] data) {
         final Cipher cipher = pollDecryptoCipher();
+        byte[] decrypted;
+        try {
+            decrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerDecryptoCipher(cipher);
+        }
+        return decrypted;
+    }
+
+    /**
+     * Decrypts the given data.
+     *
+     * @param data
+     *            the data to decrypt
+     * @return the decrypted data
+     * @deprecated Use {@link #decrypt(byte[])} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public byte[] decrypto(final byte[] data) {
+        return decrypt(data);
+    }
+
+    /**
+     * Decrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to decrypt
+     * @param key
+     *            the key to use for decryption
+     * @return the decrypted data
+     */
+    public byte[] decrypt(final byte[] data, final Key key) {
+        final Cipher cipher = pollDecryptoCipher(key);
         byte[] decrypted;
         try {
             decrypted = cipher.doFinal(data);
@@ -173,20 +300,11 @@ public class CachedCipher {
      * @param key
      *            the key to use for decryption
      * @return the decrypted data
+     * @deprecated Use {@link #decrypt(byte[], Key)} instead. This method name contains a typo.
      */
+    @Deprecated
     public byte[] decrypto(final byte[] data, final Key key) {
-        final Cipher cipher = pollDecryptoCipher(key);
-        byte[] decrypted;
-        try {
-            decrypted = cipher.doFinal(data);
-        } catch (final IllegalBlockSizeException e) {
-            throw new IllegalBlockSizeRuntimeException(e);
-        } catch (final BadPaddingException e) {
-            throw new BadPaddingRuntimeException(e);
-        } finally {
-            offerDecryptoCipher(cipher);
-        }
-        return decrypted;
+        return decrypt(data, key);
     }
 
     /**
@@ -196,12 +314,25 @@ public class CachedCipher {
      *            the text to decrypt
      * @return the decrypted text
      */
-    public String decryptoText(final String text) {
+    public String decryptText(final String text) {
         try {
-            return new String(decrypto(Base64Util.decode(text)), charsetName);
+            return new String(decrypt(Base64Util.decode(text)), charsetName);
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }
+    }
+
+    /**
+     * Decrypts the given text.
+     *
+     * @param text
+     *            the text to decrypt
+     * @return the decrypted text
+     * @deprecated Use {@link #decryptText(String)} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public String decryptoText(final String text) {
+        return decryptText(text);
     }
 
     /**
@@ -212,8 +343,8 @@ public class CachedCipher {
     protected Cipher pollEncryptoCipher() {
         Cipher cipher = encryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
+                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.ENCRYPT_MODE, sksSpec);
             } catch (final InvalidKeyException e) {
@@ -222,6 +353,8 @@ public class CachedCipher {
                 throw new NoSuchAlgorithmRuntimeException(e);
             } catch (final NoSuchPaddingException e) {
                 throw new NoSuchPaddingRuntimeException(e);
+            } catch (final UnsupportedEncodingException e) {
+                throw new UnsupportedEncodingRuntimeException(e);
             }
         }
         return cipher;
@@ -269,8 +402,8 @@ public class CachedCipher {
     protected Cipher pollDecryptoCipher() {
         Cipher cipher = decryptoQueue.poll();
         if (cipher == null) {
-            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), algorithm);
             try {
+                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
                 cipher = Cipher.getInstance(algorithm);
                 cipher.init(Cipher.DECRYPT_MODE, sksSpec);
             } catch (final InvalidKeyException e) {
@@ -279,6 +412,8 @@ public class CachedCipher {
                 throw new NoSuchAlgorithmRuntimeException(e);
             } catch (final NoSuchPaddingException e) {
                 throw new NoSuchPaddingRuntimeException(e);
+            } catch (final UnsupportedEncodingException e) {
+                throw new UnsupportedEncodingRuntimeException(e);
             }
         }
         return cipher;

@@ -657,7 +657,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
 
         @Override
         public V setValue(final V value) {
-            final V oldValue = value;
+            final V oldValue = this.value;
             this.value = value;
             return oldValue;
         }
