@@ -70,10 +70,10 @@ import org.codelibs.core.misc.Base64Util;
  * cipher.setKey("mySecretKey");
  *
  * // Encrypt text
- * String encrypted = cipher.encryptoText("Hello World");
+ * String encrypted = cipher.encryptText("Hello World");
  *
  * // Decrypt text
- * String decrypted = cipher.decryptoText(encrypted);
+ * String decrypted = cipher.decryptText(encrypted);
  *
  * // For AES encryption
  * CachedCipher aesCipher = new CachedCipher();
@@ -138,8 +138,45 @@ public class CachedCipher {
      *            the data to encrypt
      * @return the encrypted data
      */
-    public byte[] encrypto(final byte[] data) {
+    public byte[] encrypt(final byte[] data) {
         final Cipher cipher = pollEncryptoCipher();
+        byte[] encrypted;
+        try {
+            encrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerEncryptoCipher(cipher);
+        }
+        return encrypted;
+    }
+
+    /**
+     * Encrypts the given data.
+     *
+     * @param data
+     *            the data to encrypt
+     * @return the encrypted data
+     * @deprecated Use {@link #encrypt(byte[])} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public byte[] encrypto(final byte[] data) {
+        return encrypt(data);
+    }
+
+    /**
+     * Encrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to encrypt
+     * @param key
+     *            the key to use for encryption
+     * @return the encrypted data
+     */
+    public byte[] encrypt(final byte[] data, final Key key) {
+        final Cipher cipher = pollEncryptoCipher(key);
         byte[] encrypted;
         try {
             encrypted = cipher.doFinal(data);
@@ -161,20 +198,11 @@ public class CachedCipher {
      * @param key
      *            the key to use for encryption
      * @return the encrypted data
+     * @deprecated Use {@link #encrypt(byte[], Key)} instead. This method name contains a typo.
      */
+    @Deprecated
     public byte[] encrypto(final byte[] data, final Key key) {
-        final Cipher cipher = pollEncryptoCipher(key);
-        byte[] encrypted;
-        try {
-            encrypted = cipher.doFinal(data);
-        } catch (final IllegalBlockSizeException e) {
-            throw new IllegalBlockSizeRuntimeException(e);
-        } catch (final BadPaddingException e) {
-            throw new BadPaddingRuntimeException(e);
-        } finally {
-            offerEncryptoCipher(cipher);
-        }
-        return encrypted;
+        return encrypt(data, key);
     }
 
     /**
@@ -184,12 +212,25 @@ public class CachedCipher {
      *            the text to encrypt
      * @return the encrypted text
      */
-    public String encryptoText(final String text) {
+    public String encryptText(final String text) {
         try {
-            return Base64Util.encode(encrypto(text.getBytes(charsetName)));
+            return Base64Util.encode(encrypt(text.getBytes(charsetName)));
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }
+    }
+
+    /**
+     * Encrypts the given text.
+     *
+     * @param text
+     *            the text to encrypt
+     * @return the encrypted text
+     * @deprecated Use {@link #encryptText(String)} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public String encryptoText(final String text) {
+        return encryptText(text);
     }
 
     /**
@@ -199,8 +240,45 @@ public class CachedCipher {
      *            the data to decrypt
      * @return the decrypted data
      */
-    public byte[] decrypto(final byte[] data) {
+    public byte[] decrypt(final byte[] data) {
         final Cipher cipher = pollDecryptoCipher();
+        byte[] decrypted;
+        try {
+            decrypted = cipher.doFinal(data);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        } finally {
+            offerDecryptoCipher(cipher);
+        }
+        return decrypted;
+    }
+
+    /**
+     * Decrypts the given data.
+     *
+     * @param data
+     *            the data to decrypt
+     * @return the decrypted data
+     * @deprecated Use {@link #decrypt(byte[])} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public byte[] decrypto(final byte[] data) {
+        return decrypt(data);
+    }
+
+    /**
+     * Decrypts the given data with the specified key.
+     *
+     * @param data
+     *            the data to decrypt
+     * @param key
+     *            the key to use for decryption
+     * @return the decrypted data
+     */
+    public byte[] decrypt(final byte[] data, final Key key) {
+        final Cipher cipher = pollDecryptoCipher(key);
         byte[] decrypted;
         try {
             decrypted = cipher.doFinal(data);
@@ -222,20 +300,11 @@ public class CachedCipher {
      * @param key
      *            the key to use for decryption
      * @return the decrypted data
+     * @deprecated Use {@link #decrypt(byte[], Key)} instead. This method name contains a typo.
      */
+    @Deprecated
     public byte[] decrypto(final byte[] data, final Key key) {
-        final Cipher cipher = pollDecryptoCipher(key);
-        byte[] decrypted;
-        try {
-            decrypted = cipher.doFinal(data);
-        } catch (final IllegalBlockSizeException e) {
-            throw new IllegalBlockSizeRuntimeException(e);
-        } catch (final BadPaddingException e) {
-            throw new BadPaddingRuntimeException(e);
-        } finally {
-            offerDecryptoCipher(cipher);
-        }
-        return decrypted;
+        return decrypt(data, key);
     }
 
     /**
@@ -245,12 +314,25 @@ public class CachedCipher {
      *            the text to decrypt
      * @return the decrypted text
      */
-    public String decryptoText(final String text) {
+    public String decryptText(final String text) {
         try {
-            return new String(decrypto(Base64Util.decode(text)), charsetName);
+            return new String(decrypt(Base64Util.decode(text)), charsetName);
         } catch (final UnsupportedEncodingException e) {
             throw new UnsupportedEncodingRuntimeException(e);
         }
+    }
+
+    /**
+     * Decrypts the given text.
+     *
+     * @param text
+     *            the text to decrypt
+     * @return the decrypted text
+     * @deprecated Use {@link #decryptText(String)} instead. This method name contains a typo.
+     */
+    @Deprecated
+    public String decryptoText(final String text) {
+        return decryptText(text);
     }
 
     /**

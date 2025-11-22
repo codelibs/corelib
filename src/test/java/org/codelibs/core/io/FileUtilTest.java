@@ -244,6 +244,101 @@ public class FileUtilTest {
         }
     }
 
+    /**
+     * Test readBytes with custom maxSize - file within limit
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testReadBytes_CustomMaxSize_WithinLimit() throws Exception {
+        final File file = tempFolder.newFile("small.txt");
+        final String content = "Small content";
+        final FileOutputStream out = new FileOutputStream(file);
+        try {
+            out.write(content.getBytes("UTF-8"));
+        } finally {
+            out.close();
+        }
+
+        // Set maxSize larger than file size
+        final byte[] bytes = FileUtil.readBytes(file, 1024);
+        assertThat(new String(bytes, "UTF-8"), is(content));
+    }
+
+    /**
+     * Test readBytes with custom maxSize - file exceeds limit
+     *
+     * @throws Exception
+     */
+    @Test(expected = IORuntimeException.class)
+    public void testReadBytes_CustomMaxSize_ExceedsLimit() throws Exception {
+        final File file = tempFolder.newFile("medium.txt");
+        final byte[] data = new byte[1024]; // 1KB
+        final FileOutputStream out = new FileOutputStream(file);
+        try {
+            out.write(data);
+        } finally {
+            out.close();
+        }
+
+        // Set maxSize smaller than file size (should throw exception)
+        FileUtil.readBytes(file, 512);
+    }
+
+    /**
+     * Test readBytes with custom maxSize of zero
+     *
+     * @throws Exception
+     */
+    @Test(expected = IORuntimeException.class)
+    public void testReadBytes_CustomMaxSize_Zero() throws Exception {
+        final File file = tempFolder.newFile("any.txt");
+        final FileOutputStream out = new FileOutputStream(file);
+        try {
+            out.write("content".getBytes("UTF-8"));
+        } finally {
+            out.close();
+        }
+
+        // Set maxSize to zero (should throw exception for any non-empty file)
+        FileUtil.readBytes(file, 0);
+    }
+
+    /**
+     * Test readBytes with custom maxSize for empty file
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testReadBytes_CustomMaxSize_EmptyFile() throws Exception {
+        final File file = tempFolder.newFile("empty.txt");
+
+        // Empty file should work with any maxSize including 0
+        final byte[] bytes = FileUtil.readBytes(file, 0);
+        assertThat(bytes.length, is(0));
+    }
+
+    /**
+     * Test readBytes with very large custom maxSize
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testReadBytes_CustomMaxSize_VeryLarge() throws Exception {
+        final File file = tempFolder.newFile("test.txt");
+        final String content = "Test content";
+        final FileOutputStream out = new FileOutputStream(file);
+        try {
+            out.write(content.getBytes("UTF-8"));
+        } finally {
+            out.close();
+        }
+
+        // Set maxSize very large
+        final byte[] bytes = FileUtil.readBytes(file, Long.MAX_VALUE);
+        assertThat(new String(bytes, "UTF-8"), is(content));
+    }
+
     private String getPath(final String fileName) {
         return getClass().getName().replace('.', '/').replaceFirst(getClass().getSimpleName(), fileName);
     }

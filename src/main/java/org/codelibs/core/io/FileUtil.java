@@ -160,6 +160,25 @@ public abstract class FileUtil {
      * @throws IORuntimeException if the file is larger than {@value #MAX_BUF_SIZE} bytes
      */
     public static byte[] readBytes(final File file) {
+        return readBytes(file, MAX_BUF_SIZE);
+    }
+
+    /**
+     * Reads the contents of a file into a byte array and returns it with a custom size limit.
+     * <p>
+     * <strong>Note:</strong> This method loads the entire file into memory.
+     * An {@link IORuntimeException} will be thrown if the file exceeds the specified maxSize
+     * to prevent OutOfMemoryError. For large files, use streaming APIs instead.
+     * </p>
+     *
+     * @param file
+     *            The file. Must not be {@literal null}.
+     * @param maxSize
+     *            The maximum file size in bytes that can be read.
+     * @return A byte array containing the contents of the file.
+     * @throws IORuntimeException if the file is larger than maxSize bytes
+     */
+    public static byte[] readBytes(final File file, final long maxSize) {
         assertArgumentNotNull("file", file);
 
         final FileInputStream is = InputStreamUtil.create(file);
@@ -167,8 +186,8 @@ public abstract class FileUtil {
             final FileChannel channel = is.getChannel();
             final long fileSize = ChannelUtil.size(channel);
 
-            if (fileSize > MAX_BUF_SIZE) {
-                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + MAX_BUF_SIZE + " bytes). Use streaming APIs for large files."));
+            if (fileSize > maxSize) {
+                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + maxSize + " bytes). Use streaming APIs for large files."));
             }
 
             final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
