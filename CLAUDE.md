@@ -1,71 +1,71 @@
 # CLAUDE.md - AI Assistant Guide for CodeLibs CoreLib
 
-Java 21ユーティリティライブラリ。Mavenビルドシステム、Apache License 2.0。
+Java 21 utility library. Maven build system, Apache License 2.0.
 
 ## Repository Structure
 
 ```
 src/main/java/org/codelibs/core/
-├── beans/       # Bean操作・イントロスペクション (converter/, factory/, impl/, util/)
-├── collection/  # 拡張コレクション (LruHashMap, CaseInsensitiveMap)
-├── convert/     # 型変換 (*ConversionUtil)
-├── exception/   # ランタイム例外ラッパー
-├── io/          # I/O・リソースユーティリティ
-├── lang/        # リフレクション・言語ユーティリティ
-├── misc/        # AssertionUtil, Base64Util等
-├── text/        # テキスト処理 (JSON, Tokenizer)
-└── ...          # その他 (crypto, log, net, xml, zip等)
-src/test/java/   # テストクラス (mainと同構造)
+├── beans/       # Bean manipulation & introspection (converter/, factory/, impl/, util/)
+├── collection/  # Enhanced collections (LruHashMap, CaseInsensitiveMap)
+├── convert/     # Type conversion (*ConversionUtil)
+├── exception/   # Runtime exception wrappers
+├── io/          # I/O & resource utilities
+├── lang/        # Reflection & language utilities
+├── misc/        # AssertionUtil, Base64Util, etc.
+├── text/        # Text processing (JSON, Tokenizer)
+└── ...          # Others (crypto, log, net, xml, zip, etc.)
+src/test/java/   # Test classes (mirrors main structure)
 ```
 
 ## Development Commands
 
 ```bash
-mvn test                              # テスト実行
-mvn test -Dtest=ClassName#methodName  # 特定テスト実行
-mvn clean package                     # ビルド
-mvn formatter:format                  # コードフォーマット
-mvn license:format                    # ライセンスヘッダー適用
-mvn verify                            # カバレッジレポート生成
+mvn test                              # Run tests
+mvn test -Dtest=ClassName#methodName  # Run specific test
+mvn clean package                     # Build
+mvn formatter:format                  # Format code
+mvn license:format                    # Apply license headers
+mvn verify                            # Generate coverage report
 ```
 
 ## Code Conventions
 
 ### Class Structure
 
-- **ユーティリティクラス**: `abstract`クラス + `protected`コンストラクタ
-- **定数クラス**: 同様のパターン
+- **Utility classes**: `abstract` class + `protected` constructor
+- **Constants classes**: Same pattern
 
 ### Argument Validation
 
-メソッド入口で`AssertionUtil`を使用:
+Use `AssertionUtil` at method entry:
 - `AssertionUtil.assertArgumentNotNull("argName", value)`
 - `AssertionUtil.assertArgumentNotEmpty("argName", value)`
 
 ### Exception Handling
 
-- チェック例外を`org.codelibs.core.exception`のランタイム例外でラップ
-- エラーコード使用 (例: "ECL0008" = null引数)
+- Wrap checked exceptions in runtime exceptions from `org.codelibs.core.exception`
+- Use error codes (e.g., "ECL0008" = null argument)
 
 ### Test Structure
 
-- JUnit 4 + Hamcrestマッチャー
-- テストクラス: `{ClassName}Test.java`
-- テストメソッド: `test{MethodName}`
+- JUnit 4 + Hamcrest matchers
+- Test class: `{ClassName}Test.java`
+- Test method: `test{MethodName}`
 
 ## Naming Conventions
 
-| 種類 | 命名規則 |
-|------|----------|
-| ユーティリティ | `{Feature}Util.java` |
-| 変換 | `{Type}ConversionUtil.java` |
-| 例外 | `{Name}RuntimeException.java` / `Cl{Name}Exception.java` |
-| 実装 | `{Interface}Impl.java` |
+| Type | Pattern |
+|------|---------|
+| Utility | `{Feature}Util.java` |
+| Conversion | `{Type}ConversionUtil.java` |
+| Exception | `{Name}RuntimeException.java` / `Cl{Name}Exception.java` |
+| Implementation | `{Interface}Impl.java` |
 
 ## Important Notes
 
-1. 変更後は必ず `mvn test` を実行
-2. コミット前に `mvn formatter:format` を実行
-3. 新規ファイルには `mvn license:format` でライセンスヘッダー追加
-4. 後方互換性維持 - 削除前に非推奨化
-5. 既存パターンに従う - 類似クラスを参考にする
+1. Always run `mvn test` after changes
+2. Run `mvn formatter:format` before committing
+3. Add license headers to new files with `mvn license:format`
+4. Maintain backwards compatibility - deprecate before removing
+5. Follow existing patterns - study similar classes first
