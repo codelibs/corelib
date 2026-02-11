@@ -39,19 +39,24 @@ public abstract class LocaleUtil {
      * @return {@link Locale}
      */
     public static Locale getLocale(final String localeStr) {
-        // TODO replace with Fess
-        Locale locale = LocaleUtil.getDefault();
-        if (localeStr != null) {
-            final int index = localeStr.indexOf('_');
-            if (index < 0) {
-                locale = new Locale(localeStr);
-            } else {
-                final String language = localeStr.substring(0, index);
-                final String country = localeStr.substring(index + 1);
-                locale = new Locale(language, country);
-            }
+        if (localeStr == null || localeStr.isEmpty()) {
+            return LocaleUtil.getDefault();
         }
-        return locale;
+
+        // Use Java's built-in locale parsing which handles various formats
+        // including language, language_country, and language_country_variant
+        final String[] parts = localeStr.split("_", 3);
+
+        switch (parts.length) {
+        case 1:
+            return new Locale(parts[0]);
+        case 2:
+            return new Locale(parts[0], parts[1]);
+        case 3:
+            return new Locale(parts[0], parts[1], parts[2]);
+        default:
+            return LocaleUtil.getDefault();
+        }
     }
 
     private static Supplier<Locale> defaultLocaleSupplier;

@@ -15,6 +15,8 @@
  */
 package org.codelibs.core.lang;
 
+import java.util.function.LongSupplier;
+
 /**
  * Utility class for system operations.
  *
@@ -108,12 +110,25 @@ public abstract class SystemUtil {
     }
 
     /**
+     * Provider for current time in milliseconds. Can be overridden for testing.
+     */
+    private static LongSupplier timeProvider = System::currentTimeMillis;
+
+    /**
      * Returns the current time in milliseconds.
      *
      * @return the current time in milliseconds
      */
     public static long currentTimeMillis() {
-        // TODO provider
-        return System.currentTimeMillis();
+        return timeProvider.getAsLong();
+    }
+
+    /**
+     * Sets a custom time provider. Useful for testing.
+     *
+     * @param provider the time provider, or null to reset to default
+     */
+    public static void setTimeProvider(LongSupplier provider) {
+        timeProvider = provider != null ? provider : System::currentTimeMillis;
     }
 }

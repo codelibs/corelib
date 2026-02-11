@@ -58,14 +58,9 @@ public abstract class SerializeUtil {
      * Default set of allowed class name patterns for deserialization.
      * This helps prevent deserialization attacks by restricting which classes can be instantiated.
      */
-    private static final Set<String> DEFAULT_ALLOWED_PATTERNS = Set.of(
-        "java.lang.*",
-        "java.util.*",
-        "java.time.*",
-        "java.math.*",
-        "org.codelibs.*",
-        "[*" // Allow arrays
-    );
+    private static final Set<String> DEFAULT_ALLOWED_PATTERNS =
+            Set.of("java.lang.*", "java.util.*", "java.time.*", "java.math.*", "org.codelibs.*", "[*" // Allow arrays
+            );
 
     /**
      * Default ObjectInputFilter that only allows safe classes to be deserialized.
