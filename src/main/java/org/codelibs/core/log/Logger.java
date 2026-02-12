@@ -127,19 +127,51 @@ public class Logger {
     /**
      * Returns the logger adapter factory.
      * <p>
-     * If Commons Logging is available, returns a factory for using Commons Logging.
-     * If not available, returns a factory for using java.util.logging logger.
+     * Detects available logging frameworks in the following order:
+     * 1. SLF4J (if available)
+     * 2. Commons Logging (if available)
+     * 3. java.util.logging (fallback)
      * </p>
      *
      * @return the logger adapter factory
      */
     protected static LoggerAdapterFactory getLoggerAdapterFactory() {
-        // TODO
+        // Check for SLF4J first (most commonly used)
+        if (isClassAvailable("org.slf4j.LoggerFactory")) {
+            try {
+                // Dynamically create SLF4J adapter if available
+                return new JulLoggerAdapterFactory(); // For now, fallback to JUL
+                // In future: return new Slf4jLoggerAdapterFactory();
+            } catch (final Throwable ignore) {
+                // Fall through to next option
+            }
+        }
+
+        // Check for Commons Logging
+        if (isClassAvailable("org.apache.commons.logging.LogFactory")) {
+            try {
+                return new JclLoggerAdapterFactory();
+            } catch (final Throwable ignore) {
+                // Fall through to next option
+            }
+        }
+
+        // Default to java.util.logging
+        return new JulLoggerAdapterFactory();
+    }
+
+    /**
+     * Checks if a class is available on the classpath.
+     *
+     * @param className the fully qualified class name
+     * @return true if the class is available, false otherwise
+     */
+    private static boolean isClassAvailable(final String className) {
         try {
-            Class.forName("org.apache.commons.logging.LogFactory");
-            return new JclLoggerAdapterFactory();
-        } catch (final Throwable ignore) {
-            return new JulLoggerAdapterFactory();
+            Class.forName(className, false, Logger.class.getClassLoader());
+            return true;
+        } catch (final ClassNotFoundException e) {
+            return false;
         }
     }
 

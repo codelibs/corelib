@@ -86,7 +86,7 @@ public abstract class DisposableUtil {
             try {
                 disposable.dispose();
             } catch (final Throwable t) {
-                t.printStackTrace(); // must not use Logger.
+                System.err.println("[DisposableUtil] Failed to dispose resource: " + t.getClass().getName() + ": " + t.getMessage()); // must not use Logger.
             }
         }
         disposables.clear();

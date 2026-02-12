@@ -50,7 +50,6 @@ public abstract class StringUtil {
      */
     public static final String[] EMPTY_STRINGS = new String[0];
 
-
     /**
      * Checks if the string is empty or null.
      *

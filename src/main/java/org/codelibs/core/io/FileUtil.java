@@ -187,7 +187,8 @@ public abstract class FileUtil {
             final long fileSize = ChannelUtil.size(channel);
 
             if (fileSize > maxSize) {
-                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + maxSize + " bytes). Use streaming APIs for large files."));
+                throw new IORuntimeException(new IOException(
+                        "File too large: " + fileSize + " bytes (max: " + maxSize + " bytes). Use streaming APIs for large files."));
             }
 
             final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
@@ -320,7 +321,8 @@ public abstract class FileUtil {
                     // Enforce MAX_BUF_SIZE to prevent unbounded memory growth
                     final int newBufferSize = bufferSize + initialCapacity;
                     if (newBufferSize > MAX_BUF_SIZE) {
-                        throw new IORuntimeException(new IOException("Content too large: exceeds maximum buffer size of " + MAX_BUF_SIZE + " bytes. Use streaming APIs for large content."));
+                        throw new IORuntimeException(new IOException("Content too large: exceeds maximum buffer size of " + MAX_BUF_SIZE
+                                + " bytes. Use streaming APIs for large content."));
                     }
                     final char[] newBuf = new char[newBufferSize];
                     System.arraycopy(buf, 0, newBuf, 0, bufferSize);
