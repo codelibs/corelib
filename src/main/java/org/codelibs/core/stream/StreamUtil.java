@@ -27,6 +27,9 @@ import java.util.stream.Stream;
  * Utility class for {@link Stream}.
  */
 public abstract class StreamUtil {
+    /**
+     * Do not instantiate.
+     */
     protected StreamUtil() {
         // nothing
     }
