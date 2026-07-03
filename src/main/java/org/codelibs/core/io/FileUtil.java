@@ -104,6 +104,39 @@ public abstract class FileUtil {
     }
 
     /**
+     * Validates that a given path is within the base directory after resolving symbolic links.
+     * <p>
+     * Unlike {@link #isPathSafe(Path, Path)}, which performs only lexical normalization, this
+     * method resolves symbolic links via {@link Path#toRealPath(java.nio.file.LinkOption...)}.
+     * A symbolic link located inside {@code baseDirectory} that points outside of it is therefore
+     * correctly rejected, making this the stronger choice when the file system may contain links.
+     * </p>
+     * <p>
+     * <strong>Note:</strong> {@code toRealPath} requires the paths to exist. If either
+     * {@code pathToCheck} or {@code baseDirectory} does not exist, or an I/O error occurs while
+     * resolving them, this method returns {@code false}. To validate a path that has not been
+     * created yet, resolve the nearest existing ancestor with {@code toRealPath} yourself and
+     * pass the result here.
+     * </p>
+     *
+     * @param pathToCheck the path to validate (must not be {@literal null})
+     * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
+     * @return true if the resolved real path is within the resolved base directory, false otherwise
+     */
+    public static boolean isRealPathSafe(final Path pathToCheck, final Path baseDirectory) {
+        assertArgumentNotNull("pathToCheck", pathToCheck);
+        assertArgumentNotNull("baseDirectory", baseDirectory);
+
+        try {
+            final Path realBase = baseDirectory.toRealPath();
+            final Path realPath = pathToCheck.toRealPath();
+            return realPath.startsWith(realBase);
+        } catch (final IOException e) {
+            return false;
+        }
+    }
+
+    /**
      * Validates that a given file is safe and does not attempt path traversal attacks.
      * <p>
      * This is a convenience method that converts File objects to Path and calls

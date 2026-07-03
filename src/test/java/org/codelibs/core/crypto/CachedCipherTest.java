@@ -183,6 +183,32 @@ public class CachedCipherTest {
     }
 
     @Test
+    public void testEncryptDecryptWithIv() {
+        final CachedCipher cipher = new CachedCipher();
+        final Key key = new SecretKeySpec("0123456789abcdef".getBytes(), "AES");
+        final byte[] original = "Hello World".getBytes();
+
+        final byte[] encrypted1 = cipher.encryptWithIv(original, key);
+        final byte[] encrypted2 = cipher.encryptWithIv(original, key);
+
+        // A fresh random IV per call means the same plaintext yields different ciphertext.
+        assertThat(encrypted1, is(not(encrypted2)));
+        assertArrayEquals(original, cipher.decryptWithIv(encrypted1, key));
+        assertArrayEquals(original, cipher.decryptWithIv(encrypted2, key));
+    }
+
+    @Test(expected = org.codelibs.core.exception.BadPaddingRuntimeException.class)
+    public void testDecryptWithIvRejectsTamperedData() {
+        final CachedCipher cipher = new CachedCipher();
+        final Key key = new SecretKeySpec("0123456789abcdef".getBytes(), "AES");
+        final byte[] encrypted = cipher.encryptWithIv("Hello World".getBytes(), key);
+
+        // Flip a bit in the ciphertext; GCM authentication must reject it.
+        encrypted[encrypted.length - 1] ^= 0x01;
+        cipher.decryptWithIv(encrypted, key);
+    }
+
+    @Test
     public void testStringKeyChangeInvalidatesPooledCipher() {
         // Regression: changing the key on a reused instance must take effect. Before the fix,
         // the pooled cipher retained the previous key and encrypted with it.

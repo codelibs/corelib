@@ -15,10 +15,14 @@
  */
 package org.codelibs.core.crypto;
 
+import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
+
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -26,11 +30,13 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.codelibs.core.CoreLibConstants;
 import org.codelibs.core.exception.BadPaddingRuntimeException;
 import org.codelibs.core.exception.IllegalBlockSizeRuntimeException;
+import org.codelibs.core.exception.InvalidAlgorithmParameterRuntimeException;
 import org.codelibs.core.exception.InvalidKeyRuntimeException;
 import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 import org.codelibs.core.exception.NoSuchPaddingRuntimeException;
@@ -95,6 +101,18 @@ public class CachedCipher {
     private static final String BLOWFISH = "Blowfish";
 
     private static final String AES = "AES";
+
+    /** Transformation used by the authenticated {@link #encryptWithIv}/{@link #decryptWithIv} API. */
+    private static final String AES_GCM_TRANSFORMATION = "AES/GCM/NoPadding";
+
+    /** Standard GCM nonce length in bytes. */
+    private static final int GCM_IV_LENGTH = 12;
+
+    /** GCM authentication tag length in bits. */
+    private static final int GCM_TAG_LENGTH_BITS = 128;
+
+    /** Secure source of randomness for IV generation. */
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
     /**
      * The algorithm to use for the cipher.
@@ -333,6 +351,92 @@ public class CachedCipher {
     @Deprecated
     public String decryptoText(final String text) {
         return decryptText(text);
+    }
+
+    /**
+     * Encrypts data using AES in GCM mode (authenticated encryption) with a freshly generated
+     * random IV. The 12-byte IV is prepended to the returned value, followed by the ciphertext
+     * and the GCM authentication tag.
+     * <p>
+     * This is an opt-in, self-contained alternative to the pooled {@code encrypt}/{@code decrypt}
+     * methods (which default to Blowfish in ECB mode and cannot carry an IV). It generates a
+     * unique nonce per call and does not reuse or affect the cipher pool, so it is safe for
+     * confidential data. The instance-level configuration ({@link #setKey(String)},
+     * {@link #setAlgorithm(String)}, {@link #setTransformation(String)}) is not used; the caller
+     * supplies the AES {@link Key} directly.
+     * </p>
+     *
+     * @param data
+     *            the plaintext to encrypt. Must not be {@literal null}.
+     * @param key
+     *            the AES key. Must not be {@literal null}.
+     * @return the 12-byte IV followed by the ciphertext and GCM tag
+     */
+    public byte[] encryptWithIv(final byte[] data, final Key key) {
+        assertArgumentNotNull("data", data);
+        assertArgumentNotNull("key", key);
+
+        final byte[] iv = new byte[GCM_IV_LENGTH];
+        SECURE_RANDOM.nextBytes(iv);
+        try {
+            final Cipher cipher = Cipher.getInstance(AES_GCM_TRANSFORMATION);
+            cipher.init(Cipher.ENCRYPT_MODE, key, new GCMParameterSpec(GCM_TAG_LENGTH_BITS, iv));
+            final byte[] encrypted = cipher.doFinal(data);
+            final byte[] result = new byte[iv.length + encrypted.length];
+            System.arraycopy(iv, 0, result, 0, iv.length);
+            System.arraycopy(encrypted, 0, result, iv.length, encrypted.length);
+            return result;
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final InvalidAlgorithmParameterException e) {
+            throw new InvalidAlgorithmParameterRuntimeException(e);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        }
+    }
+
+    /**
+     * Decrypts data produced by {@link #encryptWithIv(byte[], Key)}. The 12-byte IV is read from
+     * the front of {@code data} and the remaining bytes are decrypted and authenticated.
+     *
+     * @param data
+     *            the IV followed by the ciphertext and GCM tag. Must not be {@literal null}.
+     * @param key
+     *            the AES key. Must not be {@literal null}.
+     * @return the decrypted plaintext
+     */
+    public byte[] decryptWithIv(final byte[] data, final Key key) {
+        assertArgumentNotNull("data", data);
+        assertArgumentNotNull("key", key);
+        if (data.length <= GCM_IV_LENGTH) {
+            throw new IllegalBlockSizeRuntimeException(new IllegalBlockSizeException("Encrypted data is too short to contain an IV."));
+        }
+
+        final byte[] iv = new byte[GCM_IV_LENGTH];
+        System.arraycopy(data, 0, iv, 0, GCM_IV_LENGTH);
+        try {
+            final Cipher cipher = Cipher.getInstance(AES_GCM_TRANSFORMATION);
+            cipher.init(Cipher.DECRYPT_MODE, key, new GCMParameterSpec(GCM_TAG_LENGTH_BITS, iv));
+            return cipher.doFinal(data, GCM_IV_LENGTH, data.length - GCM_IV_LENGTH);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final InvalidAlgorithmParameterException e) {
+            throw new InvalidAlgorithmParameterRuntimeException(e);
+        } catch (final IllegalBlockSizeException e) {
+            throw new IllegalBlockSizeRuntimeException(e);
+        } catch (final BadPaddingException e) {
+            throw new BadPaddingRuntimeException(e);
+        }
     }
 
     /**

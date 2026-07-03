@@ -29,6 +29,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.RecordComponent;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
@@ -494,6 +495,9 @@ public class BeanDescImpl implements BeanDesc {
      * Prepares {@link PropertyDesc}.
      */
     protected void setupPropertyDescs() {
+        if (beanClass.isRecord()) {
+            setupRecordPropertyDescs();
+        }
         for (final Method m : beanClass.getMethods()) {
             if (m.isBridge() || m.isSynthetic()) {
                 continue;
@@ -524,6 +528,23 @@ public class BeanDescImpl implements BeanDesc {
             propertyDescCache.remove(name);
         }
         invalidPropertyNames.clear();
+    }
+
+    /**
+     * Prepares read-only {@link PropertyDesc}s for the components of a {@link Record}.
+     * <p>
+     * Each record component is registered as a read-only property whose read method is the component's
+     * accessor (the prefix-less {@code name()} form). Records are immutable, so no write method is set.
+     * </p>
+     */
+    protected void setupRecordPropertyDescs() {
+        for (final RecordComponent component : beanClass.getRecordComponents()) {
+            final Method accessor = component.getAccessor();
+            if (accessor == null) {
+                continue;
+            }
+            setupReadMethod(accessor, component.getName());
+        }
     }
 
     /**

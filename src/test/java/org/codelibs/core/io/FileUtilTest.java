@@ -80,6 +80,45 @@ public class FileUtilTest {
     }
 
     /**
+     * Test isRealPathSafe with an existing file inside the base and a non-existent path.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testIsRealPathSafe_ExistingInsideAndMissing() throws Exception {
+        final Path baseDir = tempFolder.getRoot().toPath();
+        final File inside = tempFolder.newFile("inside.txt");
+
+        assertTrue("Existing file inside base should be allowed", FileUtil.isRealPathSafe(inside.toPath(), baseDir));
+        assertFalse("Non-existent path should be rejected", FileUtil.isRealPathSafe(baseDir.resolve("missing.txt"), baseDir));
+    }
+
+    /**
+     * Test that isRealPathSafe rejects a symbolic link inside the base that escapes it,
+     * whereas the lexical isPathSafe is fooled.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testIsRealPathSafe_SymlinkEscapingBaseIsRejected() throws Exception {
+        final Path root = tempFolder.getRoot().toPath();
+        final Path baseDir = Files.createDirectory(root.resolve("base"));
+        final Path outsideDir = Files.createDirectory(root.resolve("outside"));
+        final Path secret = Files.createFile(outsideDir.resolve("secret.txt"));
+
+        final Path link = baseDir.resolve("link");
+        try {
+            Files.createSymbolicLink(link, secret);
+        } catch (final UnsupportedOperationException | IOException e) {
+            // Symbolic links may be unsupported (e.g. Windows without privilege); skip the test.
+            org.junit.Assume.assumeNoException(e);
+        }
+
+        assertTrue("Lexical check is fooled by the link", FileUtil.isPathSafe(link, baseDir));
+        assertFalse("Real-path check resolves the escape", FileUtil.isRealPathSafe(link, baseDir));
+    }
+
+    /**
      * Test isPathSafe with path traversal attempt
      *
      * @throws Exception

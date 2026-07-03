@@ -20,6 +20,7 @@ import static org.codelibs.core.log.Logger.format;
 import java.io.Closeable;
 import java.io.IOException;
 
+import org.codelibs.core.exception.IORuntimeException;
 import org.codelibs.core.log.Logger;
 
 /**
@@ -81,6 +82,30 @@ public abstract class CloseableUtil {
             closeable.close();
         } catch (final IOException e) {
             // ignore
+        }
+    }
+
+    /**
+     * Closes a {@link Closeable}, propagating any {@link IOException} wrapped in an
+     * {@link IORuntimeException}.
+     * <p>
+     * Unlike {@link #close(Closeable)} and {@link #closeQuietly(Closeable)}, this method does not
+     * suppress the exception. Use it for output streams and writers, where a failure during
+     * {@link Closeable#close()} (which performs the final flush) means the data was not fully
+     * written and must not be silently ignored.
+     * </p>
+     *
+     * @param closeable the closeable object
+     * @throws IORuntimeException if {@link Closeable#close()} throws an {@link IOException}
+     */
+    public static void closeAndRethrow(final Closeable closeable) {
+        if (closeable == null) {
+            return;
+        }
+        try {
+            closeable.close();
+        } catch (final IOException e) {
+            throw new IORuntimeException(e);
         }
     }
 }
