@@ -64,7 +64,7 @@ public class ValueHolder<T> {
 
     @Override
     public String toString() {
-        return value.toString();
+        return String.valueOf(value);
     }
 
 }

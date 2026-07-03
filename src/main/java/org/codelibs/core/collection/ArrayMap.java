@@ -25,7 +25,6 @@ import java.io.ObjectOutput;
 import java.lang.reflect.Array;
 import java.util.AbstractMap;
 import java.util.AbstractSet;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -371,6 +370,9 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
 
                 @Override
                 public boolean contains(final Object o) {
+                    if (!(o instanceof Entry)) {
+                        return false;
+                    }
                     final Entry<K, V> entry = (Entry<K, V>) o;
                     final int index = (entry.hashCode & 0x7FFFFFFF) % mapTable.length;
                     for (Entry<K, V> e = mapTable[index]; e != null; e = e.next) {
@@ -431,11 +433,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Clon
 
     @Override
     public Object clone() {
-        final ArrayMap<K, V> copy = new ArrayMap<>();
-        copy.threshold = threshold;
-        copy.mapTable = Arrays.copyOf(mapTable, size);
-        copy.listTable = Arrays.copyOf(listTable, size);
-        copy.size = size;
+        final ArrayMap<K, V> copy = new ArrayMap<>(mapTable.length);
+        for (int i = 0; i < size; i++) {
+            final Entry<K, V> entry = listTable[i];
+            copy.put(entry.key, entry.value);
+        }
         return copy;
     }
 

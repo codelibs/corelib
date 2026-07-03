@@ -342,20 +342,21 @@ public class CachedCipher {
      */
     protected Cipher pollEncryptoCipher() {
         Cipher cipher = encryptoQueue.poll();
-        if (cipher == null) {
-            try {
-                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
+        try {
+            if (cipher == null) {
                 cipher = Cipher.getInstance(algorithm);
-                cipher.init(Cipher.ENCRYPT_MODE, sksSpec);
-            } catch (final InvalidKeyException e) {
-                throw new InvalidKeyRuntimeException(e);
-            } catch (final NoSuchAlgorithmException e) {
-                throw new NoSuchAlgorithmRuntimeException(e);
-            } catch (final NoSuchPaddingException e) {
-                throw new NoSuchPaddingRuntimeException(e);
-            } catch (final UnsupportedEncodingException e) {
-                throw new UnsupportedEncodingRuntimeException(e);
             }
+            // Always (re-)initialize so a pooled cipher never retains a stale key.
+            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
+            cipher.init(Cipher.ENCRYPT_MODE, sksSpec);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
+        } catch (final UnsupportedEncodingException e) {
+            throw new UnsupportedEncodingRuntimeException(e);
         }
         return cipher;
     }
@@ -369,17 +370,18 @@ public class CachedCipher {
      */
     protected Cipher pollEncryptoCipher(final Key key) {
         Cipher cipher = encryptoQueue.poll();
-        if (cipher == null) {
-            try {
+        try {
+            if (cipher == null) {
                 cipher = Cipher.getInstance(transformation);
-                cipher.init(Cipher.ENCRYPT_MODE, key);
-            } catch (final InvalidKeyException e) {
-                throw new InvalidKeyRuntimeException(e);
-            } catch (final NoSuchAlgorithmException e) {
-                throw new NoSuchAlgorithmRuntimeException(e);
-            } catch (final NoSuchPaddingException e) {
-                throw new NoSuchPaddingRuntimeException(e);
             }
+            // Always (re-)initialize with the given key; a pooled cipher may hold a different key.
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
         }
         return cipher;
     }
@@ -401,20 +403,21 @@ public class CachedCipher {
      */
     protected Cipher pollDecryptoCipher() {
         Cipher cipher = decryptoQueue.poll();
-        if (cipher == null) {
-            try {
-                final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
+        try {
+            if (cipher == null) {
                 cipher = Cipher.getInstance(algorithm);
-                cipher.init(Cipher.DECRYPT_MODE, sksSpec);
-            } catch (final InvalidKeyException e) {
-                throw new InvalidKeyRuntimeException(e);
-            } catch (final NoSuchAlgorithmException e) {
-                throw new NoSuchAlgorithmRuntimeException(e);
-            } catch (final NoSuchPaddingException e) {
-                throw new NoSuchPaddingRuntimeException(e);
-            } catch (final UnsupportedEncodingException e) {
-                throw new UnsupportedEncodingRuntimeException(e);
             }
+            // Always (re-)initialize so a pooled cipher never retains a stale key.
+            final SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(charsetName), algorithm);
+            cipher.init(Cipher.DECRYPT_MODE, sksSpec);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
+        } catch (final UnsupportedEncodingException e) {
+            throw new UnsupportedEncodingRuntimeException(e);
         }
         return cipher;
     }
@@ -428,17 +431,18 @@ public class CachedCipher {
      */
     protected Cipher pollDecryptoCipher(final Key key) {
         Cipher cipher = decryptoQueue.poll();
-        if (cipher == null) {
-            try {
+        try {
+            if (cipher == null) {
                 cipher = Cipher.getInstance(transformation);
-                cipher.init(Cipher.DECRYPT_MODE, key);
-            } catch (final InvalidKeyException e) {
-                throw new InvalidKeyRuntimeException(e);
-            } catch (final NoSuchAlgorithmException e) {
-                throw new NoSuchAlgorithmRuntimeException(e);
-            } catch (final NoSuchPaddingException e) {
-                throw new NoSuchPaddingRuntimeException(e);
             }
+            // Always (re-)initialize with the given key; a pooled cipher may hold a different key.
+            cipher.init(Cipher.DECRYPT_MODE, key);
+        } catch (final InvalidKeyException e) {
+            throw new InvalidKeyRuntimeException(e);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new NoSuchAlgorithmRuntimeException(e);
+        } catch (final NoSuchPaddingException e) {
+            throw new NoSuchPaddingRuntimeException(e);
         }
         return cipher;
     }
@@ -451,6 +455,21 @@ public class CachedCipher {
      */
     protected void offerDecryptoCipher(final Cipher cipher) {
         decryptoQueue.offer(cipher);
+    }
+
+    /**
+     * Discards all pooled ciphers so that subsequent operations rebuild them with the
+     * current algorithm/transformation.
+     * <p>
+     * This is required when the algorithm or transformation changes because those values
+     * are fixed on a {@link Cipher} instance at creation time and cannot be changed by
+     * re-initialization. Configuration setters are expected to be called before concurrent
+     * use.
+     * </p>
+     */
+    protected void clearCipherQueues() {
+        encryptoQueue.clear();
+        decryptoQueue.clear();
     }
 
     /**
@@ -470,6 +489,7 @@ public class CachedCipher {
      */
     public void setAlgorithm(final String algorithm) {
         this.algorithm = algorithm;
+        clearCipherQueues();
     }
 
     /**
@@ -489,6 +509,7 @@ public class CachedCipher {
      */
     public void setTransformation(final String transformation) {
         this.transformation = transformation;
+        clearCipherQueues();
     }
 
     /**

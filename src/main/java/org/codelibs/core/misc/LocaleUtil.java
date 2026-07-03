@@ -49,17 +49,17 @@ public abstract class LocaleUtil {
 
         switch (parts.length) {
         case 1:
-            return new Locale(parts[0]);
+            return Locale.of(parts[0]);
         case 2:
-            return new Locale(parts[0], parts[1]);
+            return Locale.of(parts[0], parts[1]);
         case 3:
-            return new Locale(parts[0], parts[1], parts[2]);
+            return Locale.of(parts[0], parts[1], parts[2]);
         default:
             return LocaleUtil.getDefault();
         }
     }
 
-    private static Supplier<Locale> defaultLocaleSupplier;
+    private static volatile Supplier<Locale> defaultLocaleSupplier;
 
     /**
      * Returns the default locale.

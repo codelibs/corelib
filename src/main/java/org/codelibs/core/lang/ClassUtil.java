@@ -21,6 +21,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import org.codelibs.core.exception.ClassNotFoundRuntimeException;
 import org.codelibs.core.exception.EmptyArgumentException;
 import org.codelibs.core.exception.IllegalAccessRuntimeException;
 import org.codelibs.core.exception.InstantiationRuntimeException;
+import org.codelibs.core.exception.InvocationTargetRuntimeException;
 import org.codelibs.core.exception.NoSuchConstructorRuntimeException;
 import org.codelibs.core.exception.NoSuchFieldRuntimeException;
 import org.codelibs.core.exception.NoSuchMethodRuntimeException;
@@ -216,11 +218,15 @@ public abstract class ClassUtil {
         assertArgumentNotNull("clazz", clazz);
 
         try {
-            return clazz.newInstance();
+            return clazz.getDeclaredConstructor().newInstance();
         } catch (final InstantiationException e) {
             throw new InstantiationRuntimeException(clazz, e);
         } catch (final IllegalAccessException e) {
             throw new IllegalAccessRuntimeException(clazz, e);
+        } catch (final InvocationTargetException e) {
+            throw new InvocationTargetRuntimeException(clazz, e);
+        } catch (final NoSuchMethodException e) {
+            throw new NoSuchConstructorRuntimeException(clazz, new Class<?>[0], e);
         }
     }
 

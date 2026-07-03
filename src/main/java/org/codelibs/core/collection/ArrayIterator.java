@@ -67,6 +67,7 @@ public class ArrayIterator<T> implements Iterator<T> {
      * @param items the array of elements to iterate (must not be {@literal null})
      */
     public ArrayIterator(final T... items) {
+        assertArgumentNotNull("items", items);
         this.items = items;
     }
 

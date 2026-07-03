@@ -286,7 +286,7 @@ public class BeanDescImpl implements BeanDesc {
         if (methodDescs == null) {
             throw new MethodNotFoundRuntimeException(beanClass, methodName, null);
         }
-        return methodDescs;
+        return methodDescs.clone();
     }
 
     @Override
@@ -404,17 +404,32 @@ public class BeanDescImpl implements BeanDesc {
         if (paramTypes.length != args.length) {
             return false;
         }
-        for (int i = 0; i < args.length; ++i) {
-            if (args[i] == null) {
+        // When number adjustment is enabled, evaluate the match against a copy of the arguments.
+        // This prevents a partially-converted, non-matching candidate from polluting the evaluation
+        // of later candidates or leaving the caller's array modified, and lets a failed conversion be
+        // treated as a non-match instead of being propagated. The successful conversions are copied
+        // back to the caller's array only once a candidate has fully matched.
+        final Object[] work = adjustNumber ? args.clone() : args;
+        for (int i = 0; i < work.length; ++i) {
+            if (work[i] == null) {
                 continue;
             }
-            if (ClassUtil.isAssignableFrom(paramTypes[i], args[i].getClass())) {
+            if (ClassUtil.isAssignableFrom(paramTypes[i], work[i].getClass())) {
                 continue;
             }
-            if (adjustNumber && adjustNumber(paramTypes, args, i)) {
-                continue;
+            if (adjustNumber) {
+                try {
+                    if (adjustNumber(paramTypes, work, i)) {
+                        continue;
+                    }
+                } catch (final RuntimeException e) {
+                    return false;
+                }
             }
             return false;
+        }
+        if (adjustNumber) {
+            System.arraycopy(work, 0, args, 0, args.length);
         }
         return true;
     }

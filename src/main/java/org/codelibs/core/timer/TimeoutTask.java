@@ -37,9 +37,9 @@ public class TimeoutTask {
 
     private final boolean permanent;
 
-    private long startTime;
+    private volatile long startTime;
 
-    private int status = ACTIVE;
+    private volatile int status = ACTIVE;
 
     TimeoutTask(final TimeoutTarget timeoutTarget, final int timeout, final boolean permanent) {
         this.timeoutTarget = timeoutTarget;

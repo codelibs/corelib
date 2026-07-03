@@ -15,6 +15,7 @@
  */
 package org.codelibs.core.convert;
 
+import static org.codelibs.core.convert.TimestampConversionUtil.getLongPattern;
 import static org.codelibs.core.convert.TimestampConversionUtil.toCalendar;
 import static org.codelibs.core.convert.TimestampConversionUtil.toDate;
 import static org.codelibs.core.convert.TimestampConversionUtil.toPlainPattern;
@@ -30,6 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.codelibs.core.exception.NullArgumentException;
 import org.codelibs.core.misc.LocaleUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -235,6 +237,19 @@ public class TimestampConversionUtilTest {
     }
 
     /**
+     * The locale passed to {@code toCalendar} must be honored when parsing the pattern.
+     * The default locale is {@link Locale#JAPANESE} (see {@link #setUp()}), so the English
+     * month name only parses when the explicitly supplied {@link Locale#US} is used.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testToCalendar_SpecificPatternWithLocale() throws Exception {
+        final Calendar calendar = toCalendar("Sep 7, 2010 11:49:10", "MMM d, yyyy HH:mm:ss", Locale.US);
+        assertThat(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar.getTime()), is("2010/09/07 11:49:10"));
+    }
+
+    /**
      * @throws Exception
      */
     @Test
@@ -332,6 +347,17 @@ public class TimestampConversionUtilTest {
     @Test
     public void testToPlainPattern() throws Exception {
         assertThat(toPlainPattern("y/M/d H:m:s"), is("yyMMdd HHmmss"));
+    }
+
+    /**
+     * {@code getLongPattern} must reject a {@code null} locale, consistent with the other
+     * {@code getXxxPattern(Locale)} methods.
+     *
+     * @throws Exception
+     */
+    @Test(expected = NullArgumentException.class)
+    public void testGetLongPattern_NullLocale() throws Exception {
+        getLongPattern(null);
     }
 
 }

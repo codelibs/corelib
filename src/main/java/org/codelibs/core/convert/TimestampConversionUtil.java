@@ -151,6 +151,7 @@ public abstract class TimestampConversionUtil {
      * @return the pattern string for {@link DateFormat#LONG} style
      */
     public static String getLongPattern(final Locale locale) {
+        assertArgumentNotNull("locale", locale);
         return ((SimpleDateFormat) getDateTimeInstance(LONG, LONG, locale)).toPattern();
     }
 
@@ -323,7 +324,7 @@ public abstract class TimestampConversionUtil {
             return null;
         }
         if (isNotEmpty(pattern)) {
-            final SimpleDateFormat format = new SimpleDateFormat(pattern);
+            final SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             final Date date = toDate(str, format);
             if (date != null) {
                 return toCalendar(date, locale);

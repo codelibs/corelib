@@ -198,7 +198,9 @@ public abstract class URLUtil {
         assertArgumentNotNull("fileUrl", fileUrl);
 
         try {
-            final String path = URLDecoder.decode(fileUrl.getPath(), "UTF-8");
+            // A '+' in a URL path is a literal '+', but URLDecoder would decode it to a
+            // space. Pre-encode it as %2B so that a literal '+' in the path is preserved.
+            final String path = URLDecoder.decode(fileUrl.getPath().replace("+", "%2B"), "UTF-8");
             return new File(path).getAbsoluteFile();
         } catch (final Exception e) {
             throw new ClRuntimeException("ECL0091", asArray(fileUrl), e);

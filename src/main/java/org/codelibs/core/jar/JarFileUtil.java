@@ -127,7 +127,8 @@ public abstract class JarFileUtil {
         final String nestedUrlPath = nestedUrl.getPath();
         final int pos = nestedUrlPath.lastIndexOf('!');
         final String jarFilePath = nestedUrlPath.substring(0, pos);
-        final File jarFile = new File(URLUtil.decode(jarFilePath, "UTF8"));
+        // Preserve a literal '+' in the path (URLUtil.decode would turn it into a space).
+        final File jarFile = new File(URLUtil.decode(jarFilePath.replace("+", "%2B"), "UTF8"));
         return FileUtil.getCanonicalPath(jarFile);
     }
 

@@ -17,6 +17,8 @@ package org.codelibs.core.convert;
 
 import static org.codelibs.core.misc.AssertionUtil.assertArgument;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Utility class for conversions related to byte arrays.
  *
@@ -44,7 +46,7 @@ public abstract class BinaryConversionUtil {
             return null;
         } else {
             assertArgument("o", o instanceof String, o.getClass().toString());
-            return ((String) o).getBytes();
+            return ((String) o).getBytes(StandardCharsets.UTF_8);
         }
     }
 

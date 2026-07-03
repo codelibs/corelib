@@ -339,6 +339,28 @@ public class FileUtilTest {
         assertThat(new String(bytes, "UTF-8"), is(content));
     }
 
+    /**
+     * Test readBytes returns the complete content for a multi-megabyte file, so
+     * that a partial channel read cannot leave the trailing bytes zero-filled.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testReadBytes_LargeContentIsComplete() throws Exception {
+        final File file = tempFolder.newFile("large_complete.dat");
+        final byte[] expected = new byte[3 * 1024 * 1024 + 123]; // ~3MB, not buffer-aligned
+        for (int i = 0; i < expected.length; i++) {
+            expected[i] = (byte) (i * 31 + 7);
+        }
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(expected);
+        }
+
+        final byte[] actual = FileUtil.readBytes(file, expected.length);
+        assertThat(actual.length, is(expected.length));
+        assertThat(actual, is(expected));
+    }
+
     private String getPath(final String fileName) {
         return getClass().getName().replace('.', '/').replaceFirst(getClass().getSimpleName(), fileName);
     }

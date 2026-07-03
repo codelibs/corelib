@@ -81,6 +81,14 @@ public abstract class FileUtil {
      *     throw new SecurityException("Path traversal attempt detected");
      * }
      * </pre>
+     * <p>
+     * <strong>Note:</strong> This method performs purely lexical normalization via
+     * {@link Path#normalize()} and does <em>not</em> resolve symbolic links. A symbolic
+     * link located inside {@code baseDirectory} that points outside of it is therefore
+     * still considered safe. If symbolic-link resolution is required, resolve both paths
+     * with {@link Path#toRealPath(java.nio.file.LinkOption...)} before calling this method
+     * (note that {@code toRealPath} requires the paths to exist).
+     * </p>
      *
      * @param pathToCheck the path to validate (must not be {@literal null})
      * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
@@ -190,9 +198,19 @@ public abstract class FileUtil {
                 throw new IORuntimeException(new IOException(
                         "File too large: " + fileSize + " bytes (max: " + maxSize + " bytes). Use streaming APIs for large files."));
             }
+            if (fileSize > Integer.MAX_VALUE) {
+                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + Integer.MAX_VALUE
+                        + " bytes for a byte array). Use streaming APIs for large files."));
+            }
 
             final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
-            ChannelUtil.read(channel, buffer);
+            // FileChannel.read may return before the buffer is filled, so keep
+            // reading until the buffer is full or the end of the file is reached.
+            while (buffer.hasRemaining()) {
+                if (ChannelUtil.read(channel, buffer) == -1) {
+                    break;
+                }
+            }
             return buffer.array();
         } finally {
             CloseableUtil.close(is);

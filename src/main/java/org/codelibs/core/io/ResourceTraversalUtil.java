@@ -198,7 +198,11 @@ public abstract class ResourceTraversalUtil {
      *            the handler to process resources
      */
     protected static void traverseFileSystem(final File rootDir, final File baseDir, final ResourceHandler handler) {
-        for (final File file : baseDir.listFiles()) {
+        final File[] files = baseDir.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (final File file : files) {
             if (file.isDirectory()) {
                 traverseFileSystem(rootDir, file, handler);
             } else {

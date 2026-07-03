@@ -28,7 +28,7 @@ import java.util.Iterator;
  */
 public class IteratorEnumeration<T> implements Enumeration<T> {
 
-    /** 反復子 */
+    /** The iterator */
     protected final Iterator<T> iterator;
 
     /**

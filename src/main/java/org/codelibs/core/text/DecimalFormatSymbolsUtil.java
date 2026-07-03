@@ -63,7 +63,8 @@ public abstract class DecimalFormatSymbolsUtil {
             symbols = new DecimalFormatSymbols(locale);
             CACHE.put(locale, symbols);
         }
-        return symbols;
+        // Return a defensive copy so that callers cannot mutate the shared cached instance.
+        return (DecimalFormatSymbols) symbols.clone();
     }
 
 }

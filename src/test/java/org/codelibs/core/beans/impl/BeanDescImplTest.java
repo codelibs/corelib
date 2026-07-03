@@ -21,6 +21,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -142,6 +143,20 @@ public class BeanDescImplTest {
         assertThat(methodDesc.getMethodName(), is("getAaa"));
         methodDesc = beanDesc.getMethodDescNoException("getaaa");
         assertThat(methodDesc, is(nullValue()));
+    }
+
+    /**
+     * Regression: when number adjustment fails for a candidate method, the failure must be
+     * reported as {@link MethodNotFoundRuntimeException} (not the underlying conversion
+     * exception) and the caller's argument array must be left unchanged.
+     */
+    @Test
+    public void testGetSuitableMethodDescDoesNotMutateArgsOnFailure() {
+        final BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
+        final Object[] args = { "1", "notanumber" };
+        assertThrows(MethodNotFoundRuntimeException.class, () -> beanDesc.getSuitableMethodDesc("add2", args));
+        assertThat(args[0], is((Object) "1"));
+        assertThat(args[1], is((Object) "notanumber"));
     }
 
     /**

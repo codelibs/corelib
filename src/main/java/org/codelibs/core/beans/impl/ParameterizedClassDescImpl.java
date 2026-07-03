@@ -84,7 +84,7 @@ public class ParameterizedClassDescImpl implements ParameterizedClassDesc {
 
     @Override
     public ParameterizedClassDesc[] getArguments() {
-        return arguments;
+        return arguments == null ? null : arguments.clone();
     }
 
     /**

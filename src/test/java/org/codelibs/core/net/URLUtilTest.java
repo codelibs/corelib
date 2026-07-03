@@ -60,4 +60,16 @@ public class URLUtilTest extends TestCase {
         assertEquals(file.getAbsoluteFile(), URLUtil.toFile(new URL("file:Program%20Files/hoge.txt")));
     }
 
+    /**
+     * A literal '+' in a file path must be preserved (not decoded to a space).
+     *
+     * @throws Exception
+     */
+    public void testToFileWithPlus() throws Exception {
+        final File file = new File("my+project/hoge.txt");
+        assertEquals(file.getAbsoluteFile(), URLUtil.toFile(new URL("file:my+project/hoge.txt")));
+        // Encoded space (%20) must still decode to a space.
+        assertEquals(new File("my project/hoge.txt").getAbsoluteFile(), URLUtil.toFile(new URL("file:my%20project/hoge.txt")));
+    }
+
 }

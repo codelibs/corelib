@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.codelibs.core.beans.BeanDesc;
 import org.codelibs.core.beans.impl.BeanDescImpl;
+import org.codelibs.core.misc.Disposable;
 import org.codelibs.core.misc.DisposableUtil;
 
 /**
@@ -56,6 +57,9 @@ public abstract class BeanDescFactory {
     /** Cache of {@link BeanDesc} */
     private static final ConcurrentMap<Class<?>, BeanDesc> beanDescCache = newConcurrentHashMap(1024);
 
+    /** Disposable that clears the cache; a single stable instance so it can be deregistered. */
+    private static final Disposable DISPOSABLE = BeanDescFactory::clear;
+
     static {
         initialize();
     }
@@ -86,7 +90,7 @@ public abstract class BeanDescFactory {
     public static void initialize() {
         synchronized (BeanDescFactory.class) {
             if (!initialized) {
-                DisposableUtil.add(BeanDescFactory::clear);
+                DisposableUtil.add(DISPOSABLE);
                 initialized = true;
             }
         }
@@ -97,6 +101,7 @@ public abstract class BeanDescFactory {
      */
     public static void clear() {
         beanDescCache.clear();
+        DisposableUtil.remove(DISPOSABLE);
         initialized = false;
     }
 

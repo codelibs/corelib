@@ -170,7 +170,7 @@ public class CopyOptions {
      * @return This instance itself
      */
     public CopyOptions prefix(final CharSequence prefix) {
-        assertArgumentNotEmpty("propertyNames", prefix);
+        assertArgumentNotEmpty("prefix", prefix);
 
         this.prefix = prefix.toString();
         return this;

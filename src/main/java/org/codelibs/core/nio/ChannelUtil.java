@@ -173,7 +173,18 @@ public abstract class ChannelUtil {
         assertArgumentNotNull("to", to);
 
         try {
-            return from.transferTo(0, from.size(), to);
+            // FileChannel.transferTo may transfer fewer bytes than requested,
+            // so loop until the whole source has been transferred.
+            final long size = from.size();
+            long position = 0;
+            while (position < size) {
+                final long transferred = from.transferTo(position, size - position, to);
+                if (transferred <= 0) {
+                    break;
+                }
+                position += transferred;
+            }
+            return position;
         } catch (final IOException e) {
             throw new IORuntimeException(e);
         }

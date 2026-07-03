@@ -34,4 +34,19 @@ public class DecimalFormatSymbolsUtilTest extends TestCase {
         System.out.println("DecimalSeparator:" + symbols.getDecimalSeparator());
         System.out.println("GroupingSeparator:" + symbols.getGroupingSeparator());
     }
+
+    /**
+     * The returned {@link DecimalFormatSymbols} must be a defensive copy so that mutating it
+     * does not corrupt the shared cached instance.
+     *
+     * @throws Exception
+     */
+    public void testGetDecimalFormatSymbolsReturnsDefensiveCopy() throws Exception {
+        final DecimalFormatSymbols first = DecimalFormatSymbolsUtil.getDecimalFormatSymbols(Locale.US);
+        final char originalDecimalSeparator = first.getDecimalSeparator();
+        first.setDecimalSeparator('#');
+        final DecimalFormatSymbols second = DecimalFormatSymbolsUtil.getDecimalFormatSymbols(Locale.US);
+        assertFalse(first == second);
+        assertEquals(originalDecimalSeparator, second.getDecimalSeparator());
+    }
 }

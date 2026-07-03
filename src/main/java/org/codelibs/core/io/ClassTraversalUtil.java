@@ -191,7 +191,11 @@ public abstract class ClassTraversalUtil {
      * @param handler the handler to process classes
      */
     protected static void traverseFileSystem(final File dir, final String packageName, final ClassHandler handler) {
-        for (final File file : dir.listFiles()) {
+        final File[] files = dir.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (final File file : files) {
             final String fileName = file.getName();
             if (file.isDirectory()) {
                 traverseFileSystem(file, ClassUtil.concatName(packageName, fileName), handler);

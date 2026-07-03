@@ -92,5 +92,12 @@ public abstract class SchemaFactoryUtil {
                 logger.debug("Failed to set a property.", e);
             }
         }
+        try {
+            schemaFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        } catch (final Exception e) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Failed to set a feature.", e);
+            }
+        }
     }
 }

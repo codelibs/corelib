@@ -19,6 +19,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.nio.charset.StandardCharsets;
+
 import org.codelibs.core.exception.ClIllegalArgumentException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -47,6 +49,16 @@ public class BinaryConversionUtilTest {
         final byte[] b = { 0x00, 0x01 };
         assertThat(BinaryConversionUtil.toBinary(b), is(b));
         assertThat(BinaryConversionUtil.toBinary("hoge"), is("hoge".getBytes()));
+    }
+
+    /**
+     * A {@link String} must be encoded with a fixed charset (UTF-8) so the result does not
+     * depend on the platform default charset.
+     */
+    @Test
+    public void testToBinaryUtf8() {
+        final String value = "あいう"; // Japanese hiragana
+        assertThat(BinaryConversionUtil.toBinary(value), is(value.getBytes(StandardCharsets.UTF_8)));
     }
 
     /**

@@ -22,6 +22,7 @@ import static org.junit.Assert.assertThat;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
@@ -162,6 +163,34 @@ public class CopyUtilTest {
 
         result = copy(outputFile, "UTF-8", writer);
         assertThat(writer.toString(), is(urlString));
+    }
+
+    /**
+     * Copying a multi-megabyte file must transfer every byte, even when the
+     * underlying channel transfer completes in more than one step.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testFileToFile_LargeContentIsComplete() throws Exception {
+        final File src = File.createTempFile("copyutil-src", ".dat");
+        final File dest = File.createTempFile("copyutil-dest", ".dat");
+        try {
+            final byte[] expected = new byte[3 * 1024 * 1024 + 123]; // ~3MB, not buffer-aligned
+            for (int i = 0; i < expected.length; i++) {
+                expected[i] = (byte) (i * 31 + 7);
+            }
+            try (FileOutputStream fos = new FileOutputStream(src)) {
+                fos.write(expected);
+            }
+
+            final int result = copy(src, dest);
+            assertThat(result, is(expected.length));
+            assertThat(FileUtil.readBytes(dest, expected.length), is(expected));
+        } finally {
+            src.delete();
+            dest.delete();
+        }
     }
 
 }
