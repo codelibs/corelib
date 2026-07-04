@@ -225,6 +225,39 @@ public class ArrayMapTest {
     }
 
     /**
+     * Verifies that {@link ArrayMap#clone()} produces an independent copy whose hash
+     * buckets resolve correctly and whose entries are not shared with the original.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testClone() throws Exception {
+        @SuppressWarnings("unchecked")
+        final ArrayMap<String, String> copy = (ArrayMap<String, String>) map.clone();
+        assertThat(copy.size(), is(3));
+        // Keys must resolve through the rebuilt bucket table, not a truncated one.
+        assertThat(copy.get(null), is(nullValue()));
+        assertThat(copy.get("1"), is("test"));
+        assertThat(copy.get("2"), is("test2"));
+        // Insertion order must be preserved.
+        assertThat(copy.getAt(0), is(nullValue()));
+        assertThat(copy.getAt(1), is("test"));
+        assertThat(copy.getAt(2), is("test2"));
+        // put on the clone must not throw and must not modify the original.
+        copy.put("3", "test3");
+        copy.put("4", "test4");
+        assertThat(copy.get("3"), is("test3"));
+        assertThat(copy.get("4"), is("test4"));
+        assertThat(map.containsKey("3"), is(not(true)));
+        assertThat(map.size(), is(3));
+        // remove on the clone must not corrupt the original's entries.
+        assertThat(copy.remove("1"), is("test"));
+        assertThat(copy.containsKey("1"), is(not(true)));
+        assertThat(map.get("1"), is("test"));
+        assertThat(map.containsKey("1"), is(true));
+    }
+
+    /**
      * @throws Exception
      */
     @Test

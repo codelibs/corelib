@@ -54,6 +54,18 @@ public abstract class SerializeUtil {
 
     private static final int BYTE_ARRAY_SIZE = 8 * 1024;
 
+    /** Maximum object graph depth allowed by the default filter. */
+    private static final long MAX_DEPTH = 100L;
+
+    /** Maximum number of object references allowed by the default filter. */
+    private static final long MAX_REFERENCES = 1_000_000L;
+
+    /** Maximum number of stream bytes allowed by the default filter. */
+    private static final long MAX_STREAM_BYTES = 100L * 1024L * 1024L;
+
+    /** Maximum array length allowed by the default filter. */
+    private static final long MAX_ARRAY_LENGTH = 1_000_000L;
+
     /**
      * Default set of allowed class name patterns for deserialization.
      * This helps prevent deserialization attacks by restricting which classes can be instantiated.
@@ -64,9 +76,22 @@ public abstract class SerializeUtil {
 
     /**
      * Default ObjectInputFilter that only allows safe classes to be deserialized.
+     * <p>
+     * In addition to the class allowlist, this filter enforces resource limits
+     * ({@link #MAX_DEPTH}, {@link #MAX_REFERENCES}, {@link #MAX_STREAM_BYTES},
+     * {@link #MAX_ARRAY_LENGTH}) so that a payload composed solely of allowed
+     * classes cannot exhaust memory or CPU during deserialization.
+     * </p>
      * This filter rejects potentially dangerous classes while allowing common safe types.
      */
     private static final ObjectInputFilter DEFAULT_FILTER = filterInfo -> {
+        // Defense-in-depth: reject payloads that exceed resource limits even when
+        // every class in the payload is otherwise allowed.
+        if (filterInfo.depth() > MAX_DEPTH || filterInfo.references() > MAX_REFERENCES || filterInfo.streamBytes() > MAX_STREAM_BYTES
+                || filterInfo.arrayLength() > MAX_ARRAY_LENGTH) {
+            return ObjectInputFilter.Status.REJECTED;
+        }
+
         final Class<?> serialClass = filterInfo.serialClass();
         if (serialClass == null) {
             return ObjectInputFilter.Status.UNDECIDED;

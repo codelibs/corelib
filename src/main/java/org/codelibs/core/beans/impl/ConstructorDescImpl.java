@@ -84,7 +84,7 @@ public class ConstructorDescImpl implements ConstructorDesc {
 
     @Override
     public Class<?>[] getParameterTypes() {
-        return parameterTypes;
+        return parameterTypes.clone();
     }
 
     @Override
@@ -96,12 +96,12 @@ public class ConstructorDescImpl implements ConstructorDesc {
     public boolean isParameterized(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        return parameterizedClassDescs[index].isParameterizedClass();
+        return parameterizedClassDescs[index] != null && parameterizedClassDescs[index].isParameterizedClass();
     }
 
     @Override
     public ParameterizedClassDesc[] getParameterizedClassDescs() {
-        return parameterizedClassDescs;
+        return parameterizedClassDescs.clone();
     }
 
     @Override

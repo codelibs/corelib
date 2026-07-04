@@ -47,6 +47,18 @@ public class StringUtilTest {
     }
 
     /**
+     * An empty {@code fromText} must return the text unchanged instead of looping forever.
+     *
+     * @throws Exception
+     */
+    @Test(timeout = 5000)
+    public void testReplace_emptyFromText() throws Exception {
+        assertEquals("abc", StringUtil.replace("abc", "", "x"));
+        assertEquals("", StringUtil.replace("", "", "x"));
+        assertNull(StringUtil.replace(null, "", "x"));
+    }
+
+    /**
      * @throws Exception
      */
     @Test

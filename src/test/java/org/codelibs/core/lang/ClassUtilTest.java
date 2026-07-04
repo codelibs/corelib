@@ -22,6 +22,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import org.codelibs.core.exception.EmptyArgumentException;
+import org.codelibs.core.exception.InstantiationRuntimeException;
+import org.codelibs.core.exception.InvocationTargetRuntimeException;
 import org.codelibs.core.exception.NoSuchConstructorRuntimeException;
 import org.codelibs.core.exception.NoSuchFieldRuntimeException;
 import org.junit.Test;
@@ -196,6 +198,42 @@ public class ClassUtilTest {
     public void testConvertClass() {
         assertThat(ClassUtil.convertClass("int"), is(sameClass(int.class)));
         assertThat(ClassUtil.convertClass("java.lang.String"), is(sameClass(String.class)));
+    }
+
+    /**
+     * A class with an accessible no-arg constructor is instantiated.
+     */
+    @Test
+    public void testNewInstance() {
+        assertThat(ClassUtil.newInstance(StringBuilder.class), is(not(nullValue())));
+    }
+
+    /**
+     * An abstract class is still reported as {@link InstantiationRuntimeException}.
+     */
+    @Test(expected = InstantiationRuntimeException.class)
+    public void testNewInstance_abstract() {
+        ClassUtil.newInstance(AbstractHoge.class);
+    }
+
+    /**
+     * An exception raised by the constructor is wrapped in {@link InvocationTargetRuntimeException}.
+     */
+    @Test(expected = InvocationTargetRuntimeException.class)
+    public void testNewInstance_throwingConstructor() {
+        ClassUtil.newInstance(ThrowingHoge.class);
+    }
+
+    /** Abstract class used by {@link #testNewInstance_abstract()}. */
+    public abstract static class AbstractHoge {
+    }
+
+    /** Class whose constructor always throws, used by {@link #testNewInstance_throwingConstructor()}. */
+    public static class ThrowingHoge {
+        /** Always throws to exercise the constructor failure path. */
+        public ThrowingHoge() {
+            throw new IllegalStateException("boom");
+        }
     }
 
 }

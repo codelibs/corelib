@@ -154,7 +154,7 @@ public class PropertyDescImpl implements PropertyDesc {
     }
 
     private void setUpParameterizedClassDesc() {
-        final Map<TypeVariable<?>, Type> typeVariables = ((BeanDescImpl) beanDesc).getTypeVariables();
+        final Map<TypeVariable<?>, Type> typeVariables = beanDesc.getTypeVariables();
         if (field != null) {
             parameterizedClassDesc = ParameterizedClassDescFactory.createParameterizedClassDesc(field, typeVariables);
         } else if (readMethod != null) {

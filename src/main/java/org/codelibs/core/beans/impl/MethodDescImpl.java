@@ -98,7 +98,7 @@ public class MethodDescImpl implements MethodDesc {
 
     @Override
     public Class<?>[] getParameterTypes() {
-        return parameterTypes;
+        return parameterTypes.clone();
     }
 
     @SuppressWarnings("unchecked")
@@ -131,17 +131,17 @@ public class MethodDescImpl implements MethodDesc {
     public boolean isParameterized(final int index) {
         assertArgumentArrayIndex("index", index, parameterTypes.length);
 
-        return parameterizedClassDescs[index].isParameterizedClass();
+        return parameterizedClassDescs[index] != null && parameterizedClassDescs[index].isParameterizedClass();
     }
 
     @Override
     public boolean isParameterized() {
-        return parameterizedClassDesc.isParameterizedClass();
+        return parameterizedClassDesc != null && parameterizedClassDesc.isParameterizedClass();
     }
 
     @Override
     public ParameterizedClassDesc[] getParameterizedClassDescs() {
-        return parameterizedClassDescs;
+        return parameterizedClassDescs.clone();
     }
 
     @Override

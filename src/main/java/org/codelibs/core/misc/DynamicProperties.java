@@ -32,6 +32,9 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.codelibs.core.exception.FileAccessException;
 import org.codelibs.core.exception.IORuntimeException;
@@ -138,9 +141,9 @@ public class DynamicProperties extends Properties {
 
         this.propertiesFile = file;
         if (!this.propertiesFile.exists()) {
-            final File parentDir = this.propertiesFile.getParentFile();
+            final File parentDir = this.propertiesFile.getAbsoluteFile().getParentFile();
             if (!parentDir.exists()) {
-                if (!parentDir.mkdir()) {
+                if (!parentDir.mkdirs()) {
                     throw new FileAccessException("ECL0109", new Object[] { file.getAbsolutePath() });
                 }
             } else if (!parentDir.isDirectory()) {
@@ -165,9 +168,9 @@ public class DynamicProperties extends Properties {
     public synchronized void reload(final String path) {
         final File file = new File(path);
         if (!file.exists()) {
-            final File parentDir = file.getParentFile();
+            final File parentDir = file.getAbsoluteFile().getParentFile();
             if (!parentDir.exists()) {
-                if (!parentDir.mkdir()) {
+                if (!parentDir.mkdirs()) {
                     throw new FileAccessException("ECL0109", new Object[] { path });
                 }
             } else if (!parentDir.isDirectory()) {
@@ -191,7 +194,6 @@ public class DynamicProperties extends Properties {
     public boolean isUpdated() {
         final long now = System.currentTimeMillis();
         if (now - lastChecked < checkInterval) {
-            lastChecked = now;
             return false;
         }
         lastChecked = now;
@@ -431,6 +433,62 @@ public class DynamicProperties extends Properties {
     @Override
     public Collection<Object> values() {
         return getProperties().values();
+    }
+
+    @Override
+    public Object getOrDefault(final Object key, final Object defaultValue) {
+        return getProperties().getOrDefault(key, defaultValue);
+    }
+
+    @Override
+    public void forEach(final BiConsumer<? super Object, ? super Object> action) {
+        getProperties().forEach(action);
+    }
+
+    @Override
+    public void replaceAll(final BiFunction<? super Object, ? super Object, ? extends Object> function) {
+        getProperties().replaceAll(function);
+    }
+
+    @Override
+    public Object putIfAbsent(final Object key, final Object value) {
+        return getProperties().putIfAbsent(key, value);
+    }
+
+    @Override
+    public boolean remove(final Object key, final Object value) {
+        return getProperties().remove(key, value);
+    }
+
+    @Override
+    public boolean replace(final Object key, final Object oldValue, final Object newValue) {
+        return getProperties().replace(key, oldValue, newValue);
+    }
+
+    @Override
+    public Object replace(final Object key, final Object value) {
+        return getProperties().replace(key, value);
+    }
+
+    @Override
+    public Object computeIfAbsent(final Object key, final Function<? super Object, ? extends Object> mappingFunction) {
+        return getProperties().computeIfAbsent(key, mappingFunction);
+    }
+
+    @Override
+    public Object computeIfPresent(final Object key, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+        return getProperties().computeIfPresent(key, remappingFunction);
+    }
+
+    @Override
+    public Object compute(final Object key, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+        return getProperties().compute(key, remappingFunction);
+    }
+
+    @Override
+    public Object merge(final Object key, final Object value,
+            final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+        return getProperties().merge(key, value, remappingFunction);
     }
 
     /**

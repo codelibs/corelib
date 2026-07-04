@@ -21,6 +21,7 @@ import static org.junit.Assert.assertThat;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.codelibs.core.exception.IORuntimeException;
 import org.junit.Test;
 
 /**
@@ -53,6 +54,32 @@ public class CloseableUtilTest {
     public void testClose_noThrowIOException() throws Exception {
         final OutputStream out = new IOExceptionOccurOutputStream();
         CloseableUtil.close(out);
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void testCloseAndRethrow() throws Exception {
+        final NotifyOutputStream out = new NotifyOutputStream();
+        CloseableUtil.closeAndRethrow(out);
+        assertThat(out.getNotify(), is("closed"));
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void testCloseAndRethrowNull() throws Exception {
+        CloseableUtil.closeAndRethrow((OutputStream) null);
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test(expected = IORuntimeException.class)
+    public void testCloseAndRethrow_propagatesIOException() throws Exception {
+        CloseableUtil.closeAndRethrow(new IOExceptionOccurOutputStream());
     }
 
     private static class NotifyOutputStream extends OutputStream {

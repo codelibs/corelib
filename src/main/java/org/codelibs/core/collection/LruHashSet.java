@@ -15,6 +15,10 @@
  */
 package org.codelibs.core.collection;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.AbstractSet;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -29,13 +33,13 @@ import java.util.Set;
  * @author shinsuke
  * @param <E> the type of elements maintained by this set
  */
-public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Serializable {
+public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * The internal LRU hash map used to store elements.
      */
-    private final LruHashMap<E, Object> map;
+    private transient LruHashMap<E, Object> map;
 
     // Dummy value to associate with an Object in the backing Map
     private static final Object PRESENT = new Object();
@@ -125,6 +129,42 @@ public class LruHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Ser
     @Override
     public void clear() {
         map.clear();
+    }
+
+    /**
+     * Serializes this set. The backing map is {@code transient} and its values are a
+     * non-serializable sentinel, so only the limit size and the elements are written.
+     *
+     * @param s the stream to write to
+     * @throws IOException if an I/O error occurs
+     */
+    private void writeObject(final ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeInt(map.getLimitSize());
+        s.writeInt(map.size());
+        for (final E e : map.keySet()) {
+            s.writeObject(e);
+        }
+    }
+
+    /**
+     * Deserializes this set by rebuilding the backing map from the limit size and the
+     * elements written by {@link #writeObject(ObjectOutputStream)}.
+     *
+     * @param s the stream to read from
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if the class of a serialized element cannot be found
+     */
+    private void readObject(final ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
+        final int limitSize = s.readInt();
+        map = new LruHashMap<>(limitSize);
+        final int size = s.readInt();
+        for (int i = 0; i < size; i++) {
+            @SuppressWarnings("unchecked")
+            final E e = (E) s.readObject();
+            map.put(e, PRESENT);
+        }
     }
 
 }

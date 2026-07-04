@@ -16,10 +16,12 @@
 package org.codelibs.core.collection;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 import java.util.Set;
 
+import org.codelibs.core.io.SerializeUtil;
 import org.junit.Test;
 
 /**
@@ -35,6 +37,23 @@ public class CaseInsensitiveSetTest {
         final Set<String> set = new CaseInsensitiveSet();
         set.add("one");
         assertThat(set.contains("ONE"), is(true));
+    }
+
+    /**
+     * The set must survive serialization even though the backing map is {@code transient}.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSerialize() throws Exception {
+        final CaseInsensitiveSet set = new CaseInsensitiveSet();
+        set.add("one");
+        set.add("two");
+        final CaseInsensitiveSet copy = (CaseInsensitiveSet) SerializeUtil.serialize(set);
+        assertThat(copy.size(), is(2));
+        assertThat(copy.contains("ONE"), is(true));
+        assertThat(copy.contains("Two"), is(true));
+        assertThat(copy.contains("three"), is(not(true)));
     }
 
 }

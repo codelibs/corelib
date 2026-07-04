@@ -40,7 +40,7 @@ public abstract class SystemUtil {
     /**
      * <code>line.separator</code> system property. For example, on Mac OS X: <code>"\n"</code>
      */
-    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    public static final String LINE_SEPARATOR = System.lineSeparator();
 
     /**
      * <code>path.separator</code> system property. For example, on Mac OS X: <code>":"</code>
@@ -112,7 +112,7 @@ public abstract class SystemUtil {
     /**
      * Provider for current time in milliseconds. Can be overridden for testing.
      */
-    private static LongSupplier timeProvider = System::currentTimeMillis;
+    private static volatile LongSupplier timeProvider = System::currentTimeMillis;
 
     /**
      * Returns the current time in milliseconds.

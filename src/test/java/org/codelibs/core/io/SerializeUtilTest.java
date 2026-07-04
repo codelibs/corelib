@@ -207,6 +207,31 @@ public class SerializeUtilTest extends TestCase {
     }
 
     /**
+     * Test that the default filter rejects a payload whose object-graph depth
+     * exceeds the resource limit, even though every class is on the allowlist.
+     *
+     * @throws Exception
+     */
+    public void testFromBinaryToObject_DefaultFilter_RejectsDeepGraph() throws Exception {
+        final ArrayList<Object> root = new ArrayList<>();
+        ArrayList<Object> current = root;
+        // Nest well beyond MAX_DEPTH (100) but not deep enough to risk a
+        // StackOverflowError during serialization.
+        for (int i = 0; i < 150; i++) {
+            final ArrayList<Object> child = new ArrayList<>();
+            current.add(child);
+            current = child;
+        }
+        final byte[] binary = SerializeUtil.fromObjectToBinary(root);
+        try {
+            SerializeUtil.fromBinaryToObject(binary);
+            fail("Expected IORuntimeException for a deeply nested object graph");
+        } catch (final IORuntimeException e) {
+            // Expected: rejected by the resource limit in the default filter.
+        }
+    }
+
+    /**
      * Test helper class for serialization tests
      */
     public static class TestSerializableClass implements Serializable {

@@ -17,6 +17,7 @@ package org.codelibs.core.net;
 
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotEmpty;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
@@ -48,7 +49,9 @@ public abstract class MimeTypeUtil {
     public static String guessContentType(final String path) {
         assertArgumentNotEmpty("path", path);
 
-        final InputStream is = ResourceUtil.getResourceAsStream(path);
+        // Wrap in a BufferedInputStream so that guessContentTypeFromStream can always
+        // mark/reset the stream, regardless of the underlying stream implementation.
+        final InputStream is = new BufferedInputStream(ResourceUtil.getResourceAsStream(path));
         try {
             final String mimetype = URLConnection.guessContentTypeFromStream(is);
             if (mimetype != null) {

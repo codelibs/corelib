@@ -29,6 +29,7 @@ import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.RecordComponent;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
@@ -286,7 +287,7 @@ public class BeanDescImpl implements BeanDesc {
         if (methodDescs == null) {
             throw new MethodNotFoundRuntimeException(beanClass, methodName, null);
         }
-        return methodDescs;
+        return methodDescs.clone();
     }
 
     @Override
@@ -404,17 +405,32 @@ public class BeanDescImpl implements BeanDesc {
         if (paramTypes.length != args.length) {
             return false;
         }
-        for (int i = 0; i < args.length; ++i) {
-            if (args[i] == null) {
+        // When number adjustment is enabled, evaluate the match against a copy of the arguments.
+        // This prevents a partially-converted, non-matching candidate from polluting the evaluation
+        // of later candidates or leaving the caller's array modified, and lets a failed conversion be
+        // treated as a non-match instead of being propagated. The successful conversions are copied
+        // back to the caller's array only once a candidate has fully matched.
+        final Object[] work = adjustNumber ? args.clone() : args;
+        for (int i = 0; i < work.length; ++i) {
+            if (work[i] == null) {
                 continue;
             }
-            if (ClassUtil.isAssignableFrom(paramTypes[i], args[i].getClass())) {
+            if (ClassUtil.isAssignableFrom(paramTypes[i], work[i].getClass())) {
                 continue;
             }
-            if (adjustNumber && adjustNumber(paramTypes, args, i)) {
-                continue;
+            if (adjustNumber) {
+                try {
+                    if (adjustNumber(paramTypes, work, i)) {
+                        continue;
+                    }
+                } catch (final RuntimeException e) {
+                    return false;
+                }
             }
             return false;
+        }
+        if (adjustNumber) {
+            System.arraycopy(work, 0, args, 0, args.length);
         }
         return true;
     }
@@ -479,6 +495,9 @@ public class BeanDescImpl implements BeanDesc {
      * Prepares {@link PropertyDesc}.
      */
     protected void setupPropertyDescs() {
+        if (beanClass.isRecord()) {
+            setupRecordPropertyDescs();
+        }
         for (final Method m : beanClass.getMethods()) {
             if (m.isBridge() || m.isSynthetic()) {
                 continue;
@@ -509,6 +528,23 @@ public class BeanDescImpl implements BeanDesc {
             propertyDescCache.remove(name);
         }
         invalidPropertyNames.clear();
+    }
+
+    /**
+     * Prepares read-only {@link PropertyDesc}s for the components of a {@link Record}.
+     * <p>
+     * Each record component is registered as a read-only property whose read method is the component's
+     * accessor (the prefix-less {@code name()} form). Records are immutable, so no write method is set.
+     * </p>
+     */
+    protected void setupRecordPropertyDescs() {
+        for (final RecordComponent component : beanClass.getRecordComponents()) {
+            final Method accessor = component.getAccessor();
+            if (accessor == null) {
+                continue;
+            }
+            setupReadMethod(accessor, component.getName());
+        }
     }
 
     /**

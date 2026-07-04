@@ -17,11 +17,10 @@ package org.codelibs.core.security;
 
 import static org.codelibs.core.misc.AssertionUtil.assertArgumentNotEmpty;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.codelibs.core.exception.ClIllegalStateException;
 import org.codelibs.core.exception.NoSuchAlgorithmRuntimeException;
 
 /**
@@ -75,11 +74,7 @@ public abstract class MessageDigestUtil {
         }
 
         final MessageDigest msgDigest = getInstance(algorithm);
-        try {
-            msgDigest.update(text.getBytes("UTF-8"));
-        } catch (final UnsupportedEncodingException e) {
-            throw new ClIllegalStateException(e);
-        }
+        msgDigest.update(text.getBytes(StandardCharsets.UTF_8));
         final byte[] digest = msgDigest.digest();
 
         final StringBuilder buffer = new StringBuilder(200);

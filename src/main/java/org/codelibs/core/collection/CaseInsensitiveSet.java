@@ -15,6 +15,9 @@
  */
 package org.codelibs.core.collection;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -94,6 +97,38 @@ public class CaseInsensitiveSet extends AbstractSet<String> implements Set<Strin
     @Override
     public void clear() {
         map.clear();
+    }
+
+    /**
+     * Serializes this set. The backing map is {@code transient} and its values are a
+     * non-serializable sentinel, so only the elements are written.
+     *
+     * @param s the stream to write to
+     * @throws IOException if an I/O error occurs
+     */
+    private void writeObject(final ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeInt(map.size());
+        for (final String e : map.keySet()) {
+            s.writeObject(e);
+        }
+    }
+
+    /**
+     * Deserializes this set by rebuilding the backing map from the elements written by
+     * {@link #writeObject(ObjectOutputStream)}.
+     *
+     * @param s the stream to read from
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if the class of a serialized element cannot be found
+     */
+    private void readObject(final ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
+        map = new CaseInsensitiveMap<>();
+        final int size = s.readInt();
+        for (int i = 0; i < size; i++) {
+            map.put((String) s.readObject(), PRESENT);
+        }
     }
 
 }

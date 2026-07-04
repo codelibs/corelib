@@ -237,6 +237,9 @@ public class Tokenizer {
      * @return The string that has already been read.
      */
     public String getReadString() {
+        if (colno == 0) {
+            return "";
+        }
         return str.substring(0, colno - 1);
     }
 

@@ -15,6 +15,7 @@
  */
 package org.codelibs.core.collection;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -80,7 +81,10 @@ public class CaseInsensitiveMap<V> extends ArrayMap<String, V> {
     }
 
     private static String convertKey(final Object key) {
-        return key.toString().toLowerCase();
+        if (key == null) {
+            return null;
+        }
+        return key.toString().toLowerCase(Locale.ROOT);
     }
 
 }

@@ -38,7 +38,7 @@ public abstract class StringUtil {
     /**
      * A system line separator.
      */
-    public static final String RETURN_STRING = System.getProperty("line.separator");
+    public static final String RETURN_STRING = System.lineSeparator();
 
     /**
      * An empty string <code>""</code>.
@@ -84,6 +84,9 @@ public abstract class StringUtil {
     public static final String replace(final String text, final String fromText, final String toText) {
         if (text == null || fromText == null || toText == null) {
             return null;
+        }
+        if (fromText.isEmpty()) {
+            return text;
         }
         final StringBuilder buf = new StringBuilder(100);
         int pos = 0;

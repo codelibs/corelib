@@ -24,7 +24,7 @@ package org.codelibs.core.text;
 public class JsonUtil {
 
     /**
-     * Defualt constructor.
+     * Default constructor.
      */
     protected JsonUtil() {
     }

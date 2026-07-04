@@ -16,6 +16,7 @@
 package org.codelibs.core;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Constants class.
@@ -33,7 +34,7 @@ public class CoreLibConstants {
     /**
      * UTF-8 Charset.
      */
-    public static final Charset CHARSET_UTF_8 = Charset.forName(UTF_8);
+    public static final Charset CHARSET_UTF_8 = StandardCharsets.UTF_8;
 
     /**
      * ISO 8601 basic format: yyyyMMdd'T'HHmmss.SSSZ

@@ -177,7 +177,13 @@ public class TimeoutManager implements Runnable {
             if (logger.isDebugEnabled()) {
                 logger.debug("TimeoutManagerThread stopped.");
             }
-            thread = null;
+            synchronized (this) {
+                // Only clear the reference if it still points to this thread; a concurrent
+                // stop()/start() may have already replaced it with a new worker thread.
+                if (thread == Thread.currentThread()) {
+                    thread = null;
+                }
+            }
             try {
                 executorService.shutdown();
                 executorService.awaitTermination(60, TimeUnit.SECONDS);

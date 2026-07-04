@@ -361,7 +361,8 @@ public abstract class ResourceUtil {
         assertArgumentNotNull("url", url);
 
         final String s = url.toExternalForm();
-        return URLUtil.decode(s, "UTF8");
+        // Preserve a literal '+' in the path (URLUtil.decode would turn it into a space).
+        return URLUtil.decode(s.replace("+", "%2B"), "UTF8");
     }
 
     /**
@@ -375,7 +376,8 @@ public abstract class ResourceUtil {
         assertArgumentNotNull("url", url);
 
         final String s = url.getFile();
-        return URLUtil.decode(s, "UTF8");
+        // Preserve a literal '+' in the path (URLUtil.decode would turn it into a space).
+        return URLUtil.decode(s.replace("+", "%2B"), "UTF8");
     }
 
     /**
@@ -389,7 +391,7 @@ public abstract class ResourceUtil {
         assertArgumentNotNull("url", url);
 
         final File file = new File(getFileName(url));
-        if (file != null && file.exists()) {
+        if (file.exists()) {
             return file;
         }
         return null;

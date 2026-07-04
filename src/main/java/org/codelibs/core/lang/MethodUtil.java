@@ -110,6 +110,8 @@ public abstract class MethodUtil {
      * @return <code>abstract</code> if the method is abstract
      */
     public static boolean isAbstract(final Method method) {
+        assertArgumentNotNull("method", method);
+
         return Modifier.isAbstract(method.getModifiers());
     }
 

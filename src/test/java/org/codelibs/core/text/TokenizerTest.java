@@ -37,6 +37,17 @@ public class TokenizerTest {
     }
 
     /**
+     * {@code getReadString} must not throw when called before any token has been read.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testGetReadStringBeforeNextToken() throws Exception {
+        final Tokenizer tokenizer = new Tokenizer("abc");
+        assertThat(tokenizer.getReadString(), is(""));
+    }
+
+    /**
      * @throws Exception
      */
     @Test

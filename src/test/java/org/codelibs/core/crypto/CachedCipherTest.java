@@ -20,6 +20,10 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
+import java.security.Key;
+
+import javax.crypto.spec.SecretKeySpec;
+
 import org.junit.Test;
 
 /**
@@ -157,5 +161,67 @@ public class CachedCipherTest {
         final String decrypted = cipher.decryptText(encrypted);
 
         assertThat(decrypted, is(original));
+    }
+
+    @Test
+    public void testKeyBasedCipherReinitializedPerKey() {
+        // Regression: a pooled cipher must be re-initialized with the given key on every
+        // operation. Before the fix, encrypt(data, keyB) reused the cipher still initialized
+        // with keyA, so keyB was silently ignored (encA == encB) and decrypt(encB, keyB) failed.
+        final CachedCipher cipher = new CachedCipher();
+        final Key keyA = new SecretKeySpec("0123456789abcdef".getBytes(), "Blowfish");
+        final Key keyB = new SecretKeySpec("fedcba9876543210".getBytes(), "Blowfish");
+
+        final byte[] data = "Hello World".getBytes();
+
+        final byte[] encA = cipher.encrypt(data, keyA);
+        final byte[] encB = cipher.encrypt(data, keyB);
+
+        assertThat(encA, is(not(encB)));
+        assertArrayEquals(data, cipher.decrypt(encA, keyA));
+        assertArrayEquals(data, cipher.decrypt(encB, keyB));
+    }
+
+    @Test
+    public void testEncryptDecryptWithIv() {
+        final CachedCipher cipher = new CachedCipher();
+        final Key key = new SecretKeySpec("0123456789abcdef".getBytes(), "AES");
+        final byte[] original = "Hello World".getBytes();
+
+        final byte[] encrypted1 = cipher.encryptWithIv(original, key);
+        final byte[] encrypted2 = cipher.encryptWithIv(original, key);
+
+        // A fresh random IV per call means the same plaintext yields different ciphertext.
+        assertThat(encrypted1, is(not(encrypted2)));
+        assertArrayEquals(original, cipher.decryptWithIv(encrypted1, key));
+        assertArrayEquals(original, cipher.decryptWithIv(encrypted2, key));
+    }
+
+    @Test(expected = org.codelibs.core.exception.BadPaddingRuntimeException.class)
+    public void testDecryptWithIvRejectsTamperedData() {
+        final CachedCipher cipher = new CachedCipher();
+        final Key key = new SecretKeySpec("0123456789abcdef".getBytes(), "AES");
+        final byte[] encrypted = cipher.encryptWithIv("Hello World".getBytes(), key);
+
+        // Flip a bit in the ciphertext; GCM authentication must reject it.
+        encrypted[encrypted.length - 1] ^= 0x01;
+        cipher.decryptWithIv(encrypted, key);
+    }
+
+    @Test
+    public void testStringKeyChangeInvalidatesPooledCipher() {
+        // Regression: changing the key on a reused instance must take effect. Before the fix,
+        // the pooled cipher retained the previous key and encrypted with it.
+        final CachedCipher cipher = new CachedCipher();
+
+        cipher.setKey("keyOne");
+        final byte[] data = "Hello World".getBytes();
+        final byte[] encOne = cipher.encrypt(data);
+
+        cipher.setKey("keyTwo");
+        final byte[] encTwo = cipher.encrypt(data);
+
+        assertThat(encOne, is(not(encTwo)));
+        assertArrayEquals(data, cipher.decrypt(encTwo));
     }
 }

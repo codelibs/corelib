@@ -81,6 +81,14 @@ public abstract class FileUtil {
      *     throw new SecurityException("Path traversal attempt detected");
      * }
      * </pre>
+     * <p>
+     * <strong>Note:</strong> This method performs purely lexical normalization via
+     * {@link Path#normalize()} and does <em>not</em> resolve symbolic links. A symbolic
+     * link located inside {@code baseDirectory} that points outside of it is therefore
+     * still considered safe. If symbolic-link resolution is required, resolve both paths
+     * with {@link Path#toRealPath(java.nio.file.LinkOption...)} before calling this method
+     * (note that {@code toRealPath} requires the paths to exist).
+     * </p>
      *
      * @param pathToCheck the path to validate (must not be {@literal null})
      * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
@@ -93,6 +101,39 @@ public abstract class FileUtil {
         final Path normalizedPath = pathToCheck.toAbsolutePath().normalize();
         final Path normalizedBase = baseDirectory.toAbsolutePath().normalize();
         return normalizedPath.startsWith(normalizedBase);
+    }
+
+    /**
+     * Validates that a given path is within the base directory after resolving symbolic links.
+     * <p>
+     * Unlike {@link #isPathSafe(Path, Path)}, which performs only lexical normalization, this
+     * method resolves symbolic links via {@link Path#toRealPath(java.nio.file.LinkOption...)}.
+     * A symbolic link located inside {@code baseDirectory} that points outside of it is therefore
+     * correctly rejected, making this the stronger choice when the file system may contain links.
+     * </p>
+     * <p>
+     * <strong>Note:</strong> {@code toRealPath} requires the paths to exist. If either
+     * {@code pathToCheck} or {@code baseDirectory} does not exist, or an I/O error occurs while
+     * resolving them, this method returns {@code false}. To validate a path that has not been
+     * created yet, resolve the nearest existing ancestor with {@code toRealPath} yourself and
+     * pass the result here.
+     * </p>
+     *
+     * @param pathToCheck the path to validate (must not be {@literal null})
+     * @param baseDirectory the base directory that the path must be within (must not be {@literal null})
+     * @return true if the resolved real path is within the resolved base directory, false otherwise
+     */
+    public static boolean isRealPathSafe(final Path pathToCheck, final Path baseDirectory) {
+        assertArgumentNotNull("pathToCheck", pathToCheck);
+        assertArgumentNotNull("baseDirectory", baseDirectory);
+
+        try {
+            final Path realBase = baseDirectory.toRealPath();
+            final Path realPath = pathToCheck.toRealPath();
+            return realPath.startsWith(realBase);
+        } catch (final IOException e) {
+            return false;
+        }
     }
 
     /**
@@ -190,9 +231,19 @@ public abstract class FileUtil {
                 throw new IORuntimeException(new IOException(
                         "File too large: " + fileSize + " bytes (max: " + maxSize + " bytes). Use streaming APIs for large files."));
             }
+            if (fileSize > Integer.MAX_VALUE) {
+                throw new IORuntimeException(new IOException("File too large: " + fileSize + " bytes (max: " + Integer.MAX_VALUE
+                        + " bytes for a byte array). Use streaming APIs for large files."));
+            }
 
             final ByteBuffer buffer = ByteBuffer.allocate((int) fileSize);
-            ChannelUtil.read(channel, buffer);
+            // FileChannel.read may return before the buffer is filled, so keep
+            // reading until the buffer is full or the end of the file is reached.
+            while (buffer.hasRemaining()) {
+                if (ChannelUtil.read(channel, buffer) == -1) {
+                    break;
+                }
+            }
             return buffer.array();
         } finally {
             CloseableUtil.close(is);

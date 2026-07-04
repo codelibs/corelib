@@ -274,7 +274,7 @@ public class Logger {
      *            Message
      */
     public void warn(final Object message) {
-        log.warn(message.toString());
+        log.warn(toString(message));
     }
 
     /**
@@ -286,7 +286,7 @@ public class Logger {
      *            Exception
      */
     public void error(final Object message, final Throwable throwable) {
-        log.error(message.toString(), throwable);
+        log.error(toString(message), throwable);
     }
 
     /**
@@ -296,7 +296,7 @@ public class Logger {
      *            Message
      */
     public void error(final Object message) {
-        log.error(message.toString());
+        log.error(toString(message));
     }
 
     /**
@@ -308,7 +308,7 @@ public class Logger {
      *            Exception
      */
     public void fatal(final Object message, final Throwable throwable) {
-        log.fatal(message.toString(), throwable);
+        log.fatal(toString(message), throwable);
     }
 
     /**
@@ -318,7 +318,7 @@ public class Logger {
      *            Message
      */
     public void fatal(final Object message) {
-        log.fatal(message.toString());
+        log.fatal(toString(message));
     }
 
     /**

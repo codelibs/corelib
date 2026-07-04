@@ -21,6 +21,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.junit.After;
@@ -103,6 +104,40 @@ public class CaseInsensitiveMapTest {
         assertThat(map.get("THREE"), is("3"));
         assertThat(map.get("FOUR"), is("4"));
         assertThat(map.size(), is(4));
+    }
+
+    /**
+     * A {@literal null} key must be supported the same way the parent {@link ArrayMap} supports it.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testNullKey() throws Exception {
+        assertThat(map.put(null, "nullValue"), is(nullValue()));
+        assertThat(map.containsKey(null), is(true));
+        assertThat(map.get(null), is("nullValue"));
+        assertThat(map.remove(null), is("nullValue"));
+        assertThat(map.containsKey(null), is(not(true)));
+    }
+
+    /**
+     * Key folding must be locale-independent (e.g. the Turkish dotless-i must not break
+     * case-insensitive lookups of ASCII keys).
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testLocaleIndependentKey() throws Exception {
+        final Locale defaultLocale = Locale.getDefault();
+        try {
+            Locale.setDefault(Locale.forLanguageTag("tr"));
+            final CaseInsensitiveMap<String> m = new CaseInsensitiveMap<String>();
+            m.put("ID", "value");
+            assertThat(m.get("id"), is("value"));
+            assertThat(m.containsKey("id"), is(true));
+        } finally {
+            Locale.setDefault(defaultLocale);
+        }
     }
 
     /**

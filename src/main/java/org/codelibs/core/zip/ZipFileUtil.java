@@ -126,7 +126,8 @@ public abstract class ZipFileUtil {
         final String urlString = zipUrl.getPath();
         final int pos = urlString.lastIndexOf('!');
         final String zipFilePath = urlString.substring(0, pos);
-        final File zipFile = new File(URLUtil.decode(zipFilePath, "UTF8"));
+        // Preserve a literal '+' in the path (URLUtil.decode would turn it into a space).
+        final File zipFile = new File(URLUtil.decode(zipFilePath.replace("+", "%2B"), "UTF8"));
         return FileUtil.getCanonicalPath(zipFile);
     }
 

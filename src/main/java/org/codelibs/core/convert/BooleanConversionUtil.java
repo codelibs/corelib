@@ -15,6 +15,8 @@
  */
 package org.codelibs.core.convert;
 
+import java.util.Locale;
+
 /**
  * Utility class for conversions related to {@link Boolean}.
  *
@@ -40,7 +42,7 @@ public abstract class BooleanConversionUtil {
         case null -> null;
         case Boolean b -> b;
         case Number n -> n.intValue() != 0;
-        case String s -> switch (s.toLowerCase()) {
+        case String s -> switch (s.toLowerCase(Locale.ROOT)) {
         case "true" -> Boolean.TRUE;
         case "false", "0" -> Boolean.FALSE;
         default -> Boolean.TRUE;
